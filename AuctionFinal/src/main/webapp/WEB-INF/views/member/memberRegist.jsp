@@ -34,12 +34,14 @@
 			<div class="mydiv" style="margin-left: 15%;">
 				<span class="mydisplay myfont" >아이디 :</span>
 				<span class="mydisplay myfont" style="margin-top: 30px;">암&nbsp;&nbsp;&nbsp;호 :</span> 
+				<span class="mydisplay myfont" style="margin-top: 30px;">암호 확인 :</span>
 				<span class="mydisplay myfont" style="margin-top: 30px;">이&nbsp;&nbsp;&nbsp;름 :</span> 
 			</div>
 			
 			<div class="mydiv" style="margin-left: 5%;">
 				<input class="mydisplay form-control" type="text" name="userid" id="userid" size="20" />
-				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="pwd" id="pwd" size="20" /> 
+				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="passwd" id="passwd" size="20" /> 
+				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="passwd2" id="passwd2" size="20" /> 
 				<input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="name" id="name" size="20" />
 			</div>
 			

@@ -23,7 +23,7 @@
     		 func_Login(event);
     	 });
     	 
-    	 $("#pwd").keydown(function(event){
+    	 $("#passwd").keydown(function(event){
     		 if(event.keyCode == 13){
     			 func_Login(event);
     		 }
@@ -34,13 +34,13 @@
     	if(${sessionScope.loginuser != null}) {
     		alert("이미 로그인 하신 상태입니다.");
     		$("#userid").val("");
-    		$("#pwd").val("");
+    		$("#passwd").val("");
     		$("#userid").focus();
     		event.preventDefault();
     		return;
     	}
     	var userid = $("#userid").val();
-    	var pwd = $("#pwd").val();
+    	var pwd = $("#passwd").val();
     	
     	if(userid.trim() == "") {
     		alert("아이디를 입력하세요");
@@ -51,8 +51,8 @@
     	}
     	if(pwd.trim() == "") {
     		alert("암호를 입력하세요");
-    		$("#pwd").val("");
-    		$("#pwd").focus();
+    		$("#passwd").val("");
+    		$("#passwd").focus();
     		event.preventDefault();
     		return;
     	}
@@ -78,7 +78,7 @@
 			
 			<div class="mydiv" style="margin-left: 5%;">
 				<input class="mydisplay form-control" type="text" name="userid" id="userid" size="20" />
-				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="pwd" id="pwd" size="20" /> 
+				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="passwd" id="passwd" size="20" /> 
 			</div>
 			
 			<div class="mydiv" style="margin-left: 10%;">
@@ -88,8 +88,3 @@
 	</div>
 	
 </div>
-
-
-
-
-  
