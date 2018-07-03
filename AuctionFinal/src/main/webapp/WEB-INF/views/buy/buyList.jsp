@@ -15,7 +15,10 @@
 </head>
 <script type="text/javascript">
 	$(document).ready(function () {
-		
+		var frm = document.buyListFrm;
+		frm.method = "GET";
+		frm.action = "buyListEnd.action";
+		frm.submit();
 	});
 </script>
 <body>
@@ -35,7 +38,7 @@
     <c:if test="${sessionScope.loginuser != null && sessionScope.loginuser.userid}">
     	<c:forEach var="map" items="${buyListMap}">
 	    
-	      <th scope="row">0</th>
+	      <th scope="row">${map.}</th>
 	      <td>1</td>
 	      <td>2</td>
 	      <td>3</td>
