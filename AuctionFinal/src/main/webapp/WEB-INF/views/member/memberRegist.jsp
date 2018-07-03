@@ -22,6 +22,14 @@
     	
     }); // end of $(document).ready()---------------------------	 
     
+    function idCheck(){
+    	var frm = document.RegistFrm;
+    	
+    	var useridval = frm.userid.val();
+    	
+    	if(useridval == )
+    }
+    
 </script>
 
 <div style="width:90%; margin: auto; border: solid 0px red;">
@@ -36,13 +44,15 @@
 				<span class="mydisplay myfont" style="margin-top: 30px;">암&nbsp;&nbsp;&nbsp;호 :</span> 
 				<span class="mydisplay myfont" style="margin-top: 30px;">암호 확인 :</span>
 				<span class="mydisplay myfont" style="margin-top: 30px;">이&nbsp;&nbsp;&nbsp;름 :</span> 
+				<span class="mydisplay myfont" style="margin-top: 30px;">주&nbsp;&nbsp;&nbsp;소 :</span>
 			</div>
 			
 			<div class="mydiv" style="margin-left: 5%;">
-				<input class="mydisplay form-control" type="text" name="userid" id="userid" size="20" />
+				<input class="mydisplay form-control" type="text" name="userid" id="userid" size="20" /><button type="button" onClick="idCheck();">아이디 확인</button>
 				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="passwd" id="passwd" size="20" /> 
 				<input class="mydisplay form-control" style="margin-top: 15px;" type="password" name="passwd2" id="passwd2" size="20" /> 
 				<input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="name" id="name" size="20" />
+				<input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr1" id="addr1" size="20" /> - <input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr2" id="addr2" size="20" />
 			</div>
 			
 			<div class="mydiv" style="margin-left: 10%;">

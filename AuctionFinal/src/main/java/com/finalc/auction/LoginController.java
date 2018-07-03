@@ -65,11 +65,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
-	public String regist(HttpServletRequest req, HttpServletResponse res) {
-		HttpSession session = req.getSession();
-		session.invalidate();
+	public String memberRegist(HttpServletRequest req, HttpServletResponse res) {
+		
 		return "member/memberRegist.tiles";
-		// /Board/src/main/webapp/WEB-INF/views/login/logout.jsp 파일을 생성한다.
+		
 	}
 	
 }
