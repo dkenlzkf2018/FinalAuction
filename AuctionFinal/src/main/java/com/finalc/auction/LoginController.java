@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -78,7 +80,21 @@ public class LoginController {
 		
 		int n = service.idCheck(userid);
 		
-		return "member/idCheckJSON.notiles";
+		System.out.println("확인용 1 : " + n);
+		
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		jsonObj.put("check", n);
+		jsonArr.put(jsonObj);
+		
+		String str_jsonArr = jsonArr.toString();
+		
+		System.out.println("확인용 2 : " + str_jsonArr);
+		
+		req.setAttribute("str_jsonArr", str_jsonArr);		
+		
+		return "idCheckJSON.notiles";
 		
 	}
 	

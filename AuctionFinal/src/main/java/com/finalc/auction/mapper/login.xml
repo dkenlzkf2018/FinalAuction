@@ -19,7 +19,9 @@
 		passwd = #{passwd}
 	</select>
 	
-	<select id="idCheck" parameterType="String" >
-		
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		select count(*)
+		from tbl_member_detail
+		where fk_userid = #{userid}
 	</select>
 </mapper>
