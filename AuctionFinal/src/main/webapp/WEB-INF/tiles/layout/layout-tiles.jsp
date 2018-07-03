@@ -19,7 +19,7 @@
     
   <style type="text/css">
   	#mycontainer	{ width:90%; margin:0 auto; padding:20px; }
-	#myheader		{ background-color:#EBEBE0; height:56px; padding: 10px; }
+	/* #myheader		{ background-color:#EBEBE0; height:56px; padding: 10px; } */
 	#mycontent		{ background-color:#F5F5F5; float:left; width:75%; min-height:800px; padding-top: 40px;}
 	#mysideinfo		{ background-color:#F0FFFF; float:left; width:25%; min-height:800px; padding-top: 20px;}
 	#myfooter		{ background-color:#555555; clear:both; height:100px; }
@@ -40,7 +40,7 @@
 	a:active {color: #0000FF;}
 	*/
 	
-	#myheader .mynav {font-size: 13pt;}
+	/* #myheader .mynav {font-size: 13pt;} */
 	.myrank {font-weight:bold; color:red; font-size:13pt;}
 	.mynumber {text-align:center;}
 	

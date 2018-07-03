@@ -14,45 +14,32 @@
 	String serverName = "http://"+serverIP+":"+portnumber;
 
 %>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/scss/build.scss">
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/postcss.js"></script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div align="center">
-	<ul class="nav nav-tabs mynav">
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">Home <span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><a href="<%=request.getContextPath()%>/index.action">홈</a></li>
-				<!-- ===== #178. (웹채팅관련10) ===== -->
-				<li><a href="<%=serverName%><%=request.getContextPath()%>/chatting/multichat.action">웹채팅</a></li>
-				<li><a href="#">Submenu 1-3</a></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">게시판 <span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><a href="<%=request.getContextPath()%>/list.action">목록보기</a></li>
-				<li><a href="<%=request.getContextPath()%>/add.action">글쓰기</a></li>
-				<li><a href="#">Submenu 2-3</a></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">로그인 <span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<c:if test="${sessionScope.loginuser == null}">
-				<li><a href="#">회원가입</a></li>
-				<li><a href="<%=request.getContextPath()%>/login.action">로그인</a></li>
-				</c:if>
-				
-				<c:if test="${sessionScope.loginuser != null}">
-				<li><a href="<%=request.getContextPath()%>/logout.action">로그아웃</a></li>
-				</c:if>
-			</ul>
-		</li>
-		<%-- ===== #49. 로그인 성공한 사용자 성명 출력하기 ===== --%>
-		<c:if test="${sessionScope.loginuser != null && sessionScope.loginuser.gradelevel < 10}">
-			<li style="margin-left: 35%; margin-top: 1%;">::: 환영합니다 <span style="color: navy; font-weight: bold;">${sessionScope.loginuser.name}</span>님 :::</li>
-		</c:if>
-		<c:if test="${sessionScope.loginuser != null && sessionScope.loginuser.gradelevel == 10}">
-			<li style="margin-left: 15%; margin-top: 1%;">::: 환영합니다 <span style="color: red; font-weight: bold;">${sessionScope.loginuser.name}</span>님 :::</li>
-		</c:if>
-	</ul>
-</div>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
