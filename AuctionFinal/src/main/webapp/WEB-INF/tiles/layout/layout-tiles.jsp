@@ -7,44 +7,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>tiles 를 사용한 메인(시작) 페이지 작성하기</title>
+<meta charset="utf-8">
+  <title>Metronic Shop UI</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Metronic Shop UI description" name="description">
+  <meta content="Metronic Shop UI keywords" name="keywords">
+  <meta content="keenthemes" name="author">
+
+  <meta property="og:site_name" content="-CUSTOMER VALUE-">
+  <meta property="og:title" content="-CUSTOMER VALUE-">
+  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+  <meta property="og:url" content="-CUSTOMER VALUE-">
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Fonts START -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->  
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="<%=request.getContextPath() %>/resources/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="<%=request.getContextPath() %>/resources/assets/pages/css/animate.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="<%=request.getContextPath() %>/resources/assets/pages/css/components.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/pages/css/slider.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+  <link href="<%=request.getContextPath() %>/resources/assets/corporate/css/style.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/corporate/css/style-responsive.css" rel="stylesheet">
+  <link href="<%=request.getContextPath() %>/resources/assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
+  <link href="<%=request.getContextPath() %>/resources/assets/corporate/css/custom.css" rel="stylesheet">
   
-  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/bootstrap-3.3.7-dist/css/bootstrap.css">
-      
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.0.0.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    
-  <style type="text/css">
-  	#mycontainer	{ width:90%; margin:0 auto; padding:20px; }
-	/* #myheader		{ background-color:#EBEBE0; height:56px; padding: 10px; } */
-	#mycontent		{ background-color:#F5F5F5; float:left; width:75%; min-height:800px; padding-top: 40px;}
-	#mysideinfo		{ background-color:#F0FFFF; float:left; width:25%; min-height:800px; padding-top: 20px;}
-	#myfooter		{ background-color:#555555; clear:both; height:100px; }
-	/* #displayRank 	{ margin:20px; height:200px;} */
-	
-	#myheader a {text-decoration:none;}
-	
-	/* mouse over link */
-	#myheader a:hover {color: navy; font-weight: bolder;}
-	/* 
-	  unvisited link 
-	a:link {color: #FF0000;}
-		
-	  visited link 
-	a:visited {color: #00FF00;}
-		
-	  selected link 
-	a:active {color: #0000FF;}
-	*/
-	
-	/* #myheader .mynav {font-size: 13pt;} */
-	.myrank {font-weight:bold; color:red; font-size:13pt;}
-	.mynumber {text-align:center;}
-	
-	</style>
+  <!-- Theme styles END -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
 </head>
 
 <body>
@@ -56,14 +66,40 @@
 		<div id="mycontent">
 			<tiles:insertAttribute name="content" />
 		</div>
-		
-		<div id="mysideinfo">
-			<tiles:insertAttribute name="sideinfo" />
-		</div>
 	
 		<div id="myfooter">
 			<tiles:insertAttribute name="footer" />
 		</div>
 	</div>
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="assets/plugins/respond.min.js"></script>  
+    <![endif]-->
+    <script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script src="assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+    <script src='assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+    <script src="assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+
+    <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Layout.init();    
+            Layout.initOWL();
+            Layout.initImageZoom();
+            Layout.initTouchspin();
+            Layout.initTwitter();
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 </html>
