@@ -3,6 +3,7 @@ package com.finalc.auction;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class LoginController {
 	
 	// ===== #44. 로그인페이지 요청 ===== 
 	@RequestMapping(value="/login.action", method= {RequestMethod.GET})
-	public String login(HttpServletRequest req) {
+	public String login(HttpServletRequest req, HttpServletResponse res) {
 		
 		return "login/loginform.tiles";
 		// /Board/src/main/webapp/WEB-INF/views/login/loginform.jsp 파일을 생성한다.
@@ -33,7 +34,7 @@ public class LoginController {
 	
 	// ===== #45. 로그인 여부 요청 ===== 
 	@RequestMapping(value="/loginEnd.action", method= {RequestMethod.POST})
-	public String loginEnd(HttpServletRequest req) {
+	public String loginEnd(HttpServletRequest req, HttpServletResponse res) {
 		String userid = req.getParameter("userid");
 		String passwd = req.getParameter("passwd");
 		
@@ -56,7 +57,7 @@ public class LoginController {
 	
 	// ===== #50. 로그아웃 완료 요청 ===== 
 	@RequestMapping(value="/logout.action", method= {RequestMethod.GET})
-	public String logout(HttpServletRequest req) {
+	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		return "login/logout.tiles";

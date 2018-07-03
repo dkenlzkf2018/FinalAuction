@@ -39,7 +39,7 @@ public class LoginCheck {
 	// - 또한 구현부도 의미없다.
 	// - 대신 메소드 이름이 나중에 각각의 Advice에서 식별자로 사용됨
 	@Pointcut("execution(public * com.finalc.*.*Controller.auctionLogin_*(..))")
-	public void requireLogin() {}
+	public void auctionLogin() {}
 	
 	// 보조(어드바이스)업무 추가
 	// -- 메모를 작성하기 전 현재 시간을 로그에 남기는 보조업무 
