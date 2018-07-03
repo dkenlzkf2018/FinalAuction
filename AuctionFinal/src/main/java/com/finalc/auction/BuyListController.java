@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.finalc.buyList.service.InterBuyListService;
+import com.finalc.auction.service.InterBuyListService;
+
+
 
 @Controller
 public class BuyListController {

@@ -1,9 +1,9 @@
-package com.finalc.buyList.service;
+package com.finalc.auction.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finalc.buyList.model.InterBuyListDAO;
+import com.finalc.auction.model.InterBuyListDAO;
 
 @Service
 public class BuyListService implements InterBuyListService {

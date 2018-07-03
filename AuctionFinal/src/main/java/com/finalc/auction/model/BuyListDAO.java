@@ -1,4 +1,4 @@
-package com.finalc.buyList.model;
+package com.finalc.auction.model;
 
 import org.springframework.stereotype.Repository;
 

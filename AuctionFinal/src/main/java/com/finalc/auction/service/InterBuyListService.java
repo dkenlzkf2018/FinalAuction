@@ -1,4 +1,4 @@
-package com.finalc.buyList.service;
+package com.finalc.auction.service;
 
 public interface InterBuyListService {
 
