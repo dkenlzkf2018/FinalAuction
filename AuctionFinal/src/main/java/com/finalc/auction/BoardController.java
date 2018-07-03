@@ -1,6 +1,6 @@
 package com.finalc.auction;
 
-
+ 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,6 @@ public class BoardController {
 	// 메인 페이지
 	@RequestMapping(value="/index.action", method={RequestMethod.GET})  
 	public String index(HttpServletRequest req) {
-		
 		
 		
 		return "main/index.tiles";
