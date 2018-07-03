@@ -14,7 +14,10 @@
 	String serverName = "http://"+serverIP+":"+portnumber;
 
 %>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/scss/build.scss">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/scss" href="<%=request.getContextPath() %>/resources/scss/_bootswatch.scss">
+<link rel="stylesheet" type="text/scss" href="<%=request.getContextPath() %>/resources/scss/_variables.scss">
+<link rel="stylesheet" type="text/scss" href="<%=request.getContextPath() %>/resources/scss/build.scss">
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/postcss.js"></script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Navbar</a>
