@@ -43,7 +43,7 @@ public class BoardDAO implements InterBoardDAO {
 	// 검색어 있는 게시글목록 보여주기
 	@Override
 	public List<BoardVO> boardList2(HashMap<String, String> map) {
-		List<BoardVO> boardList = sqlsession.selectList("board.boardList", map);
+		List<BoardVO> boardList = sqlsession.selectList("board.boardList2", map);
 		
 		return boardList;
 	}// 게시글 목록 끝(07.03)

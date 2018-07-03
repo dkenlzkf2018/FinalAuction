@@ -51,9 +51,9 @@ public class BoardServive implements InterBoardService {
 	@Override
 	public List<BoardVO> boardList2(HashMap<String, String> map) {
 		
-		List<BoardVO> boardList2 = dao.boardList2(map);
+		List<BoardVO> boardList = dao.boardList2(map);
 		
-		return boardList2;
+		return boardList;
 	}// 게시글 목록 끝(07.03)
 	
 	

@@ -25,6 +25,29 @@
 	</select>
 <!-- 검색어가 있는 총게시물 건수 07.03 끝-->
 
+	<select id="boardList" parameterType="HashMap" resultType="com.finalc.auction.model.BoardVO">
+	select boardno, fk_userid, subject, viewcount, writeday, commentcount
+	from 
+	(
+	select rownum as RNO
+	     , V.boardno, V.fk_userid, V.subject, V.content, V.viewcount, V.writeday, V.commentcount
+	from 
+	(
+	select boardno, fk_userid 
+	     , case when length(subject) > 20 then substr(subject, 1, 18)||'..'
+	            else subject end as subject
+	     , content , viewcount
+	     , to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday
+	     , commentcount
+	from tbl_board
+	where boardstatus = 1
+	order by boardno desc
+	) V
+	) T
+	where T.RNO >= #{startRno} and T.RNO <![CDATA[<=]]> #{endRno} 
+	</select>
+
+
 
 
 </mapper>
