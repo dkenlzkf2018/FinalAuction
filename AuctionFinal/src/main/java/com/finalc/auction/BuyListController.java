@@ -28,6 +28,7 @@ public class BuyListController {
 	public String buyList(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		System.out.println("0. loginuser : " + loginuser);
 		session.setAttribute("loginuser", loginuser);
 		System.out.println("1. loginuser.userid : " + loginuser.getUserid());
 		
