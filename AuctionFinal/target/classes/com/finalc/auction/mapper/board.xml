@@ -82,7 +82,7 @@
 	</select>
 <!-- // 검색어 있는 게시글목록 보여주기 끝 07.03 -->
 
-<!--  -->
+<!-- 게시글 쓰기 스마트에디터 사용 시작 07.03 -->
 	<insert id="write_add" parameterType="com.finalc.auction.model.BoardVO">
 	    <if test='fk_boardno.equals("")'>
 		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno)  
@@ -93,6 +93,6 @@
 		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1)   
 		</if>	
 	</insert>
-	
+<!-- 게시글 쓰기 스마트에디터 사용 끝 07.03 -->
 
 </mapper>
