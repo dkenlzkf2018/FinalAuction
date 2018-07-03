@@ -24,7 +24,7 @@ public class LoginController {
 	@Autowired
 	private InterLoginService service;
 	
-	// ===== #44. 로그인페이지 요청 ===== 
+	// ===== 로그인페이지 요청 ===== 
 	@RequestMapping(value="/login.action", method= {RequestMethod.GET})
 	public String login(HttpServletRequest req, HttpServletResponse res) {
 		
@@ -32,7 +32,7 @@ public class LoginController {
 		// /Board/src/main/webapp/WEB-INF/views/login/loginform.jsp 파일을 생성한다.
 	}
 	
-	// ===== #45. 로그인 여부 요청 ===== 
+	// ===== 로그인 여부 요청 ===== 
 	@RequestMapping(value="/loginEnd.action", method= {RequestMethod.POST})
 	public String loginEnd(HttpServletRequest req, HttpServletResponse res) {
 		String userid = req.getParameter("userid");
@@ -55,13 +55,37 @@ public class LoginController {
 		// /Board/src/main/webapp/WEB-INF/views/login/loginEnd.jsp 파일을 생성한다.
 	}
 	
-	// ===== #50. 로그아웃 완료 요청 ===== 
+	// ===== 로그아웃 완료 요청 ===== 
 	@RequestMapping(value="/logout.action", method= {RequestMethod.GET})
 	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		return "login/logout.tiles";
 		// /Board/src/main/webapp/WEB-INF/views/login/logout.jsp 파일을 생성한다.
+	}
+	
+	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
+	public String memberRegist() {
+		
+		return "member/memberRegist.tiles";
+		
+	}
+	
+	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
+	public String idCheck(HttpServletRequest req) {
+		
+		String userid = req.getParameter("userid");
+		
+		int n = service.idCheck(userid);
+		
+		return "member/idCheckJSON.notiles";
+		
+	}
+	
+	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.GET})
+	public String memberRegistEnd() {
+		
+		return "member/memberRegistEnd.notiles";
 	}
 	
 }
