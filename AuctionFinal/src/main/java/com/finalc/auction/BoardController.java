@@ -31,9 +31,7 @@ public class BoardController {
 		return "main/index.tiles";
 	}
 	
-	@RequestMapping(value="/home.action", method={RequestMethod.GET}) 
-	public String home() {
-		
-		return "index.tiles";
-	}
+	
+	
+
 }
