@@ -65,16 +65,27 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
-	public String memberRegist(HttpServletRequest req, HttpServletResponse res) {
-		
-		String userid = req.getParameter("userid");
-		String method = req.getParameter("method");
-		
-		req.setAttribute("method", method);
-		req.setAttribute("userid", userid);
+	public String memberRegist() {
 		
 		return "member/memberRegist.tiles";
 		
+	}
+	
+	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
+	public String idCheck(HttpServletRequest req) {
+		
+		String userid = req.getParameter("userid");
+		
+		int n = service.idCheck(userid);
+		
+		return "member/idCheckJSON.notiles";
+		
+	}
+	
+	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.GET})
+	public String memberRegistEnd() {
+		
+		return "member/memberRegistEnd.notiles";
 	}
 	
 }

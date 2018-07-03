@@ -20,5 +20,11 @@ public class LoginService implements InterLoginService {
 		MemberVO loginuser = dao.getLoginMember(map);
 		return loginuser;
 	}
+
+	@Override
+	public int idCheck(String userid) {
+		int n = dao.idCheck(userid);
+		return n;
+	}
 	
 }
