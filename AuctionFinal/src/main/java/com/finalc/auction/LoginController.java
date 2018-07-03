@@ -67,6 +67,12 @@ public class LoginController {
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
 	public String memberRegist(HttpServletRequest req, HttpServletResponse res) {
 		
+		String userid = req.getParameter("userid");
+		String method = req.getParameter("method");
+		
+		req.setAttribute("method", method);
+		req.setAttribute("userid", userid);
+		
 		return "member/memberRegist.tiles";
 		
 	}
