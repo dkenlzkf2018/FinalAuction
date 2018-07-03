@@ -5,6 +5,47 @@
 
 <!-- ==== #27. 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
 <mapper namespace="buyList">
+	<!-- #Buy 7. 구매 리스트 xml 단 -->
 	
+	<resultMap type="HashMap" id="getBuyListMap">
+		<result property="cnum" column="cnum" javaType="String" />
+		<result property="cname" column="cname" javaType="String" />
+		<result property="cdnum" column="cdnum" javaType="String" />
+		<result property="cdname" column="cdname" javaType="String" />
+		<result property="actnum" column="actnum" javaType="String" />
+		<result property="actname" column="actname" javaType="String" />
+		<result property="actimage" column="actimage" javaType="String" />
+		<result property="actdnum" column="actdnum" javaType="String" />
+		<result property="usernum" column="usernum" javaType="String" />
+		<result property="actd_qty" column="actd_qty" javaType="String" />
+		<result property="usernum" column="usernum" javaType="String" />
+		<result property="actd_qty" column="actd_qty" javaType="String" />
+		<result property="awardnum" column="awardnum" javaType="String" />
+		<result property="awardday" column="awardday" javaType="String" />
+		<result property="awardprice" column="awardprice" javaType="String" />
+		<result property="panmaeja" column="panmaeja" javaType="String" />
+		<result property="grade" column="grade" javaType="String" />
+	</resultMap>
+	
+	
+	<select id="getBuyList" parameterType="String" resultMap="getBuyListMap">
+		select cnum, cname
+		     , cdnum, cdname
+		     , actnum, actname, actimage
+		     , actdnum, D.fk_usernum AS usernum, actd_qty 
+		     , awardnum, awardday, awardprice
+		     , F.fk_userid AS panmaeja, username, grade
+		from tbl_category A join tbl_category_detail B
+		on A.cnum = B.fk_cnum
+		join tbl_auction C 
+		on B.CDNUM = C.FK_CDNUM
+		join tbl_auction_detail D
+		on C.ACTNUM = D.FK_ACTNUM
+		join tbl_award E
+		on D.actdnum = E.fk_actdnum
+		join tbl_member_detail F
+		on E.fk_usernum = F.usernum
+		where E.FK_USERNUM = #{usernum} and actd_status = 1
+	</select>
 </mapper>
  
