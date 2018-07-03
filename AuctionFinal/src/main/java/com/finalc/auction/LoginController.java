@@ -24,7 +24,7 @@ public class LoginController {
 	@Autowired
 	private InterLoginService service;
 	
-	// ===== #44. 로그인페이지 요청 ===== 
+	// ===== 로그인페이지 요청 ===== 
 	@RequestMapping(value="/login.action", method= {RequestMethod.GET})
 	public String login(HttpServletRequest req, HttpServletResponse res) {
 		
@@ -32,7 +32,7 @@ public class LoginController {
 		// /Board/src/main/webapp/WEB-INF/views/login/loginform.jsp 파일을 생성한다.
 	}
 	
-	// ===== #45. 로그인 여부 요청 ===== 
+	// ===== 로그인 여부 요청 ===== 
 	@RequestMapping(value="/loginEnd.action", method= {RequestMethod.POST})
 	public String loginEnd(HttpServletRequest req, HttpServletResponse res) {
 		String userid = req.getParameter("userid");
