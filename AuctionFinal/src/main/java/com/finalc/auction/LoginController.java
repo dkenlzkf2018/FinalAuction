@@ -55,12 +55,20 @@ public class LoginController {
 		// /Board/src/main/webapp/WEB-INF/views/login/loginEnd.jsp 파일을 생성한다.
 	}
 	
-	// ===== #50. 로그아웃 완료 요청 ===== 
+	// ===== 로그아웃 완료 요청 ===== 
 	@RequestMapping(value="/logout.action", method= {RequestMethod.GET})
 	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		return "login/logout.tiles";
+		// /Board/src/main/webapp/WEB-INF/views/login/logout.jsp 파일을 생성한다.
+	}
+	
+	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
+	public String regist(HttpServletRequest req, HttpServletResponse res) {
+		HttpSession session = req.getSession();
+		session.invalidate();
+		return "member/memberRegist.tiles";
 		// /Board/src/main/webapp/WEB-INF/views/login/logout.jsp 파일을 생성한다.
 	}
 	
