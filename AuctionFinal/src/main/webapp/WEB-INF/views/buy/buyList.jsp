@@ -15,10 +15,7 @@
 </head>
 <script type="text/javascript">
 	$(document).ready(function () {
-		var frm = document.buyListFrm;
-		frm.action = "/buyList.action";
-		frm.method = "GET";
-		frm.submit();
+		
 	});
 </script>
 <body>
@@ -51,7 +48,7 @@
     </tr>
   </tbody>
   </table>
-  <div>
+  <div align="center">
   <ul class="pagination">
     <li class="page-item disabled">
       <a class="page-link" href="#">&laquo;</a>
