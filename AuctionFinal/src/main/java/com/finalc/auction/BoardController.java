@@ -31,7 +31,18 @@ public class BoardController {
 		return "main/index.tiles";
 	}
 	
-	
+	// 게시판 글쓰기 폼 시작 스마트에디터 사용전(07.03)
+	@RequestMapping(value="/write.action", method={RequestMethod.GET})  
+	public String write(HttpServletRequest req) {
+		
+		String boardno = req.getParameter("boardno");
+		
+		req.setAttribute("boardno", boardno);
+		
+		
+		
+		return "board/write.tiles2";
+	} // 게시판 글쓰기 폼 스마트에디터 사용전 끝(07.03)
 	
 
 }
