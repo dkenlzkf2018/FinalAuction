@@ -7,12 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
-=======
-
 import com.finalc.auction.service.InterBoardService;
 import com.finalc.auction.common.FileManager;
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 @Controller
 @Component
