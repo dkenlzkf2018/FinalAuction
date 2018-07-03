@@ -38,7 +38,7 @@
     <c:if test="${sessionScope.loginuser != null && sessionScope.loginuser.userid}">
     	<c:forEach var="map" items="${buyListMap}">
 	    
-	      <th scope="row">${map.}</th>
+	      <th scope="row"></th>
 	      <td>1</td>
 	      <td>2</td>
 	      <td>3</td>
