@@ -36,10 +36,10 @@
 	}); // end of $(document).ready()-------------------------
 	
 	
-	function goView(seq) {
+	function goView(boardno) {
 		
 		var frm = document.goViewFrm;
-		frm.seq.value = seq;
+		frm.boardno.value = boardno;
 		
 		frm.action = "view.action";
 		frm.method = "get";
@@ -157,7 +157,7 @@
 	</table>
 	
 	<form name="goViewFrm">
-		<input type="hidden" name="seq" />
+		<input type="hidden" name="boardno" />
 	</form>
 	
 	<%-- ==== #117. 페이지바 보여주기 ==== --%>
@@ -171,7 +171,7 @@
 		<select name="colname" id="colname" style="height: 26px;"> 
 			<option value="subject">글제목</option>
 			<option value="content">글내용</option>
-			<option value="name">글쓴이</option>
+			<option value="fk_userid">글쓴이</option>
 		</select>
 		<input type="text" name="search" id="search" size="40" />
 		<button type="button" onClick="goSearch();">검색</button>
