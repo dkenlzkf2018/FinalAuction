@@ -55,6 +55,40 @@ public class BoardServive implements InterBoardService {
 		
 		return boardList;
 	}// 게시글 목록 끝(07.03)
+
+	// 게시글 쓰기 완료 (07.03 시작)
+	// 게시글 쓰기 (파일 첨부 없는거 시작)
+	@Override
+	public int write_add(BoardVO boardvo) {
+		
+		if(boardvo.getFk_boardno() == null || boardvo.getFk_boardno().trim().isEmpty()) {
+			
+			int groupno = dao.getGroupMaxno()+1;
+			boardvo.setGroupno(String.valueOf(groupno));
+			
+		}
+		
+		int n = dao.write_add(boardvo);
+		
+		
+		return n;
+	}// 게시글 쓰기 (파일 첨부 없는거 끝)
+	
+
+	// 게시글 쓰기 (파일 첨부 있는거 시작)
+	@Override
+	public int write_withFile(BoardVO boardvo) {
+		
+		if(boardvo.getFk_boardno() == null || boardvo.getFk_boardno().trim().isEmpty()) {
+			int groupno = dao.getGroupMaxno()+1;
+			boardvo.setGroupno(String.valueOf(groupno));
+		}
+		
+		int n = dao. write_withFile(boardvo);
+	
+		return n;
+	 // 게시글 쓰기 (파일 첨부 있는거 끝)
+	}// 게시글 쓰기 완료 (07.03 끝)
 	
 	
 

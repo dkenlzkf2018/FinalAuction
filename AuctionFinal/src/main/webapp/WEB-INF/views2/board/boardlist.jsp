@@ -64,7 +64,7 @@
 		}
 	--%>
 	
-		frm.action = "<%= request.getContextPath() %>/list.action"; 
+		frm.action = "<%= request.getContextPath() %>/boardlist.action"; 
 		frm.method = "GET";
 		frm.submit();
 	}
@@ -99,7 +99,7 @@
 		<tbody>
 			<c:forEach var="boardvo" items="${boardList}">
 				<tr>
-					<td align="center">${boardvo.seq}</td>
+					<td align="center">${boardvo.boardno}</td>
 					<td>
 					    <%-- <span class="subject" onClick="goView('${boardvo.seq}');">${boardvo.subject}</span> --%>
 					    <%-- ==== #104. 글제목에 댓글의 갯수를 붙이도록 한다. 
@@ -114,32 +114,32 @@
 					    <%-- ==== #128. 글제목에 댓글의 갯수를 붙이도록 한다.
 					                                     답변글인 경우 제목앞에 공백(여백)과 함께 Re 라는 글자를 붙이도록 한다.--%>
 					    <!-- 답변글이 아닌 원글인 경우 -->
-					    <c:if test="${boardvo.fk_seq == 0}">
-						    <c:if test="${boardvo.commentCount > 0}">
-						        <span class="subject" onClick="goView('${boardvo.seq}');">${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentCount}]</span></span> 
+					    <c:if test="${boardvo.fk_boardno == 0}">
+						    <c:if test="${boardvo.commentcount > 0}">
+						        <span class="subject" onClick="goView('${boardvo.boardno}');">${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentcount}]</span></span> 
 						    </c:if>
-						    <c:if test="${boardvo.commentCount == 0}">
-						        <span class="subject" onClick="goView('${boardvo.seq}');">${boardvo.subject}</span>
+						    <c:if test="${boardvo.commentcount == 0}">
+						        <span class="subject" onClick="goView('${boardvo.boardno}');">${boardvo.subject}</span>
 						    </c:if>
 					    </c:if>
 					    
 					    <!-- 답변글인 경우 -->
-					    <c:if test="${boardvo.fk_seq > 0}">
-						    <c:if test="${boardvo.commentCount > 0}">
-						        <span class="subject" onClick="goView('${boardvo.seq}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.depthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentCount}]</span></span> 
+					    <c:if test="${boardvo.fk_boardno > 0}">
+						    <c:if test="${boardvo.commentcount > 0}">
+						        <span class="subject" onClick="goView('${boardvo.boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentcount}]</span></span> 
 						    </c:if>
-						    <c:if test="${boardvo.commentCount == 0}">
-						        <span class="subject" onClick="goView('${boardvo.seq}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.depthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}</span>
+						    <c:if test="${boardvo.commentcount == 0}">
+						        <span class="subject" onClick="goView('${boardvo.boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}</span>
 						    </c:if>
 					    </c:if>
 					    
 					</td>
-					<td>${boardvo.name}</td>
-					<td align="center">${boardvo.regDate}</td>
-					<td align="center">${boardvo.readCount}</td>
+					<td>${boardvo.fk_userid}</td>
+					<td align="center">${boardvo.writeday}</td>
+					<td align="center">${boardvo.viewcount}</td>
 					
 					<!-- # 145. 첨부 파일 여부 표시 하기. -->
-					<td align="center">
+	<%-- 				<td align="center">
 						<c:if test="${not empty boardvo.fileName}">
 							<img src="<%= request.getContextPath() %>/resources/images/disk.gif">
 						</c:if>
@@ -149,7 +149,7 @@
 						<c:if test="${not empty boardvo.fileSize}">
 							${boardvo.fileSize} <!-- 파일크기 -->
 						</c:if>
-					</td>
+					</td> --%>
 					
 				</tr>
 			</c:forEach>			

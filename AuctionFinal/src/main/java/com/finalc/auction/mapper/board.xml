@@ -25,6 +25,7 @@
 	</select>
 <!-- 검색어가 있는 총게시물 건수 07.03 끝-->
 
+<!-- // 검색어 없는 게시글목록 보여주기 시작 07.03 -->
 	<select id="boardList" parameterType="HashMap" resultType="com.finalc.auction.model.BoardVO">
 	select boardno, fk_userid, subject, viewcount, writeday, commentcount
 	from 
@@ -46,8 +47,52 @@
 	) T
 	where T.RNO >= #{startRno} and T.RNO <![CDATA[<=]]> #{endRno} 
 	</select>
+<!-- // 검색어 없는 게시글목록 보여주기 시작 07.03 -->
+	
+<!-- // 검색어 있는 게시글목록 보여주기 시작 07.03 -->
+	<select id="boardList2" parameterType="HashMap" resultType="com.finalc.auction.model.BoardVO">
+	select  boardno, fk_userid, subject, viewcount, writeday, commentcount
+              , groupno, fk_boardno, deptthno
+              , fileName, orgFilename, fileSize 
+		from 
+		(
+		   select rownum as RNO
+		        , V.boardno, V.fk_userid, V.subject, V.content, V.viewcount, V.writeday, V.commentcount
+                , V.groupno, V.fk_boardno, V.deptthno
+                , V.fileName, V.orgFilename, V.fileSize 
+		   from 
+		   (
+		     select boardno, fk_userid 
+		          , case when length(subject) > 20 then substr(subject, 1, 18)||'..'
+		            else subject end as subject
+		          , content , viewcount
+		          , to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday
+		          , commentcount
+                  , groupno, fk_boardno, deptthno
+                  , fileName, orgFilename, fileSize 
+		     from tbl_board
+		     where boardstatus = 1
+		           and ${colname} like '%'|| #{search} ||'%'
+		     start with fk_boardno = 0
+             connect by prior boardno = fk_boardno
+		     order siblings by groupno desc, fk_boardno asc
+		   ) V
+		) T
+		where T.RNO >= #{startRno} and T.RNO <![CDATA[<=]]> #{endRno} 
+	</select>
+<!-- // 검색어 있는 게시글목록 보여주기 끝 07.03 -->
 
-
-
+<!--  -->
+	<insert id="write_add" parameterType="com.finalc.auction.model.BoardVO">
+	    <if test='fk_boardno.equals("")'>
+		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno)  
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, default, default) 
+		</if> 
+		<if test='!fk_boardno.equals("")'>
+		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno)  
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1)   
+		</if>	
+	</insert>
+	
 
 </mapper>
