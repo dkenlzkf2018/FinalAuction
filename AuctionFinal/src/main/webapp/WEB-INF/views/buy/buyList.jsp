@@ -32,15 +32,15 @@
   </thead>
   <tbody>
     <tr class="table-active">
-    <c:if test="${sessionScope.loginuser != null}">
-    
+    <c:if test="${sessionScope.loginuser != null && sessionScope.loginuser.userid}">
+    	<c:forEach var="map" items="${buyListMap}">
 	    
 	      <th scope="row">0</th>
 	      <td>1</td>
 	      <td>2</td>
 	      <td>3</td>
 	    
-    
+    	</c:forEach>
     </c:if>
     <c:if test="${sessionScope.loginuser == null}">
     	<td colspan="4" align="center">구매내역이 없습니다.</td>
@@ -48,6 +48,7 @@
     </tr>
   </tbody>
   </table>
+  
   <div align="center">
   <ul class="pagination">
     <li class="page-item disabled">
