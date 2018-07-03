@@ -17,10 +17,7 @@
 </head>
 <script type="text/javascript">
 	$(document).ready(function () {
-		var frm = document.buyListFrm;
-		frm.method = "GET";
-		frm.action = "buyListEnd.action";
-		frm.submit();
+		
 	});
 </script>
 <body>
@@ -49,7 +46,7 @@
 			   
 			  	</c:forEach>
 			  </c:if>
-			  <c:if test="${sessionScope.loginuser == null}">
+			  <c:if test="">
 			  	<td colspan="4" align="center">구매내역이 없습니다.</td>
 			  </c:if>
 			  </tr>
