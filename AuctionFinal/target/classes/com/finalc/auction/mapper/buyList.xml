@@ -38,14 +38,14 @@
 		from tbl_category A join tbl_category_detail B
 		on A.cnum = B.fk_cnum
 		join tbl_auction C 
-		on B.CDNUM = C.FK_CDNUM
+		on B.cdnum = C.fk_cdnum
 		join tbl_auction_detail D
-		on C.ACTNUM = D.FK_ACTNUM
+		on C.actnum = D.fk_actnum
 		join tbl_award E
 		on D.actdnum = E.fk_actdnum
 		join tbl_member_detail F
 		on E.fk_usernum = F.usernum
-		where E.FK_USERNUM = #{usernum} and actd_status = 1
+		where E.fk_usernum = #{usernum} and actd_status = 1
 	</select>
 </mapper>
  
