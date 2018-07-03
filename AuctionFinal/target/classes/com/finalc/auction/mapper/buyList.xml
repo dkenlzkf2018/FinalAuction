@@ -16,7 +16,7 @@
 		<result property="actname" column="actname" javaType="String" />
 		<result property="actimage" column="actimage" javaType="String" />
 		<result property="actdnum" column="actdnum" javaType="String" />
-		<result property="usernum" column="usernum" javaType="String" />
+		<result property="fusernum" column="fusernum" javaType="String" />
 		<result property="actd_qty" column="actd_qty" javaType="String" />
 		<result property="usernum" column="usernum" javaType="String" />
 		<result property="actd_qty" column="actd_qty" javaType="String" />
@@ -34,7 +34,7 @@
 		     , actnum, actname, actimage
 		     , actdnum, D.fk_usernum AS usernum, actd_qty 
 		     , awardnum, awardday, awardprice
-		     , F.fk_userid AS panmaeja, username, grade
+		     , F.fk_userid AS panmaeja, fusername, grade
 		from tbl_category A join tbl_category_detail B
 		on A.cnum = B.fk_cnum
 		join tbl_auction C 

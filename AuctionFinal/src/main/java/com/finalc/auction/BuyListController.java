@@ -32,15 +32,18 @@ public class BuyListController {
 		session.setAttribute("loginuser", loginuser);
 		System.out.println("1. loginuser.userid : " + loginuser.getUserid());
 		List<HashMap<String, String>> buyMapList = new ArrayList<HashMap<String, String>>();
-		if (loginuser == null) {
+		
+		if (loginuser.getUserid() == null) {
 			req.setAttribute("msg", "로그인을 먼저 하십시오!");
 			req.setAttribute("loc", "javascript:history.back();");
 			return "msg.notiles";
+		} else {
+			buyMapList = service.getBuyList(loginuser.getUsernum());
+			System.out.println("4. Controller 단 buyMapList : " + buyMapList);
+			req.setAttribute("buyMapList", buyMapList);
+			
+			return "buy/buyList.tiles";
 		}
-		buyMapList = service.getBuyList(loginuser.getUsernum());
-		System.out.println(". Controller 단 buyMapList : " + buyMapList);
-		req.setAttribute("buyMapList", buyMapList);
 		
-		return "buy/buyList.tiles";
 	}
 }
