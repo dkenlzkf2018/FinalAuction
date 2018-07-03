@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		var frm = document.buyListFrm;
-		frm.action = "buyList.action";
+		frm.action = "/buyList.action";
 		frm.method = "GET";
 		frm.submit();
 	});
@@ -35,7 +35,7 @@
   </thead>
   <tbody>
     <tr class="table-active">
-    <c:if test="${buyList != null}">
+    <c:if test="${sessionScope.loginuser != null}">
     
 	    
 	      <th scope="row">0</th>
@@ -45,12 +45,32 @@
 	    
     
     </c:if>
-    <c:if test="${buyList == null}">
-    	<td colspan="4">구매내역이 없습니다.</td>
+    <c:if test="${sessionScope.loginuser == null}">
+    	<td colspan="4" align="center">구매내역이 없습니다.</td>
     </c:if>
     </tr>
   </tbody>
-</table> 
+  </table>
+  <div>
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&laquo;</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
+</div>
+ 
 </form>
 </body>
 </html>
