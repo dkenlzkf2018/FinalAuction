@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
  
-    $(document).ready(function(){
+	jQuery(document).ready(function(){
     	 $("#btnLOGIN").click(function() {
     		 func_Login(event);
     	 });
