@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
 	
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		
 		// 쓰기버튼
 		$("#btnWrite").click(function(){

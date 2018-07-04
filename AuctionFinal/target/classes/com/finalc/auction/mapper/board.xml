@@ -86,11 +86,11 @@
 	<insert id="write_add" parameterType="com.finalc.auction.model.BoardVO">
 	    <if test='fk_boardno.equals("")'>
 		  insert into tbl_board(boardno, fk_userid, subject, content, commentcount, viewcount, writeday, finaleditday, boardstatus, groupno, fk_boardno, deptthno)  
-		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{to_number(commentcount)}, default, default, default, default, #{groupno}, default, default) 
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{commentcount}, default, default, default, default, #{groupno}, default, default) 
 		</if> 
 		<if test='!fk_boardno.equals("")'>
 		  insert into tbl_board(boardno, fk_userid, subject, content, commentcount, viewcount, writeday, finaleditday, boardstatus, groupno, fk_boardno, deptthno)  
-		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{to_number(commentcount)}, default, default, default. default, #{groupno}, #{fk_boardno}, #{deptthno}+1)   
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{commentcount}, default, default, default. default, #{groupno}, #{fk_boardno}, #{deptthno}+1)   
 		</if>	
 	</insert>
 <!-- 게시글 쓰기 스마트에디터 사용전 끝 07.03 -->
@@ -104,11 +104,11 @@
 	<insert id="write_withFile" parameterType="com.finalc.auction.model.BoardVO">
 	    <if test='fk_boardno.equals("")'>
 		  insert into tbl_board(boardno, fk_userid, subject, content, commentcount, viewcount, writeday, finaleditday, boardstatus, groupno, fk_boardno, deptthno, fileName, orgFilename, fileSize)  
-		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{to_number(commentcount)}, default, default, default, default, #{groupno}, default, default, #{fileName}, #{orgFilename}, #{fileSize}) 
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{commentcount}, default, default, default, default, #{groupno}, default, default, #{fileName}, #{orgFilename}, #{fileSize}) 
 		</if> 
 		<if test='!fk_boardno.equals("")'>
 		  insert into tbl_board(boardno, fk_userid, subject, content, commentcount, viewcount, writeday, finaleditday, boardstatus, groupno, fk_boardno, deptthno, fileName, orgFilename, fileSize)  
-		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{to_number(commentcount)}, default, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1, #{fileName}, #{orgFilename}, #{fileSize})   
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, #{commentcount}, default, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1, #{fileName}, #{orgFilename}, #{fileSize})   
 		</if>	
 	</insert>
 <!-- 게시글 쓰기 스마트에디터 사용 끝 07.04 -->
