@@ -18,11 +18,7 @@
 	</resultMap>
 	
 	<select id="getBuyList" parameterType="String" resultMap="getBuyListMap">
-		<!-- select awardnum, A.fk_usernum, to_char(awardday, 'yyyy-mm-dd') as awardday, awardprice
-		from tbl_award A join tbl_auction_detail B
-		on A.fk_actdnum = B.actdnum
-		where A.fk_usernum = #{usernum} and B.actd_status = 1 -->
-		select awardnum, cname, cdname, actname
+		<!-- select awardnum, cname, cdname, actname
 		     , to_char(awardday, 'yyyy-mm-dd') AS awardday, awardprice
 		from tbl_category A join tbl_category_detail B
 		on A.cnum = B.fk_cnum
@@ -33,7 +29,29 @@
 		join tbl_award E
 		on D.actdnum = E.fk_actdnum
 		where E.fk_usernum = to_number(#{usernum}) and actd_status = 1
-		order by awardnum desc
+		order by awardnum desc -->
+		select awardnum, awardday, awardprice
+		     , cname, cdname, actname, panmaeja
+		     , deliverstatus
+		from 
+		(select cnum, cname, cdnum, cdname
+		     , actnum, actname, actimage
+		     , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice, actd_startday, actd_endday
+		     , E.fk_userid AS panmaeja
+		from tbl_category A join tbl_category_detail B
+		on A.cnum = B.fk_cnum
+		join tbl_auction C
+		on B.cdnum = C.fk_cdnum
+		join tbl_auction_detail D
+		on C.actnum = D.fk_actnum
+		join tbl_member_detail E
+		on D.fk_usernum = E.usernum
+		)V -- 판매자 join
+		right join tbl_award F
+		on V.actdnum = F.fk_actdnum
+		join tbl_deliver G
+		on F.awardnum = G.fk_awardnum
+		where F.fk_usernum = #{usernum} and V.actd_status = 1
 	</select>
 </mapper>
  

@@ -9,14 +9,18 @@
 2. 페이징 처리
 3.  
  --%>
-
+<style type="text/css">
+	th, tr, td {
+		text-align: center;
+	}
+</style>
 
 <script type="text/javascript">
 	jQuery(document).ready(function () {
 		
 	});
 </script>
-<h2 align="center">구매리스트</h2>
+<h3 align="left" style="margin-left: 3%;">낙찰 목록</h3>
 <div>
 <form name="buyListFrm">
 	<table class="table table-hover">
@@ -25,7 +29,9 @@
 		      <th scope="col">구매번호</th>
 		      <th scope="col">상품명</th>
 		      <th scope="col">구매일자</th>
+		      <th scope="col">판매자</th>
 		      <th scope="col">낙찰가</th>
+		      <th scope="col">배송상태</th>
 		    </tr>
 	  	</thead>
 
@@ -35,15 +41,17 @@
 		  	<c:forEach var="map" items="${buyMapList}">
 			   <tr class="table-active">
 			     <th scope="row">${map.AWARDNUM}</th>
-			     <td>${map.CNAME}/${map.CDNAME}/${map.ACTNAME}</td>
+			     <td>${map.CNAME} / ${map.CDNAME} / ${map.ACTNAME}</td>
 			     <td>${map.AWARDDAY}</td>
-			     <td>${map.AWARDPRICE}</td>
+			     <td>${map.AWARDDAY}</td>
+			     <td><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/>원</td>
+			     
 			   </tr>
 		  	</c:forEach>
 		  </c:if>
 		  <c:if test="${sessionScope.loginuser.userid == null || buyMapList == null}">
 		  	<tr>
-		  	<td colspan="4" align="center">구매내역이 없습니다.</td>
+		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		  	</tr>
 		  </c:if>
 			  
