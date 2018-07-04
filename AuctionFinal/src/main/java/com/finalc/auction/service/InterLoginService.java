@@ -8,4 +8,6 @@ public interface InterLoginService {
 
 	MemberVO getLoginMember(HashMap<String, String> map);
 
+	int idCheck(String userid);
+
 }

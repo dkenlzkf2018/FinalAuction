@@ -17,5 +17,14 @@ public class LoginDAO implements InterLoginDAO {
 		MemberVO loginuser = sqlsession.selectOne("login.getLoginMember", map);
 		return loginuser;
 	}
+
+	@Override
+	public int idCheck(String userid) {
+		int n = sqlsession.selectOne("login.idCheck", userid);
+		
+		System.out.println("확인용 3 : " + n);
+		
+		return n;
+	}
 	
 }

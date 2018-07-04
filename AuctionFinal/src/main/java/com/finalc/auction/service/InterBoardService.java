@@ -15,6 +15,10 @@ public interface InterBoardService {
 
 	List<BoardVO> boardList2(HashMap<String, String> map);
 
+	int write_add(BoardVO boardvo);
+
+	int write_withFile(BoardVO boardvo);
+
 	
 
 	

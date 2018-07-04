@@ -1,6 +1,7 @@
 package com.finalc.auction;
 
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.finalc.auction.service.InterBoardService;
 import com.finalc.auction.common.FileManager;
 import com.finalc.auction.common.MyUtil;
@@ -36,18 +39,21 @@ public class BoardController {
 		return "main/index.tiles";
 	}
 	
-	// 게시판 글쓰기 폼 시작 스마트에디터 사용전(07.03)
+	// 게시판 글쓰기 폼 시작 스마트에디터 사용(07.03)
 	@RequestMapping(value="/write.action", method={RequestMethod.GET})  
 	public String write(HttpServletRequest req) {
 		
 		String boardno = req.getParameter("boardno");
+		String groupno = req.getParameter("groupno");
+		String deptthno = req.getParameter("deptthno");
 		
 		req.setAttribute("boardno", boardno);
-		
+		req.setAttribute("groupno", groupno);
+		req.setAttribute("depthno", deptthno);
 		
 		
 		return "board/write.tiles2";
-	} // 게시판 글쓰기 폼 스마트에디터 사용전 끝(07.03)
+	} // 게시판 글쓰기 폼 스마트에디터 사용 끝(07.03)
 	
 	
 	// 게시판 글 목록 페이지 (페이징 처리한거) 시작(07.03)
@@ -141,6 +147,72 @@ public class BoardController {
 
 		return "board/boardlist.tiles2";
 	}// 게시판 글 목록 페이지 (페이징 처리한거) 끝(07.03)
+	
+	
+	// 게시글 쓰기 완료 (07.03 시작)
+	@RequestMapping(value="/writeEnd.action", method={RequestMethod.POST})
+
+	public String writeEnd(BoardVO boardvo, MultipartHttpServletRequest req, HttpSession session) {
+		
+		// # 137. 사용자가 쓴 글에 파일이 첨부된 것인지 첨부되지 않은것인지 구분 지어야한다.
+		
+		//______________________________________첨부파일이 있는경우 파일업로드 하기 시작_______________________________________//
+			if(!boardvo.getAttach().isEmpty()) {
+			  // attach가 비어있지 않다면(첨부파일이 있는 경우라면)
+				
+				
+				// WAS의 webapp의 절대경로를 알아야한다.
+				String root = session.getServletContext().getRealPath("/");
+				String path = root + "resources" + File.separator + "files"; 
+				
+				String newFileName = "";
+				// WAS 디스크에 저장 할 파일명.
+				
+				byte[] bytes = null;
+				// 첨부파일을 WAS 디스크에 저장할때 사용되는 용도.
+				
+				long fileSize = 0;
+				// 파일크기를 읽어오기 위한 용도.
+				
+				try {
+					bytes = boardvo.getAttach().getBytes();
+					// getBytes()는 첨부된 파일을 바이트 단위로 다 읽어오는 것이다.
+					newFileName = fileManager.doFileUpload(bytes, boardvo.getAttach().getOriginalFilename(), path);
+					// 파일을 업로드 한수 현재시간 + 나노타임. 확장자로 된 파일명을 리턴받아 newFileName으로 저장한다.
+					boardvo.setFileName(newFileName);
+					boardvo.setOrgFilename(boardvo.getAttach().getOriginalFilename());
+					// boardvo.getAttach().getOriginalFilename()은 진짜 파일명
+					// 사용자가 파일을 다운로드 할때 사용되는 파일명
+					fileSize = boardvo.getAttach().getSize();
+					
+					boardvo.setFileSize(String.valueOf(fileSize));
+					
+				} catch (Exception e) {
+					
+				}
+				
+
+			}
+		//______________________________________첨부파일이 있는경우 파일업로드 하기 끝_______________________________________//
+		
+		String content = boardvo.getContent().replaceAll("\r\n", "<br/>");
+		boardvo.setContent(content);
+
+		int n = 0;
+		if(boardvo.getAttach().isEmpty()) {
+			// 파일 첨부가 없다면
+			n = service.write_add(boardvo);
+		}
+		if(!boardvo.getAttach().isEmpty()) {
+			// 파일 첨부가 있다면
+			n = service.write_withFile(boardvo);
+		}
+
+		req.setAttribute("n", n);
+		
+		return "board/writeEnd.tiles2";
+		// /Board/src/main/webapp/WEB-INF/views2/board/addEnd.jsp 파일을 생성한다. 
+	} // 게시글 쓰기 완료 (07.03 끝)
 	
 	
 

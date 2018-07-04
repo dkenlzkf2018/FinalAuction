@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -65,16 +67,40 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
-	public String memberRegist(HttpServletRequest req, HttpServletResponse res) {
-		
-		String userid = req.getParameter("userid");
-		String method = req.getParameter("method");
-		
-		req.setAttribute("method", method);
-		req.setAttribute("userid", userid);
+	public String memberRegist() {
 		
 		return "member/memberRegist.tiles";
 		
+	}
+	
+	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
+	public String idCheck(HttpServletRequest req) {
+		
+		String userid = req.getParameter("userid");
+		
+		int n = service.idCheck(userid);
+		
+		System.out.println("확인용 1 : " + n);
+		
+		if(n == 0) {
+			String msg = "사용가능한 아이디 입니다.";		
+			
+			req.setAttribute("msg", msg);
+		}
+		else if(n == 1) {
+			String msg = "이미 사용중인 아이디 입니다.";
+			
+			req.setAttribute("msg", msg);
+		}
+		
+		return "idCheckJSON.notiles";
+		
+	}
+	
+	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.GET})
+	public String memberRegistEnd() {
+		
+		return "member/memberRegistEnd.notiles";
 	}
 	
 }
