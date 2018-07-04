@@ -47,7 +47,7 @@
                         <li><a href="shop-account.html">My Account</a></li>
                         <li><a href="shop-wishlist.html">My Wishlist</a></li>
                         <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="page-login.html">Log In</a></li>
+                        <li><a href="login.action">Log In</a></li>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -56,7 +56,6 @@
     </div>
     <!-- END TOP BAR -->
 
-<<<<<<< HEAD
     <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
@@ -346,29 +345,3 @@
       </div>
     </div>
     <!-- Header END -->
-=======
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">게시판</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
