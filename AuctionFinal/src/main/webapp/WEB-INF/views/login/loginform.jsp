@@ -29,8 +29,19 @@
     			 func_Login(event);
     		 }
     	 });
+    	 
+    	 $("#btnRegist").click(function(){
+    		 func_Regist(event);
+    	 });
     }); // end of $(document).ready()---------------------------	 
 
+    function func_Regist(event){
+    	var frm = document.loginFrm;
+    	frm.action = "/auction/memberRegist.action";
+    	frm.method = "get";
+    	frm.submit();
+    }
+    
 	function func_Login(event) {
     	if(${sessionScope.loginuser != null}) {
     		alert("이미 로그인 하신 상태입니다.");
@@ -85,6 +96,9 @@
 			<div class="mydiv" style="margin-left: 10%;">
 				<button class="btn btn-success" style="width: 100px; font-size: 14pt;" type="button" id="btnLOGIN" >확인</button> 
 			</div>	 
+			<div class="mydiv" style="margin-left: 10%;">
+				<button class="btn btn-success" style="width: 100px; font-size: 14pt;" type="button" id="btnRegist" >회원가입</button> 
+			</div>
 		</form>
 	</div>
 	
