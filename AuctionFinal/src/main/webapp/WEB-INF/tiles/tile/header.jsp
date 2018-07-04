@@ -47,7 +47,12 @@
                         <li><a href="shop-account.html">My Account</a></li>
                         <li><a href="shop-wishlist.html">My Wishlist</a></li>
                         <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="login.action">Log In</a></li>
+                        <c:if test="${sessionScope.loginuser == null}">
+                        	<li><a href="login.action">Log In</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.loginuser != null}">
+                        	<li><a href="logout.action">Log Out</a></li>
+                        </c:if>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
