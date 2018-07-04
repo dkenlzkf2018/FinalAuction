@@ -28,16 +28,18 @@ public class BuyListController {
 	public String buyList(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
-		System.out.println("0. loginuser : " + loginuser);
+		System.out.println("1. loginuser : " + loginuser);
 		session.setAttribute("loginuser", loginuser);
-		System.out.println("1. loginuser.userid : " + loginuser.getUserid());
-		List<HashMap<String, String>> buyMapList = new ArrayList<HashMap<String, String>>();
-		
-		if (loginuser.getUserid() == null) {
+				
+		if (loginuser == null) {
 			req.setAttribute("msg", "로그인을 먼저 하십시오!");
 			req.setAttribute("loc", "javascript:history.back();");
 			return "msg.notiles";
-		} else {
+			
+		} 
+		
+		else {
+			List<HashMap<String, String>> buyMapList = new ArrayList<HashMap<String, String>>();
 			buyMapList = service.getBuyList(loginuser.getUsernum());
 			System.out.println("4. Controller 단 buyMapList : " + buyMapList);
 			req.setAttribute("buyMapList", buyMapList);

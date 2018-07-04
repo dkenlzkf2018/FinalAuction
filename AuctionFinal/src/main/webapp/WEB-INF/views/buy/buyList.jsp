@@ -39,19 +39,22 @@
 			  <c:if test="${sessionScope.loginuser.userid != null">
 			  	<c:forEach var="map" items="${buyListMap}">
 			   
-			     <th scope="row"></th>
-			     <td>1</td>
-			     <td>2</td>
-			     <td>3</td>
+			     <th scope="row">${map.awardnum}</th>
+			     <td>${map.cname}/${map.cdname}/${map.actname}</td>
+			     <td>${map.awardday}</td>
+			     <td>${map.panmaejano}</td>
+			     <td>${map.awardprice}</td>
 			   
 			  	</c:forEach>
 			  </c:if>
 			  <c:if test="">
-			  	<td colspan="4" align="center">구매내역이 없습니다.</td>
+			  	<td colspan="5" align="center">구매내역이 없습니다.</td>
 			  </c:if>
 			  </tr>
 		</tbody>
-		
+		<form name="panmaejaFrm">
+			<input type="hidden" name="panmaeja"/>
+		</form>
   </table>
 </form>  
 
