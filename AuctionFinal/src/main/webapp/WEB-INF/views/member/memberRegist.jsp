@@ -132,32 +132,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-2 control-label">Dropdown</label>
-                  <div class="col-md-8">
-                    <select class="form-control">
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-lg-2 control-label">Checkboxes</label>
-                  <div class="col-lg-8 checkbox-list">
-                    <label>
-                      <input type="checkbox"> Checkbox 1
-                    </label>
-                    <label>
-                      <input type="checkbox"> Checkbox 2
-                    </label>
-                    <label>
-                      <input type="checkbox" disabled> Disabled
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
                   <label class="col-lg-2 control-label">File input</label>
                   <div class="col-lg-8">
                     <input type="file">
