@@ -38,7 +38,7 @@
      <div class="row">
        <div class="col-md-6 col-sm-6 col-xs-3">
          <div class="product-main-image">
-           <img src="assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive">
+           <img src="<%=request.getContextPath()%>/resources/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive">
          </div>
          <div class="product-other-images">
            <a href="javascript:;" class="active"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg"></a>

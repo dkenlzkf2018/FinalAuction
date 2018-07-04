@@ -59,7 +59,7 @@
     <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
-        <a class="site-logo" href="shop-index.html"><img src="<%=request.getContextPath() %>/resources/assets/corporate/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
+        <a class="site-logo" href="index.action"><img src="<%=request.getContextPath() %>/resources/assets/corporate/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -299,7 +299,7 @@
               </a>
                 
               <ul class="dropdown-menu">
-                <li class="active"><a href="shop-index.html">Home Default</a></li>
+                <li class="active"><a href="index.action">Home Default</a></li>
                 <li><a href="shop-index-header-fix.html">Home Header Fixed</a></li>
                 <li><a href="shop-index-light-footer.html">Home Light Footer</a></li>
                 <li><a href="shop-product-list.html">Product List</a></li>
