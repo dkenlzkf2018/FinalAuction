@@ -10,3 +10,7 @@ from tbl_member A join TBL_MEMBER_DETAIL B
 on A.userid = B.fk_userid
 )V
 where user_status = 1;
+
+select count(*)
+from tbl_member_detail
+where fk_userid = 'admion'

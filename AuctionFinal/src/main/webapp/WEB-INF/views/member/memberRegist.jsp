@@ -30,7 +30,7 @@
     
     function idCheck(){
     	    	
-    	var form_data = {userid : $("#userid").val()
+    	var form_data = {userid : $("#userid").val(),
     					 jsonArr : ${jsonArr}};
     	console.log(form_data);
     	$.ajax({

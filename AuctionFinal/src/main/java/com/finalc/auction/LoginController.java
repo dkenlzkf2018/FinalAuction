@@ -82,17 +82,16 @@ public class LoginController {
 		
 		System.out.println("확인용 1 : " + n);
 		
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArr = new JSONArray();
-		
-		jsonObj.put("check", n);
-		jsonArr.put(jsonObj);
-		
-		String str_jsonArr = jsonArr.toString();
-		
-		System.out.println("확인용 2 : " + str_jsonArr);
-		
-		req.setAttribute("str_jsonArr", str_jsonArr);		
+		if(n == 0) {
+			String msg = "사용가능한 아이디 입니다.";		
+			
+			req.setAttribute("msg", msg);
+		}
+		else if(n == 1) {
+			String msg = "이미 사용중인 아이디 입니다.";
+			
+			req.setAttribute("msg", msg);
+		}
 		
 		return "idCheckJSON.notiles";
 		
