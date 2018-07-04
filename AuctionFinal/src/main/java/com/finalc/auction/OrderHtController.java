@@ -24,7 +24,7 @@ public class OrderHtController {
 	private InterBuyListService service;
 	
 	// #Buy 2. 주문내역 controller 단
-	@RequestMapping(value="/buyList.action", method={RequestMethod.GET})
+	@RequestMapping(value="/orderht.action", method={RequestMethod.GET})
 	public String buyList(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
