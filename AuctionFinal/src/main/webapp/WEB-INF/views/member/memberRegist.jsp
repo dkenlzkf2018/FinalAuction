@@ -3,12 +3,8 @@
 
 <script type="text/javascript">
  
-    $(document).ready(function(){
-    	var userid = ${userid};
+	jQuery(document).ready(function(){
     	
-    	console.log(userid);
-    	
-    	$("#userid").val("${requestScope.userid}");
     }); // end of $(document).ready()---------------------------	 
     
     function goPwdCheck(){
@@ -42,7 +38,7 @@
     
 </script>
 
-<div style="width:90%; margin: auto; border: solid 0px red;">
+<div style="width:auto; margin: auto; border: solid 0px red;">
 
 	<div style="width:80%; margin-top:2%; margin-left:10%; height:200px; border: solid 0px blue;">
 		<h2 class="text-primary">회원가입</h2>
@@ -56,12 +52,9 @@
 				<span style="font-size: 15pt;" style="margin-top: 30px;">이&nbsp;&nbsp;&nbsp;름 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="text" name="name" id="name" size="20" /> 
 				<span style="font-size: 15pt;" style="margin-top: 30px;">이메일 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="text" name="name" id="name" size="20" /> 
 				<span style="font-size: 15pt;" style="margin-top: 30px;">주&nbsp;&nbsp;&nbsp;소 : </span><input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr1" id="addr1" size="20" /> - <input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr2" id="addr2" size="20" />
-			</div>
-			
-			
-			<div class="mydiv" style="margin-left: 10%;">
 				<button class="btn btn-success" style="width: 100px; font-size: 14pt;" type="button" id="btnRegist" >회원가입</button> 
-			</div>	 
+			</div>
+				 
 		</form>
 	</div>
 	
