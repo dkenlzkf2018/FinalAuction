@@ -4,7 +4,9 @@
 <script type="text/javascript">
  
     $(document).ready(function(){
-    	
+    	if(${requestScope.userid != null && !requestScope.userid.Trim().isEmpty()}) {
+    		$("#userid").val("${userid}");
+    	}
     }); // end of $(document).ready()---------------------------	 
     
     function goPwdCheck(){
@@ -30,32 +32,11 @@
     
     function idCheck(){
     	    	
-    	var form_data = {userid : $("#userid").val(),
-    					 jsonArr : ${jsonArr}};
-    	console.log(form_data);
-    	$.ajax({
-			url: "idCheck.action",
-			type: "GET",
-			data: form_data,
-			dataType: "JSON",
-			success: function(json){
-				if(){
-					alert("사용가능한 아이디 입니다.");
-					console.log(userid);
-					$("#passwd").focus();
-					return;					
-				}
-				else if(){
-					alert("이미 사용중인 아이디 입니다.");
-					console.log(userid);
-					$("#userid").val("");
-					return;
-				}
-			},
-			error: function(request, status, error){
-				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-			}
-		});
+    	var frm = document.RegistFrm;
+    	
+    	frm.action="idCheck.action";
+    	frm.method="GET";
+    	frm.submit();
     	
     }
     
@@ -69,7 +50,7 @@
 		
 		<form name="RegistFrm">
 			<div class="mydiv" style="margin-left: 15%;">
-				<span style="font-size: 15pt;" class="mydisplay myfont" >아이디 : </span><input style="font-size: 15pt;" class="mydisplay form-control" type="text" name="userid" id="userid" size="20" /><button style="font-size: 15pt;" type="button" onClick="idCheck();">아이디 확인</button><br/>
+				<span style="font-size: 15pt;" class="mydisplay myfont" >아이디 : </span><input style="font-size: 15pt;" class="mydisplay form-control" type="text" name="userid" id="userid" size="20" /><button style="font-size: 15pt;" type="button" onClick="idCheck();">중복 확인</button><br/>
 				<span style="font-size: 15pt;" class="mydisplay myfont" style="margin-top: 30px;">암&nbsp;&nbsp;&nbsp;호 : </span> <input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="password" name="passwd" id="passwd" size="20" /> 
 				<span style="font-size: 15pt;" class="mydisplay myfont" style="margin-top: 30px;">암호 확인 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="password" name="passwd2" id="passwd2" size="20" /> <button style="font-size: 15pt;" type="button" onClick="goPwdCheck();">암호 확인</button><br/>
 				<span style="font-size: 15pt;" class="mydisplay myfont" style="margin-top: 30px;">이&nbsp;&nbsp;&nbsp;름 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="text" name="name" id="name" size="20" /> 
