@@ -82,13 +82,15 @@ public class LoginController {
 		
 		System.out.println("확인용 1 : " + n);
 		
+		req.setAttribute("n", n);
+		
 		if(n == 0) {
 			String msg = "사용가능한 아이디 입니다.";		
 			
 			req.setAttribute("msg", msg);
 			req.setAttribute("loc", "memberRegist.action?userid="+userid);
 			
-			return"msg.notiles";
+			return"idCheck.notiles";
 		}
 		else if(n == 1) {
 			String msg = "이미 사용중인 아이디 입니다.";
@@ -96,7 +98,7 @@ public class LoginController {
 			req.setAttribute("msg", msg);
 			req.setAttribute("loc", "memberRegist.action");
 			
-			return"msg.notiles";
+			return"idCheck.notiles";
 		}
 		return"member/memberRegist.tiles";
 	}
