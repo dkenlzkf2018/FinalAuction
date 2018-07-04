@@ -29,21 +29,20 @@
 		    <tr class="table-success">
 		      <th scope="col">구매번호</th>
 		      <th scope="col">상품명</th>
-		      <th scope="col">주문번호</th>
-		      <th scope="col">판매자</th>
+		      <th scope="col">구매일자</th>
+		      <th scope="col">낙찰가</th>
 		    </tr>
 	  	</thead>
 
 		<tbody>
 			  <tr class="table-active">
-			  <c:if test="${sessionScope.loginuser.userid != null">
-			  	<c:forEach var="map" items="${buyListMap}">
+			  <c:if test="${sessionScope.loginuser.userid != null && buyMapList != null">
+			  	<c:forEach var="map" items="${buyMapList}">
 			   
 			     <th scope="row">${map.AWARDNUM}</th>
-			     <td>${map.CNAME}/${map.cdname}/${map.actname}</td>
-			     <td>${map.awardday}</td>
-			     <td>${map.panmaejano}</td>
-			     <td>${map.awardprice}</td>
+			     <td>${map.CNAME}/${map.CDNAME}/${map.ACTNAME}</td>
+			     <td>${map.AWARDDAY}</td>
+			     <td>${map.AWARDPRICE}</td>
 			   
 			  	</c:forEach>
 			  </c:if>
@@ -52,12 +51,9 @@
 			  </c:if>
 			  </tr>
 		</tbody>
-		<form name="panmaejaFrm">
-			<input type="hidden" name="panmaeja"/>
-		</form>
+		
   </table>
 </form>  
-
   <div align="center">
 	  <ul class="pagination">
 	    <li class="page-item disabled">

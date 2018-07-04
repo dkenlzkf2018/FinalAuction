@@ -16,6 +16,7 @@ public class BuyListDAO implements InterBuyListDAO {
 	// #Buy 6. 구매 리스트 DAO 단
 	@Override
 	public List<HashMap<String, String>> getBuyList(String usernum) {
+		System.out.println("Dao 단 usernum : " + usernum);
 		List<HashMap<String, String>> buyMapList = sqlsession.selectList("buyList.getBuyList", usernum);
 		System.out.println("3. DAO 단 buyMapList : " + buyMapList);
 		return buyMapList;

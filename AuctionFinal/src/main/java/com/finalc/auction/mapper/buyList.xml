@@ -14,7 +14,7 @@
 		<result property="ACTNAME" column="actname" javaType="String" />
 		<result property="AWARDDAY" column="awardday" javaType="String" />
 		<result property="AWARDPRICE" column="awardprice" javaType="String" />
-		<result property="PUSERNUM" column="pusernum" javaType="String" />
+		
 	</resultMap>
 	
 	<select id="getBuyList" parameterType="String" resultMap="getBuyListMap">
@@ -24,7 +24,6 @@
 		where A.fk_usernum = #{usernum} and B.actd_status = 1 -->
 		select awardnum, cname, cdname, actname
 		     , to_char(awardday, 'yyyy-mm-dd') AS awardday, awardprice
-		     , D.fk_usernum as pusernum
 		from tbl_category A join tbl_category_detail B
 		on A.cnum = B.fk_cnum
 		join tbl_auction C
@@ -33,7 +32,7 @@
 		on C.actnum = D.fk_actnum
 		join tbl_award E
 		on D.actdnum = E.fk_actdnum
-		where E.fk_usernum = #{usernum} and actd_status = 1
+		where E.fk_usernum = to_number(#{usernum}) and actd_status = 1
 		order by awardnum desc
 	</select>
 </mapper>
