@@ -11,7 +11,7 @@
     	
 		var frm = document.RegistFrm;
     	
-    	var pwd1val = $("#passwd").val();
+    	var pwd1val = $("#password").val();
     	var pwd2val = $("#passwd2").val();
    	
        	if(pwd1val != pwd2val){
