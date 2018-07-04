@@ -29,10 +29,10 @@
     }
     
     function idCheck(){
-    	    	
-    	var url = "idCheck.action";
-    	window.open(url, "idcheck",
-    			   "left=500px, top=100px, width=300px, height=230px");
+    	
+    	var url = "idCheck.action?userid=${userid}";
+    	window.open(url, "아이디 중복확인",
+    			   "left=500px, top=100px, width=300px, height=100px");
     	
     }
     
@@ -51,7 +51,7 @@
 				<span style="font-size: 15pt;" style="margin-top: 30px;">암호 확인 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="password" name="passwd2" id="passwd2" size="20" /> <button style="font-size: 15pt;" type="button" onClick="goPwdCheck();">암호 확인</button><br/>
 				<span style="font-size: 15pt;" style="margin-top: 30px;">이&nbsp;&nbsp;&nbsp;름 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="text" name="name" id="name" size="20" /> 
 				<span style="font-size: 15pt;" style="margin-top: 30px;">이메일 : </span><input class="mydisplay form-control" style="font-size: 15pt; margin-top: 15px;" type="text" name="name" id="name" size="20" /> 
-				<span style="font-size: 15pt;" style="margin-top: 30px;">주&nbsp;&nbsp;&nbsp;소 : </span><input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr1" id="addr1" size="20" /> - <input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr2" id="addr2" size="20" />
+				<span style="font-size: 15pt;" style="margin-top: 30px;">주&nbsp;&nbsp;&nbsp;소 : </span><input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr1" id="addr1"/><input class="mydisplay form-control" style="margin-top: 15px;" type="text" name="addr2" id="addr2"/>
 				<button class="btn btn-success" style="width: 100px; font-size: 14pt;" type="button" id="btnRegist" >회원가입</button> 
 			</div>
 				 
