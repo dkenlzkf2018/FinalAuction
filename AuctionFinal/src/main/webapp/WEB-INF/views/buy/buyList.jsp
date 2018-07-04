@@ -27,7 +27,7 @@
 	<table class="table table-hover">
   		<thead>
 		    <tr class="table-success">
-		      <th scope="col">주문일</th>
+		      <th scope="col">구매번호</th>
 		      <th scope="col">상품명</th>
 		      <th scope="col">주문번호</th>
 		      <th scope="col">판매자</th>
@@ -39,8 +39,8 @@
 			  <c:if test="${sessionScope.loginuser.userid != null">
 			  	<c:forEach var="map" items="${buyListMap}">
 			   
-			     <th scope="row">${map.awardnum}</th>
-			     <td>${map.cname}/${map.cdname}/${map.actname}</td>
+			     <th scope="row">${map.AWARDNUM}</th>
+			     <td>${map.CNAME}/${map.cdname}/${map.actname}</td>
 			     <td>${map.awardday}</td>
 			     <td>${map.panmaejano}</td>
 			     <td>${map.awardprice}</td>

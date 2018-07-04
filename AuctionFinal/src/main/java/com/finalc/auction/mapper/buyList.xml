@@ -9,17 +9,32 @@
 	
 	<resultMap type="HashMap" id="getBuyListMap">
 		<result property="AWARDNUM" column="awardnum" javaType="String" />
-		<result property="FK_USERNAME" column="fk_username" javaType="String" />
+		<result property="CNAME" column="cname" javaType="String" />
+		<result property="CDNAME" column="cdname" javaType="String" />
+		<result property="ACTNAME" column="actname" javaType="String" />
 		<result property="AWARDDAY" column="awardday" javaType="String" />
 		<result property="AWARDPRICE" column="awardprice" javaType="String" />
+		<result property="PUSERNUM" column="pusernum" javaType="String" />
 	</resultMap>
 	
-	
 	<select id="getBuyList" parameterType="String" resultMap="getBuyListMap">
-		select awardnum, A.fk_usernum, awardday, awardprice
+		<!-- select awardnum, A.fk_usernum, to_char(awardday, 'yyyy-mm-dd') as awardday, awardprice
 		from tbl_award A join tbl_auction_detail B
 		on A.fk_actdnum = B.actdnum
-		where A.fk_usernum = #{usernum} and B.actd_status = 1
+		where A.fk_usernum = #{usernum} and B.actd_status = 1 -->
+		select awardnum, cname, cdname, actname
+		     , to_char(awardday, 'yyyy-mm-dd') AS awardday, awardprice
+		     , D.fk_usernum as pusernum
+		from tbl_category A join tbl_category_detail B
+		on A.cnum = B.fk_cnum
+		join tbl_auction C
+		on B.cdnum = C.fk_cdnum
+		join tbl_auction_detail D
+		on C.actnum = D.fk_actnum
+		join tbl_award E
+		on D.actdnum = E.fk_actdnum
+		where E.fk_usernum = #{usernum} and actd_status = 1
+		order by awardnum desc
 	</select>
 </mapper>
  
