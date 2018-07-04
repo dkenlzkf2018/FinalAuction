@@ -21,6 +21,9 @@ public class LoginDAO implements InterLoginDAO {
 	@Override
 	public int idCheck(String userid) {
 		int n = sqlsession.selectOne("login.idCheck", userid);
+		
+		System.out.println("확인용 3 : " + n);
+		
 		return n;
 	}
 	

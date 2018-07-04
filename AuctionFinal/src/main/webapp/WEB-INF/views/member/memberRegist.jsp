@@ -30,30 +30,27 @@
     
     function idCheck(){
     	    	
-    	var form_data = {userid : $("#userid").val()};
-    	
+    	var form_data = {userid : $("#userid").val(),
+    					 jsonArr : ${jsonArr}};
+    	console.log(form_data);
     	$.ajax({
 			url: "idCheck.action",
 			type: "GET",
 			data: form_data,
 			dataType: "JSON",
 			success: function(json){
-				$("#table2").empty();
-				
-				var html = "<tr>";
-				html += "<th style='width: 15%; text-align: center;'>작성자</th>";
-				html += "<th style='width: 67%; text-align: center;'>내용</th>";
-				html += "<th style='text-align: center;'>작성일</th>";
-				html += "</tr>";
-				$.each(json, function(entryIndex, entry) {
-				html += "<tr>";
-				html += "<td style='text-align: center;'>"+entry.name+"</td>";
-				html += "<td>"+entry.content+"</td>";
-				html += "<td style='text-align: center;'>"+entry.regDate+"</td>";
-				html += "</tr>";
-				});
-				
-				$("#table2").append(html);
+				if(){
+					alert("사용가능한 아이디 입니다.");
+					console.log(userid);
+					$("#passwd").focus();
+					return;					
+				}
+				else if(){
+					alert("이미 사용중인 아이디 입니다.");
+					console.log(userid);
+					$("#userid").val("");
+					return;
+				}
 			},
 			error: function(request, status, error){
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
