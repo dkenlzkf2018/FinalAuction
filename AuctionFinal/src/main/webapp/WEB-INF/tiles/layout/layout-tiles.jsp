@@ -54,6 +54,27 @@
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.0.0.js"></script>
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
   <!-- Theme styles END -->
+  
+  <%-- 스마트 에디터 구현 시작(no frame 사용시) --%>
+  <link href="<%=request.getContextPath()%>/resources/smarteditor/css/smart_editor2.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/lib/jindo2.all.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/lib/jindo_component.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/SE2BasicCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/smarteditor2.min.js" charset="utf-8"></script>
+
+  <!-- 사진첨부샘플  --> 
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/sample/js/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
+  <%-- 스마트 에디터 구현 끝(no frame 사용시) --%>    
+      
+   
+  <%-- 스마트 에디터 구현 시작(iframe 사용시) --%>  
+  <%-- 
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>  
+  --%>
+  <%-- 스마트 에디터 구현 끝(iframe 사용시) --%> 
+  
 <!-- ------------------------------------------------------------------------------------------------------- -->
 </head>
 
@@ -76,21 +97,21 @@
     <!--[if lt IE 9]>
     <script src="assets/plugins/respond.min.js"></script>  
     <![endif]-->
-    <script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-    <script src="assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script src="<%=request.getContextPath()%>/resources/assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
 
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-    <script src="assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-    <script src='assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
-    <script src="assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+    <script src='<%=request.getContextPath()%>/resources/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+    <script src="<%=request.getContextPath()%>/resources/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
 
-    <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
-    <script src="assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             Layout.init();    
