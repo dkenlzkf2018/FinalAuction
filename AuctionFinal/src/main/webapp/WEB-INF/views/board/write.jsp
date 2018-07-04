@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
 	
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		
 		// 쓰기버튼
 		$("#btnWrite").click(function(){
@@ -53,7 +53,7 @@
 			
 			// form 전송하기
 			var frm = document.writeFrm;
-			frm.action = "<%=request.getContextPath()%>/addEnd.action";
+			frm.action = "<%=request.getContextPath()%>/writeEnd.action";
 			frm.method = "post";
 			frm.submit();
 			
@@ -75,7 +75,7 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-				    <input type="text" name="fk_userid" value="${sessionScope.loginuser.fk_userid}" class="short" readonly />
+				    <input type="text" name="fk_userid" value="${sessionScope.loginuser.userid}" class="short" readonly />
 				</td>
 			</tr>
 			<tr>

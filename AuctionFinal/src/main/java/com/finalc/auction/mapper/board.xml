@@ -27,11 +27,11 @@
 
 <!-- // 검색어 없는 게시글목록 보여주기 시작 07.03 -->
 	<select id="boardList" parameterType="HashMap" resultType="com.finalc.auction.model.BoardVO">
-	select boardno, fk_userid, subject, viewcount, writeday, commentcount
+	select boardno, fk_userid, subject, viewcount, writeday, commentcount, fk_boardno
 	from 
 	(
 	select rownum as RNO
-	     , V.boardno, V.fk_userid, V.subject, V.content, V.viewcount, V.writeday, V.commentcount
+	     , V.boardno, V.fk_userid, V.subject, V.content, V.viewcount, V.writeday, V.commentcount, V.fk_boardno
 	from 
 	(
 	select boardno, fk_userid 
@@ -39,7 +39,7 @@
 	            else subject end as subject
 	     , content , viewcount
 	     , to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday
-	     , commentcount
+	     , commentcount, fk_boardno
 	from tbl_board
 	where boardstatus = 1
 	order by boardno desc
@@ -82,17 +82,34 @@
 	</select>
 <!-- // 검색어 있는 게시글목록 보여주기 끝 07.03 -->
 
-<!-- 게시글 쓰기 스마트에디터 사용 시작 07.03 -->
+<!-- 게시글 쓰기 스마트에디터 사용전 시작 07.03 -->
 	<insert id="write_add" parameterType="com.finalc.auction.model.BoardVO">
 	    <if test='fk_boardno.equals("")'>
-		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno)  
-		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, default, default) 
+		   insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno)  
+		   values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, default, default) 
 		</if> 
 		<if test='!fk_boardno.equals("")'>
-		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno)  
-		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1)   
+		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_seq, deptthno)  
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1) 
 		</if>	
 	</insert>
-<!-- 게시글 쓰기 스마트에디터 사용 끝 07.03 -->
+<!-- 게시글 쓰기 스마트에디터 사용전 끝 07.03 -->
+	
+	<select id="getGroupMaxno" resultType="Integer">
+	    select nvl(max(groupno), 0)
+		from tbl_board
+	</select>
 
+<!-- 게시글 쓰기 스마트에디터 사용 시작 07.04 -->
+	<insert id="write_withFile" parameterType="com.finalc.auction.model.BoardVO">
+	    <if test='fk_boardno.equals("")'>
+		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno, fileName, orgFilename, fileSize)  
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, default, default, #{fileName}, #{orgFilename}, #{fileSize}) 
+		</if> 
+		<if test='!fk_boardno.equals("")'>
+		  insert into tbl_board(boardno, fk_userid, subject, content, viewcount, writeday, boardstatus, groupno, fk_boardno, deptthno, fileName, orgFilename, fileSize)  
+		  values(seq_board.nextval, #{fk_userid}, #{subject}, #{content}, default, default, default, #{groupno}, #{fk_boardno}, #{deptthno}+1, #{fileName}, #{orgFilename}, #{fileSize})     
+		</if>	
+	</insert>
+<!-- 게시글 쓰기 스마트에디터 사용 끝 07.04 -->
 </mapper>
