@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
-	table, th, td {border: solid gray 1px;}
+	table, th, td {border: solid gray 0px;}
 	
-	/* # 143. 파일이 첨부 되었으므로 테이블의 가로폭 늘리기  */
+
 	#table {border-collapse: collapse; width: 920px;}
 		
 	#table th, #table td {padding: 5px;}
@@ -80,7 +80,7 @@
 </script>
 
 <div style="padding-left: 10%;">
-	<h1 style="margin-bottom: 30px;">게시글 목록</h1>
+	<h3 style="margin-bottom: 30px;">게시글 목록</h3>
 	
 	<table id="table">
 		<thead>
@@ -160,9 +160,10 @@
 		<input type="hidden" name="boardno" />
 	</form>
 	
-	<div>
-		<a href="<%=request.getContextPath()%>/write.action" class="btn" style="font-weight: bold; font-size: 12pt; color: black;"><button type="button">
-		<img  src="resources/img/ico-btn-write.gif" style="margin-right: 5px;">글쓰기</button>
+	<div style="margin-top: 10px;">
+		<a href="<%=request.getContextPath()%>/write.action" style="font-weight: bold; font-size: 10pt; color: black;">
+		<button type="button" style="margin-right: 30px;">
+		<img src="resources/img/ico-btn-write.gif" style="margin-right: 5px;">글쓰기</button>
 		</a>
 	</div>
 	
@@ -173,7 +174,7 @@
 	</div>
 	
 	<%-- ==== #105. 글검색 폼 추가하기 : 글제목, 글내용, 글쓴이로 검색하도록 한다. ==== --%> 
-	<div style="margin-top: 30px;">
+	<div style="margin-top: 40px;">
 	<form name="searchFrm">
 		<select name="colname" id="colname" style="height: 26px;"> 
 			<option value="subject">제목</option>
