@@ -8,6 +8,23 @@
 <!-- ==== 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
 <mapper namespace="board">
 
-	
+<!-- 검색어가 없는 총게시물 건수 07.03 시작 -->
+	<select id="getTotalCount" resultType="Integer">
+		select count(*)
+		from tbl_board
+		where boardstatus = 1
+	</select>
+<!-- 검색어가 없는 총게시물 건수 07.03 끝-->
+
+<!-- 검색어가 있는 총게시물 건수 07.03 시작 -->
+	<select id="getTotalCount2" parameterType="HashMap" resultType="Integer">
+		select count(*)
+		from tbl_board
+		where boardstatus = 1
+		and ${colname} like '%'|| #{search} ||'%'
+	</select>
+<!-- 검색어가 있는 총게시물 건수 07.03 끝-->
+
+
 
 </mapper>
