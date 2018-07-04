@@ -21,10 +21,9 @@
                 <div class="container">
                     <div class="carousel-position-four text-center">
                         <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
-                            Tones of <br/><span class="color-red-v2">Shop UI Features</span><br/> designed
+							남성의류 <br/><span class="color-red-v2">SUPER SALE</span>
                         </h2>
-                        <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">Lorem ipsum dolor sit amet constectetuer diam <br/>
-                        adipiscing elit euismod ut laoreet dolore.</p>
+                        <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">낙찰가 10% 지원</p>
                     </div>
                 </div>
             </div>
@@ -33,18 +32,18 @@
             <div class="item carousel-item-five">
                 <div class="container">
                     <div class="carousel-position-four text-center">
-                        <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
-                            Unlimted
+                        <h2 class="animate-delay carousel-title-v3" data-animation="animated fadeInDown">
+							태블릿 PC
                         </h2>
                         <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
                             Layout Options
                         </p>
                         <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-                            Fully Responsive
+                            come on baby
                         </p>
-                        <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
+                        <a class="carousel-btn" href="#" data-animation="animated fadeInUp">경매 이동하기</a>
                     </div>
-                    <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="<%=request.getContextPath() %>/resources/assets/pages/img/shop-slider/slide2/price.png" alt="Price" data-animation="animated zoomIn">
+                    
                 </div>
             </div>
 
