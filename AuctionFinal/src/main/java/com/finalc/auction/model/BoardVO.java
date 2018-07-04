@@ -1,5 +1,7 @@
 package com.finalc.auction.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	
 	// 게시판 VO
@@ -18,11 +20,23 @@ public class BoardVO {
 	  private String deptthno;       /* 답변글깊이 */
 	  private String  public_status; /* 공개여부 */
 	  private String boardstatus;    /* 게시글상태 */
+	  
+	  
+
+		private String fileName;    // WAS(톰캣)에 저장될 파일명(20161121324325454354353333432.png)
+		private String orgFilename; // 진짜 파일명(강아지.png)   // 사용자가 파일을 업로드 하거나 파일을 다운로드 할때 사용되어지는 파일명
+		private String fileSize;    // 파일크기
+		
+		private MultipartFile attach; // 진짜 파일 => 톰캣 디스크에 저장됨.
+									  // MultipartFile attach는 오라클 tblBoard 테이블의 컬럼이 아니다.
+	  
 
 	  public BoardVO(){}
 	  public BoardVO(String boardno, String fk_userid, String subject, String content, String commentcount,
 			String viewcount, String writeday, String finaleditday, String groupno, String fk_boardno, String deptthno,
-			String public_status, String boardstatus) {
+			String public_status, String boardstatus, String fileName, 
+			String orgFilename, 
+			String fileSize) {
 		
 		this.boardno = boardno;
 		this.fk_userid = fk_userid;
@@ -37,6 +51,10 @@ public class BoardVO {
 		this.deptthno = deptthno;
 		this.public_status = public_status;
 		this.boardstatus = boardstatus;
+		
+		this.fileName = fileName;
+		this.orgFilename = orgFilename;
+		this.fileSize = fileSize;
 	}
 	  
 	public String getBoardno() {
@@ -116,6 +134,38 @@ public class BoardVO {
 	}
 	public void setBoardstatus(String boardstatus) {
 		this.boardstatus = boardstatus;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getOrgFilename() {
+		return orgFilename;
+	}
+
+	public void setOrgFilename(String orgFilename) {
+		this.orgFilename = orgFilename;
+	}
+
+	public String getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+
+	public MultipartFile getAttach() {
+		return attach;
+	}
+
+	public void setAttach(MultipartFile attach) {
+		this.attach = attach;
 	}
 	  
 	  
