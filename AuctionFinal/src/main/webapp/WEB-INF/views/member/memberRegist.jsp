@@ -30,7 +30,8 @@
     
     function idCheck(){
     	    	
-    	var form_data = {userid : ${str_jsonArr}};
+    	var form_data = {userid : $("#userid").val()
+    					 jsonArr : ${jsonArr}};
     	console.log(form_data);
     	$.ajax({
 			url: "idCheck.action",
@@ -38,15 +39,15 @@
 			data: form_data,
 			dataType: "JSON",
 			success: function(json){
-				if(json == 0){
+				if(){
 					alert("사용가능한 아이디 입니다.");
-					console.log(json);
+					console.log(userid);
 					$("#passwd").focus();
 					return;					
 				}
-				else if(json == 1){
+				else if(){
 					alert("이미 사용중인 아이디 입니다.");
-					console.log(json);
+					console.log(userid);
 					$("#userid").val("");
 					return;
 				}
