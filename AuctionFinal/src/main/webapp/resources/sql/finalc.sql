@@ -55,14 +55,14 @@ where fk_userid = 'admion'
   CREATE UNIQUE INDEX tbl_member
      ON tbl_member (
         userid ASC
-     ); -- 오류남
+     ); 
   
   ALTER TABLE tbl_member
      ADD
         CONSTRAINT tbl_member
         PRIMARY KEY (
            userid
-        ); -- 오류남
+        ); 
   
   /* 회원 상세 */
   CREATE TABLE tbl_member_detail (
