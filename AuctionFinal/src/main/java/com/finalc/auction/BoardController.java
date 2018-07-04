@@ -52,7 +52,7 @@ public class BoardController {
 		req.setAttribute("depthno", deptthno);
 		
 		
-		return "board/write.tiles2";
+		return "board/write.tiles";
 	} // 게시판 글쓰기 폼 스마트에디터 사용 끝(07.03)
 	
 	
@@ -145,7 +145,7 @@ public class BoardController {
 		req.setAttribute("colname", colname);
 		req.setAttribute("search", search);
 
-		return "board/boardlist.tiles2";
+		return "board/boardlist.tiles";
 	}// 게시판 글 목록 페이지 (페이징 처리한거) 끝(07.03)
 	
 	
@@ -210,9 +210,11 @@ public class BoardController {
 
 		req.setAttribute("n", n);
 		
-		return "board/writeEnd.tiles2";
-		// /Board/src/main/webapp/WEB-INF/views2/board/addEnd.jsp 파일을 생성한다. 
+		return "board/writeEnd.tiles";
+		
 	} // 게시글 쓰기 완료 (07.03 끝)
+	
+	
 	
 	
 
