@@ -20,7 +20,7 @@
 		
 	});
 </script>
-<h3 align="left" style="margin-left: 3%;">낙찰 목록</h3>
+<h3 align="left" style="margin-left: 2%;">낙찰 목록</h3>
 <div>
 <form name="buyListFrm">
 	<table class="table table-hover">
@@ -41,11 +41,19 @@
 		  	<c:forEach var="map" items="${buyMapList}">
 			   <tr class="table-active">
 			     <th scope="row">${map.AWARDNUM}</th>
-			     <td>${map.CNAME} / ${map.CDNAME} / ${map.ACTNAME}</td>
+			     <td>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;">${map.ACTNAME}</a></td>
 			     <td>${map.AWARDDAY}</td>
-			     <td>${map.AWARDDAY}</td>
+			     <td>${map.PANMAEJA}</td>
 			     <td><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/>원</td>
-			     
+			     <c:if test="${map.DELIVERSTATUS == '0'}">
+			     	<td>주문완료</td>
+			     </c:if>
+			     <c:if test="${map.DELIVERSTATUS == '1'}">
+			     	<td>배송중</td>
+			     </c:if>
+			     <c:if test="${map.DELIVERSTATUS == '2'}">
+			     	<td>배송완료</td>
+			     </c:if>
 			   </tr>
 		  	</c:forEach>
 		  </c:if>
