@@ -216,5 +216,7 @@ public class BoardController {
 	} // 게시글 쓰기 완료 (07.03 끝)
 	
 	
+	
+	
 
 }

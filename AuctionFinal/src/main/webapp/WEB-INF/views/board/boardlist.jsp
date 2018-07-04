@@ -20,7 +20,7 @@
 </style>
 
 <script type="text/javascript">
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		
 		$(".subject").hover(function(event){
 							 var $target = $(event.target);
@@ -134,7 +134,7 @@
 					    </c:if>
 					    
 					</td>
-					<td>${boardvo.userid}</td>
+					<td>${boardvo.fk_userid}</td>
 					<td align="center">${boardvo.writeday}</td>
 					<td align="center">${boardvo.viewcount}</td>
 					
@@ -171,7 +171,7 @@
 		<select name="colname" id="colname" style="height: 26px;"> 
 			<option value="subject">글제목</option>
 			<option value="content">글내용</option>
-			<option value="userid">글쓴이</option>
+			<option value="fk_userid">글쓴이</option>
 		</select>
 		<input type="text" name="search" id="search" size="40" />
 		<button type="button" onClick="goSearch();">검색</button>
