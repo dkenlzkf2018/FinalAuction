@@ -1,7 +1,7 @@
 select *
 from tbl_member;
 
-select userid, passwd, email, username, email, hp1
+select userid, passwd, email, username, hp1
      , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
 from
 (

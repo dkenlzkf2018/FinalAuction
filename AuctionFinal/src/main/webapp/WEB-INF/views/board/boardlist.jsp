@@ -10,7 +10,7 @@
 	#table {border-collapse: collapse; width: 920px;}
 		
 	#table th, #table td {padding: 5px;}
-	#table th {background-color: #DDDDDD;}
+	#table th {background-color: white;}
 	
 	a{text-decoration: none;}
 	
@@ -80,15 +80,15 @@
 </script>
 
 <div style="padding-left: 10%;">
-	<h1 style="margin-bottom: 30px;">글목록</h1>
+	<h1 style="margin-bottom: 30px;">게시글 목록</h1>
 	
 	<table id="table">
 		<thead>
 			<tr>
-				<th style="width: 70px;  text-align: center">글번호</th>
+				<th style="width: 70px;  text-align: center">번호</th>
 				<th style="width: 360px; text-align: center">제목</th>
-				<th style="width: 70px;  text-align: center">성명</th>
-				<th style="width: 180px; text-align: center">날짜</th>
+				<th style="width: 70px;  text-align: center">작성자</th>
+				<th style="width: 180px; text-align: center">작성일</th>
 				<th style="width: 70px;  text-align: center">조회수</th>
 				
 				<!-- # 144. 파일과 크기를 보여주도록 수정 -->
@@ -160,6 +160,13 @@
 		<input type="hidden" name="boardno" />
 	</form>
 	
+	<div>
+		<a href="<%=request.getContextPath()%>/write.action" class="btn" style="font-weight: bold; font-size: 12pt; color: black;"><button type="button">
+		<img  src="resources/img/ico-btn-write.gif" style="margin-right: 5px;">글쓰기</button>
+		</a>
+	</div>
+	
+	
 	<%-- ==== #117. 페이지바 보여주기 ==== --%>
 	<div align="center" style="width: 70%; margin-left: -180px; margin-top: 30px;"> 
 		${pagebar}
@@ -169,14 +176,15 @@
 	<div style="margin-top: 30px;">
 	<form name="searchFrm">
 		<select name="colname" id="colname" style="height: 26px;"> 
-			<option value="subject">글제목</option>
-			<option value="content">글내용</option>
-			<option value="fk_userid">글쓴이</option>
+			<option value="subject">제목</option>
+			<option value="content">내용</option>
+			<option value="fk_userid">작성자</option>
 		</select>
 		<input type="text" name="search" id="search" size="40" />
 		<button type="button" onClick="goSearch();">검색</button>
 	</form>
 	</div>
+	
 	
 	
 </div>
