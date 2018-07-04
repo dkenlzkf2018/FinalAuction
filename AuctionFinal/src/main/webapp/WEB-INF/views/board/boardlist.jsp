@@ -161,7 +161,6 @@
 	</form>
 	
 	<div>
-		
 		<a href="<%=request.getContextPath()%>/write.action" class="btn" style="font-weight: bold; font-size: 12pt; color: black;"><button type="button">
 		<img  src="resources/img/ico-btn-write.gif" style="margin-right: 5px;">글쓰기</button>
 		</a>
