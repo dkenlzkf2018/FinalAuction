@@ -161,7 +161,8 @@
 	</form>
 	
 	<div>
-		<a href="<%=request.getContextPath()%>/write.action" class="btn" style="font-weight: bold; font-size: 12pt; color: black;"><button type="button">
+		<a href="<%=request.getContextPath()%>/write.action" style="font-weight: bold; font-size: 10pt; color: black;">
+		<button type="button" style="margin-right: 30px;">
 		<img  src="resources/img/ico-btn-write.gif" style="margin-right: 5px;">글쓰기</button>
 		</a>
 	</div>
@@ -173,7 +174,7 @@
 	</div>
 	
 	<%-- ==== #105. 글검색 폼 추가하기 : 글제목, 글내용, 글쓴이로 검색하도록 한다. ==== --%> 
-	<div style="margin-top: 30px;">
+	<div style="margin-top: 40px;">
 	<form name="searchFrm">
 		<select name="colname" id="colname" style="height: 26px;"> 
 			<option value="subject">제목</option>
