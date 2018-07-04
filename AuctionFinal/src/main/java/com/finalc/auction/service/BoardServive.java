@@ -80,6 +80,7 @@ public class BoardServive implements InterBoardService {
 	public int write_withFile(BoardVO boardvo) {
 		
 		if(boardvo.getFk_boardno() == null || boardvo.getFk_boardno().trim().isEmpty()) {
+			
 			int groupno = dao.getGroupMaxno()+1;
 			boardvo.setGroupno(String.valueOf(groupno));
 		}

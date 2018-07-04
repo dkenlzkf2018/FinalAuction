@@ -80,27 +80,10 @@ public class LoginController {
 		
 		int n = service.idCheck(userid);
 		
-		System.out.println("확인용 1 : " + n);
-		
+		req.setAttribute("userid", userid);
 		req.setAttribute("n", n);
 		
-		if(n == 0) {
-			String msg = "사용가능한 아이디 입니다.";		
-			
-			req.setAttribute("msg", msg);
-			req.setAttribute("loc", "memberRegist.action?userid="+userid);
-			
-			return"idCheck.notiles";
-		}
-		else if(n == 1) {
-			String msg = "이미 사용중인 아이디 입니다.";
-			
-			req.setAttribute("msg", msg);
-			req.setAttribute("loc", "memberRegist.action");
-			
-			return"idCheck.notiles";
-		}
-		return"member/memberRegist.tiles";
+		return"idCheck.notiles";
 	}
 	
 	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.GET})
