@@ -36,8 +36,8 @@
     }); // end of $(document).ready()---------------------------	 
 
     function func_Regist(event){
-    	var frm = document.loginFrm;
-    	frm.action = "/auction/memberRegist.action";
+    	var frm = document.RegistFrm;
+    	frm.action = "memberRegist.action";
     	frm.method = "get";
     	frm.submit();
     }
@@ -90,16 +90,18 @@
 			
 			<div class="mydiv" style="margin-left: 5%;">
 				<input class="mydisplay form-control" type="text" name="userid" id="userid" size="20" style="font-size: 15px;" />
-				<input class="mydisplay form-control" style="margin-top: 15px; font-size: 15px;" type="password" name="passwd" id="passwd" size="20" /> 
+				<input class="mydisplay form-control" style="margin-top: 15px; font-size: 15px;" type="password" name="passwd" id="passwd" size="20" />
 			</div>
-			
-			<div class="mydiv" style="margin-left: 10%;">
+			<div style="margin-top: 5%; margin-left: 30%;">
 				<button class="btn btn-success" style="width: 100px; font-size: 14pt;" type="button" id="btnLOGIN" >확인</button> 
-			</div>	 
-			<div class="mydiv" style="margin-left: 10%;">
 				<button class="btn btn-success" style="width: 100px; font-size: 14pt;" type="button" id="btnRegist" >회원가입</button> 
 			</div>
+			
 		</form>
+		
+		<form name="RegistFrm">
+		</form>
+		
 	</div>
 	
 </div>
