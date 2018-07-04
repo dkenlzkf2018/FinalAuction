@@ -212,7 +212,7 @@ public class BoardController {
 		req.setAttribute("n", n);
 		
 		return "board/writeEnd.tiles2";
-		// /Board/src/main/webapp/WEB-INF/views2/board/addEnd.jsp 파일을 생성한다. 
+		
 	} // 게시글 쓰기 완료 (07.03 끝)
 	
 	

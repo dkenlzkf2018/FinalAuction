@@ -12,7 +12,7 @@
 		alert("글쓰기가 실패하였습니다.");
 	</c:if>
 	
-	location.href="<%= request.getContextPath() %>/list.action";
+	location.href="<%= request.getContextPath() %>/boardlist.action";
 	// 글목록을 보여주는 페이지로 이동
 
 </script>
