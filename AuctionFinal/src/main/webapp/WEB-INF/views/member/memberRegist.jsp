@@ -4,14 +4,14 @@
 <script type="text/javascript">
  
 	jQuery(document).ready(function(){
-    	
-    }); // end of $(document).ready()---------------------------	 
+    		
+	}); // end of $(document).ready()---------------------------	 
     
     function goPwdCheck(){
     	
 		var frm = document.RegistFrm;
     	
-    	var pwd1val = $("#passwd").val();
+    	var pwd1val = $("#password").val();
     	var pwd2val = $("#passwd2").val();
    	
        	if(pwd1val != pwd2val){
@@ -116,37 +116,47 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="email">E-Mail <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="text" id="email" class="form-control">
+                    <input type="text" id="email1" class="form-control">@
+                    <select class="form-control" name="email2" id="email2">
+						<option value="naver.com">naver.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="nate.com">nate.com</option>						
+					</select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-2 control-label" for="telephone">Telephone <span class="require">*</span></label>
+                  <label class="col-lg-2 control-label" for="telephone">전화번호<span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="text" id="telephone" class="form-control">
+                  	<select class="form-control" name="hp1" id="hp1">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+					</select>&nbsp;-&nbsp;
+                    <input type="tel" id="hp2" class="form-control" size="4" maxlength="4">&nbsp;-&nbsp;
+                    <input type="tel" id="hp3" class="form-control" size="4" maxlength="4">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-2 control-label" for="fax">Fax</label>
+                  <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
                   <div class="col-lg-8">
-                    <input type="text" id="fax" class="form-control">
+                    <input type="text" id="zipcode" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-2 control-label">File input</label>
+                  <label class="col-lg-2 control-label" for="address">주소</label>
                   <div class="col-lg-8">
-                    <input type="file">
-                    <p class="help-block">some help text here.</p>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-lg-2 control-label" for="message">Message</label>
-                  <div class="col-lg-8">
-                    <textarea class="form-control" rows="6"></textarea>
+                   	<input type="text" id="addr1" class="form-control"/><br/>
+                   	<input type="text" id="addr2" class="form-control"/>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
-                    <button class="btn btn-primary" type="submit">Continue</button>
+                    <button class="btn btn-primary" type="submit">가입하기</button>
+                    <button class="btn btn-primary" type="submit">가입하기</button>
                   </div>
                 </div>
               </form>
