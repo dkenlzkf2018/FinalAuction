@@ -24,4 +24,8 @@
 		from tbl_member_detail
 		where fk_userid = #{userid}
 	</select>
+	
+	<insert id="memberRegist" parameterType="HashMap">
+		insert into tbl_member_detail()
+	</insert>
 </mapper>
