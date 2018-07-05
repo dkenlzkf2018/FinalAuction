@@ -45,7 +45,7 @@ public class BuyListController {
 			String str_currentShowPageNo = req.getParameter("currentShowPageNo"); 
 			
 			int totalCount = 0;         // 총게시물건수
-			int sizePerPage = 1;        // 한 페이지당 보여줄 게시물 건수 
+			int sizePerPage = 10;        // 한 페이지당 보여줄 게시물 건수 
 			int currentShowPageNo = 0;  // 현재 보여주는 페이지 번호로서, 초기치로는 1페이지로 설정함.
 			int totalPage = 0;          // 총페이지수 (웹브라우저상에 보여줄 총 페이지 갯수)
 			
@@ -116,7 +116,7 @@ public class BuyListController {
 			map.put("startRno", String.valueOf(startRno));
 			map.put("endRno", String.valueOf(endRno));
 			
-			String pagebar = "<li>"; 
+			String pagebar = "<li>";
 			
 			pagebar += MyUtil.getAuctionPageBar("buyList.action", currentShowPageNo, sizePerPage, totalPage, blockSize);     
 			pagebar += "</li>";
@@ -126,7 +126,9 @@ public class BuyListController {
 			System.out.println("4. Controller 단 buyMapList : " + buyMapList);
 			req.setAttribute("buyMapList", buyMapList);
 			req.setAttribute("pagebar", pagebar);
-			
+			req.setAttribute("startRno", startRno);
+			req.setAttribute("endRno", endRno);
+			req.setAttribute("currentShowPageNo", currentShowPageNo);
 			
 			return "buy/buyList.tiles";
 		}

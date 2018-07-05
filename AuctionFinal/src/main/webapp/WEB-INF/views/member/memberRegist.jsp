@@ -29,11 +29,16 @@
     }
     
     function idCheck(){
+    	var userid = $("#userid").val();
     	
-    	var url = "idCheck.action?userid=${userid}";
+    	var url = "idCheck.action?userid=" + userid;
     	window.open(url, "아이디 중복확인",
     			   "left=500px, top=100px, width=300px, height=100px");
     	
+    }
+    
+    function goRegist() {
+    	var frm = document.RegistFrm;
     }
     
 </script>
@@ -82,7 +87,6 @@
             </ul>
           </div>
           <!-- END SIDEBAR -->
-
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-7">
             <h1>회원 가입</h1>
@@ -91,14 +95,14 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
-                    <input type="text" id="userid" name="userid" class="form-control">
+                    <input type="text" id="userid" name="userid" class="form-control" value=""/>
                   </div>
-                  <a class="col-lg-2 btn btn-default" onClick="idCheck();">중복 확인</a>
+                  <button class="col-lg-2 btn btn-default" onClick="idCheck();">중복 확인</button>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="password">비밀번호 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="text" id="password" name="password" class="form-control">
+                    <input type="text" id="password" name="password" class="form-control"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -109,25 +113,40 @@
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="name">성명 <span class="require">*</span></label>
-                  <div class="col-lg-8">
+                  <div class="col-lg-5">
                     <input type="text" id="name" name="name" class="form-control">
+                  </div>
+                  <div class="col-lg-3">
+                    <select class="form-control" name="email2" id="email2">
+						<option value="-1">성별 선택</option>
+						<option value="남자">남자</option>
+						<option value="여자">여자</option>						
+					</select>
+				  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label" for="birth">생년월일 <span class="require">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="date" id="birth" name="birth" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="email">E-Mail <span class="require">*</span></label>
-                  <div class="col-lg-8">
-                    <input type="text" id="email1" class="form-control">@
+                  <div class="col-lg-3">
+                    <input type="text" id="email1" class="form-control">
+                  </div>
+                  <div class="col-lg-5">
                     <select class="form-control" name="email2" id="email2">
 						<option value="naver.com">naver.com</option>
 						<option value="hanmail.net">hanmail.net</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="nate.com">nate.com</option>						
 					</select>
-                  </div>
+				  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="telephone">전화번호<span class="require">*</span></label>
-                  <div class="col-lg-8">
+                  <div class="col-lg-2">
                   	<select class="form-control" name="hp1" id="hp1">
 						<option value="010">010</option>
 						<option value="011">011</option>
@@ -135,8 +154,12 @@
 						<option value="017">017</option>
 						<option value="018">018</option>
 						<option value="019">019</option>
-					</select>&nbsp;-&nbsp;
-                    <input type="tel" id="hp2" class="form-control" size="4" maxlength="4">&nbsp;-&nbsp;
+					</select>
+                  </div>
+                  <div class="col-lg-3">
+                    <input type="tel" id="hp2" class="form-control" size="4" maxlength="4">
+                  </div>
+                  <div class="col-lg-3">
                     <input type="tel" id="hp3" class="form-control" size="4" maxlength="4">
                   </div>
                 </div>
@@ -153,13 +176,13 @@
                    	<input type="text" id="addr2" class="form-control"/>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
-                    <button class="btn btn-primary" type="submit">가입하기</button>
-                    <button class="btn btn-primary" type="submit">가입하기</button>
-                  </div>
-                </div>
               </form>
+              <div class="row">
+                <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
+                  <button class="btn btn-primary" onClick="goRegist();">가입하기</button>
+                  <button class="btn btn-default" onClick="location.href='<%=request.getContextPath()%>/index.action';">메인으로</button>
+                </div>
+              </div>
             </div>
           </div>
           <!-- END CONTENT -->

@@ -23,56 +23,6 @@
 		
 	});
 </script>
-<%-- <h3 align="left" style="margin-left: 2%;">낙찰 목록</h3>
-<div>
-<form name="buyListFrm">
-	<table class="table table-hover">
-  		<thead>
-		    <tr class="table-success">
-		      <th scope="col">구매번호</th>
-		      <th scope="col">상품명</th>
-		      <th scope="col">구매일자</th>
-		      <th scope="col">판매자</th>
-		      <th scope="col">낙찰가</th>
-		      <th scope="col">배송상태</th>
-		    </tr>
-	  	</thead>
-
-		<tbody>
-			  
-		  <c:if test="${sessionScope.loginuser.userid != null && buyMapList != null}">
-		  	<c:forEach var="map" items="${buyMapList}">
-			   <tr class="table-active">
-			     <th scope="row">${map.AWARDNUM}</th>
-			     <td>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;">${map.ACTNAME}</a></td>
-			     <td>${map.AWARDDAY}</td>
-			     <td>${map.PANMAEJA}</td>
-			     <td><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/>원</td>
-			     <c:if test="${map.DELIVERSTATUS == '0'}">
-			     	<td>주문완료</td>
-			     </c:if>
-			     <c:if test="${map.DELIVERSTATUS == '1'}">
-			     	<td>배송중</td>
-			     </c:if>
-			     <c:if test="${map.DELIVERSTATUS == '2'}">
-			     	<td>배송완료</td>
-			     </c:if>
-			   </tr>
-		  	</c:forEach>
-		  </c:if>
-		  <c:if test="${sessionScope.loginuser.userid == null || buyMapList == null}">
-		  	<tr>
-		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
-		  	</tr>
-		  </c:if>
-			  
-		</tbody>
-		
-  </table>
-</form>  
-</div> --%>
-
-
 
 <div class="main">
 <div class="container">      
@@ -144,20 +94,24 @@
         </c:if>   
       </table>
       </div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-<!-- BEGIN PAGINATOR -->
-    <div class="row">
-      <div class="col-md-10 col-sm-10">
+	<div style="margin-top: 3%;" class="row">
+	<div class="col-md-4 col-sm-4 col-xs-4 items-info">상품 ${startRno} to ${currentShowPageNo} of ${endRno} total</div>
+      <div class="col-md-8 col-sm-8 col-xs-8">
         <ul class="pagination pull-right">
           ${pagebar}
         </ul>
       </div>
     </div>
+    </div>
+    
+    
+  </div>
+  
+</div>
+</div>
+
+<!-- BEGIN PAGINATOR -->
+    
 <!-- END PAGINATOR -->
 </div>
 <!-- END CONTENT -->
