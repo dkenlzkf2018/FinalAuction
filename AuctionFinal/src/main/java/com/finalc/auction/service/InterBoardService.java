@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.finalc.auction.model.BoardVO;
+import com.finalc.auction.model.CommentVO;
 //게시판 InterService
 public interface InterBoardService {
 
@@ -18,6 +19,14 @@ public interface InterBoardService {
 	int write_add(BoardVO boardvo);
 
 	int write_withFile(BoardVO boardvo);
+
+	BoardVO getWriteView(String boardno, String userid);
+
+	BoardVO getNoviewCountWriteView(String boardno);
+
+	List<CommentVO> commentList(String boardno);
+
+	
 
 	
 
