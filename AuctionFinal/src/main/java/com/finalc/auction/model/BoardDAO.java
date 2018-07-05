@@ -71,6 +71,29 @@ public class BoardDAO implements InterBoardDAO {
 		return n;
 	}// 게시글 쓰기 (파일 첨부 있는거, 없는거 끝)
 	// 게시글 쓰기 완료 (07.03 끝)
+
+	// 게시글 1개보기 (조회수 증가, 증가없이 07.05 시작)
+	@Override
+	public BoardVO getWriteView(String boardno) {
+		BoardVO boardvo = sqlsession.selectOne("board.getWriteView", boardno);
+		
+		return boardvo;
+	
+	}// 게시글 1개보기 (조회수 증가, 증가없이 07.05 끝)
+	
+	// 게시글 1개 볼때마다 1증가(07.05 시작)
+	@Override
+	public void setAddViewCount(String boardno) {
+		
+		
+	}// 게시글 1개 볼때마다 1증가(07.05 끝)
+
+	// 댓글보기 (07.05 시작)
+	@Override
+	public List<CommentVO> commentList(String boardno) {
+		
+		return null;
+	}// 댓글보기 (07.05 끝)
 	
 	
 

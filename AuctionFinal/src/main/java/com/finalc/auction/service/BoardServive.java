@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalc.auction.model.BoardVO;
+import com.finalc.auction.model.CommentVO;
 import com.finalc.auction.model.InterBoardDAO;
 
 
@@ -90,6 +91,36 @@ public class BoardServive implements InterBoardService {
 		return n;
 	 // 게시글 쓰기 (파일 첨부 있는거 끝)
 	}// 게시글 쓰기 완료 (07.03 끝)
+
+	// 게시글 1개보기 (조회수 증가 07.05 시작)
+	@Override
+	public BoardVO getWriteView(String boardno, String userid) {
+		BoardVO boardvo = dao.getWriteView(boardno);
+		
+		if(userid != null && !boardvo.getFk_userid().equals(userid)) {
+			dao.setAddViewCount(boardno);
+			boardvo = dao.getWriteView(boardno);
+			
+		}
+		
+		return boardvo;
+	}// 게시글 1개보기 (조회수 증가 07.05 끝)
+
+	// 게시글 1개보기 (조회수 증가없이 07.05 시작)
+	@Override
+	public BoardVO getNoviewCountWriteView(String boardno) {
+		BoardVO boardvo = dao.getWriteView(boardno);
+		
+		return boardvo;
+	}// 게시글 1개보기 (조회수 증가없이 07.05 끝)
+
+	// 댓글 보기 (07.05 시작)
+	@Override
+	public List<CommentVO> commentList(String boardno) {
+		List<CommentVO> comment = dao.commentList(boardno);
+		
+		return comment;
+	}// 댓글 보기 (07.05 끝)
 	
 	
 
