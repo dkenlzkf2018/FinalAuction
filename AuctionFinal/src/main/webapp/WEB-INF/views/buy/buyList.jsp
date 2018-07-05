@@ -14,12 +14,8 @@
 		text-align: center;
 	}
 	
-	tr, td {
-		text-align: center;
-		margin-left: 5%;
-	}
-	.ssi {
-		margin-left: 5px;
+	table, tr, td {
+		
 	}
 	
 </style>
@@ -28,6 +24,13 @@
 	jQuery(document).ready(function () {
 		
 	});
+	
+	function buyListDetail() {
+		var frm = document.buyListFrm;
+		frm.method = "POST";
+		frm.action = "/buyListDetail.action";
+		frm.submit();
+	}
 </script>
 
 <div class="main">
@@ -40,6 +43,7 @@
   <div class="goods-page">
     <div class="goods-data clearfix">
       <div class="table-wrapper-responsive">
+      <form name="buyListFrm">
       <table summary="Shopping cart">
         <tr>
           <th class="goods-page-awardnum">구매번호</th>
@@ -57,8 +61,8 @@
              ${map.AWARDNUM}
            </td>
            <td class="goods-page-actname">
-             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;">${map.ACTNAME}</a></h3>
-             <p><strong>Item 1</strong> - Color: Green; Size: S</p>
+             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="javascript:buyListDetail()">${map.ACTNAME}</a></h3>
+             <%-- <img src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /> --%>
              <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
            </td>
            <td class="goods-page-awardday">
@@ -84,20 +88,31 @@
            <td class="goods-page-deliverstatus">
              <strong>배송완료</strong>
            </td>
-           </c:if>                
+           </c:if>
+                           
          </tr>
          <c:if test="${sessionScope.loginuser.userid == null || buyMapList == null}">
 		 <tr>
 		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		 </tr>
 		 </c:if> 
+		 <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
+		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />  
         </c:forEach>
-        </c:if>   
+        </c:if>
+         
       </table>
+      
+      </form>
       </div>
-	<div style="margin-top: 3%;" class="row">
-	<div class="col-md-4 col-sm-4 col-xs-4 items-info">상품 ${startRno} to ${currentShowPageNo} of ${endRno} total</div>
-      <div class="col-md-8 col-sm-8 col-xs-8">
+    
+   
+                        
+                        
+      
+	<div style="margin-top: 3%;"  class="row">
+	
+      <div class="col-md-12 col-sm-12 col-xs-12">
         <ul class="pagination pull-right">
           <li>${pagebar}</li>
         </ul>
@@ -105,12 +120,13 @@
     </div>
     
     
+    
+    
     </div>
     
     
   </div>
   
-</div>
 </div>
 
 <!-- BEGIN PAGINATOR -->
@@ -120,7 +136,7 @@
 <!-- END CONTENT -->
 </div>
 <!-- END SIDEBAR & CONTENT -->
-
+</div>
 <!-- BEGIN TOP SEARCH -->
 			
 

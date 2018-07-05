@@ -16,8 +16,11 @@
 		<result property="ACTNAME" column="actname" javaType="String" />
 		<result property="PANMAEJA" column="panmaeja" javaType="String" />
 		<result property="DELIVERSTATUS" column="deliverstatus" javaType="String" />
-		
-		
+		<result property="CNUM" column="cnum" javaType="String" />
+		<result property="CDNUM" column="cdnum" javaType="String" />
+		<result property="ACTNUM" column="actnum" javaType="String" />
+		<result property="ACTDNUM" column="actdnum" javaType="String" />
+		<result property="ACTIMAGE" column="actimage" javaType="String" />
 		
 	</resultMap>
 	
@@ -38,14 +41,16 @@
 		       , awardday
 		       , awardprice
 		       , cname, cdname, actname, panmaeja
-		       , deliverstatus
+		       , deliverstatus, cnum, cdnum, actnum, actdnum
+		       , actimage
 		  from 
 		  (
 		  select rownum AS RNO, awardnum
 		     , to_char(awardday, 'yyyy-mm-dd') AS awardday
 		     , awardprice
 		       , cname, cdname, actname, panmaeja
-		       , deliverstatus
+		       , deliverstatus, cnum, cdnum, actnum, actdnum
+		       , actimage
 		  from 
 		  (select cnum, cname, cdnum, cdname
 		       , actnum, actname, actimage
