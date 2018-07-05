@@ -90,15 +90,60 @@ public class LoginController {
 			n = service.idCheck(userid);
 		}
 		
-		System.out.println("확인용 1 : " + n);
-		
 		req.setAttribute("n", n);
 		
 		return"idCheck.notiles";
 	}
 	
 	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.GET})
-	public String memberRegistEnd() {
+	public String memberRegistEnd(HttpServletRequest req) {
+		
+		String userid = req.getParameter("userid");
+		String pwd = req.getParameter("password");
+		String name = req.getParameter("name");
+		String birth = req.getParameter("birth");
+		String email1 = req.getParameter("email1");
+		String email2 = req.getParameter("email2");
+		String hp1 = req.getParameter("hp1");
+		String hp2 = req.getParameter("hp2");
+		String hp3 = req.getParameter("hp3");
+		String zipcode = req.getParameter("zipcode");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("pwd", pwd);
+		map.put("name", name);
+		map.put("birth", birth);
+		map.put("email", (email1+email2));
+		map.put("hp1", hp1);
+		map.put("hp2", hp2);
+		map.put("hp3", hp3);
+		map.put("zipcode", zipcode);
+		map.put("addr1", addr1);
+		map.put("addr2", addr2);	
+		
+		int RegMember = service.memberRegist(map);
+		
+		if(RegMember == 0) {
+			String msg = "가입실패";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return"msg.notiles";
+		}
+		else if(RegMember == 1) {
+			String msg = "가입성공";
+			String loc = "/finalc/login.action";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return"msg.notiles";
+		}
 		
 		return "member/memberRegistEnd.notiles";
 	}
