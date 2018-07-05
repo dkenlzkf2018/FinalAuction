@@ -73,17 +73,17 @@
 	<form name="writeFrm" enctype="multipart/form-data">
 		<table id="table">
 			<tr>
-				<th>아이디</th>
+				<th style="text-align: center">아이디</th>
 				<td>
 				    <input type="text" name="fk_userid" value="${sessionScope.loginuser.userid}" class="short" readonly />
 				</td>
 			</tr>
 			<tr>
-				<th>제목</th>
-				<td><input type="text" name="subject" id="subject" class="long" /></td>
+				<th style="text-align: center">제목</th>
+				<td><input type="text" name="subject" id="subject" class="long"/></td>
 			</tr>
 			<tr>
-            	<th>내용</th>
+            	<th style="text-align: center">내용</th>
             	<td>
             	<textarea name="content" id="content" rows="10" cols="100" style="width:95%; height:412px;"></textarea>
             	
@@ -927,8 +927,8 @@ if(window.frameElement){
 		<input type="hidden" name="deptthno" value="${deptthno}" />
 		
 		
-		<button type="button" id="btnWrite">쓰기</button>
-		<button type="button" onClick="javascript:history.back();">취소</button>
+		<button type="button" id="btnWrite" style="margin-left: 25%;">쓰기</button>
+		<button type="button" style="margin-right: 30%;" onClick="javascript:history.back();">취소</button>
 	</form>
 
 </div>	
