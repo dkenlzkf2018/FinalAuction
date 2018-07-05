@@ -20,5 +20,11 @@ public interface InterBoardDAO {
 
 	int write_withFile(BoardVO boardvo);
 
+	BoardVO getWriteView(String boardno);
+
+	void setAddViewCount(String boardno);
+
+	List<CommentVO> commentList(String boardno);
+
 	
 }
