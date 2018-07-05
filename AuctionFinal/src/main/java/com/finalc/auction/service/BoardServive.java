@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalc.auction.model.BoardVO;
+import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
 import com.finalc.auction.model.InterBoardDAO;
 
@@ -92,6 +93,17 @@ public class BoardServive implements InterBoardService {
 	 // 게시글 쓰기 (파일 첨부 있는거 끝)
 	}// 게시글 쓰기 완료 (07.03 끝)
 
+	@Override
+	public List<CategoryVO> getCategoryList() {
+		List<CategoryVO> categoryList = dao.getCategoryList();
+		return categoryList;
+	}
+
+	@Override
+	public List<CategoryVO> getCategoryDetailList() {
+		List<CategoryVO> categoryDetailList = dao.getCategoryDetailList();
+		return categoryDetailList;
+	}
 	// 게시글 1개보기 (조회수 증가 07.05 시작)
 	@Override
 	public BoardVO getWriteView(String boardno, String userid) {

@@ -72,6 +72,17 @@ public class BoardDAO implements InterBoardDAO {
 	}// 게시글 쓰기 (파일 첨부 있는거, 없는거 끝)
 	// 게시글 쓰기 완료 (07.03 끝)
 
+	@Override
+	public List<CategoryVO> getCategoryList() {
+		List<CategoryVO> categoryList = sqlsession.selectList("auction.getCategoryList");
+		return categoryList;
+	}
+
+	@Override
+	public List<CategoryVO> getCategoryDetailList() {
+		List<CategoryVO> categoryDetailList = sqlsession.selectList("auction.getCategoryDetailList");
+		return categoryDetailList;
+	}
 	// 게시글 1개보기 (조회수 증가, 증가없이 07.05 시작)
 	@Override
 	public BoardVO getWriteView(String boardno) {
