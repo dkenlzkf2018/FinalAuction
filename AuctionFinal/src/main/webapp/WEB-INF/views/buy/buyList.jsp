@@ -46,7 +46,7 @@
       <form name="buyListFrm">
       <table summary="Shopping cart">
         <tr>
-          <th class="goods-page-awardnum">구매번호</th>
+          <th class="goods-page-awardnum">상품이미지</th>
           <th class="goods-page-actname">상품명</th>
           <th class="goods-page-awardday">구매일자</th>
           <th class="goods-page-panmaeja">판매자</th>
@@ -56,13 +56,14 @@
         
         <c:if test="${sessionScope.loginuser.userid != null && buyMapList != null}">
         <c:forEach var="map" items="${buyMapList}">
-         <tr class="ssi">                  
+         <tr class="ssi" style="margin-left:5%;">                  
            <td class="goods-page-awardnum">
-             ${map.AWARDNUM}
+             <%-- ${map.AWARDNUM} --%>
+             <img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" />
            </td>
            <td class="goods-page-actname">
              <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="javascript:buyListDetail()">${map.ACTNAME}</a></h3>
-             <%-- <img src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /> --%>
+             <%--  --%>
              <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
            </td>
            <td class="goods-page-awardday">
