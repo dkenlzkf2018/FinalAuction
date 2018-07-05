@@ -104,6 +104,7 @@ public class LoginController {
 		String birth = req.getParameter("birth");
 		String email1 = req.getParameter("email1");
 		String email2 = req.getParameter("email2");
+		String gender = req.getParameter("gender");
 		String hp1 = req.getParameter("hp1");
 		String hp2 = req.getParameter("hp2");
 		String hp3 = req.getParameter("hp3");
@@ -111,20 +112,28 @@ public class LoginController {
 		String addr1 = req.getParameter("addr1");
 		String addr2 = req.getParameter("addr2");
 		
+		System.out.println(userid);
+		System.out.println(pwd);
+		System.out.println(name);
+		System.out.println(birth);
+		System.out.println(email1);
+		System.out.println(email2);
+		System.out.println(gender);
+		System.out.println(hp1);
+		System.out.println(hp2);
+		System.out.println(hp3);
+		System.out.println(zipcode);
+		System.out.println(addr1);
+		System.out.println(addr2);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userid", userid);
 		map.put("pwd", pwd);
-		map.put("name", name);
-		map.put("birth", birth);
-		map.put("email", (email1+email2));
-		map.put("hp1", hp1);
-		map.put("hp2", hp2);
-		map.put("hp3", hp3);
-		map.put("zipcode", zipcode);
-		map.put("addr1", addr1);
-		map.put("addr2", addr2);	
-		
+				
 		int RegMember = service.memberRegist(map);
+		int RegMember1 = 0;
+		
+		System.out.println("확인용 : " + RegMember);
 		
 		if(RegMember == 0) {
 			String msg = "가입실패";
@@ -136,16 +145,42 @@ public class LoginController {
 			return"msg.notiles";
 		}
 		else if(RegMember == 1) {
-			String msg = "가입성공";
-			String loc = "/finalc/login.action";
+
+			map.put("name", name);
+			map.put("birth", birth);
+			map.put("email1", email1);
+			map.put("email2", email2);
+			map.put("gender", gender);
+			map.put("hp1", hp1);
+			map.put("hp2", hp2);
+			map.put("hp3", hp3);
+			map.put("zipcode", zipcode);
+			map.put("addr1", addr1);
+			map.put("addr2", addr2);
 			
-			req.setAttribute("msg", msg);
-			req.setAttribute("loc", loc);
+			RegMember1 = service.memberRegistDetail(map);
 			
-			return"msg.notiles";
+			if(RegMember1 == 1) {
+				String msg = "가입성공";
+				String loc = "login.action";
+				
+				req.setAttribute("msg", msg);
+				req.setAttribute("loc", loc);
+				
+				return"msg.notiles";
+			}
+			else if(RegMember1 == 0){
+				String msg = "가입실패";
+				String loc = "javascript:history.back()";
+				
+				req.setAttribute("msg", msg);
+				req.setAttribute("loc", loc);
+				
+				return"msg.notiles";
+			}
 		}
 		
-		return "member/memberRegistEnd.notiles";
+		return "memberRegistEnd.notiles";
 	}
 	
 }

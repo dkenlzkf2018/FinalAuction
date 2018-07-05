@@ -10,4 +10,6 @@ public interface InterLoginDAO {
 
 	int memberRegist(HashMap<String, String> map);
 
+	int memberRegistDetail(HashMap<String, String> map);
+
 }
