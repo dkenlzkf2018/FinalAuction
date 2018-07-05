@@ -2,6 +2,7 @@ package com.finalc.auction;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.finalc.auction.service.InterBoardService;
 import com.finalc.auction.common.FileManager;
 import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.BoardVO;
+import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
 import com.finalc.auction.model.MemberVO;
 
@@ -36,7 +38,13 @@ public class BoardController {
 	// 메인 페이지
 	@RequestMapping(value="/index.action", method={RequestMethod.GET})  
 	public String index(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		List<CategoryVO> categoryList = service.getCategoryList();
 		
+		List<CategoryVO> categoryDetailList = service.getCategoryDetailList();
+		
+		session.setAttribute("categoryList", categoryList);
+		session.setAttribute("categoryDetailList", categoryDetailList);
 		
 		return "main/index.tiles";
 	}
