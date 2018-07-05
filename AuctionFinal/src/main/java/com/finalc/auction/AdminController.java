@@ -1,5 +1,6 @@
 package com.finalc.auction;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -80,5 +81,21 @@ public class AdminController {
 	
 	
 	
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
+import com.finalc.auction.service.InterAdminService;
+
+
+
+@Controller
+@Component
+public class AdminController {
+
+	@Autowired
+	private InterAdminService service;
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 	
 }

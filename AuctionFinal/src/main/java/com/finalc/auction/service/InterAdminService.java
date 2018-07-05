@@ -1,5 +1,6 @@
 package com.finalc.auction.service;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import com.finalc.auction.model.CategoryVO;
@@ -14,5 +15,8 @@ public interface InterAdminService {
 
 	// 카테고리 등록 소분류
 	List<CategoryVO> getCategoryDetailList();
+=======
+public interface InterAdminService {
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 }
