@@ -8,4 +8,6 @@ public interface InterLoginDAO {
 
 	int idCheck(String userid);
 
+	int memberRegist(HashMap<String, String> map);
+
 }
