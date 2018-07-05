@@ -160,10 +160,10 @@
 		<input type="hidden" name="boardno" />
 	</form>
 	
-	<div style="margin-top: 10px;">
+	<div style="margin-top: 10px; margin-left: 18px;">
 		<a href="<%=request.getContextPath()%>/write.action" style="font-weight: bold; font-size: 10pt; color: black;">
 		<button type="button" style="margin-right: 30px;">
-		<img src="resources/img/ico-btn-write.gif" style="margin-right: 5px;">글쓰기</button>
+		<img src="resources/img/ico-btn-write.gif" style="margin-right:5px;">글쓰기</button>
 		</a>
 	</div>
 	
