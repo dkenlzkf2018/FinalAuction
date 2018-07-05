@@ -53,8 +53,8 @@ public class AuctionController {
 		return "auction/auctionDetail.tiles";
 	}
 	
-	@RequestMapping(value="/reviewRegist.action", method={RequestMethod.POST})  
-	public String reviewRegist(HttpServletRequest req) {
+	@RequestMapping(value="/reviewRegist.action", method={RequestMethod.GET})  
+	public String auctionLogin_reviewRegist(HttpServletRequest req, HttpServletResponse res) {
 		String actdnum = req.getParameter("actdnum");
 		String fk_userid = req.getParameter("fk_userid");
 		String ep_content = req.getParameter("ep_content");

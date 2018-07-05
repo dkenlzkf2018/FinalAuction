@@ -15,7 +15,7 @@
 	function reviewRegist() {
 		var frm = document.reviewFrm;
 		
-		frm.method = "post";
+		frm.method = "get";
 		frm.action = "reviewRegist.action";
 		frm.submit();
 	}
