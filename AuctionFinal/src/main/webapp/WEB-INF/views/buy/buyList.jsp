@@ -10,12 +10,18 @@
 3.  
  --%>
 <style type="text/css">
-	th, tr {
+	table, tr, th  {
 		text-align: center;
 	}
-	td {
-		text-align: right;
+	
+	tr, td {
+		text-align: center;
+		margin-left: 5%;
 	}
+	.ssi {
+		margin-left: 5px;
+	}
+	
 </style>
 
 <script type="text/javascript">
@@ -34,11 +40,6 @@
   <div class="goods-page">
     <div class="goods-data clearfix">
       <div class="table-wrapper-responsive">
-      <div class="select-option" align="right" style="margin-right: 5%; margin-bottom: 10px;">
-      <select>
-      	<option>1</option>
-      </select>
-      </div>
       <table summary="Shopping cart">
         <tr>
           <th class="goods-page-awardnum">구매번호</th>
@@ -98,10 +99,12 @@
 	<div class="col-md-4 col-sm-4 col-xs-4 items-info">상품 ${startRno} to ${currentShowPageNo} of ${endRno} total</div>
       <div class="col-md-8 col-sm-8 col-xs-8">
         <ul class="pagination pull-right">
-          ${pagebar}
+          <li>${pagebar}</li>
         </ul>
       </div>
     </div>
+    
+    
     </div>
     
     
@@ -118,6 +121,8 @@
 </div>
 <!-- END SIDEBAR & CONTENT -->
 
+<!-- BEGIN TOP SEARCH -->
+			
 
 
  
