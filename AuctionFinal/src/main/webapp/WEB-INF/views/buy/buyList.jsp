@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!-- Page level plugin styles START -->
+<link href="<%=request.getContextPath() %>/resources/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"><!-- for slider-range -->
+<link href="<%=request.getContextPath() %>/resources/assets/plugins/rateit/src/rateit.css" rel="stylesheet" type="text/css">
+<!-- Page level plugin styles END -->
+
 <%--
 	#Buy 1. 구매 리스트 view 단
 
@@ -21,16 +30,7 @@
 </style>
 
 <script type="text/javascript">
-	jQuery(document).ready(function () {
-		
-	});
 	
-	function buyListDetail() {
-		var frm = document.buyListFrm;
-		frm.method = "POST";
-		frm.action = "/buyListDetail.action";
-		frm.submit();
-	}
 </script>
 
 <div class="main">
@@ -59,10 +59,10 @@
          <tr class="ssi" style="margin-left:5%;">                  
            <td class="goods-page-awardnum">
              <%-- ${map.AWARDNUM} --%>
-             <img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" />
+             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /></a>
            </td>
            <td class="goods-page-actname">
-             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="javascript:buyListDetail()">${map.ACTNAME}</a></h3>
+             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
              <%--  --%>
              <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
            </td>
@@ -70,7 +70,13 @@
              ${map.AWARDDAY}
            </td>
            <td class="goods-page-panmaeja">
-             ${map.PANMAEJA}
+             ${map.PANMAEJA}<br/>
+             <div class="form-group">
+                <label for="email">만족도</label>
+                <input type="range" value="4" step="0.25" id="backing5" name="ep_satisfaction"/>
+                <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
+                </div>
+             </div>
            </td>
            <td class="goods-page-awardprice">
              <strong><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/></strong><span>원</span>
@@ -98,7 +104,8 @@
 		 </tr>
 		 </c:if> 
 		 <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
-		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />  
+		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
+		 <input type="hidden" name="userid" value="${map.ACTDNUM}" />  
         </c:forEach>
         </c:if>
          
@@ -141,6 +148,25 @@
 <!-- BEGIN TOP SEARCH -->
 			
 
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+<script src='<%=request.getContextPath() %>/resources/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/rateit/src/jquery.rateit.js" type="text/javascript"></script>
 
+<script src="<%=request.getContextPath() %>/resources/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();    
+        Layout.initOWL();
+        Layout.initTwitter();
+        Layout.initImageZoom();
+        Layout.initTouchspin();
+        Layout.initUniform();
+    });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->
  
   
