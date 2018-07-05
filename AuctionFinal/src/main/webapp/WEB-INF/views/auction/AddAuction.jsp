@@ -5,12 +5,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
+<script src="/AuctionFinal/src/main/webapp/resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <title>상품 등록 페이지</title>
+
+<STYLE type="text/css">
+	#addauction {
+		align:center;
+		width:800px;
+	
+	}
+</STYLE>
+
+<SCRIPT type="text/javascript">
+	function submit() {
+		
+	}
+</SCRIPT>
 </head>
 <body>
 	
 	<form name="addaboutauction">
-	<table class="auction" id="addauction">
+	<table class="table" id="addauction">
 		<TR>
 			<td class="names">경매시작가격</td>
 			<td><input type="text" /></td>
@@ -42,6 +57,8 @@
 			<td colspan="2"><TEXTAREA id="content" rows="6" cols="1"></TEXTAREA></td>
 		</TR>
 	</table>
+	<br/>
+	<button type="button" onClick="submit()">상품등록</button><button type="button" onClick="javascript:goBack()">취소</button>
 	</form>
 </body>
 </html>
