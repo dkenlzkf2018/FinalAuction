@@ -32,6 +32,6 @@
 	
 	<insert id="memberRegistDetail" parameterType="HashMap">
 		insert into tbl_member_detail(usernum, fk_userid, username, birth, gender, email, zipcode, addr1, addr2, grade, hp1, hp2, hp3)
-		values(seq_member_detail.nextval, (select userid from tbl_member where userid = ${userid}), #{name}, to_char(#{birth}, 'yyyy-mm-dd'), #{gender}, #{email1}||@||#{email2}, #{zipcode}, #{addr1}, #{addr2}, default, #{hp1},  #{hp2},  #{hp3})
+		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, to_char(#{birth}, 'yyyy-mm-dd'), #{gender}, #{email1}||'@'||#{email2}, #{zipcode}, #{addr1}, #{addr2}, default, #{hp1},  #{hp2},  #{hp3})
 	</insert>
 </mapper>
