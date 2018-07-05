@@ -2,6 +2,7 @@ package com.finalc.auction;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,9 @@ import com.finalc.auction.service.InterBoardService;
 import com.finalc.auction.common.FileManager;
 import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.BoardVO;
+import com.finalc.auction.model.CategoryVO;
+import com.finalc.auction.model.CommentVO;
+import com.finalc.auction.model.MemberVO;
 
 @Controller
 @Component
@@ -34,7 +38,13 @@ public class BoardController {
 	// 메인 페이지
 	@RequestMapping(value="/index.action", method={RequestMethod.GET})  
 	public String index(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		List<CategoryVO> categoryList = service.getCategoryList();
 		
+		List<CategoryVO> categoryDetailList = service.getCategoryDetailList();
+		
+		session.setAttribute("categoryList", categoryList);
+		session.setAttribute("categoryDetailList", categoryDetailList);
 		
 		return "main/index.tiles";
 	}
@@ -214,6 +224,52 @@ public class BoardController {
 		
 	} // 게시글 쓰기 완료 (07.03 끝)
 	
+	
+	
+	// 쓴 글 1개 보여주기 (07.05 시작)
+	@RequestMapping(value="/writeview.action", method={RequestMethod.GET})
+	public String writeview(HttpServletRequest req) {
+		
+		String boardno = req.getParameter("boardno");
+		
+		BoardVO boardvo = null;
+		
+		HttpSession session = req.getSession();
+		
+		if("yes".equals(session.getAttribute("viewcountPermission"))) {
+			
+			MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+			
+			String userid = null;
+			
+			if(loginuser != null) {
+				
+				userid = loginuser.getUserid();
+				
+			}
+			
+			boardvo = service.getWriteView(boardno, userid);
+			
+			session.removeAttribute("viewcountPermission");
+		}
+		else {
+			
+			boardvo = service.getNoviewCountWriteView(boardno);
+		}
+		
+		String goBackURL = (String)session.getAttribute("goBackURL");
+		req.setAttribute("goBackURL", goBackURL);
+		session.removeAttribute("goBackURL");
+		
+		req.setAttribute("boardvo", boardvo);
+		
+		// 댓글 내용 가져오기 (07.05 시작)
+		List<CommentVO> commentList = service.commentList(boardno);
+		req.setAttribute("commentList", commentList);
+		// 댓글 내용 가져오기 (07.05 끝)
+						
+		return "board/writeview.tiles";
+	}// 쓴 글 1개 보여주기 (07.05 끝)
 	
 	
 	

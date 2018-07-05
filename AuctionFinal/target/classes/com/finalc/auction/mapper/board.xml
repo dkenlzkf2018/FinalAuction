@@ -112,4 +112,32 @@
 		</if>	
 	</insert>
 <!-- 게시글 쓰기 스마트에디터 사용 끝 07.04 -->
+
+<!-- 게시글 1개보기 (조회수 증가, 증가없이 07.05 시작) -->
+	<select id="getWriteView" parameterType="String" resultType="com.finalc.auction.model.BoardVO">
+		select boardno, fk_userid, subject, content, viewcount,
+			   to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday, groupno,
+			   fk_boardno, deptthno, fileName, orgFilename, fileSize
+		from tbl_board
+		where boardstatus = 1 and boardno = #{boardno}
+	</select>
+<!-- 게시글 1개보기 (조회수 증가, 증가없이 07.05 끝) -->
+
+<!-- 게시글 1개 볼때마다 1증가(07.05 시작) -->
+	<update id="setAddViewCount" parameterType="String">
+		update tbl_board set viewcount = viewcount + 1
+		where boardstatus = 1 and boardno = #{boardno}
+	</update>
+<!-- 게시글 1개 볼때마다 1증가(07.05 끝) -->
+
+<!-- 댓글보기 (07.05 시작) -->
+	<select id="commentList" parameterType="String" resultType="com.finalc.auction.model.CommentVO">
+		select commentno, fk_userid, cm_content, 
+	   		   to_char(cm_writeday, 'yyyy-mm-dd hh24:mi:ss') as cm_writeday,
+	           fk_boardno, cm_status
+		from tbl_comment
+		where fk_boardno = #{boardno}
+	</select>
+<!-- 댓글보기 (07.05 끝) -->
+
 </mapper>
