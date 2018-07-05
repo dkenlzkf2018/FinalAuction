@@ -106,6 +106,18 @@ public class BoardDAO implements InterBoardDAO {
 		
 		return list;
 	}// 댓글보기 (07.05 끝)
+
+	@Override
+	public List<HugiBoardVO> getReviewByActdnum(String actdnum) {
+		List<HugiBoardVO> hugiBoardList = sqlsession.selectList("board.getReviewByActdnum", actdnum);
+		return hugiBoardList;
+	}
+
+	@Override
+	public int reviewRegist(HashMap<String, String> map) {
+		int n = sqlsession.insert("board.reviewRegist",map);
+		return n;
+	}
 	
 	
 

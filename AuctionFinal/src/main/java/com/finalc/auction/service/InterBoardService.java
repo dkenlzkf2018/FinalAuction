@@ -6,6 +6,7 @@ import java.util.List;
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
+import com.finalc.auction.model.HugiBoardVO;
 //게시판 InterService
 public interface InterBoardService {
 
@@ -30,5 +31,9 @@ public interface InterBoardService {
 	List<CategoryVO> getCategoryList();
 	
 	List<CategoryVO> getCategoryDetailList();
+
+	List<HugiBoardVO> getReviewByActdnum(String actdnum);
+
+	int reviewRegist(HashMap<String, String> map);
 
 }
