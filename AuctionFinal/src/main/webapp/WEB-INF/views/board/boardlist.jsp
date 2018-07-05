@@ -41,7 +41,7 @@
 		var frm = document.goViewFrm;
 		frm.boardno.value = boardno;
 		
-		frm.action = "view.action";
+		frm.action = "writeview.action";
 		frm.method = "get";
 		frm.submit();
 	}// end of function goView()---------------------
