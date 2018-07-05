@@ -84,15 +84,16 @@ public class BoardDAO implements InterBoardDAO {
 	// 게시글 1개 볼때마다 1증가(07.05 시작)
 	@Override
 	public void setAddViewCount(String boardno) {
-		
+		sqlsession.update("board.setAddViewCount", boardno);
 		
 	}// 게시글 1개 볼때마다 1증가(07.05 끝)
 
 	// 댓글보기 (07.05 시작)
 	@Override
 	public List<CommentVO> commentList(String boardno) {
+		List<CommentVO> list = sqlsession.selectList("board.commentList", boardno);
 		
-		return null;
+		return list;
 	}// 댓글보기 (07.05 끝)
 	
 	
