@@ -22,12 +22,12 @@ public class AuctionController {
 	@Autowired 
 	private FileManager fileManager;
 	
-	// 메인 페이지
+/*	// 메인 페이지
 	@RequestMapping(value="/index.action", method={RequestMethod.GET})  
 	public String index(HttpServletRequest req) {
 
 		return "main/index.tiles";
-	}
+	}*/
 	
 	// 옥션 상품 게시 기능 (0704)
 	@RequestMapping(value="/AuctionUpload.action", method={RequestMethod.GET})  
