@@ -15,14 +15,13 @@
 
 </head>
 <body>
-	<div>
-		
+	<div align="center" style="margin-top: 10%;">
 		<c:if test="${n != 1}">
-			<span style="font-weight: bold; margin-left: 10%;">사용가능한 아이디 입니다.</span>
+			<span style="font-weight: bold; color: blue;">사용가능한 아이디 입니다.</span>
 		</c:if>
 		
 		<c:if test="${n == 1}">
-			<span style="font-weight: bold; margin-left: 10%;">이미 사용중인 아이디 입니다.</span>
+			<span style="font-weight: bold; color: red;">이미 사용중인 아이디 입니다.</span>
 		</c:if>
 	</div>
 	
