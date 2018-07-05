@@ -31,7 +31,7 @@
 			var subjectval = document.getElementById("subject").value.trim();
 			
 			if(subjectval == "") {
-				alert("글제목을 입력하세요.");
+				alert("제목을 입력하세요.");
 				return;
 			}
 			
@@ -39,7 +39,7 @@
             var content = document.getElementById("content");
 			
             if(content.value == "" || content.value == "<p>&nbsp;</p>") {
-	        	alert("글내용을 입력하세요");
+	        	alert("내용을 입력하세요");
 	        	return;
 	        }
 	        	        
