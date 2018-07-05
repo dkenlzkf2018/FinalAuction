@@ -15,9 +15,9 @@ public class AdminService implements InterAdminService{
 	private InterAdminDAO dao;
 	
 	@Override
-	public List<HashMap<String, String>> getAdMin(String n) {
-		List<HashMap<String, String>> adMain = dao.getAdMin(n);
-		System.out.println(" : " + adMain);
+	public List<HashMap<String, String>> getAdMin(String userid) {
+		List<HashMap<String, String>> adMain = dao.getAdMin(userid);
+		System.out.println(" 메인페이지 요청 : " + adMain);
 		return adMain;
 	}
 	
