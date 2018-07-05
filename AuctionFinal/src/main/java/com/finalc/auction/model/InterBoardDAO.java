@@ -30,5 +30,9 @@ public interface InterBoardDAO {
 
 	List<CommentVO> commentList(String boardno);
 
+	List<HugiBoardVO> getReviewByActdnum(String actdnum);
+
+	int reviewRegist(HashMap<String, String> map);
+
 	
 }
