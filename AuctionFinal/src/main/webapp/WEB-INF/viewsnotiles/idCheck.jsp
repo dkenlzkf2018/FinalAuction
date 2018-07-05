@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div align="center" style="margin-top: 10%;">
+	<div align="center" style="margin-top: 15%;">
 		<c:if test="${n != 1}">
 			<span style="font-weight: bold; color: blue;">사용가능한 아이디 입니다.</span>
 		</c:if>

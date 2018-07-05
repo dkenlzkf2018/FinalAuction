@@ -36,7 +36,6 @@ public class BoardController {
 	public String index(HttpServletRequest req) {
 		
 		
-		
 		return "main/index.tiles";
 	}
 	
