@@ -1,6 +1,5 @@
 package com.finalc.auction;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +17,12 @@ import com.finalc.auction.model.CategoryDAO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.service.InterAdminService;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
+
 @Controller
+@Component
 public class AdminController {
 // 관리자 컨트롤러
 	
@@ -77,25 +81,4 @@ public class AdminController {
 		return "admin/adEnd.notiles";
 		// /AuctionFinal/src/main/webapp/WEB-INF/views/admin/adEnd.jsp 파일을 생성한다.
 	}	
-	
-	
-	
-	
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-
-import com.finalc.auction.service.InterAdminService;
-
-
-
-@Controller
-@Component
-public class AdminController {
-
-	@Autowired
-	private InterAdminService service;
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
-	
 }

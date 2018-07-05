@@ -27,18 +27,11 @@
 		on D.actdnum = E.fk_actdnum
 		where E.fk_usernum = to_number(#{usernum}) and actd_status = 1
 		order by awardnum desc -->
-		select awardnum
-			 , to_char(awardday, 'yyyy-mm-dd') AS awardday
-			 , awardprice
-		     , cname, cdname, actname, panmaeja
-		     , deliverstatus
+		select cname, cnum
+			, cdname, cdnum
+			, fk_cnum
 		from 
-		(select cnum, cname, cdnum, cdname
-		     , actnum, actname, actimage
-		     , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
-		     , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday
-		     , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
-		     , E.fk_userid AS panmaeja
+		(select cnum, cname, cdnum, cdname, fk_cnum
 		from tbl_category A join tbl_category_detail B
 		on A.cnum = B.fk_cnum
 		join tbl_auction C
@@ -53,7 +46,7 @@
 		join tbl_deliver G
 		on F.awardnum = G.fk_awardnum
 		where F.fk_usernum = #{usernum} and V.actd_status = 1
-		order by awardnum desc
+		order by cdnum desc
 	</select>
 </mapper>
  
