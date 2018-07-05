@@ -29,5 +29,11 @@ public class LoginDAO implements InterLoginDAO {
 		int RegMember = sqlsession.insert("login.memberRegist", map);
 		return RegMember;
 	}
+
+	@Override
+	public int memberRegistDetail(HashMap<String, String> map) {
+		int RegMember = sqlsession.insert("login.memberRegistDetail", map);
+		return RegMember;
+	}
 	
 }
