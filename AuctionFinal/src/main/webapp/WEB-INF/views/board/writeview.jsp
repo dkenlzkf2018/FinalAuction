@@ -4,14 +4,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
-	table, th, td {border: solid gray 1px;}
+
+	#table, #table2{width: 1000px; border-collapse: collapse;}
 	
-	#table, #table2 {width: 1000px; border-collapse: collapse;}
 	
+	
+	.board-box-line-dashed { width: 820px;
+							 border-bottom-style: dashed;
+    						 border-bottom-width: 1px;
+    						 opacity: 0.3;}
+    						 
+   .comment-box-line-dashed { width: 760px;
+							  border-bottom-style: dashed;
+    						  border-bottom-width: 1px;
+    						  margin-bottom: 25px;
+    						  opacity: 0.3;}
+    						  
+					  
+    						  
+
+
+
 	#table th, #table td {padding: 5px;}
-	#table th {width: 120px; background-color: #DDDDDD;}
+	#table th {width: 120px;}
 	#table td {width: 860px;}
-	
+
 	a{text-decoration: none;}
 
 </style>
@@ -82,99 +99,120 @@
 	
 </script>
 
-<div style="padding-left: 10%;">
-	<h3 style="margin-bottom: 30px;">내용보기</h3>
+<div style="padding-left: 25%;">
+	<h3 style="margin-bottom: 30px;">게시판</h3>
+	<div >
+		<table id="table">
+			<tr>
+				<th style="font-size: 8pt;">번호: ${boardvo.boardno}</th>
 	
-	<table id="table">
-		<tr>
-			<th>번호</th>
-			<td>${boardvo.boardno}</td>
-		</tr>
-		<tr>
-			<th>아이디</th>
-			<td>${boardvo.fk_userid}</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>${boardvo.subject}</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${boardvo.content}</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${boardvo.viewcount}</td>
-		</tr>	
-		<tr>
-			<th>작성일</th>
-			<td>${boardvo.writeday}</td>
-		</tr>
-		
-		<!-- # 147. 첨부파일 보여주기 및 다운받기 -->
-		<tr>
-			<th>첨부파일</th>
-			<td>
-			<c:if test="${sessionScope.loginuser != null}">
-				<a href="<%= request.getContextPath() %>/download.action?boardno=${boardvo.boardno}">${boardvo.orgFilename}</a>
-			</c:if>
-			
-			<c:if test="${sessionScope.loginuser == null}">
-				${boardvo.orgFilename}
-			</c:if>
+				<th style="font-size: 12pt;">${boardvo.subject}</th>
 				
-			</td>
-		</tr>
-		<tr>
-			<th>파일크기(bytes)</th>
-			<td>${boardvo.fileSize}</td>
-		</tr>
-				
-	</table>
+				<th style="font-size: 8pt;">작성일: ${boardvo.writeday}</th>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="board-box-line-dashed"></div>
+	
+	<div>
+		<table id="table">
+			<tr>
+				<th>아이디: ${boardvo.fk_userid}</th>
+			</tr>
+		</table>
+	</div>
+	
+	<div>
+		<table>
+			<tr>
+				<th>${boardvo.content}</th> 
+			</tr>
+		</table>
+	</div>
+	
+	<br/><br/><br/>
+
+
+		<table id="table">
+				<tr>
+					<th>첨부파일</th>
+					<td>
+					<c:if test="${sessionScope.loginuser != null}">
+						<a href="<%= request.getContextPath() %>/download.action?boardno=${boardvo.boardno}">${boardvo.orgFilename}</a>
+					</c:if>
+					
+					<c:if test="${sessionScope.loginuser == null}">
+						${boardvo.orgFilename}
+					</c:if>
+						
+					</td>
+				</tr>
+				<tr>
+					<th>파일크기(bytes)</th>
+					<td>${boardvo.fileSize}</td>
+				</tr>
+		</table>
+	
 	
 		
 	<br/>
-	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/${goBackURL}'">목록보기</button> 
+
+	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/boardlist.action'">목록보기</button> 
 	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/writeedit.action?boardno=${boardvo.boardno}'">수정</button>
 	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/writedel.action?boardno=${boardvo.boardno}'">삭제</button>
 	
 	<br/>
 	<br/>
 	
-	<!-- ==== #120. 답변글쓰기 버튼 추가하기(현재 보고 있는 글이 작성하려는 답변글의 원글(부모글)이 된다.) ====  -->
-	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/write.action?fk_boardno=${boardvo.boardno}&groupno=${boardvo.groupno}&depthno=${boardvo.deptthno}'">답변쓰기</button> 
-	<br/>
+		
+		<a href="<%=request.getContextPath()%>/write.action" style="font-weight: bold; font-size: 10pt; color: black; ">
+		<button type="button" style="margin-right: 30px;">
+		<img src="resources/img/ico-btn-write.gif" style="margin-right:5px;">글쓰기</button>
+		</a>
 	
-	<p style="margin-top: 3%; font-size: 16pt;">댓글쓰기</p>
-	<!-- ==== #84. 댓글쓰기 form 추가 ==== -->
-	<form name="addWriteFrm">
-		아이디 : <input type="text"  name="name" value="${sessionScope.loginuser.userid}" readonly /> 
-		내용 : <input type="text" name="content" size="90" />
+	
+	
+	<span style="margin-top: 3%; font-size: 16pt;"></span>
+	
+	<div class="table2" style="display: block;">
+	<table id="table2" style="margin-bottom: 2%; margin-top: 2%;">
+
+			<tbody id="commentDisplay"></tbody>
+			<c:if test="${not empty commentList}">
+				<c:forEach var="commentvo" items="${commentList}">
+					
+					<tr>
+						<td style="font-size: 12pt; padding-right: 9%;">${commentvo.fk_userid}
+						<span style="text-align: center; font-size: 8pt; padding-right: 1%;"> ${commentvo.cm_writeday}</span></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" style="padding-right: 9%; padding-top: 5px;">${commentvo.cm_content}</td>
+					</tr>
+				</c:forEach>
+			</c:if> 
+		
+		</table>
+		
+		<div class="comment-box-line-dashed"></div>
+
+	<form name="addWriteFrm" style="margin-bottom: 2%;">
+
+		<input type="text" name="content" size="80" style="line-height: 40px;"/>
 	    
 	    <!-- 댓글에 달리는 원게시물 글번호(즉, 댓글의 부모글 글번호) -->	
 		<input type="hidden" name="fk_boardno" value="${boardvo.boardno}" />
 		
-		<button type="button" onClick="goWrite();">쓰기</button>
+		<button type="button" onClick="goWrite();"  class="btn btn-link">쓰기</button>
+		
+		<button type="button" class="btn btn-link" onClick="javascript:location.href='<%= request.getContextPath() %>/write.action?fk_boardno=${boardvo.boardno}&groupno=${boardvo.groupno}&depthno=${boardvo.deptthno}'">답변쓰기</button> 
+	<br/>
 		
 	</form> 
 	
-	<!-- ==== #95. 댓글 내용 보여주기 ==== -->
-		<table id="table2" style="margin-top: 2%;">
-			<tr>
-				<th style="width: 15%; text-align: center;">댓글작성자</th>
-				<th style="width: 67%; text-align: center;">내용</th>
-				<th style="text-align: center;">작성일자</th>
-			</tr>
-			<tbody id="commentDisplay"></tbody>
-			<c:if test="${not empty commentList}">
-				<c:forEach var="commentvo" items="${commentList}">
-					<tr>
-						<td style="text-align: center;">${commentvo.fk_userid}</td>
-						<td>${commentvo.cm_content}</td>
-						<td style="text-align: center;">${commentvo.cm_writeday}</td>
-					</tr>
-				</c:forEach>
-			</c:if> 
-		</table>
+</div>
+	
+		
 	
 </div>
