@@ -1,6 +1,5 @@
 package com.finalc.auction.service;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,19 +37,5 @@ public class AdminService implements InterAdminService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.finalc.auction.model.InterAdminDAO;
-
-@Service
-public class AdminService implements InterAdminService {
-
-	@Autowired
-	private InterAdminDAO dao;
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 	
 }
