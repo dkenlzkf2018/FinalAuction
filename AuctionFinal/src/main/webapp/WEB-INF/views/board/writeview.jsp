@@ -4,14 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
-	table, th, td {border: solid gray 1px;}
-	
+
 	#table, #table2 {width: 1000px; border-collapse: collapse;}
 	
-	#table th, #table td {padding: 5px;}
-	#table th {width: 120px; background-color: #DDDDDD;}
-	#table td {width: 860px;}
+	.board-box-line-dashed { width: 820px;
+							 border-bottom-style: dashed;
+    						 border-bottom-width: 1px;}
+  
 	
+	#table th, #table td {padding: 5px;}
+	#table th {width: 120px;}
+	#table td {width: 400px;}
+
 	a{text-decoration: none;}
 
 </style>
@@ -84,34 +88,37 @@
 
 <div style="padding-left: 10%;">
 	<h3 style="margin-bottom: 30px;">내용보기</h3>
+	<div>
+		<table id="table">
+			<tr>
+				<th style="font-size: 8pt;">번호: ${boardvo.boardno}</th>
 	
-	<table id="table">
-		<tr>
-			<th>번호</th>
-			<td>${boardvo.boardno}</td>
-		</tr>
-		<tr>
-			<th>아이디</th>
-			<td>${boardvo.fk_userid}</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>${boardvo.subject}</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${boardvo.content}</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${boardvo.viewcount}</td>
-		</tr>	
-		<tr>
-			<th>작성일</th>
-			<td>${boardvo.writeday}</td>
-		</tr>
-		
-		<!-- # 147. 첨부파일 보여주기 및 다운받기 -->
+				<th>제목: ${boardvo.subject}</th>
+				
+				<th style="font-size: 8pt;">작성일: ${boardvo.writeday}</th>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="board-box-line-dashed"></div>
+	
+	<div>
+		<table id="table">
+			<tr>
+				<th>아이디: ${boardvo.fk_userid}</th>
+			</tr>
+		</table>
+	</div>
+	
+	<div>
+		<table>
+			<tr>
+				<th>${boardvo.content}</th> 
+			</tr>
+		</table>
+	</div>
+	
+<table id="table">
 		<tr>
 			<th>첨부파일</th>
 			<td>
@@ -129,8 +136,7 @@
 			<th>파일크기(bytes)</th>
 			<td>${boardvo.fileSize}</td>
 		</tr>
-				
-	</table>
+</table>
 	
 		
 	<br/>
