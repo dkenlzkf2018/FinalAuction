@@ -54,7 +54,7 @@ public class LoginCheck {
 		if(session.getAttribute("loginuser") == null) {
 				try {
 					String msg = "먼저 로그인 하세요.";
-					String loc = "/finalc/login.action";
+					String loc = "/auction/login.action";
 					request.setAttribute("msg", msg);
 					request.setAttribute("loc", loc);
 					
