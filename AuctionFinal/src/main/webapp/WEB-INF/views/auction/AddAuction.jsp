@@ -5,14 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
-<script src="/AuctionFinal/src/main/webapp/resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <title>상품 등록 페이지</title>
 
 <STYLE type="text/css">
 	#addauction {
-		align:center;
 		width:800px;
-	
+	}
+	.names {
+		text-align:right;
+		font-weight:bold;
+		font-size: 14pt;
 	}
 </STYLE>
 
@@ -25,7 +27,14 @@
 <body>
 	
 	<form name="addaboutauction">
+	<div class="row">
+	<div class="col-lg-1"></div>
+	<div class="col-lg-10">
 	<table class="table" id="addauction">
+		<tr>
+			<td class="names">아이디</td>
+			<td><input type="text" value="${sessionScope.loginuser.userid}" readonly/></td>
+		</tr>
 		<TR>
 			<td class="names">경매시작가격</td>
 			<td><input type="text" /></td>
@@ -40,25 +49,39 @@
 		</TR>
 		<TR>
 			<td class="names">경매시작일</td>
-			<td><input type="text" id="startdate" /></td>
+			<td><div class="col-lg-5 col-sm-5"><input type="date" id="startdate" name="startdate" class="form-control" readonly/></div></td>
 		</TR>
 		<TR>
 			<td class="names">경매종료일</td>
-			<td><input type="text" id="startdate" /></td>
+			<td><div class="col-lg-5 col-sm-5"><input type="date" id="enddate" name="enddate" class="form-control"></div></td>
 		</TR>
 		<TR>
-			<td><button>이미지추가</button></td>
-			<td id="images"></td>
+			<td class="names">판매수량</td>
+			<td>  <input type="number" name="quantity" min="1" max="100" step="10" value="1"></td>
 		</TR>
 		<TR>
-			<td class="names" colspan="2">내용</td>
+       		<td class="names">이미지</td>
+       		<td><input type="file" name="attach"/></td>
 		</TR>
 		<TR>
-			<td colspan="2"><TEXTAREA id="content" rows="6" cols="1"></TEXTAREA></td>
+			<td class="names" colspan="2" style="text-align:center;">내용</td>
 		</TR>
+		<TR>
+			<td colspan="2"><div align="center"><TEXTAREA id="content" rows="6" cols="90%"></TEXTAREA></div></td>
+		</TR>
+		<tr>
+			<td colspan="2">
+				<div align="center">	
+				<button type="button" class="btn" onClick="submit()">상품등록</button>
+				<button type="button" class="btn" onClick="javascript:goBack()">취소</button>
+				</div>
+			</td>
+		</tr>
 	</table>
 	<br/>
-	<button type="button" onClick="submit()">상품등록</button><button type="button" onClick="javascript:goBack()">취소</button>
+
+	</div>
+	</div>
 	</form>
 </body>
 </html>
