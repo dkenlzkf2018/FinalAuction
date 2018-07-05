@@ -116,14 +116,15 @@ public class LoginController {
 		map.put("pwd", pwd);
 		map.put("name", name);
 		map.put("birth", birth);
-		map.put("email", (email1+email2));
+		map.put("email1", email1);
+		map.put("email2", email2);
 		map.put("hp1", hp1);
 		map.put("hp2", hp2);
 		map.put("hp3", hp3);
 		map.put("zipcode", zipcode);
 		map.put("addr1", addr1);
 		map.put("addr2", addr2);	
-		
+				
 		int RegMember = service.memberRegist(map);
 		
 		if(RegMember == 0) {
@@ -145,7 +146,12 @@ public class LoginController {
 			return"msg.notiles";
 		}
 		
-		return "member/memberRegistEnd.notiles";
+		int RegMember1 = service.memberRegistDetail(map);
+		
+		req.setAttribute("RegMember", RegMember);
+		req.setAttribute("RegMember1", RegMember1);
+		
+		return "memberRegistEnd.notiles";
 	}
 	
 }

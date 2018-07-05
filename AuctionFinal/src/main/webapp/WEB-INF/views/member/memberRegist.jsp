@@ -4,13 +4,15 @@
 <script type="text/javascript">
  
 	jQuery(document).ready(function(){
-		$("#error_passwd").hide();
 		
-		$("#passwd2").parent().find(".error").hide();
 	}); // end of $(document).ready()---------------------------	 
     
     function goPwdCheck(){
     	
+		$("#error_passwd").hide();
+		
+		$("#passwd2").parent().find(".error").hide();
+		
 		$("#password").blur(function() {
 		
 		var passwd = $("#password").val();
@@ -40,14 +42,14 @@
 		var passwdCheck = $("#passwd2").val();
 		alert(passwd);
 		if(passwd != passwdCheck) {
-			$(this).parent().find(".error").show();
+			$("#passwd2").parent().find(".error").show();
 			$(":input").attr("disabled",true).addClass("bgcol");
 			$("#btnRegister").attr("disabled",true);
 			
 			$(this).attr("disabled",false).removeClass("bgcol");
 		}
 		else {
-			$(this).parent().find(".error").hide();
+			$("#passwd2").parent().find(".error").hide();
 			$(":input").attr("disabled",false).removeClass("bgcol");
 			$("#btnRegister").attr("disabled",false);
 		}
@@ -64,9 +66,11 @@
     	window.open(url, "아이디 중복확인",
     			   "left=500px, top=100px, width=300px, height=100px");
     	
+    	$("#name").focus();
     }
     
     function goRegist() {
+    	
     	var frm = document.RegistFrm;
     	
     	frm.action="memberRegistEnd.action";
@@ -124,7 +128,7 @@
           <div class="col-md-9 col-sm-7">
             <h1>회원 가입</h1>
             <div class="content-form-page">
-              <form role="form" class="form-horizontal form-without-legend">
+              <form name="RegistFrm" role="form" class="form-horizontal form-without-legend">
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
