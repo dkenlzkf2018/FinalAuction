@@ -459,7 +459,7 @@
 	 * Ajax 통신 시 error가 발생할 때 처리하는 함수입니다.
 	 * @return
 	 */
-	function onAjaxError (){
+function onAjaxError (){
 		alert("[가이드]사진 업로더할 서버URL셋팅이 필요합니다.-onAjaxError");
 	}
 
