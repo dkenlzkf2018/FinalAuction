@@ -37,8 +37,8 @@
 
     function func_Regist(event){
     	var frm = document.RegistFrm;
-    	frm.action = "memberRegist.action";
-    	frm.method = "get";
+    	frm.action = "/auction/memberRegist.action";
+    	frm.method = "GET";
     	frm.submit();
     }
     
