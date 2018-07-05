@@ -116,7 +116,7 @@
 			<th>첨부파일</th>
 			<td>
 			<c:if test="${sessionScope.loginuser != null}">
-				<a href="<%= request.getContextPath() %>/download.action?seq=${boardvo.board}">${boardvo.orgFilename}</a>
+				<a href="<%= request.getContextPath() %>/download.action?boardno=${boardvo.boardno}">${boardvo.orgFilename}</a>
 			</c:if>
 			
 			<c:if test="${sessionScope.loginuser == null}">
@@ -148,7 +148,7 @@
 	<p style="margin-top: 3%; font-size: 16pt;">댓글쓰기</p>
 	<!-- ==== #84. 댓글쓰기 form 추가 ==== -->
 	<form name="addWriteFrm">
-		아이디 : <input type="text"  name="name" value="${sessionScope.loginuser.fk_userid}" readonly /> 
+		아이디 : <input type="text"  name="name" value="${sessionScope.loginuser.userid}" readonly /> 
 		내용 : <input type="text" name="content" size="90" />
 	    
 	    <!-- 댓글에 달리는 원게시물 글번호(즉, 댓글의 부모글 글번호) -->	
