@@ -129,6 +129,8 @@ public class LoginController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userid", userid);
 		map.put("pwd", pwd);
+		
+		System.out.println(map);
 				
 		int RegMember = service.memberRegist(map);
 		int RegMember1 = 0;
