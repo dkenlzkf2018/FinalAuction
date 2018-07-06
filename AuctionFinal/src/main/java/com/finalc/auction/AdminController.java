@@ -1,5 +1,7 @@
 package com.finalc.auction;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,15 +23,25 @@ public class AdminController {
 	
 
 	// 관리자 메인 Controller 단
-		@RequestMapping(value="/admain.action", method={RequestMethod.GET})
-		public String adMain(HttpServletRequest req, HttpServletResponse res) {
-			HttpSession session = req.getSession();
+		@RequestMapping(value="/adMain.action", method={RequestMethod.GET})
+		public String adMain(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
 			
+			String cnum = req.getParameter("cnum");
+			String cname = req.getParameter("cname");
+			String cdnum = req.getParameter("cdnum");
+			String fk_cnum = req.getParameter("fk_cnum");
+			String cdname = req.getParameter("cdname");
 			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("cnum", cnum);
+			map.put("cname", cname);
+			map.put("cdnum", cdnum);
+			map.put("fk_cnum", fk_cnum);
+			map.put("cdname", cdname);
 			
 			return "admin/admain.admin";
-			
-			
 		}
+		
+		
 	
 }
