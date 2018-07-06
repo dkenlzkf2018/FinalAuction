@@ -283,7 +283,7 @@ public class BoardController {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		
-		if(!boardvo.getFk_userid().equals(loginuser.getUserid())) {
+		if(!loginuser.getUserid().equals(boardvo.getFk_userid())) {
 			String msg = "글 수정은 작성자만 가능합니다.";
 			String loc = "javascript:history.back()";
 			
