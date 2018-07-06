@@ -19,7 +19,7 @@
 			
 			var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
 			
-			var bool = regexp_passwd.test(passwd);
+			var bool = regexp_passwd.test(pwd1);
 			
 			if(!bool){
 				$("#error_passwd").show();
