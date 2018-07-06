@@ -16,9 +16,22 @@ public class BuyListService implements InterBuyListService {
 
 	// #Buy 4. 구매 리스트 Service 단
 	@Override
-	public List<HashMap<String, String>> getBuyList(String usernum) {
-		List<HashMap<String, String>> buyMapList = dao.getBuyList(usernum);
+	public List<HashMap<String, String>> getBuyList(HashMap<String, String> map) {
+		List<HashMap<String, String>> buyMapList = dao.getBuyList(map);
 		System.out.println("2. Service 단 buyMapList : " + buyMapList);
 		return buyMapList;
+	}
+
+	
+	public int getTotalCount() {
+		int count = dao.getTotalCount();
+		return count;
+	}
+
+	// #Buy 13. 경매 입찰(insert)하는 Service 단
+	@Override
+	public int getBindAuction(HashMap<String, String> map) {
+		int bind = dao.getBindAuction(map);
+		return bind;
 	}
 }

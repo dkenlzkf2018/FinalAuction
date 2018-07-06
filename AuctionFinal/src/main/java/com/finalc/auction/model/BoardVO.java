@@ -18,7 +18,7 @@ public class BoardVO {
 	  private String groupno;	     /* 답변그룹 */
 	  private String fk_boardno;     /* 원본글번호 */
 	  private String deptthno;       /* 답변글깊이 */
-	  private String  public_status; /* 공개여부 */
+	  private String public_status; /* 공개여부 */
 	  private String boardstatus;    /* 게시글상태 */
 	  
 	  

@@ -36,4 +36,6 @@ public interface InterBoardService {
 
 	int reviewRegist(HashMap<String, String> map);
 
+	int writeedit(BoardVO boardvo);
+
 }
