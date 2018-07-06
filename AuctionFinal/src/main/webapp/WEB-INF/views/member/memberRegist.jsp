@@ -5,13 +5,42 @@
  
 	jQuery(document).ready(function(){
 		
-	
+		$("#error_passwd").hide();
+		$("#error").hide();
 		
 	}); // end of $(document).ready()---------------------------	 
     
     function goPwdCheck(){
     	
+		var pwd1 = $("#password").val();
+		var pwd2 = $("#passwd2").val();
 		
+		if($("#passwd2").focus() && !$("#password").val("")){
+			
+			var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
+			
+			var bool = regexp_passwd.test(passwd);
+			
+			if(!bool){
+				$("#error_passwd").show();
+				pwd1 = "";
+				$("#password").focus();
+			}
+			else{
+				$("#error_passwd").hide();
+				$("#passwd2").focus();
+			}
+		}
+		
+		if(pwd1 == pwd2){
+			$("#error").hide();
+			$("#name").focus();
+		}
+		else if(pwd1 != pwd2){
+			$("#error").show();
+			pwd2 = "";
+			$("#passwd2").focus();
+		}
 		
 	}
     
@@ -138,7 +167,7 @@
                   <label class="col-lg-2 control-label" for="passwd2">비밀번호 확인 <span class="require">*</span></label>
                   <div class="col-lg-8">
                     <input type="password" name="passwd2" id="passwd2" class="form-control requiredInfo">
-                    <span class="error" style="color: red;">암호가 일치하지 않습니다.</span>
+                    <span id="error" style="color: red;">암호가 일치하지 않습니다.</span>
                   </div>
                 </div>
                 <div class="form-group">
