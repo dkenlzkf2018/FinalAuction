@@ -319,5 +319,47 @@ public class BoardController {
 	}// 게시글 수정페이지 완료 (07.06 12:26 끝)
 	
 	
+	// 게시글 삭제하기 (07.06 14:37 시작)
+	@RequestMapping(value="/writedel.action", method={RequestMethod.GET})
+	public String requireLogin_del(HttpServletRequest req) {
+		String boardno = req.getParameter("boardno");
+		
+		BoardVO boardvo = service.getNoviewCountWriteView(boardno);
+		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		
+		if(!loginuser.getUserid().equals(boardvo.getFk_userid())) {
+			String msg = "글 삭제는 작성자만 가능합니다.";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg.notiles";
+		}
+		else {
+			req.setAttribute("boardno", boardno);
+			
+			return "board/writedel.tiles";
+		}
+	} // 게시글 삭제하기 (07.06 14:42 끝)
+	
+	// 게시글 삭제 완료(07.06 15:01 시작)
+	@RequestMapping(value="/writedelEnd.action", method={RequestMethod.POST})
+	public String writedelEnd(HttpServletRequest req) throws Throwable {
+		
+		String boardno = req.getParameter("boardno");
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		int n = service.writedel(map);
+		
+		req.setAttribute("n", n);
+		
+		return "board/writedelEnd.tiles";
+	}// 게시글 삭제 완료(07.06 15:05 끝)
+	
 
 }

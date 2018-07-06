@@ -36,5 +36,11 @@ public interface InterBoardDAO {
 
 	int writeedit(BoardVO boardvo);
 
+	boolean checkComment(HashMap<String, String> map);
+
+	int delContent(HashMap<String, String> map);
+
+	int delComment(HashMap<String, String> map);
+
 	
 }

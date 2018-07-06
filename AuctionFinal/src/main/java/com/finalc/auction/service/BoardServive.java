@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
@@ -154,6 +157,30 @@ public class BoardServive implements InterBoardService {
 		
 		return n;
 	}// 게시글 수정페이지 완료 (07.06 12:27 끝)
+
+	// 게시글 삭제하기 (07.06 15:10 시작)
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class} )
+	public int writedel(HashMap<String, String> map) throws Throwable {
+		
+		int result1 = 0, resutl2 = 0, n = 0;
+		
+		boolean bool = false;
+		
+		bool = dao.checkComment(map);
+		
+		result1 = dao.delContent(map);
+		
+		if(bool) {
+			resutl2 = dao.delComment(map);
+		}
+		
+		if((bool == true && result1 == 1 && resutl2 > 0) || 
+		   (bool == false && result1 == 1 && resutl2 == 0))
+			n = 1 ;
+		
+		return n;
+	}// 게시글 삭제하기 (07.06 15:17 끝)
 	
 	
 
