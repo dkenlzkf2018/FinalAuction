@@ -184,7 +184,7 @@ public class LoginController {
 			}
 		}
 		
-		req.setAttribute("RegMember1", RegMember1);
+		req.setAttribute("RegMember1", RegMember1); 
 		
 		return "member/memberRegistEnd.tiles";
 	}
