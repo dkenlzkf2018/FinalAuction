@@ -137,6 +137,44 @@ public class BuyListController {
 			
 			return "buy/buyList.tiles";
 		}
+	}
+	
+	// #Buy 8. 경매 입찰
+	@RequestMapping(value="/bindAuction.action", method={RequestMethod.GET})
+	public String bindAuction(HttpServletRequest req) {
 		
+		// #Buy 9. 전송방식이 GET이므로 로그인 검사를 한다.
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		System.out.println("1. loginuser : " + loginuser);
+		session.setAttribute("loginuser", loginuser);
+				
+		if (loginuser == null) {
+			req.setAttribute("msg", "로그인을 먼저 하십시오!");
+			req.setAttribute("loc", "login.action");
+			return "msg.notiles";
+		} 
+		else {
+			// #Buy 10. 입찰하는 회원번호와 입찰 대상의 경매번호를 HashMap에 저장한다.
+			String actnum = req.getParameter("actnum");
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("actnum", actnum);
+			map.put("usernum", loginuser.getUsernum());
+			
+			// #Buy 11. 입찰하는 회원번호와 입찰 대상의 경매번호를 HashMap에 저장한다.
+			int bind = service.getBindAuction(map);
+			
+			return "buy/bindAuction.tiles";
+		}
+		
+	}
+	
+	// #Auction 1. 사용자가 경매에 등록한 상품의 정보를 조회한다.
+	@RequestMapping(value="/searchAuction.action", method={RequestMethod.GET})
+	public String searchAuction() {
+		
+		
+		
+		return "auction/searchAuction.tiles";
 	}
 }

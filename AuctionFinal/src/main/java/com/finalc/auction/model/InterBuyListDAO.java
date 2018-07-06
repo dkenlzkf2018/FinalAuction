@@ -10,4 +10,6 @@ public interface InterBuyListDAO {
 
 	int getTotalCount();
 
+	int getBindAuction(HashMap<String, String> map);
+
 }

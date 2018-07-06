@@ -27,5 +27,11 @@ public class BuyListDAO implements InterBuyListDAO {
 		int count = sqlsession.selectOne("buyList.getTotalCount");
 		return count;
 	}
+
+	@Override
+	public int getBindAuction(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

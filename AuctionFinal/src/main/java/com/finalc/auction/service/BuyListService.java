@@ -27,4 +27,11 @@ public class BuyListService implements InterBuyListService {
 		int count = dao.getTotalCount();
 		return count;
 	}
+
+	// #Buy 13. 경매 입찰(insert)하는 Service 단
+	@Override
+	public int getBindAuction(HashMap<String, String> map) {
+		int bind = dao.getBindAuction(map);
+		return bind;
+	}
 }
