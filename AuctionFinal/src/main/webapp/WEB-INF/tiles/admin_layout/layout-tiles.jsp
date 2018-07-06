@@ -40,7 +40,6 @@
 	  selected link 
 	a:active {color: #0000FF;}
 	*/
-	
 	#myheader .mynav {font-size: 13pt;}
 	.myrank {font-weight:bold; color:red; font-size:13pt;}
 	.myaligncenter {text-align:center;}
