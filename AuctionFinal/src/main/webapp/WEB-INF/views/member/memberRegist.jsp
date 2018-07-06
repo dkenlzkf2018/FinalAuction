@@ -5,8 +5,7 @@
  
 	jQuery(document).ready(function(){
 		
-		$(".error").hide();
-		$("#error_passwd").hide();
+	
 		
 	}); // end of $(document).ready()---------------------------	 
     
