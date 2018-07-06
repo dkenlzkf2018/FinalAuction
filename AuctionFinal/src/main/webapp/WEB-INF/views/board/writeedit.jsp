@@ -71,7 +71,7 @@
 </script>
 
 <div style="padding-left: 10%;">
-	<h1 style="margin-bottom: 30px;">글수정하기</h1>
+	<h1 style="margin-bottom: 30px;">글 수정하기</h1>
 	
 	<table id="table">
 		<tr>
