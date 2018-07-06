@@ -62,7 +62,7 @@
 	   		   editFrm.subject.value = subjectval;
 	   		   editFrm.content.value = content.value;
 	  
-		   	   editFrm.action = "/board/writeeditEnd.action";
+		   	   editFrm.action = "writeeditEnd.action";
 		   	   editFrm.method = "POST";
 		   	   editFrm.submit();
 		});

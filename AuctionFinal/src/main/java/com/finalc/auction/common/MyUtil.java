@@ -189,5 +189,130 @@ public class MyUtil {
 		return result;
 	}// end of getMoney(long number)---------------
 	
+	// ===== *** Auction 페이지바 만들기 *** ======= //
+	public static String getAuctionPageBar(String url
+			                      , int currentShowPageNo
+			                      , int sizePerPage
+			                      , int totalPage
+			                      , int blockSize) {
+		
+		String pageBar = "";
+	    
+		int pageNo = 1;
+		int loop = 1;
+		
+		pageNo = ((currentShowPageNo - 1) / blockSize) * blockSize + 1;
+		// 공식임.
+		
+		//     currentShowPageNo      pageNo
+		//    -------------------------------
+		//           1                  1
+		//           2                  1
+		//          ..                 ..
+		//          10                  1
+		//          
+		//          11                 11
+		//          12                 11
+		//          ..                 ..
+		//          20                 11
+		//          
+		//          21                 21                 
+		//          22                 21 
+		//          ..                 ..
+		//          30                 21 
+		
+		if(pageNo == 1) {
+			pageBar += "";
+		}
+		else {
+			pageBar += "&nbsp;<a href=\""+url+"?currentShowPageNo="+(pageNo-1)+"&sizePerPage="+sizePerPage+"\">&laquo;</a>";
+		}
+		
+		while( !(loop > blockSize || pageNo > totalPage) ) {
+			
+			if(pageNo == currentShowPageNo) {
+				pageBar += "&nbsp;<span>"+pageNo+"</span>&nbsp;";
+			}
+			else {
+				pageBar += "&nbsp;<a href=\""+url+"?currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"\">"+pageNo+"</a>&nbsp;";
+			}
+			
+			pageNo++;
+			loop++;
+		}// end of while-------------------------
+		
+		if(pageNo > totalPage) {
+			pageBar += "";
+		}
+		else {
+			pageBar += "&nbsp;<a href=\""+url+"?currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"\">&raquo;</a>";
+		}
+
+		return pageBar;
+		
+	}// end of getPageBar(String url, int currentShowPageNo, int sizePerPage, int totalPage, int blockSize)-------------------
 	
+	// ===== *** 검색어가 포함된 Auction 페이지바 만들기 *** ======= //
+	public static String getAuctionSearchPageBar(String url
+			                            , int currentShowPageNo
+			                            , int sizePerPage
+			                            , int totalPage
+			                            , int blockSize
+			                            , String colname, String search, String period) {
+		
+		String pageBar = "";
+	    
+		int pageNo = 1;
+		int loop = 1;
+		
+		pageNo = ((currentShowPageNo - 1) / blockSize) * blockSize + 1;
+		// 공식임.
+		
+		//     currentShowPageNo      pageNo
+		//    -------------------------------
+		//           1                  1
+		//           2                  1
+		//          ..                 ..
+		//          10                  1
+		//          
+		//          11                 11
+		//          12                 11
+		//          ..                 ..
+		//          20                 11
+		//          
+		//          21                 21                 
+		//          22                 21 
+		//          ..                 ..
+		//          30                 21 
+		
+		if(pageNo == 1) {
+			pageBar += "";
+		}
+		else {
+			pageBar += "&nbsp;<a href=\""+url+"?currentShowPageNo="+(pageNo-1)+"&sizePerPage="+sizePerPage+"&colname="+colname+"&search="+search+"&period="+period+"\">&laquo;</a>";
+		}
+		
+		while( !(loop > blockSize || pageNo > totalPage) ) {
+			
+			if(pageNo == currentShowPageNo) {
+				pageBar += "&nbsp;<span style=\"color: red; font-size: 13pt; font-weight: bold; text-decoration: underline;\">"+pageNo+"</span>&nbsp;";
+			}
+			else {
+				pageBar += "&nbsp;<a href=\""+url+"?currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"&colname="+colname+"&search="+search+"&period="+period+"\">"+pageNo+"</a>&nbsp;";
+			}
+			
+			pageNo++;
+			loop++;
+		}// end of while-------------------------
+		
+		if(pageNo > totalPage) {
+			pageBar += "";
+		}
+		else {
+			pageBar += "&nbsp;<a href=\""+url+"?currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"&colname="+colname+"&search="+search+"&period="+period+"\">&raquo;</a>";
+		}
+
+		return pageBar;
+		
+	}// end of getPageBar(String url, int currentShowPageNo, int sizePerPage, int totalPage, int blockSize)-------------------	
 }
