@@ -21,7 +21,7 @@ public class AdminController {
 	
 
 	// 관리자 메인 Controller 단
-		@RequestMapping(value="/adMain.action", method={RequestMethod.GET})
+		@RequestMapping(value="/admain.action", method={RequestMethod.GET})
 		public String adMain(HttpServletRequest req, HttpServletResponse res) {
 			HttpSession session = req.getSession();
 			
