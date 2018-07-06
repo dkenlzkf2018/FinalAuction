@@ -97,7 +97,7 @@
     <div class="row margin-bottom-40">
       <!-- BEGIN SALE PRODUCT -->
       <div class="col-md-12 sale-product">
-        <h2>New Arrivals</h2>
+        <h2>New Auction</h2>
         <div class="owl-carousel owl-carousel5">
           <div>
             <div class="product-item">
