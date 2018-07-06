@@ -32,14 +32,11 @@
             <div class="item carousel-item-five">
                 <div class="container">
                     <div class="carousel-position-four text-center">
-                        <h2 class="animate-delay carousel-title-v3" data-animation="animated fadeInDown">
+                        <h2 class="animate-delay carousel-title-v4" style="font-weight: bold;" data-animation="animated fadeInDown">
 							태블릿 PC
                         </h2>
                         <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
-                            Layout Options
-                        </p>
-                        <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-                            come on baby
+							지금 바로 입찰하세요
                         </p>
                         <a class="carousel-btn" href="#" data-animation="animated fadeInUp">경매 이동하기</a>
                     </div>
