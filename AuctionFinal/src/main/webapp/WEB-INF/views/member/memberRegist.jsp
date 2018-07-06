@@ -74,7 +74,7 @@
     	var frm = document.RegistFrm;
     	
     	frm.action="memberRegistEnd.action";
-    	frm.method="GET";
+    	frm.method="post";
     	frm.submit();
     }
     

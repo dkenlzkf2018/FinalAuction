@@ -73,7 +73,7 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/idCheck.action", method= {RequestMethod.POST})
 	public String idCheck(HttpServletRequest req) {
 		
 		String userid = req.getParameter("userid");
@@ -95,7 +95,7 @@ public class LoginController {
 		return"idCheck.notiles";
 	}
 	
-	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.GET})
+	@RequestMapping(value="/memberRegistEnd.action", method={RequestMethod.POST})
 	public String memberRegistEnd(HttpServletRequest req) {
 		
 		String userid = req.getParameter("userid");
@@ -162,6 +162,8 @@ public class LoginController {
 			
 			RegMember1 = service.memberRegistDetail(map);
 			
+			System.out.println("확인용RegMember1 : "+RegMember1);
+			
 			if(RegMember1 == 1) {
 				String msg = "가입성공";
 				String loc = "login.action";
@@ -182,7 +184,9 @@ public class LoginController {
 			}
 		}
 		
-		return "memberRegistEnd.notiles";
+		req.setAttribute("RegMember1", RegMember1);
+		
+		return "member/memberRegistEnd.tiles";
 	}
 	
 }
