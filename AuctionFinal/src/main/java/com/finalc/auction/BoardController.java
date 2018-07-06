@@ -304,7 +304,7 @@ public class BoardController {
 	
 	// 게시글 수정페이지 완료 (07.06 12:17 시작)
 	@RequestMapping(value="/writeeditEnd.action", method={RequestMethod.POST})
-	public String writeeditEnd(BoardVO boardvo, HttpServletRequest req, HttpServletResponse res) {
+	public String writeeditEnd(BoardVO boardvo, HttpServletRequest req) {
 		
 		String content = boardvo.getContent().replaceAll("\r,\n", "<br/>");
 		
@@ -314,9 +314,7 @@ public class BoardController {
 		
 		req.setAttribute("n", n);
 		req.setAttribute("boardno", boardvo.getBoardno());
-		
-		
-		
+
 		return "board/writeeditEnd.tiles";
 	}// 게시글 수정페이지 완료 (07.06 12:26 끝)
 	
