@@ -34,5 +34,7 @@ public interface InterBoardDAO {
 
 	int reviewRegist(HashMap<String, String> map);
 
+	int writeedit(BoardVO boardvo);
+
 	
 }

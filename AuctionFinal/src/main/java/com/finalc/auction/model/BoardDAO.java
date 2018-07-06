@@ -119,6 +119,14 @@ public class BoardDAO implements InterBoardDAO {
 		return n;
 	}
 	
+	// 게시글 수정페이지 완료 (07.06 12:32 시작)
+	@Override
+	public int writeedit(BoardVO boardvo) {
+		int n = sqlsession.update("board.writeedit", boardvo);
+				
+		return n;
+	}// 게시글 수정페이지 완료 (07.06 12:32 끝)
+	
 	
 
 }
