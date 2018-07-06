@@ -14,7 +14,9 @@
 <script type="text/javascript">
 	function goDelete() {
 		var frm = document.delFrm;
-
+		
+		
+		
 		frm.action = "writedelEnd.action";
 		frm.method = "post";
 		frm.submit();
@@ -22,13 +24,15 @@
 </script>
 
 <div style="padding-left: 10%;">
-	<h1 style="margin-bottom: 50px;">게시물을 삭제하시겠습니까?</h1>
+	<h3 style="margin-bottom: 50px;">게시글을 삭제하시겠습니까?</h3>
 	
 	<form name="delFrm">
 		<table id="table">
 			<tr>
+				
 				<td>
-					<input type="hidden" name="fk_boardno" value="${fk_boardno}" />
+					<input type="hidden" name="boardno" value="${boardno}" />
+					
 				</td>
 			</tr>
 		</table>

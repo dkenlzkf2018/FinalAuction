@@ -157,30 +157,33 @@ public class BoardServive implements InterBoardService {
 		
 		return n;
 	}// 게시글 수정페이지 완료 (07.06 12:27 끝)
-
-	// 게시글 삭제하기 (07.06 15:10 시작)
+	
+	// 게시글 삭제 완료 (07.06 17:28 시작)
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class} )
-	public int writedel(HashMap<String, String> map) throws Throwable {
+	public int writedel(HashMap<String, String> map)throws Throwable{
 		
-		int result1 = 0, resutl2 = 0, n = 0;
-		
+		int result1=0, result2=0, n=0;
 		boolean bool = false;
+
+			// 원게시글에 딸린 댓글이 있는지 없는지를 확인하기 
+			bool = dao.isExistsComment(map);
+			
+			result1 = dao.deleteContent(map); // 글 1개 삭제하기
+			
+			if(bool) { // 원게시글에 딸린 댓글들 삭제하기
+				result2 = dao.deleteComment(map);  
+			}
 		
-		bool = dao.checkComment(map);
 		
-		result1 = dao.delContent(map);
+		if( (bool==true && result1==1 && result2>0) ||
+			(bool==false && result1==1 && result2==0) )	
+			n = 1;
 		
-		if(bool) {
-			resutl2 = dao.delComment(map);
-		}
-		
-		if((bool == true && result1 == 1 && resutl2 > 0) || 
-		   (bool == false && result1 == 1 && resutl2 == 0))
-			n = 1 ;
 		
 		return n;
-	}// 게시글 삭제하기 (07.06 15:17 끝)
+	}// 게시글 삭제 완료 (07.06 17:28 끝)
+
 	
 	
 

@@ -158,26 +158,21 @@
 	</update>
 <!-- 게시글 수정페이지 완료 (07.06 12:35끝) -->
 
-<!-- 게시글에 댓글이 있는지 없는지 확인(07.06 15:28 시작) -->
-	<select id="checkComment" parameterType="HashMap" resultType="Integer">
-		select count(*)
+ 	<update id="deleteContent" parameterType="HashMap">
+	 	update tbl_board set boardstatus = 0
+	 	where boardno = #{boardno}
+	</update>
+
+	<select id="isExistsComment" parameterType="HashMap" resultType="Integer"> 
+	    select count(*)
 		from tbl_comment
 		where fk_boardno = #{boardno}
 	</select>
-<!-- 게시글에 댓글이 있는지 없는지 확인(07.06 15:29 끝) -->
-
-<!-- 게시글 삭제 완료(07.06 15:35 시작) -->
-	<update id="delContent" parameterType="HashMap">
-		update tbl_board set boardstatus = 1
-		where boardno = #{boardno}
+	
+	<update id="deleteComment" parameterType="HashMap">
+	     update tbl_comment set cm_status = 0
+	     where fk_boardno = #{boardno}
 	</update>
-<!-- 게시글 삭제 완료(07.06 15:38 끝) -->	
-
-<!-- 게시글에 달린 댓글 삭제(07.06 15:46 시작 ) -->
-	<update id="delComment" parameterType="HashMap" >
-	   update tbl_comment set cm_status = 1
-	   where fk_boardno = #{boardno}
-	</update>
-<!-- 게시글에 달린 댓글 삭제(07.06 15:48 끝 ) -->
+	
 
 </mapper>
