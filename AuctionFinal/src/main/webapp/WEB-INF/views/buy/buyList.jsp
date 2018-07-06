@@ -70,13 +70,7 @@
              ${map.AWARDDAY}
            </td>
            <td class="goods-page-panmaeja">
-             ${map.PANMAEJA}<br/>
-             <div class="form-group">
-                <label for="email">만족도</label>
-                <input type="range" value="4" step="0.25" id="backing5" name="ep_satisfaction"/>
-                <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
-                </div>
-             </div>
+             ${map.PANMAEJA}
            </td>
            <td class="goods-page-awardprice">
              <strong><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/></strong><span>원</span>
