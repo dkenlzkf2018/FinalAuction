@@ -70,9 +70,18 @@ public class AuctionController {
 		
 		List<HugiBoardVO> hugiBoardList = service.getReviewByActdnum(actdnum);
 		
-		req.setAttribute("hugiBoardList", hugiBoardList);
-		req.setAttribute("actdnum", actdnum);
+		String msg = "", loc = "";
+		if(n == 1) {
+			msg = "댓글 등록 완료";
+			loc = "auctionDetail.action?actdnum="+actdnum+"&hugiBoardList="+hugiBoardList;
+		}
+		else {
+			msg = "댓글 등록 실패";
+			loc = "auctionDetail.action?actdnum="+actdnum+"&hugiBoardList="+hugiBoardList;
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("loc", loc);
 		
-		return "auction/auctionDetail.tiles";
+		return "msg.notiles";
 	}
 }
