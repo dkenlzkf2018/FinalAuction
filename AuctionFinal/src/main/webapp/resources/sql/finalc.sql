@@ -81,6 +81,9 @@ where fk_userid = 'admion'
      hp3 VARCHAR2(4) NOT NULL /* 휴대폰번호3 */
   );
   
+  select usernum
+  from tbl_member_detail
+  
   COMMENT ON TABLE tbl_member_detail IS '회원 상세';
   
   COMMENT ON COLUMN tbl_member_detail.usernum IS '회원번호';
