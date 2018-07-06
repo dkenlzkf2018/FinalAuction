@@ -65,40 +65,40 @@
 	<!-- ==== tiles 를 사용하지 않는 XML을 사용한 Ajax를 위한 레이아웃 설정 끝 ==== -->
 	
 	<!-- ==== tiles 를 사용하는 어드민 레이아웃 설정 시작 ==== -->
-	<definition name="layout-tiles" template="/WEB-INF/tiles/admin_layout/layout-tiles.jsp"> 
+	<definition name="layout-tiles-admin" template="/WEB-INF/tiles/admin_layout/layout-tiles.jsp"> 
 		<put-attribute name="header" value="/WEB-INF/tiles/admin_tile/header.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="sideinfo" value="/WEB-INF/tiles/admin_tile/sideinfo.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/admin_tile/footer.jsp" />
 	</definition>
 	
-	<definition name="*.tiles" extends="layout-tiles">
+	<definition name="*.admin" extends="layout-tiles-admin">
 		<put-attribute name="content" value="/WEB-INF/admin/{1}.jsp"/>
 	</definition>
-	<definition name="*/*.tiles" extends="layout-tiles">
+	<definition name="*/*.admin" extends="layout-tiles-admin">
 		<put-attribute name="content" value="/WEB-INF/admin/{1}/{2}.jsp"/>
 	</definition>
-	<definition name="*/*/*.tiles" extends="layout-tiles">
+	<definition name="*/*/*.admin" extends="layout-tiles-admin">
 		<put-attribute name="content" value="/WEB-INF/admin/{1}/{2}/{3}.jsp"/>
 	</definition>
 	<!-- ==== tiles 를 사용하는 어드민 레이아웃 설정1 끝 ==== -->
 	
-	<!-- ==== tiles 를 사용하지 않는 레이아웃 설정 시작 ==== -->
-	<definition name="layout-notiles" template="/WEB-INF/tiles/admin_layout/layout-notiles.jsp"> 
+	<!-- ==== tiles 를 사용하지 않는 어드민 레이아웃 설정 시작 ==== -->
+	<definition name="layout-notiles-admin" template="/WEB-INF/tiles/admin_layout/layout-notiles.jsp"> 
 		<put-attribute name="content" value="" />
 	</definition>
 	
-	<definition name="*.notiles" extends="layout-notiles">
+	<definition name="*.noadmin" extends="layout-notiles-admin">
 		<put-attribute name="content" value="/WEB-INF/adminnotiles/{1}.jsp"/>
 	</definition>
-	<!-- ==== tiles 를 사용하지 않는 레이아웃 설정 끝 ==== -->
+	<!-- ==== tiles 를 사용하지 않는 어드민 레이아웃 설정 끝 ==== -->
 	
 	<!-- ==== tiles 를 사용하지 않는 XML을 사용한 Ajax를 위한 레이아웃 설정 시작 ==== -->
-	<definition name="layout-notilesxml" template="/WEB-INF/tiles/admin_layout/layout-notilesxml.jsp"> 
+	<definition name="layout-notilesxml-admin" template="/WEB-INF/tiles/admin_layout/layout-notilesxml.jsp"> 
 		<put-attribute name="content" value="" />
 	</definition>
 	
-	<definition name="*.notilesxml" extends="layout-notilesxml">
+	<definition name="*.noadminxml" extends="layout-notilesxml">
 		<put-attribute name="content" value="/WEB-INF/adminnotilesxml/{1}.jsp"/>
 	</definition>
 	<!-- ==== tiles 를 사용하지 않는 XML을 사용한 Ajax를 위한 레이아웃 설정 끝 ==== -->
