@@ -83,7 +83,7 @@
            </td>
            <c:if test="${map.DELIVERSTATUS == '0'}">
            <td class="goods-page-deliverstatus">
-             <strong>주문완료</strong>
+             <strong><a href="">주문완료</a></strong>
            </td>
            </c:if>
 		   <c:if test="${map.DELIVERSTATUS == '1'}">
