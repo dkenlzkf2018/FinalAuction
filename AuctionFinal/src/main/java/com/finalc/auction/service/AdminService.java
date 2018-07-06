@@ -26,7 +26,7 @@ public class AdminService implements InterAdminService{
 	// 카테고리 등록하기
 	@Override
 	public List<CategoryVO> getCategoryList() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -34,7 +34,7 @@ public class AdminService implements InterAdminService{
 	// 카테고리 등록완료	
 	@Override
 	public List<CategoryVO> getCategoryDetailList() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

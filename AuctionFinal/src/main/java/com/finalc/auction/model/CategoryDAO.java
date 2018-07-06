@@ -20,6 +20,17 @@ public class CategoryDAO implements InterAdminDAO {
 		List<HashMap<String, String>> buyMapList = sqlsession.selectList("buyList.getBuyList", usernum);
 		System.out.println("3. DAO 단 buyMapList : " + buyMapList);
 		return buyMapList;
-	}*/
+	}
+*/
+	
+	@Override
+	public List<HashMap<String, String>> getCategoryList() {
+		System.out.println("Dao 단 usernum : " + usernum);
+		List<HashMap<String, String>> buyMapList = sqlsession.selectList("buyList.getBuyList", usernum);
+		System.out.println("3. DAO 단 buyMapList : " + buyMapList);
+		return buyMapList;
+	}	
+	
+	
 	
 }
