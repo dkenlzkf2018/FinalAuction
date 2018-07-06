@@ -31,20 +31,20 @@ public class AdminController {
 	private InterAdminService service;
 	
 	// ===== #. 관리자메인페이지 요청 ===== 
-/*	@RequestMapping(value="/admain.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/admain.action", method= {RequestMethod.GET})
 	public String login(HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
-		List<CategoryVO> categoryList = service.getCategoryList();
+		List<CategoryVO> categoryList = service.getCategoryList(String cnum);
 		
-		List<CategoryVO> categoryDetailList = service.getCategoryDetailList();
+		List<CategoryVO> categoryDetailList = service.getCategoryDetailList(String cdnum);
 		
 		session.setAttribute("categoryList", categoryList);
 		session.setAttribute("categoryDetailList", categoryDetailList);		
 		
-		return "admin/admain.notiles";
+		return "admin/admain.tiles";
 		// /AuctionFinal/src/main/webapp/WEB-INF/views/admin/admain.jsp 파일을 생성한다.
-	}*/
+	}
 	
 	// ===== #. 카테고리 등록 페이지  ===== 
 	@ResponseBody

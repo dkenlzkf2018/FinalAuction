@@ -10,9 +10,9 @@ public interface InterAdminService {
 //	List<HashMap<String, String>> getAdMin(String userid);
 
 	// 카테고리 등록 대분류
-	List<CategoryVO> getCategoryList();
+	List<CategoryVO> getCategoryList(String cnum);
 
 	// 카테고리 등록 소분류
-	List<CategoryVO> getCategoryDetailList();
+	List<CategoryVO> getCategoryDetailList(String cdnum);
 
 }

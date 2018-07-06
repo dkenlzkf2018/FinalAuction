@@ -25,15 +25,15 @@ public class AdminService implements InterAdminService{
 
 	// 카테고리 등록하기
 	@Override
-	public List<CategoryVO> getCategoryList() {
-		
-		return null;
+	public List<CategoryVO> getCategoryList(String cnum) {
+		List<HashMap<String, String>> adctr = dao.getCategoryList(cnum);
+		return adctr;
 	}
 	
 	
 	// 카테고리 등록완료	
 	@Override
-	public List<CategoryVO> getCategoryDetailList() {
+	public List<CategoryVO> getCategoryDetailList(String cdnum) {
 		
 		return null;
 	}
