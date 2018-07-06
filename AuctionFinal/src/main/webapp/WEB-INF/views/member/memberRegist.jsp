@@ -74,7 +74,7 @@
     	var frm = document.RegistFrm;
     	
     	frm.action="memberRegistEnd.action";
-    	frm.method="GET";
+    	frm.method="post";
     	frm.submit();
     }
     
@@ -132,7 +132,7 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
-                    <input type="text" id="userid" name="userid" class="form-control" value=""/>
+                    <input type="text" id="userid" name="userid" class="form-control" value="${userid}"/>
                   </div>
                   <button class="col-lg-2 btn btn-default" onClick="idCheck();">중복 확인</button>
                 </div>
