@@ -38,4 +38,8 @@ public interface InterBoardService {
 
 	int writeedit(BoardVO boardvo);
 
+	int writedel(HashMap<String, String> map)throws Throwable;
+
+
+
 }

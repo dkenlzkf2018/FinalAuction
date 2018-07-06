@@ -297,8 +297,7 @@ public class BoardController {
 			
 			return "board/writeedit.tiles";
 		}
-		
-		
+
 	}// 게시글 수정하기 (07.06 12:17 끝)
 	
 	
@@ -318,6 +317,67 @@ public class BoardController {
 		return "board/writeeditEnd.tiles";
 	}// 게시글 수정페이지 완료 (07.06 12:26 끝)
 	
+	// 게시글 삭제 (07.06 17:20 시작)
+	@RequestMapping(value="/writedel.action", method={RequestMethod.GET})
+	public String requireLogin_del(HttpServletRequest req, HttpServletResponse res) {
+		
+		// 삭제해야할 글번호 가져오기
+		String boardno = req.getParameter("boardno");
+		
+		// 삭제되어질 글은 자신이 작성한 글이어야만 가능하다.
+		// 삭제되어질 글내용을 읽어오면 작성자를 알 수 있다.
+		BoardVO boardvo = service.getNoviewCountWriteView(boardno);
+		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		if(!loginuser.getUserid().equals(boardvo.getFk_userid())) {
+			String msg = "게시글 삭제는 작성자만 가능합니다.";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg.notiles";
+		}
+		else {
+			// 삭제해야할 글번호를 request 영역에 저장시켜서 view 단 페이지로 넘긴다.
+			req.setAttribute("boardno", boardno);
+
+			// view단 페이지 del.jsp 로 넘긴다.
+			return "board/writedel.tiles";
+			// /Board/src/main/webapp/WEB-INF/views2/board/del.jsp 파일을 생성한다. 
+		}// 게시글 삭제 (07.06 17:24 끝)
+		
+	}
+	
+	// 게시글 삭제 완료 (07.06 17:28 시작)
+	@RequestMapping(value="/writedelEnd.action", method={RequestMethod.POST})
+	public String delEnd(HttpServletRequest req) throws Throwable {
+	      
+		
+	/*
+		 글 삭제를 하려면 원본글의 암호와 삭제시 입력해주는 암호가 일치할때만
+		 삭제가 가능하도록 해야 한다.
+		 서비스단에서 글삭제를 처리한 결과를 int 타입으로 받아오겠다.  
+	*/
+		String boardno = req.getParameter("boardno");
+		
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("boardno", boardno);
+		
+		
+		int n = service.writedel(map);
+		// 넘겨받은 값이 1(원게시글 및 딸린 댓글까지 삭제 성공)이면 글삭제 성공,
+		// 넘겨받은 값이 2(딸린 댓글없는 경우 원게시글만 삭제 성공)이면 글삭제 성공,
+		// 넘겨받은 값이 0이면 글삭제 실패(암호가 틀리므로)
+		
+		req.setAttribute("n", n);
+		
+		return "board/writedelEnd.tiles";
+		// /Board/src/main/webapp/WEB-INF/views2/board/delEnd.jsp 파일을 생성한다. 
+	}// 게시글 삭제 완료 (07.06 17:28 끝)
 	
 
 }

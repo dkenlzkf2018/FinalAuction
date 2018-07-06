@@ -126,6 +126,35 @@ public class BoardDAO implements InterBoardDAO {
 				
 		return n;
 	}// 게시글 수정페이지 완료 (07.06 12:32 끝)
+
+	// 게시글에 댓글이 있는지 없는지 확인(07.06 17:30 시작)
+	@Override
+	public boolean isExistsComment(HashMap<String, String> map) {
+		int count = sqlsession.selectOne("board.isExistsComment", map);
+		if(count > 0)
+		
+			return true;
+		else
+			
+			return false;
+	}// 게시글에 댓글이 있는지 없는지 확인(07.06 17:30 끝)
+
+	// 게시글 삭제하기(07.06 17:31 시작)
+	@Override
+	public int deleteContent(HashMap<String, String> map) {
+		int n = sqlsession.update("board.deleteContent", map);
+		
+		return n;
+	}// 게시글 삭제하기(07.06 17:31 끝)
+
+	// 게시글에 댓글 삭제(07.06 17:31 시작)
+	@Override
+	public int deleteComment(HashMap<String, String> map) {
+		int n = sqlsession.update("board.deleteComment", map);
+		
+		return n;
+	}// 게시글에 댓글 삭제(07.06 17:31 끝)
+
 	
 	
 
