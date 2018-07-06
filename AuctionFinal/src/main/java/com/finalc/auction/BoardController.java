@@ -271,6 +271,8 @@ public class BoardController {
 		return "board/writeview.tiles";
 	}// 쓴 글 1개 보여주기 (07.05 끝)
 	
+	//
+	
 	
 	
 
