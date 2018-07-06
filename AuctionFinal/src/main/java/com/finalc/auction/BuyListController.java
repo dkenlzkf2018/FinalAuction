@@ -139,7 +139,7 @@ public class BuyListController {
 		}
 	}
 	
-	// #Buy 8. 경매 입찰
+	/*// #Buy 8. 경매 입찰
 	@RequestMapping(value="/bindAuction.action", method={RequestMethod.GET})
 	public String bindAuction(HttpServletRequest req) {
 		
@@ -167,7 +167,7 @@ public class BuyListController {
 			return "buy/bindAuction.tiles";
 		}
 		
-	}
+	}*/
 	
 	// #Auction 1. 사용자가 경매에 등록한 상품의 정보를 조회한다.
 	@RequestMapping(value="/searchAuction.action", method={RequestMethod.GET})
