@@ -1,7 +1,7 @@
 package com.finalc.auction;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,15 +18,10 @@ public class AdminController {
 	@Autowired
 	private InterAdminService service;
 	
-	// 관리자 메인 Controller 단
-		@RequestMapping(value="/adMain.action", method={RequestMethod.GET})
-		public String adMain(HttpServletRequest req) {
-			HttpSession session = req.getSession();
-			
-			
-			
-			return null;
-			
-			
-		}
+	@RequestMapping(value="/adMain.action", method={RequestMethod.GET})  
+	public String auctionLogin_AuctionUpload(HttpServletRequest req, HttpServletResponse res) {
+		
+		return "admain.admin";
+	} // 옥션 상품 게시 기능
+	
 }
