@@ -81,4 +81,46 @@
 		select count(*)
 		from tbl_award
 	</select>
+	
+	
+	<!-- <resultMap type="HashMap" id="getViewAuctionMap">
+		<result property="cnum" column="cnum" javaType="String" />
+		<result property="cname" column="cname" javaType="String" />
+		<result property="cdnum" column="cdnum" javaType="String" />
+		<result property="cdname" column="cdname" javaType="String" />
+		<result property="actnum" column="actnum" javaType="String" />
+		<result property="actname" column="actname" javaType="String" />
+		<result property="actimage" column="actimage" javaType="String" />
+		<result property="actdnum" column="actdnum" javaType="String" />
+		<result property="fk_usernum" column="fk_usernum" javaType="String" />
+		<result property="actd_price" column="actd_price" javaType="String" />
+		<result property="actd_qty" column="actd_qty" javaType="String" />
+		<result property="actd_status" column="actd_status" javaType="String" />
+		<result property="actd_content" column="actd_content" javaType="String" />
+		<result property="actd_lowertenderprice" column="actd_lowertenderprice" javaType="String" />
+		<result property="actd_startday" column="actd_startday" javaType="String" />
+		<result property="actd_endday" column="actd_endday" javaType="String" />
+		<result property="panmaeja" column="panmaeja" javaType="String" />
+	</resultMap> -->
+	
+	
+	
+	<select id="viewAuction" parameterType="String" resultType="com.finalc.auction.model.AuctionVO">
+		select cnum, cname
+		     , cdnum, cdname
+		     , actnum, actname, actimage
+		     , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
+		     , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday
+		     , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
+		     , E.fk_userid AS panmaeja
+		from tbl_category A join tbl_category_detail B
+		on A.cnum = B.fk_cnum
+		join tbl_auction C
+		on B.cdnum = C.fk_cdnum
+		join tbl_auction_detail D
+		on C.actnum = D.fk_actnum
+		join tbl_member_detail E
+		on D.fk_usernum = E.usernum
+		where actdnum = #{actdnum};
+	</select>
 </mapper>

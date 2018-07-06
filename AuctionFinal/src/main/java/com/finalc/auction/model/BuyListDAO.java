@@ -33,5 +33,11 @@ public class BuyListDAO implements InterBuyListDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public AuctionVO viewAuction(String actdnum) {
+		AuctionVO acvo = sqlsession.selectOne("buyList.viewAuction", actdnum);
+		return acvo;
+	}
 	
 }

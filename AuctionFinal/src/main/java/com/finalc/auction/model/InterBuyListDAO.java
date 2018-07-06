@@ -12,4 +12,6 @@ public interface InterBuyListDAO {
 
 	int getBindAuction(HashMap<String, String> map);
 
+	AuctionVO viewAuction(String actdnum);
+
 }

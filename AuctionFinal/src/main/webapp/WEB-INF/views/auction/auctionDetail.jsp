@@ -101,6 +101,13 @@
         <div class="product-page">
           <div class="row">
             <div class="col-md-6 col-sm-6">
+              
+              <!-- 
+              		경매번호를 이용하여 이미지 얻어오기
+              		auction 테이블, auction_image 테이블 조인
+               -->
+              
+              
               <div class="product-main-image">
                 <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg">
               </div>
@@ -201,6 +208,8 @@
                     </tr>
                   </table>
                 </div>
+                
+<%-- 규호 리뷰!!////////////////////////////////////////////////////////////////// --%>
                 <div class="tab-pane fade in active" id="Reviews">
                   <!--<p>There are no reviews for this product.</p>-->
                   <c:forEach var="hugiboardvo" items="${hugiBoardList}">

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.InterBuyListDAO;
 
 @Service
@@ -33,5 +34,12 @@ public class BuyListService implements InterBuyListService {
 	public int getBindAuction(HashMap<String, String> map) {
 		int bind = dao.getBindAuction(map);
 		return bind;
+	}
+
+
+	@Override
+	public AuctionVO viewAuction(String actdnum) {
+		AuctionVO acvo = dao.viewAuction(actdnum);
+		return acvo;
 	}
 }

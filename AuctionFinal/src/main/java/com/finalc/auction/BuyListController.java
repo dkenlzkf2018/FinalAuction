@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.common.MyUtil;
+import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.service.InterBuyListService;
 
@@ -170,11 +171,18 @@ public class BuyListController {
 	}*/
 	
 	// #Auction 1. 사용자가 경매에 등록한 상품의 정보를 조회한다.
-	@RequestMapping(value="/searchAuction.action", method={RequestMethod.GET})
-	public String searchAuction() {
+	@RequestMapping(value="/viewAuction.action", method={RequestMethod.GET})
+	public String viewAuction(HttpServletRequest req) {
+		String actdnum = req.getParameter("actdnum");
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+				
+		AuctionVO acvo = service.viewAuction(actdnum);
 		
 		
+		req.setAttribute("acvo", acvo);
+		req.setAttribute("usernum", loginuser.getUsernum());
 		
-		return "auction/searchAuction.tiles";
+		return "auction/viewAuction.tiles";
 	}
 }
