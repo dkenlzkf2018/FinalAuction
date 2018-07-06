@@ -73,7 +73,7 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value="/idCheck.action", method= {RequestMethod.POST})
+	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
 	public String idCheck(HttpServletRequest req) {
 		
 		String userid = req.getParameter("userid");

@@ -15,7 +15,6 @@ on A.userid = B.fk_userid
 )V
 where user_status = 1;
 
-<<<<<<< HEAD
 select *
 from tbl_member_detail;
 
@@ -28,7 +27,7 @@ values(seq_member_detail.nextval, (select userid from tbl_member where userid = 
 ROLLBACK;
 
 commit;
-=======
+
 select count(*)
 from tbl_member_detail
 where fk_userid = 'admin';
@@ -67,4 +66,4 @@ insert into tbl_category_detail(cdnum, fk_cnum, cdname)
 values(seq_category_detail.nextval, 1, '여성의류');
 
 commit;
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+
