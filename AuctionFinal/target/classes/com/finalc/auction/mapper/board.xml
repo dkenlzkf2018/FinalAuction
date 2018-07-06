@@ -139,5 +139,16 @@
 		where fk_boardno = #{boardno}
 	</select>
 <!-- 댓글보기 (07.05 끝) -->
+	
+	<select id="getReviewByActdnum" parameterType="String" resultType="com.finalc.auction.model.HugiBoardVO">
+		select ep_boardno, fk_userid, fk_actdnum, ep_content, to_char(ep_writeday, 'yyyy-mm-dd hh24:mi:ss') as ep_writeday, ep_satisfaction, ep_boardstatus
+		from tbl_hugiboard
+		where fk_actdnum = #{actdnum}
+	</select>
+	
+	<insert id="reviewRegist" parameterType="HashMap">
+		insert into tbl_hugiboard(ep_boardno, fk_userid, fk_actdnum, ep_content, ep_writeday, ep_satisfaction, ep_boardstatus)
+		values(seq_hugiboard.nextval, #{fk_userid}, #{actdnum}, #{ep_content}, default, #{ep_satisfaction*2}, default)
+	</insert>
 
 </mapper>

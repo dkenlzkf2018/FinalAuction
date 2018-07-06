@@ -4,13 +4,15 @@
 <script type="text/javascript">
  
 	jQuery(document).ready(function(){
-		$("#error_passwd").hide();
 		
-		$("#passwd2").parent().find(".error").hide();
 	}); // end of $(document).ready()---------------------------	 
     
     function goPwdCheck(){
     	
+		$("#error_passwd").hide();
+		
+		$("#passwd2").parent().find(".error").hide();
+		
 		$("#password").blur(function() {
 		
 		var passwd = $("#password").val();
@@ -40,14 +42,14 @@
 		var passwdCheck = $("#passwd2").val();
 		alert(passwd);
 		if(passwd != passwdCheck) {
-			$(this).parent().find(".error").show();
+			$("#passwd2").parent().find(".error").show();
 			$(":input").attr("disabled",true).addClass("bgcol");
 			$("#btnRegister").attr("disabled",true);
 			
 			$(this).attr("disabled",false).removeClass("bgcol");
 		}
 		else {
-			$(this).parent().find(".error").hide();
+			$("#passwd2").parent().find(".error").hide();
 			$(":input").attr("disabled",false).removeClass("bgcol");
 			$("#btnRegister").attr("disabled",false);
 		}
@@ -64,9 +66,11 @@
     	window.open(url, "아이디 중복확인",
     			   "left=500px, top=100px, width=300px, height=100px");
     	
+    	$("#name").focus();
     }
     
     function goRegist() {
+    	
     	var frm = document.RegistFrm;
     	
     	frm.action="memberRegistEnd.action";
@@ -124,7 +128,7 @@
           <div class="col-md-9 col-sm-7">
             <h1>회원 가입</h1>
             <div class="content-form-page">
-              <form role="form" class="form-horizontal form-without-legend">
+              <form name="RegistFrm" role="form" class="form-horizontal form-without-legend">
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
@@ -168,7 +172,7 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="email">E-Mail <span class="require">*</span></label>
                   <div class="col-lg-3">
-                    <input type="text" id="email1" class="form-control">
+                    <input type="text" name="email1" id="email1" class="form-control">
                   </div>
                   <div class="col-lg-5">
                     <select class="form-control" name="email2" id="email2">
@@ -192,23 +196,23 @@
 					</select>
                   </div>
                   <div class="col-lg-3">
-                    <input type="tel" id="hp2" class="form-control" size="4" maxlength="4">
+                    <input type="text" name="hp2" id="hp2" class="form-control" size="4" maxlength="4">
                   </div>
                   <div class="col-lg-3">
-                    <input type="tel" id="hp3" class="form-control" size="4" maxlength="4">
+                    <input type="text" name="hp3" id="hp3" class="form-control" size="4" maxlength="4">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
                   <div class="col-lg-8">
-                    <input type="text" id="zipcode" class="form-control">
+                    <input type="text" name="zipcode" id="zipcode" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="address">주소</label>
                   <div class="col-lg-8">
-                   	<input type="text" id="addr1" class="form-control"/><br/>
-                   	<input type="text" id="addr2" class="form-control"/>
+                   	<input type="text" name="addr1" id="addr1" class="form-control"/><br/>
+                   	<input type="text" name="addr2" id="addr2" class="form-control"/>
                   </div>
                 </div>
               </form>

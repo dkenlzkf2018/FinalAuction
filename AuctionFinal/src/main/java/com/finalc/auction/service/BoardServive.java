@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
+import com.finalc.auction.model.HugiBoardVO;
 import com.finalc.auction.model.InterBoardDAO;
 
 
@@ -133,6 +134,18 @@ public class BoardServive implements InterBoardService {
 		
 		return comment;
 	}// 댓글 보기 (07.05 끝)
+
+	@Override
+	public List<HugiBoardVO> getReviewByActdnum(String actdnum) {
+		List<HugiBoardVO> hugiBoardList = dao.getReviewByActdnum(actdnum);
+		return hugiBoardList;
+	}
+
+	@Override
+	public int reviewRegist(HashMap<String, String> map) {
+		int n = dao.reviewRegist(map);
+		return n;
+	}
 	
 	
 

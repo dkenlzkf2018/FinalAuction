@@ -32,5 +32,11 @@ public class LoginService implements InterLoginService {
 		int RegMember = dao.memberRegist(map);
 		return RegMember;
 	}
+
+	@Override
+	public int memberRegistDetail(HashMap<String, String> map) {
+		int RegMember = dao.memberRegistDetail(map);
+		return RegMember;
+	}
 	
 }
