@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -271,8 +272,53 @@ public class BoardController {
 		return "board/writeview.tiles";
 	}// 쓴 글 1개 보여주기 (07.05 끝)
 	
-	//
+	// 게시글 수정하기 (07.06 12:07 시작)
+	@RequestMapping(value="/writeedit.action", method={RequestMethod.GET})
+	public String requireLogin_writeedit(HttpServletRequest req, HttpServletResponse res) {
+		
+		String boardno = req.getParameter("boardno");
+		
+		BoardVO boardvo = service.getNoviewCountWriteView(boardno);
+		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		if(!boardvo.getFk_userid().equals(loginuser.getUserid())) {
+			String msg = "글 수정은 작성자만 가능합니다.";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg.notiles";
+		}
+		else {
+			req.setAttribute("boardvo", boardvo);
+			
+			return "board/writeedit.tiles";
+		}
+		
+		
+	}// 게시글 수정하기 (07.06 12:17 끝)
 	
+	
+	// 게시글 수정페이지 완료 (07.06 12:17 시작)
+	@RequestMapping(value="/writeeditEnd.action", method={RequestMethod.POST})
+	public String writeeditEnd(BoardVO boardvo, HttpServletRequest req, HttpServletResponse res) {
+		
+		String content = boardvo.getContent().replaceAll("\r,\n", "<br/>");
+		
+		boardvo.setContent(content);
+		
+		int n = service.writeedit(boardvo);
+		
+		req.setAttribute("n", n);
+		req.setAttribute("boardno", boardvo.getBoardno());
+		
+		
+		
+		return "board/writeeditEnd.tiles";
+	}// 게시글 수정페이지 완료 (07.06 12:26 끝)
 	
 	
 

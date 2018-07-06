@@ -148,7 +148,7 @@
 	
 	<insert id="reviewRegist" parameterType="HashMap">
 		insert into tbl_hugiboard(ep_boardno, fk_userid, fk_actdnum, ep_content, ep_writeday, ep_satisfaction, ep_boardstatus)
-		values(seq_hugiboard.nextval, #{fk_userid}, #{actdnum}, #{ep_content}, default, #{ep_satisfaction*2}, default)
+		values(seq_hugiboard.nextval, #{fk_userid}, #{actdnum}, #{ep_content}, default, #{ep_satisfaction}*2, default)
 	</insert>
 
 </mapper>

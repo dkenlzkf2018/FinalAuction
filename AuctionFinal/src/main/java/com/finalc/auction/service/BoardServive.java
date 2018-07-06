@@ -147,6 +147,14 @@ public class BoardServive implements InterBoardService {
 		return n;
 	}
 	
+	// 게시글 수정페이지 완료 (07.06 12:26 시작)
+	@Override
+	public int writeedit(BoardVO boardvo) {
+		int n = dao.writeedit(boardvo);
+		
+		return n;
+	}// 게시글 수정페이지 완료 (07.06 12:27 끝)
+	
 	
 
 }
