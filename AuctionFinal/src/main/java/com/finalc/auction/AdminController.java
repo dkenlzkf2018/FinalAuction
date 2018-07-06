@@ -25,7 +25,7 @@ public class AdminController {
 			
 			
 			
-			return null;
+			return "admin/admain.admin";
 			
 			
 		}
