@@ -15,27 +15,5 @@ public class AdminService implements InterAdminService{
 	@Autowired
 	private InterAdminDAO dao;
 
-	// 메인페이지
-/*	@Override
-	public List<HashMap<String, String>> getAdMin(String userid) {
-		List<HashMap<String, String>> adMain = dao.getAdMin(userid);
-		System.out.println(" 메인페이지 요청 : " + adMain);
-		return adMain;
-	}*/	
-
-	// 카테고리 등록하기
-	@Override
-	public List<CategoryVO> getCategoryList(String cnum) {
-		List<HashMap<String, String>> adctr = dao.getCategoryList(cnum);
-		return adctr;
-	}
-	
-	
-	// 카테고리 등록완료	
-	@Override
-	public List<CategoryVO> getCategoryDetailList(String cdnum) {
-		
-		return null;
-	}
 	
 }
