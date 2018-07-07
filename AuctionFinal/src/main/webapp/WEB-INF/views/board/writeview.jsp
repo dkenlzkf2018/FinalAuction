@@ -33,6 +33,25 @@
 
 </style>
 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="assets/scss/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
 <script type="text/javascript">
 	
 <%-- 
@@ -200,7 +219,7 @@
 		
 		<input type="text" name="cm_content" id="cm_content" size="80" style="line-height: 40px;"/>
 		
-		<button type="button" onClick="goWrite();"  class="btn btn-link">쓰기</button>
+		<button type="button" onClick="goWrite();"  class="btn btn-outline-secondary">쓰기</button>
 		
 		<button type="button" class="btn btn-link" onClick="javascript:location.href='<%= request.getContextPath() %>/write.action?fk_boardno=${boardvo.boardno}&groupno=${boardvo.groupno}&deptthno=${boardvo.deptthno}'">답변쓰기</button> 
 	<br/>
@@ -212,3 +231,9 @@
 		
 	
 </div>
+
+    <script src="<%= request.getContextPath() %>/assets-admin/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="<%= request.getContextPath() %>/assets-admin/js/popper.min.js"></script>
+    <script src="<%= request.getContextPath() %>/assets-admin/js/plugins.js"></script>
+    <script src="<%= request.getContextPath() %>/assets-admin/js/main.js"></script>
+
