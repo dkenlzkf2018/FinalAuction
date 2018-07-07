@@ -182,10 +182,10 @@ public class BuyListController {
 		
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
-		
+		int n = 1;
 		req.setAttribute("cvo", cvo);
 		req.setAttribute("acvo", acvo);
-		
+		req.setAttribute("n", n);
 		return "auction/auctionDetail.tiles";
 	}
 }

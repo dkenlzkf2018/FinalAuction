@@ -121,17 +121,26 @@
             <div class="col-md-6 col-sm-6">
               <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
+                <div class="pull-left">
+              	  <label class="control-label">현재가 : </label>
+                </div>  
+                
                 <div class="price">
-                  <strong><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/></strong><span>원</span><br/>
-                  <em><span><fmt:formatNumber value="${acvo.actd_price + (acvo.actd_price * 0.1)}" type="number"/>원</span></em>
+                 <strong><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/></strong><span>원</span><br/>
+                 <em><span><fmt:formatNumber value="${acvo.actd_price + (acvo.actd_price * 0.1)}" type="number"/>원</span></em>
                 </div>
+                
+                
+                
               </div>
+              
               <div class="description">
                 <p>${acvo.actd_content}</p>
               </div>
+              
               <div class="product-page-options">
                 <div class="pull-left">
-                  <label class="control-label">Size:</label>
+                  <label class="control-label">입찰수 : </label>
                   <select class="form-control input-sm">
                     <option>L</option>
                     <option>M</option>
@@ -139,19 +148,27 @@
                   </select>
                 </div>
                 <div class="pull-left">
-                  <label class="control-label">Color:</label>
-                  <select class="form-control input-sm">
-                    <option>Red</option>
-                    <option>Blue</option>
-                    <option>Black</option>
-                  </select>
+                  <label class="control-label">남은시간 : </label>
+                  <%-- ${acvo.} --%>
                 </div>
               </div>
+              
               <div class="product-page-cart">
-                <div class="product-quantity">
-                    <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+                <div class="pull-left">
+              	  <label class="control-label">수량 : </label>
                 </div>
-                <button class="btn btn-primary" type="submit">Add to cart</button>
+                &nbsp;&nbsp;&nbsp;
+                <div class="product-quantity">
+                	<input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+                </div>
+                <br/><br/><br/>
+                <button class="btn btn-primary" type="submit">입찰하기</button>&nbsp;
+                <c:if test="${n == 1}">
+                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+                <button class="btn btn-primary" type="submit">구매하기</button>&nbsp;
+                </c:if>
+                <button class="btn btn-primary" type="submit">관심상품등록</button>
+                
               </div>
               <!-- <div class="review">
                 <input type="range" value="4" step="0.25" id="backing4">
@@ -166,8 +183,11 @@
                 <li><a class="evernote" data-original-title="evernote" href="javascript:;"></a></li>
                 <li><a class="tumblr" data-original-title="tumblr" href="javascript:;"></a></li>
               </ul>
+              
             </div>
 
+
+<%-- 규호 소개!!////////////////////////////////////////////////////////////////// --%>
             <div class="product-page-content">
               <ul id="myTab" class="nav nav-tabs">
                 <li><a href="#Description" data-toggle="tab">Description</a></li>
@@ -178,6 +198,7 @@
                 <div class="tab-pane fade" id="Description">
                   <p>${acvo.actd_content}</p>
                 </div>
+<%-- 규호 정보!!////////////////////////////////////////////////////////////////// --%>                
                 <div class="tab-pane fade" id="Information">
                   <table class="datasheet">
                     <tr>
