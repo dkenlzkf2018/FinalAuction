@@ -65,7 +65,7 @@
     }
 </script>
 
-<!-- <div style="width:90%; margin: auto; border: solid 0px red;">
+<div style="width:90%; margin: auto; border: solid 0px red;">
 
 	<div style="width:80%; margin-top:10%; margin-left:10%; height:300px; border: solid 0px blue;">
 		<h2 class="text-primary">로그인</h2>
@@ -93,7 +93,7 @@
 		
 	</div>
 	
-</div> -->
+</div>
 
 <!-- BEGIN CHECKOUT -->
 <div id="checkout" class="panel panel-default">
