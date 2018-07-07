@@ -5,16 +5,12 @@
  
 	jQuery(document).ready(function(){
 		
-		$("#password").keydown(function(event){
-			if(event.keyCode == 13) { // 엔터를 했을 경우
-				goPwdCheck(event);
-			}// end of if------------------------------
+		$("#password").blur(function(event){
+			goPwdCheck(event);
 		});// end of $("#loginPwd").keydown()----------
 		
-		$("#passwd2").keydown(function(event){
-			if(event.keyCode == 13) { // 엔터를 했을 경우
-				PwdCheck(event);
-			}// end of if------------------------------
+		$("#passwd2").blur(function(event){
+			PwdCheck(event);
 		});// end of $("#loginPwd").keydown()----------
 		
 		$("#error_passwd").hide();
@@ -31,22 +27,26 @@
 		
 		var bool = regexp_passwd.test(pwd1);
 		
-		if(pwd1 == ""){
-			alert("비밀번호를 입력하세요");
-			$("#password").focus();
-			return;
-		}
+		$(".requiredInfo").each(function(){
 		
-		if(!bool){
-			$("#error_passwd").show();
-			$("#password").focus();
-			return;
-		}
-		else{
-			$("#error_passwd").hide();
-			$("#passwd2").focus();
-			return;
-		}
+			if(pwd1 == ""){
+				alert("비밀번호를 입력하세요");
+				return;
+			}
+			
+			if(!bool){
+				$("#error_passwd").show();
+				$(":input").attr("disabled",true).addClass("bgcol");
+				$("#btnRegister").attr("disabled",true); 
+				$(this).attr("disabled",false).removeClass("bgcol");			
+			}
+			else{
+				$("#error_passwd").hide();
+				$(":input").attr("disabled",false).removeClass("bgcol");
+				$("#btnRegister").attr("disabled",false); 			
+			}
+	
+		});
 		
 	}
 	
@@ -57,14 +57,15 @@
 		
 		if(pwd1 == pwd2){
 			$("#error").hide();
-			$("#name").focus();
-			return;
+			$(":input").attr("disabled",false).removeClass("bgcol");
+			$("#btnRegister").attr("disabled",false);
+			$("#passwd2").focus();
 		}
 		else if(pwd1 != pwd2){
 			$("#error").show();
-			$("#passwd2").val("");
-			$("#passwd2").focus();
-			return;
+			$(":input").attr("disabled",true).addClass("bgcol");
+			$("#btnRegister").attr("disabled",true);
+			$(this).attr("disabled",false).removeClass("bgcol");
 		}
 		
 	}
