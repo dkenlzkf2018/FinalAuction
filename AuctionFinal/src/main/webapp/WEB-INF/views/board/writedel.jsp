@@ -13,18 +13,28 @@
 
 <script type="text/javascript">
 	function goDelete() {
-		var frm = document.delFrm;
 		
+		var yn = confirm("삭제하시겠습니까? 삭제한 게시물은 복구 되지 않습니다.");
 		
-		
+	   if(yn==false) { // 취소를 선택한 경우
+		   	 return;
+		   	alert("취소되었습니다.");
+	      }
+	  		 
+	   else { // 확인을 선택
+
+	   var frm = document.delFrm;
+
 		frm.action = "writedelEnd.action";
 		frm.method = "post";
 		frm.submit();
+	    }
+	   		
 	}
 </script>
 
 <div style="padding-left: 10%;">
-	<h3 style="margin-bottom: 50px;">게시글을 삭제하시겠습니까?</h3>
+	<h3 style="margin-bottom: 50px;">게시물 삭제</h3>
 	
 	<form name="delFrm">
 		<table id="table">
