@@ -181,7 +181,7 @@
 			<c:if test="${not empty commentList}">
 				<c:forEach var="commentvo" items="${commentList}">
 					<tr>
-						<td style="text-align: center; font-size: 10pt;">${commentvo.fk_userid}&nbsp;:&nbsp;&nbsp;</td>
+						<td style="font-size: 10pt;">${sessionScope.loginuser.userid}&nbsp;:&nbsp;&nbsp;</td>
 						<td>${commentvo.cm_content}</td>
 						<td style="text-align: center;">${commentvo.cm_writeday}</td>
 					</tr>
