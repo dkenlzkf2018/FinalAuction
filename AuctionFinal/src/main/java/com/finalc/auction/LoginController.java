@@ -160,7 +160,7 @@ public class LoginController {
 				req.setAttribute("msg", msg);
 				req.setAttribute("loc", loc);
 				
-				return"msg.notiles";
+				return"msg.notiles"; 
 			}
 		}
 		
