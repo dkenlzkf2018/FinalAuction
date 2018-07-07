@@ -247,7 +247,7 @@ public class BoardController {
 			if(loginuser != null) {
 				
 				userid = loginuser.getUserid();
-				
+
 			}
 			
 			boardvo = service.getWriteView(boardno, userid);
