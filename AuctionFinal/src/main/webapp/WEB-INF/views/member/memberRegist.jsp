@@ -138,7 +138,7 @@
 <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.action">Home</a></li>
             <li><a href="login.action">Log in</a></li>
             <li class="active">회원가입</li>
         </ul>

@@ -63,6 +63,11 @@
     	frm.submit(); */
     	location.href = "<%=request.getContextPath()%>/memberRegist.action";
     }
+	
+	function gofindPwd(){
+		
+	}
+	
 </script>
 
 <!-- <div style="width:90%; margin: auto; border: solid 0px red;">
@@ -107,7 +112,7 @@
 	          <label for="password-login">비밀번호</label>
 	          <input type="password" name="passwd" id="passwd" class="form-control"/>
 	        </div>
-	        <a href="javascript:<%= request.getContextPath() %>/login/pwdFind.action;">Forgotten Password?</a>
+	        <a href="javascript:javascript:gofindPwd();">Forgotten Password?</a>
 	        <div class="padding-top-20">                  
 	          <button class="btn btn-default" type="button" id="btnLOGIN">로그인</button>
 	          <button class="btn btn-primary" type="button" id="btnRegist">회원가입</button>
