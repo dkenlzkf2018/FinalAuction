@@ -13,7 +13,7 @@ public class AdminDAO implements InterAdminDAO {
 	@Autowired
 	private SqlSessionTemplate sqlsession;
 	
-	// 관리자 페이지 요청 단
+	// 관리자 메인 Controller 단
 	@Override
 	public List<HashMap<String, String>> getadMin(HashMap<String, String> map) {
 		System.out.println("Dao 단 map : " + map);
@@ -22,7 +22,20 @@ public class AdminDAO implements InterAdminDAO {
 		return adMapList;
 	}
 	
-	// 카테고리 관리 단
-	// @Override
-	// public 
+	// 카테고리 관리 페이지 Controller 단
+	/*@Override
+	public List<HashMap<String, String>> getadMin(HashMap<String, String> map) {
+		System.out.println("Dao 단 map : " + map);
+		List<HashMap<String, String>> adMapList = sqlsession.selectList("adMin.getadMin", map);
+		System.out.println("3. DAO 단 adMapList : " + adMapList);
+		return adMapList;
+	}*/
+	
+	// 카테고리 등록 Controller 단
+	
+	// 카테고리 수정 Controller 단
+	
+	// 카테고리 삭제 Controller 단
+	
+	
 }

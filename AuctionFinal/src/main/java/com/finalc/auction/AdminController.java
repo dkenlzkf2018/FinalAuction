@@ -22,15 +22,34 @@ public class AdminController {
 			
 			return "adminMain.admin";
 		}
+	
+	// 카테고리 관리 페이지 Controller 단
+			@RequestMapping(value="/adminCategory.action", method={RequestMethod.GET})
+			public String adminCategory() {
+				
+				return "adminCategory.admin";
+			}	
 		
 	// 카테고리 등록 Controller 단
 		@RequestMapping(value="/addCategory.action", method={RequestMethod.GET})
-		public String adminCatego() {
+		public String addCategory() {
 			
-			return "adminCatego.admin";
+			return "addCategory.admin";
 		}
 		
-	// 	
+	// 카테고리 수정 Controller 단
+		@RequestMapping(value="/modiCategory.action", method={RequestMethod.GET})
+		public String modiCategory() {
+			
+			return "modiCategory.admin";
+		}
+		
+	// 카테고리 삭제 Controller 단
+		@RequestMapping(value="/delCategory.action", method={RequestMethod.GET})
+		public String delCategory() {
+			
+			return "delCategory.admin";
+		}	
 		
 		
 	

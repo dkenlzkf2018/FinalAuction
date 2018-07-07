@@ -12,4 +12,6 @@ public class AdminService implements InterAdminService{
 	private InterAdminDAO dao;
 
 	
+	
+	
 }
