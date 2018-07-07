@@ -49,13 +49,13 @@
                 <div class="container">
                     <div class="carousel-position-four text-center">
                         <span class="carousel-subtitle-v3 margin-bottom-15" data-animation="animated fadeInDown">
-                            Full Admin &amp; Frontend
+							여름 휴가철 필수아이템
                         </span>
-                        <p class="carousel-subtitle-v4" data-animation="animated fadeInDown">
-                            eCommerce UI
+                        <p class="carousel-title-v3" data-animation="animated fadeInDown">
+							까만안경
                         </p>
                         <p class="carousel-subtitle-v3" data-animation="animated fadeInDown">
-                            Is Ready For Your Project
+							지금 즉시 입찰하세요
                         </p>
                     </div>
                 </div>
@@ -67,8 +67,15 @@
                     <div class="center-block-wrap">
                         <div class="center-block-body">
                             <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
-                                The most <br/>
-                                wanted bijouterie
+                               <span class="carousel-subtitle-v3" data-animation="animated fadeInDown">
+                               	보조배터리의 혁명!!
+                               </span>
+                               <p class="carousel-title-v3" data-animation="animated fadeInDown"> 
+                               	샤오미 보조배터리
+                               </p>
+                               <p class="carousel-subtitle-v3" data-animation="animated fadeInDown"> 
+                               	지금 즉시 입찰하세요
+                               </p>
                             </h2>
                             <a class="carousel-btn" href="#" data-animation="animated fadeInUp">But It Now!</a>
                         </div>
