@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Component;
@@ -377,6 +379,32 @@ public class BoardController {
 		return "board/writedelEnd.tiles";
 		// /Board/src/main/webapp/WEB-INF/views2/board/delEnd.jsp 파일을 생성한다. 
 	}// 게시글 삭제 완료 (07.06 17:28 끝)
+	
+	
+	// 댓글 쓰기 (07.07 11:42 시작)
+	@RequestMapping(value="/writeComment.action", method={RequestMethod.POST})
+	public String auctionLogin_writeComment(HttpServletRequest req, HttpServletResponse res, CommentVO commentvo)throws Throwable {
+		
+		int n = service.writeComment(commentvo);
+		
+		JSONArray jsonarr = new JSONArray();
+		String str_jsonarr = null;
+		
+		if(n != 0) {
+			JSONObject jsonobj = new JSONObject();
+			jsonobj.put("fk_userid", commentvo.getFk_userid());
+			jsonobj.put("cm_content", commentvo.getCm_content());
+			jsonobj.put("cm_writeday", MyUtil.getNowTime());
+			
+			jsonarr.put(jsonobj);
+		}
+		
+		str_jsonarr = jsonarr.toString();
+		
+		req.setAttribute("str_jsonarr", str_jsonarr);
+		
+		return "writeCommentEndJSON.notiles";
+	}// 댓글 쓰기 (07.07 11:52 끝)
 	
 
 }

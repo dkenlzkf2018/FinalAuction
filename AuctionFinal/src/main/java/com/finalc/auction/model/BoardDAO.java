@@ -155,6 +155,22 @@ public class BoardDAO implements InterBoardDAO {
 		return n;
 	}// 게시글에 댓글 삭제(07.06 17:31 끝)
 
+	// 댓글 쓰기(07.07 11:57 시작)
+	@Override
+	public int writeComment(CommentVO commentvo) {
+		int n = sqlsession.insert("board.writeComment", commentvo);
+		
+		return n;
+	}// 댓글 쓰기(07.07 11:57 끝)
+
+	// 댓글쓰기 후 댓글갯수 1증가(07.07 11:58 시작)
+	@Override
+	public int updateCommentCount(String fk_boardno) {
+		int n = sqlsession.update("board.updateCommentCount", fk_boardno);
+		
+		return n;
+	}// 댓글쓰기 후 댓글갯수 1증가(07.07 11:59 끝)
+
 	
 	
 

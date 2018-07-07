@@ -1,6 +1,7 @@
 package com.finalc.auction.common;
 
 import java.text.DecimalFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -315,4 +316,12 @@ public class MyUtil {
 		return pageBar;
 		
 	}// end of getPageBar(String url, int currentShowPageNo, int sizePerPage, int totalPage, int blockSize)-------------------	
+	
+	// ****  현재시각을 나타내기  **** //
+		public static String getNowTime() {
+			Date now = new Date();
+			String today = String.format("%tF %tT", now, now);
+	        return today;
+		}
+	
 }
