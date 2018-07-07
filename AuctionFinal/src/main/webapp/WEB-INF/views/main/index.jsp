@@ -32,14 +32,11 @@
             <div class="item carousel-item-five">
                 <div class="container">
                     <div class="carousel-position-four text-center">
-                        <h2 class="animate-delay carousel-title-v3" data-animation="animated fadeInDown">
+                        <h2 class="animate-delay carousel-title-v4" style="font-weight: bold;" data-animation="animated fadeInDown">
 							태블릿 PC
                         </h2>
                         <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
-                            Layout Options
-                        </p>
-                        <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-                            come on baby
+							지금 바로 입찰하세요
                         </p>
                         <a class="carousel-btn" href="#" data-animation="animated fadeInUp">경매 이동하기</a>
                     </div>
@@ -97,7 +94,7 @@
     <div class="row margin-bottom-40">
       <!-- BEGIN SALE PRODUCT -->
       <div class="col-md-12 sale-product">
-        <h2>New Arrivals</h2>
+        <h2>New Auction</h2>
         <div class="owl-carousel owl-carousel5">
           <div>
             <div class="product-item">
@@ -471,59 +468,3 @@
     <!-- END TWO PRODUCTS & PROMO -->
   </div>
 </div>
-
-<!-- BEGIN BRANDS -->
-<div class="brands">
-  <div class="container">
-        <div class="owl-carousel owl-carousel6-brands">
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-          <a href="shop-product-list.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
-        </div>
-    </div>
-</div>
-<!-- END BRANDS -->
-
-<!-- BEGIN STEPS -->
-<div class="steps-block steps-block-red">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 steps-block-col">
-        <i class="fa fa-truck"></i>
-        <div>
-          <h2>Free shipping</h2>
-          <em>Express delivery withing 3 days</em>
-        </div>
-        <span>&nbsp;</span>
-      </div>
-      <div class="col-md-4 steps-block-col">
-        <i class="fa fa-gift"></i>
-        <div>
-          <h2>Daily Gifts</h2>
-          <em>3 Gifts daily for lucky customers</em>
-        </div>
-        <span>&nbsp;</span>
-      </div>
-      <div class="col-md-4 steps-block-col">
-        <i class="fa fa-phone"></i>
-        <div>
-          <h2>477 505 8877</h2>
-          <em>24/7 customer care available</em>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- END STEPS -->
-
-
-    

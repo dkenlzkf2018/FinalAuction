@@ -148,7 +148,31 @@
 	
 	<insert id="reviewRegist" parameterType="HashMap">
 		insert into tbl_hugiboard(ep_boardno, fk_userid, fk_actdnum, ep_content, ep_writeday, ep_satisfaction, ep_boardstatus)
-		values(seq_hugiboard.nextval, #{fk_userid}, #{actdnum}, #{ep_content}, default, #{ep_satisfaction*2}, default)
+		values(seq_hugiboard.nextval, #{fk_userid}, #{actdnum}, #{ep_content}, default, #{ep_satisfaction}*2, default)
 	</insert>
+	
+<!-- 게시글 수정페이지 완료 (07.06 12:33 시작) -->
+	<update id="writeedit" parameterType="com.finalc.auction.model.BoardVO">
+		update tbl_board set subject = #{subject}, content = #{content}
+		where boardno = #{boardno}
+	</update>
+<!-- 게시글 수정페이지 완료 (07.06 12:35끝) -->
+
+ 	<update id="deleteContent" parameterType="HashMap">
+	 	update tbl_board set boardstatus = 0
+	 	where boardno = #{boardno}
+	</update>
+
+	<select id="isExistsComment" parameterType="HashMap" resultType="Integer"> 
+	    select count(*)
+		from tbl_comment
+		where fk_boardno = #{boardno}
+	</select>
+	
+	<update id="deleteComment" parameterType="HashMap">
+	     update tbl_comment set cm_status = 0
+	     where fk_boardno = #{boardno}
+	</update>
+	
 
 </mapper>

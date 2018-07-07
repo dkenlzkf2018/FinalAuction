@@ -24,7 +24,7 @@
 <div class="main">
   <div class="container">
     <ul class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.action">Home</a></li>
         <li><a href="">Store</a></li>
         <li class="active">Cool green dress with red bell</li>
     </ul>
@@ -149,12 +149,12 @@
                 </div>
                 <button class="btn btn-primary" type="submit">Add to cart</button>
               </div>
-              <div class="review">
+              <!-- <div class="review">
                 <input type="range" value="4" step="0.25" id="backing4">
                 <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
                 </div>
                 <a href="javascript:;">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">Write a review</a>
-              </div>
+              </div> -->
               <ul class="social-icons">
                 <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
                 <li><a class="twitter" data-original-title="twitter" href="javascript:;"></a></li>

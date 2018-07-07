@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
-	if(${map == null}){
+	if(${RegMember1 == 0}){
 		alert("가입실패");
 		location.href="<%= request.getContextPath() %>/memberRegist.action";
 	}
-	else if(${map != null}){
+	else if(${RegMember1 == 1}){
 		alert("가입성공");
 		location.href="<%= request.getContextPath() %>/login.action";
 	}

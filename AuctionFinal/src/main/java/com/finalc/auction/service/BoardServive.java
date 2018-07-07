@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
@@ -146,6 +149,41 @@ public class BoardServive implements InterBoardService {
 		int n = dao.reviewRegist(map);
 		return n;
 	}
+	
+	// 게시글 수정페이지 완료 (07.06 12:26 시작)
+	@Override
+	public int writeedit(BoardVO boardvo) {
+		int n = dao.writeedit(boardvo);
+		
+		return n;
+	}// 게시글 수정페이지 완료 (07.06 12:27 끝)
+	
+	// 게시글 삭제 완료 (07.06 17:28 시작)
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class} )
+	public int writedel(HashMap<String, String> map)throws Throwable{
+		
+		int result1=0, result2=0, n=0;
+		boolean bool = false;
+
+			// 원게시글에 딸린 댓글이 있는지 없는지를 확인하기 
+			bool = dao.isExistsComment(map);
+			
+			result1 = dao.deleteContent(map); // 글 1개 삭제하기
+			
+			if(bool) { // 원게시글에 딸린 댓글들 삭제하기
+				result2 = dao.deleteComment(map);  
+			}
+		
+		
+		if( (bool==true && result1==1 && result2>0) ||
+			(bool==false && result1==1 && result2==0) )	
+			n = 1;
+		
+		
+		return n;
+	}// 게시글 삭제 완료 (07.06 17:28 끝)
+
 	
 	
 

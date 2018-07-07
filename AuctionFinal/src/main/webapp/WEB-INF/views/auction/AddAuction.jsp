@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="java.util.List"%>
+<%@page import="com.finalc.auction.model.CategoryVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -26,7 +28,29 @@
 
 		loopshowNowTime();
 		
-	}); // end of ready(); ---------------------------------
+		$("#category").bind("change", function(){
+			var categoryIndex = "";
+			categoryIndex += "<select name='cdnum' class='infoData'><option value=''>:::선택하세요:::</option>";
+			<%
+			List<CategoryVO> cList = (List<CategoryVO>)request.getAttribute("categoryDetailList");
+			
+			for(CategoryVO cvo : cList){
+				%>
+				if($(this).val() == <%=cvo.getCnum()%>)
+				{
+					categoryIndex += "<option value='<%= cvo.getCdnum() %>'><%= cvo.getCdname()%></option>";
+				}
+				<%
+			}
+			%>
+			
+			categoryIndex += "</select>";
+			
+			$("#categoryDetail").empty();
+			$("#categoryDetail").append(categoryIndex);
+		}); // $("#category").bind("change", function()
+		
+	}); // end of jQuery(document).ready(); ---------------------------------
 	
 	function showNowTime() {
 		
@@ -134,7 +158,10 @@
 			<th class="names">상세분류</th>
 			<td>
 				<div class="col-lg-5 col-sm-5">
-					<c:forEach var="map" items="${categoryList}">
+					<select class="form-control" id="categoryDetail" name="categoryDetail">
+						<option value="">:::선택하세요:::</option>
+		            </select>
+					<%-- <c:forEach var="map" items="${categoryList}">
 						<c:forEach var="categoryvo" items="${categoryDetailList}">
 							<c:if test="${map.cnum == categoryvo.cnum}">
 								<select class="form-control" id="categoryDetail" name="categoryDetail">
@@ -144,9 +171,9 @@
 								</select>
 							</c:if>
 						</c:forEach>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
-			</td>	
+			</td>
 		</TR>
 		<TR>
 			<th class="names">경매시작가격</th>

@@ -21,8 +21,8 @@
 	
 	<select id="idCheck" parameterType="String" resultType="Integer">
 		select count(*)
-		from tbl_member_detail
-		where fk_userid = #{userid}
+		from tbl_member
+		where userid = #{userid}
 	</select>
 	
 	<insert id="memberRegist" parameterType="HashMap">
@@ -31,7 +31,7 @@
 	</insert>
 	
 	<insert id="memberRegistDetail" parameterType="HashMap">
-		insert into tbl_member_detail(usernum, fk_userid, username, birth, gender, email, zipcode, addr1, addr2, grade, hp1, hp2, hp3)
-		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, to_char(#{birth}, 'yyyy-mm-dd'), #{gender}, #{email1}||'@'||#{email2}, #{zipcode}, #{addr1}, #{addr2}, default, #{hp1},  #{hp2},  #{hp3})
+		insert into tbl_member_detail(usernum, fk_userid, username, birth, gender, email, zipcode, addr1, addr2, hp1, hp2, hp3)
+		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, #{birth}, #{gender}, #{email1} || '@' || #{email2}, to_number(#{zipcode}), #{addr1}, #{addr2}, #{hp1},  #{hp2},  #{hp3})
 	</insert>
 </mapper>
