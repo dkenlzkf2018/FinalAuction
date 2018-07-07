@@ -1,15 +1,12 @@
 select *
 from tbl_member;
 
-<<<<<<< HEAD
 select userid, passwd, email, username, hp1
-=======
 delete from tbl_member
 where userid = 'leess';
 
 
 select userid, passwd, email, username, email, hp1
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
      , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
 from
 (
