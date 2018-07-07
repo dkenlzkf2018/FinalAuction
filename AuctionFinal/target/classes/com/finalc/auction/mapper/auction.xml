@@ -14,4 +14,3 @@
 		from tbl_category_detail
 	</select>
 </mapper>
- 
