@@ -82,7 +82,7 @@
 			success: function(json) {
 				$.each(json, function(entryIndex, entry){
 					var html = "<tr>";
-					html += "<td style='text-align: center;'>"+entry.fk_userid+"</td>";
+					html += "<td>"+entry.fk_userid+" : </td>";
 					html += "<td>"+entry.cm_content+"</td>";
 					html += "<td style='text-align: center;'>"+entry.cm_writeday+"</td>";
 					html += "</tr>"
@@ -181,7 +181,7 @@
 			<c:if test="${not empty commentList}">
 				<c:forEach var="commentvo" items="${commentList}">
 					<tr>
-						<td style="font-size: 10pt;">${sessionScope.loginuser.userid}&nbsp;:&nbsp;&nbsp;</td>
+						<td style="font-size: 10pt; ">${commentvo.fk_userid}:&nbsp;&nbsp;</td>
 						<td>${commentvo.cm_content}</td>
 						<td style="text-align: center;">${commentvo.cm_writeday}</td>
 					</tr>
@@ -196,7 +196,7 @@
 
 	    <!-- 댓글에 달리는 원게시물 글번호(즉, 댓글의 부모글 글번호) -->	
 		<input type="hidden" name="fk_boardno" value="${boardvo.boardno}" />
-		<input type="hidden" name="fk_userid" value="${boardvo.fk_userid}"/>
+		<input type="hidden" name="fk_userid" value="${sessionScope.loginuser.userid}"/>
 		
 		<input type="text" name="cm_content" id="cm_content" size="80" style="line-height: 40px;"/>
 		
