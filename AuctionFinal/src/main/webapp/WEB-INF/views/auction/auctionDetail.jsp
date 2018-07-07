@@ -197,6 +197,7 @@
                 </div>  
                 <form name="tenderFrm">
                 	<input type="hidden" name="actnum" value="${actnum}"/>
+                	<input type="hidden" name="actname" value="${actname}"/>
                 </form>
               	  
               	

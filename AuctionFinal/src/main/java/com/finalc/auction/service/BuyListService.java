@@ -30,13 +30,6 @@ public class BuyListService implements InterBuyListService {
 		return count;
 	}
 
-	// #Buy 13. 경매 입찰(insert)하는 Service 단
-	@Override
-	public int getBindAuction(HashMap<String, String> map) {
-		int bind = dao.getBindAuction(map);
-		return bind;
-	}
-
 
 	@Override
 	public AuctionVO viewAuction(String actdnum) {
@@ -49,5 +42,12 @@ public class BuyListService implements InterBuyListService {
 	public CategoryVO getCategoryName(String actnum) {
 		CategoryVO cvo = dao.getCategoryName(actnum);
 		return cvo;
+	}
+
+
+	@Override
+	public int inputTender(HashMap<String, String> map) {
+		int result = dao.inputTender(map);
+		return result;
 	}
 }

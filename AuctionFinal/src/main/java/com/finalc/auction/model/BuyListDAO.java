@@ -29,12 +29,6 @@ public class BuyListDAO implements InterBuyListDAO {
 	}
 
 	@Override
-	public int getBindAuction(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public AuctionVO viewAuction(String actdnum) {
 		AuctionVO acvo = sqlsession.selectOne("buyList.viewAuction", actdnum);
 		return acvo;
@@ -44,6 +38,12 @@ public class BuyListDAO implements InterBuyListDAO {
 	public CategoryVO getCategoryName(String actnum) {
 		CategoryVO cvo = sqlsession.selectOne("buyList.getCategoryName", actnum);
 		return cvo;
+	}
+
+	@Override
+	public int inputTender(HashMap<String, String> map) {
+		int result = sqlsession.insert("buyList.inputTender",map);
+		return result;
 	}
 	
 }

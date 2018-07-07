@@ -186,7 +186,7 @@ public class BuyListController {
 		req.setAttribute("cvo", cvo);
 		req.setAttribute("acvo", acvo);
 		req.setAttribute("n", n);
-		return "auction/auctionDetail.tiles";
+		return "buy/viewAuction.tiles";
 	}
 	
 	@RequestMapping(value="/tender.action", method={RequestMethod.POST})
@@ -194,14 +194,42 @@ public class BuyListController {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		String actnum = req.getParameter("actnum");
+		String actname = req.getParameter("actname");
 		if (loginuser == null) {
 			req.setAttribute("msg", "로그인을 먼저 하십시오!");
 			req.setAttribute("loc", "login.action");
 			return "msg.notiles";
 		}
-		//int result = service.tender(actnum, loginuser.getUsernum());
-		
-		return "tender.notiles";
+		else {
+			req.setAttribute("actnum", actnum);
+			req.setAttribute("actname", actname);
+			return "tender.notiles";
+		}
+	}
+	
+	@RequestMapping(value="/inputTender.action", method={RequestMethod.POST})
+	public String inputTender(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		String actnum = req.getParameter("actnum");
+		System.out.println("actnum : " + actnum);
+		String tenderprice = req.getParameter("tenderprice");
+		System.out.println("tenderprice : " + tenderprice);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("actnum", actnum);
+		map.put("usernum", loginuser.getUsernum());
+		map.put("tenderprice", tenderprice);
+		// 경매 입찰
+		int result = service.inputTender(map);
+		if (result > 0) {
+			req.setAttribute("msg", "경매 입찰 성공!!");
+			req.setAttribute("loc", "self.close();");
+		} 
+		else {
+			req.setAttribute("msg", "경매 입찰 실패!!");
+			req.setAttribute("loc", "javascript:history.back();");
+		}
+		return "msg.notiles";
 	}
 	
 }
