@@ -162,7 +162,6 @@ public class BoardController {
 	
 	// 게시글 쓰기 완료 (07.03 시작)
 	@RequestMapping(value="/writeEnd.action", method={RequestMethod.POST})
-
 	public String writeEnd(BoardVO boardvo, MultipartHttpServletRequest req, HttpSession session) {
 		
 		// # 137. 사용자가 쓴 글에 파일이 첨부된 것인지 첨부되지 않은것인지 구분 지어야한다.
@@ -274,7 +273,7 @@ public class BoardController {
 	
 	// 게시글 수정하기 (07.06 12:07 시작)
 	@RequestMapping(value="/writeedit.action", method={RequestMethod.GET})
-	public String requireLogin_writeedit(HttpServletRequest req, HttpServletResponse res) {
+	public String auctionLogin_writeedit(HttpServletRequest req, HttpServletResponse res) {
 		
 		String boardno = req.getParameter("boardno");
 		
@@ -282,7 +281,7 @@ public class BoardController {
 		
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
-		
+	
 		if(!loginuser.getUserid().equals(boardvo.getFk_userid())) {
 			String msg = "글 수정은 작성자만 가능합니다.";
 			String loc = "javascript:history.back()";
@@ -319,7 +318,7 @@ public class BoardController {
 	
 	// 게시글 삭제 (07.06 17:20 시작)
 	@RequestMapping(value="/writedel.action", method={RequestMethod.GET})
-	public String requireLogin_del(HttpServletRequest req, HttpServletResponse res) {
+	public String auctionLogin_del(HttpServletRequest req, HttpServletResponse res) {
 		
 		// 삭제해야할 글번호 가져오기
 		String boardno = req.getParameter("boardno");
