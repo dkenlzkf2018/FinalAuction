@@ -179,7 +179,7 @@
                   <div class="col-lg-6">
                     <input type="text" id="userid" name="userid" class="form-control requiredInfo" value="${userid}"/>
                   </div>
-                  <button class="col-lg-2 btn btn-default" onClick="idCheck();">중복 확인</button>
+                  <button class="col-lg-2 btn btn-default" type="button" onClick="idCheck();">중복 확인</button>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="password">비밀번호 <span class="require">*</span></label>
@@ -263,8 +263,8 @@
               </form>
               <div class="row">
                 <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
-                  <button class="btn btn-primary" id="btnRegister" onClick="goRegist();">가입하기</button>
-                  <button class="btn btn-default" onClick="location.href='<%=request.getContextPath()%>/index.action';">메인으로</button>
+                  <button class="btn btn-primary" type="button" id="btnRegister" onClick="goRegist();">가입하기</button>
+                  <button class="btn btn-default" type="button" onClick="location.href='<%=request.getContextPath()%>/index.action';">메인으로</button>
                 </div>
               </div>
             </div>
