@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <!-- Page level plugin styles START -->
-<link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-<link href="assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
-<link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
 <!-- Page level plugin styles END -->
 <script type="text/javascript">
  
@@ -23,13 +22,6 @@
     		 func_Regist(event);
     	 });
     }); // end of $(document).ready()---------------------------	 
-
-    function func_Regist(event){
-    	var frm = document.RegistFrm;
-    	frm.action = "/auction/memberRegist.action";
-    	frm.method = "GET";
-    	frm.submit();
-    }
     
 	function func_Login(event) {
     	if(${sessionScope.loginuser != null}) {
@@ -58,14 +50,22 @@
     		return;
     	}
     	var frm = document.loginFrm;
-    	frm.action = "/auction/loginEnd.action";
+    	frm.action = "loginEnd.action";
     	frm.method = "post";
     	frm.submit();
     	
     }
+
+	function func_Regist(event){
+    	/* var frm = document.RegistFrm;
+    	frm.action = "/auction/memberRegist.action";
+    	frm.method = "GET";
+    	frm.submit(); */
+    	location.href = "<%=request.getContextPath()%>/memberRegist.action";
+    }
 </script>
 
-<div style="width:90%; margin: auto; border: solid 0px red;">
+<!-- <div style="width:90%; margin: auto; border: solid 0px red;">
 
 	<div style="width:80%; margin-top:10%; margin-left:10%; height:300px; border: solid 0px blue;">
 		<h2 class="text-primary">로그인</h2>
@@ -87,68 +87,55 @@
 			</div>
 			
 		</form>
-		
-		<form name="RegistFrm">
-		</form>
-		
 	</div>
 	
-</div>
+</div> -->
 
 <!-- BEGIN CHECKOUT -->
-<div id="checkout" class="panel panel-default">
-  <div class="panel-heading">
-    <h2 class="panel-title">
-      <a data-toggle="collapse" data-parent="#checkout-page" href="#checkout-content" class="accordion-toggle">
-        Step 1: Checkout Options
-      </a>
-    </h2>
-  </div>
-  <div id="checkout-content" class="panel-collapse collapse in">
-    <div class="panel-body row">
-      <div class="col-md-6 col-sm-6">
-        <h3>New Customer</h3>
-        <p>Checkout Options:</p>
-        <div class="radio-list">
-          <label>
-            <input type="radio" name="account"  value="register"> Register Account
-          </label>
-          <label>
-            <input type="radio" name="account"  value="guest"> Guest Checkout
-          </label> 
-        </div>
-        <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-        <button class="btn btn-primary" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-address-content">Continue</button>
-      </div>
-      <div class="col-md-6 col-sm-6">
-        <h3>Returning Customer</h3>
-        <p>I am a returning customer.</p>
-        <form role="form" action="#">
-          <div class="form-group">
-            <label for="email-login">E-Mail</label>
-            <input type="text" id="email-login" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="password-login">Password</label>
-            <input type="password" id="password-login" class="form-control">
-          </div>
-          <a href="javascript:;">Forgotten Password?</a>
-          <div class="padding-top-20">                  
-            <button class="btn btn-primary" type="submit">Login</button>
-          </div>
-          <hr>
-          <div class="login-socio">
-            <p class="text-muted">or login using:</p>
-            <ul class="social-icons">
-              <li><a href="javascript:;" data-original-title="facebook" class="facebook" title="facebook"></a></li>
-              <li><a href="javascript:;" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
-              <li><a href="javascript:;" data-original-title="Google Plus" class="googleplus" title="Google Plus"></a></li>
-              <li><a href="javascript:;" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a></li>
-            </ul>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+<div class="container">
+	<div id="checkout-content" class="panel-collapse collapse in">
+	  <div class="panel-body row">
+	    <div class="col-md-6 col-sm-6 offset-md-3 offset-sm-3">
+	      <h3>로그인</h3>
+	      <p>Super Auction을 이용해주셔서 감사합니다.</p>
+	      <form role="form" name="loginFrm">
+	        <div class="form-group">
+	          <label for="email-login">아이디</label>
+	          <input type="text" name="userid" id="userid" class="form-control"/>
+	        </div>
+	        <div class="form-group">
+	          <label for="password-login">비밀번호</label>
+	          <input type="password" name="passwd" id="passwd" class="form-control"/>
+	        </div>
+	        <a href="javascript:;">Forgotten Password?</a>
+	        <div class="padding-top-20">                  
+	          <button class="btn btn-default" type="button" id="btnLOGIN">로그인</button>
+	          <button class="btn btn-primary" type="button" id="btnRegist">회원가입</button>
+	        </div>
+	        <hr>
+	      </form>
+	    </div>
+	  </div>
+	</div>
 </div>
 <!-- END CHECKOUT -->
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+<script src='<%=request.getContextPath() %>/resources/assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+<script src="<%=request.getContextPath() %>/resources/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+
+<script src="<%=request.getContextPath() %>/resources/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/resources/assets/pages/scripts/checkout.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();    
+        Layout.initOWL();
+        Layout.initTwitter();
+        Layout.initImageZoom();
+        Layout.initTouchspin();
+        Layout.initUniform();
+        Checkout.init();
+    });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->
