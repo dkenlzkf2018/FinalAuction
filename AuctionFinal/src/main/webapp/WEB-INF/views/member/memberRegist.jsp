@@ -5,6 +5,8 @@
  
 	jQuery(document).ready(function(){
 		
+		if($("#password").focus() &&)
+		
 		$("#error_passwd").hide();
 		$("#error").hide();
 		
