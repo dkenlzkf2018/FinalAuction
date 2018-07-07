@@ -23,6 +23,15 @@ public class AdminController {
 			return "adminMain.admin";
 		}
 		
+	// 카테고리 등록 Controller 단
+		@RequestMapping(value="/addCategory.action", method={RequestMethod.GET})
+		public String adminCatego() {
+			
+			return "adminCatego.admin";
+		}
+		
+	// 	
+		
 		
 	
 }

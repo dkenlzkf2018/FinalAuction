@@ -11,15 +11,47 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="adminMain.action"><img src="<%=request.getContextPath() %>/resources/images/logo-admin.png" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="<%=request.getContextPath() %>/resources/images/logo2-admin.png" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="adminMain.action"><img src="<%=request.getContextPath() %>/resources/images/logo2-admin.png" alt="Logo"></a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="/auction/adminMain.action"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    <a href="/auction/adminMain.action"> <i class="menu-icon fa fa-dashboard"></i>관리자 메인</a>
                 </li>
                 <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
+			<!-- 관리 sideinfo 미완  -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>게시판 관리</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="*.action">Basic Table</a></li>
+                        <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>카테고리 관리</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="*.action">Basic Table</a></li>
+                        <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>회원 관리</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="*.action">Basic Table</a></li>
+                        <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>주문/배송 관리</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="*.action">주문 관리</a></li>
+                        <li><i class="fa fa-table"></i><a href="*.action">배송 관리</a></li>
+                    </ul>
+                </li>
+                
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Components</a>
                     <ul class="sub-menu children dropdown-menu">
