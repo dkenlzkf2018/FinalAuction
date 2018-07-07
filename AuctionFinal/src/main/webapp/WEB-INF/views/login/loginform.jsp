@@ -107,7 +107,7 @@
 	          <label for="password-login">비밀번호</label>
 	          <input type="password" name="passwd" id="passwd" class="form-control"/>
 	        </div>
-	        <a href="javascript:;">Forgotten Password?</a>
+	        <a href="javascript:<%= request.getContextPath() %>/login/pwdFind.action;">Forgotten Password?</a>
 	        <div class="padding-top-20">                  
 	          <button class="btn btn-default" type="button" id="btnLOGIN">로그인</button>
 	          <button class="btn btn-primary" type="button" id="btnRegist">회원가입</button>

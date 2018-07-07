@@ -69,8 +69,7 @@ public class LoginController {
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
 	public String memberRegist() {
 		
-		return "member/memberRegist.tiles";
-		
+		return "member/memberRegist.tiles";		
 	}
 	
 	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
@@ -167,6 +166,13 @@ public class LoginController {
 		req.setAttribute("RegMember1", RegMember1); 
 		
 		return "member/memberRegistEnd.tiles";
+	}
+	
+	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.GET})
+	public String pwdFind() {
+		
+		return "member/pwdFind.tiles";
+		
 	}
 	
 }
