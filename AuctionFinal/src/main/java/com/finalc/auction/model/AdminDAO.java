@@ -22,4 +22,7 @@ public class AdminDAO implements InterAdminDAO {
 		return adMapList;
 	}
 	
+	// 카테고리 관리 단
+	// @Override
+	// public 
 }
