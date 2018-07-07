@@ -5,43 +5,66 @@
  
 	jQuery(document).ready(function(){
 		
-		if($("#password").focus() &&)
+		$("#password").keydown(function(event){
+			if(event.keyCode == 13) { // 엔터를 했을 경우
+				goPwdCheck(event);
+			}// end of if------------------------------
+		});// end of $("#loginPwd").keydown()----------
+		
+		$("#passwd2").keydown(function(event){
+			if(event.keyCode == 13) { // 엔터를 했을 경우
+				PwdCheck(event);
+			}// end of if------------------------------
+		});// end of $("#loginPwd").keydown()----------
 		
 		$("#error_passwd").hide();
 		$("#error").hide();
 		
 	}); // end of $(document).ready()---------------------------	 
     
-    function goPwdCheck(){
+    function goPwdCheck(event){
     	
-		var pwd1 = $("#password").val();
-		var pwd2 = $("#passwd2").val();
+		var pwd1 = $("#password").val().trim();
+		var pwd2 = $("#passwd2").val().trim();
 		
-		if(){
-			
-			var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
-			
-			var bool = regexp_passwd.test(pwd1);
-			
-			if(!bool){
-				$("#error_passwd").show();
-				pwd1 = "";
-				$("#password").focus();
-			}
-			else{
-				$("#error_passwd").hide();
-				$("#passwd2").focus();
-			}
+		var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
+		
+		var bool = regexp_passwd.test(pwd1);
+		
+		if(pwd1 == ""){
+			alert("비밀번호를 입력하세요");
+			$("#password").focus();
+			return;
 		}
+		
+		if(!bool){
+			$("#error_passwd").show();
+			$("#password").focus();
+			return;
+		}
+		else{
+			$("#error_passwd").hide();
+			$("#passwd2").focus();
+			return;
+		}
+		
+	}
+	
+	function PwdCheck(event){
+		
+		var pwd1 = $("#password").val().trim();
+		var pwd2 = $("#passwd2").val().trim();
 		
 		if(pwd1 == pwd2){
 			$("#error").hide();
 			$("#name").focus();
+			return;
 		}
 		else if(pwd1 != pwd2){
 			$("#error").show();
-			pwd2 = "";
+			$("#passwd2").val("");
 			$("#passwd2").focus();
+			return;
 		}
 		
 	}
@@ -169,7 +192,7 @@
                   <label class="col-lg-2 control-label" for="passwd2">비밀번호 확인 <span class="require">*</span></label>
                   <div class="col-lg-8">
                     <input type="password" name="passwd2" id="passwd2" class="form-control requiredInfo">
-                    <span id="error" style="color: red;">암호가 일치하지 않습니다.</span>
+                    <span id="error" name="error" style="color: red;">암호가 일치하지 않습니다.</span>
                   </div>
                 </div>
                 <div class="form-group">
