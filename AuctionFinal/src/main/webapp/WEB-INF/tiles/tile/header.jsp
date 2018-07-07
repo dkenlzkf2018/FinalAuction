@@ -43,7 +43,7 @@
     <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
-        <a class="site-logo" href="index.action"><img src="<%=request.getContextPath() %>/resources/assets/corporate/img/logos/logo-red.png" alt="Metronic Shop UI"></a>
+        <a class="site-logo" href="index.action"><img src="<%=request.getContextPath() %>/resources/assets/corporate/img/logos/superauction.png" alt="Metronic Shop UI"></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
