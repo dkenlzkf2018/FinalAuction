@@ -12,11 +12,74 @@
 <!-- Page level plugin styles END -->
 
 <script type="text/javascript">
+	jQuery(document).ready(function () {
+		loopshowNowTime();
+	});
+	
+	function showNowTime() {
+		var endday = new Date("${acvo.actd_endday}");
+		var nowday = new Date();
+		var remainday = new Date(endday - nowday);
+				
+		//console.log(startNow);
+	
+		var strNow = remainday.getDate() + "일 ";
+				
+		var hour = "";
+		hour = remainday.getHours();
+		
+		var minute = "";
+		if(remainday.getMinutes() < 10) {
+			minute = "0"+remainday.getMinutes();
+		} else {
+			minute = ""+remainday.getMinutes();
+		}
+		
+		var second = "";
+		if(remainday.getSeconds() < 10) {
+			second = "0"+remainday.getSeconds();
+		} else {
+			second = ""+remainday.getSeconds();
+		}
+		if (remainday < endday) {
+			strNow += hour + "시간 " + minute + "분 " + second + "초";
+		}
+		else if (remainday <= endday ){
+			strNow = "경매종료"; 
+		}
+		console.log(strNow);
+		$("#clock").html("<span>"+strNow+"</span>");
+	
+	}// end of function showNowTime() -----------------------------
+	
+	function loopshowNowTime() {
+		showNowTime();
+		
+		var timejugi = 1000;   // 시간을 1초 마다 자동 갱신하려고.
+		
+		setTimeout(function() {
+						loopshowNowTime();	
+					}, timejugi);
+		
+	}// end of loopshowNowTime() --------------------------
+
 	function reviewRegist() {
 		var frm = document.reviewFrm;
 		
 		frm.method = "get";
 		frm.action = "reviewRegist.action";
+		frm.submit();
+	}
+	
+	function goTender() {
+		
+		var frm = document.tenderFrm;
+		var url = "<%=request.getContextPath()%>/tender.action";
+    	window.open("", "tender",
+    			   "left=500px, top=100px, width=300px, height=100px");
+		frm.method = "POST";
+		frm.action = url;
+		frm.target = "tender";
 		frm.submit();
 	}
 </script>
@@ -122,34 +185,35 @@
               <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
                 <div class="pull-left">
-              	  <label class="control-label">현재가 : </label>
+              	  <label class="control-label">현  재  가  : </label>
+              	  <fmt:formatNumber value="${acvo.startprice}" type="number"/>원
+              	
+              	  <br/>
+              	  <label class="control-label">시  작  가  : </label>
+              	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
+              	  <br/>
+              	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
+              	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
                 </div>  
-                
-                <div class="price">
-                 <strong><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/></strong><span>원</span><br/>
-                 <em><span><fmt:formatNumber value="${acvo.actd_price + (acvo.actd_price * 0.1)}" type="number"/>원</span></em>
-                </div>
-                
-                
-                
+                <form name="tenderFrm">
+                	<input type="hidden" name="actnum" value="${actnum}"/>
+                </form>
+              	  
+              	
               </div>
-              
-              <div class="description">
-                <p>${acvo.actd_content}</p>
-              </div>
-              
+                            
               <div class="product-page-options">
                 <div class="pull-left">
-                  <label class="control-label">입찰수 : </label>
-                  <select class="form-control input-sm">
-                    <option>L</option>
-                    <option>M</option>
-                    <option>XL</option>
-                  </select>
+                  <label class="control-label">입  찰  수 : </label>
+                  <input style="border:none;" type="text" value="회 (총 판매수량 : ${acvo.actd_qty}개)" readonly />
                 </div>
                 <div class="pull-left">
-                  <label class="control-label">남은시간 : </label>
-                  <%-- ${acvo.} --%>
+                  <label class="control-label">남은시간 :  </label>
+                  <div id="clock" style="display:inline;"></div>
+                </div>
+                <div class="pull-left">
+                  <label class="control-label">(종료 :  </label>
+                  <div style="display:inline;">${acvo.actd_endday})</div>
                 </div>
               </div>
               
@@ -162,12 +226,12 @@
                 	<input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
                 </div>
                 <br/><br/><br/>
-                <button class="btn btn-primary" type="submit">입찰하기</button>&nbsp;
+                <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
                 <c:if test="${n == 1}">
                 <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-                <button class="btn btn-primary" type="submit">구매하기</button>&nbsp;
+                <button class="btn btn-default" type="submit">구매하기</button>&nbsp;
                 </c:if>
-                <button class="btn btn-primary" type="submit">관심상품등록</button>
+                <button class="btn btn-default" type="submit">관심상품등록</button>
                 
               </div>
               <!-- <div class="review">
@@ -392,6 +456,8 @@
         Layout.initImageZoom();
         Layout.initTouchspin();
         Layout.initUniform();
+        
+        
     });
 </script>
 <!-- END PAGE LEVEL JAVASCRIPTS -->

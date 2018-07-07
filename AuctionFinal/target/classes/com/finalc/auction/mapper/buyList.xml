@@ -110,8 +110,8 @@
 		     , cdnum, cdname
 		     , actnum, actname, actimage
 		     , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
-		     , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday, startprice
-		     , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
+		     , to_char(actd_startday, 'yyyy-mm-dd hh24:mi:ss') AS actd_startday, startprice
+		     , to_char(actd_endday, 'yyyy-mm-dd hh24:mi:ss') AS actd_endday
 		     , E.fk_userid AS panmaeja
 		from tbl_category A join tbl_category_detail B
 		on A.cnum = B.fk_cnum

@@ -179,8 +179,8 @@ public class BuyListController {
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 				
 		AuctionVO acvo = service.viewAuction(actdnum);
-		
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
+		
 		
 		int n = 1;
 		req.setAttribute("cvo", cvo);
@@ -188,4 +188,20 @@ public class BuyListController {
 		req.setAttribute("n", n);
 		return "auction/auctionDetail.tiles";
 	}
+	
+	@RequestMapping(value="/tender.action", method={RequestMethod.POST})
+	public String tender(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		String actnum = req.getParameter("actnum");
+		if (loginuser == null) {
+			req.setAttribute("msg", "로그인을 먼저 하십시오!");
+			req.setAttribute("loc", "login.action");
+			return "msg.notiles";
+		}
+		//int result = service.tender(actnum, loginuser.getUsernum());
+		
+		return "tender.notiles";
+	}
+	
 }
