@@ -40,6 +40,8 @@ public interface InterBoardService {
 
 	int writedel(HashMap<String, String> map)throws Throwable;
 
+	int writeComment(CommentVO commentvo) throws Throwable;
+
 
 
 }

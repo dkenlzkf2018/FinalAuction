@@ -111,31 +111,13 @@ public class LoginController {
 		String zipcode = req.getParameter("zipcode");
 		String addr1 = req.getParameter("addr1");
 		String addr2 = req.getParameter("addr2");
-		
-		System.out.println(userid);
-		System.out.println(pwd);
-		System.out.println(name);
-		System.out.println(birth);
-		System.out.println(email1);
-		System.out.println(email2);
-		System.out.println(gender);
-		System.out.println(hp1);
-		System.out.println(hp2);
-		System.out.println(hp3);
-		System.out.println(zipcode);
-		System.out.println(addr1);
-		System.out.println(addr2);
-		
+				
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userid", userid);
 		map.put("pwd", pwd);
-		
-		System.out.println(map);
-				
+			
 		int RegMember = service.memberRegist(map);
 		int RegMember1 = 0;
-		
-		System.out.println("확인용 : " + RegMember);
 		
 		if(RegMember == 0) {
 			String msg = "가입실패";
@@ -162,8 +144,6 @@ public class LoginController {
 			
 			RegMember1 = service.memberRegistDetail(map);
 			
-			System.out.println("확인용RegMember1 : "+RegMember1);
-			
 			if(RegMember1 == 1) {
 				String msg = "가입성공";
 				String loc = "login.action";
@@ -180,7 +160,7 @@ public class LoginController {
 				req.setAttribute("msg", msg);
 				req.setAttribute("loc", loc);
 				
-				return"msg.notiles";
+				return"msg.notiles"; 
 			}
 		}
 		

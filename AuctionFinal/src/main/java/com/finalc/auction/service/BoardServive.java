@@ -184,6 +184,25 @@ public class BoardServive implements InterBoardService {
 		return n;
 	}// 게시글 삭제 완료 (07.06 17:28 끝)
 
+	// 댓글 쓰기 (07.07 11:53 시작)
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class} )
+	public int writeComment(CommentVO commentvo) throws Throwable {
+		
+		int result = 0;
+		
+		int n = 0;
+		
+		n = dao.writeComment(commentvo);
+		
+		if(n == 1) {
+			
+			result = dao.updateCommentCount(commentvo.getFk_boardno());
+		}
+		
+		return result;
+	} // 댓글 쓰기 (07.07 11:56 끝)
+
 	
 	
 

@@ -63,15 +63,15 @@
 			return;
 		}
 		
-		var contentval = frm.content.value.trim();
+		var cm_contentval = frm.cm_content.value.trim();
 		
-		if(contentval == "") {
+		if(cm_contentval == "") {
 			alert("댓글 내용을 입력하세요.");
 			return;
 		}
 		
 		var data_form = {fk_userid : frm.fk_userid.value,
-				         content: contentval,
+				         cm_content: cm_contentval,
 				         fk_boardno: frm.fk_boardno.value};
 		
 		$.ajax({
@@ -83,7 +83,7 @@
 				$.each(json, function(entryIndex, entry){
 					var html = "<tr>";
 					html += "<td style='text-align: center;'>"+entry.fk_userid+"</td>";
-					html += "<td>"+entry.content+"</td>";
+					html += "<td>"+entry.cm_content+"</td>";
 					html += "<td style='text-align: center;'>"+entry.cm_writeday+"</td>";
 					html += "</tr>"
 					
@@ -94,7 +94,6 @@
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
 			}
 		});
-		
 	}
 	
 </script>
@@ -181,14 +180,10 @@
 			<tbody id="commentDisplay"></tbody>
 			<c:if test="${not empty commentList}">
 				<c:forEach var="commentvo" items="${commentList}">
-					
 					<tr>
-						<td style="font-size: 12pt; padding-right: 9%;">${commentvo.fk_userid}
-						<span style="text-align: center; font-size: 8pt; padding-right: 1%;"> ${commentvo.cm_writeday}</span></td>
-					</tr>
-					
-					<tr>
-						<td colspan="2" style="padding-right: 9%; padding-top: 5px;">${commentvo.cm_content}</td>
+						<td style="text-align: center; font-size: 10pt;">${commentvo.fk_userid}&nbsp;:&nbsp;&nbsp;</td>
+						<td>${commentvo.cm_content}</td>
+						<td style="text-align: center;">${commentvo.cm_writeday}</td>
 					</tr>
 				</c:forEach>
 			</c:if> 
@@ -199,10 +194,11 @@
 
 	<form name="addWriteFrm" style="margin-bottom: 2%;">
 
-		<input type="text" name="content" size="80" style="line-height: 40px;"/>
-	    
 	    <!-- 댓글에 달리는 원게시물 글번호(즉, 댓글의 부모글 글번호) -->	
 		<input type="hidden" name="fk_boardno" value="${boardvo.boardno}" />
+		<input type="hidden" name="fk_userid" value="${boardvo.fk_userid}"/>
+		
+		<input type="text" name="cm_content" id="cm_content" size="80" style="line-height: 40px;"/>
 		
 		<button type="button" onClick="goWrite();"  class="btn btn-link">쓰기</button>
 		
