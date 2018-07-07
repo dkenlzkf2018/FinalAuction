@@ -5,33 +5,19 @@
  
 	jQuery(document).ready(function(){
 		
-		$("#password").blur(function(event){
-			goPwdCheck(event);
-		});// end of $("#loginPwd").keydown()----------
-		
-		$("#passwd2").blur(function(event){
-			PwdCheck(event);
-		});// end of $("#loginPwd").keydown()----------
-		
 		$("#error_passwd").hide();
 		$("#error").hide();
 		
-	}); // end of $(document).ready()---------------------------	 
-    
-    function goPwdCheck(event){
-    	
-		var pwd1 = $("#password").val().trim();
-		var pwd2 = $("#passwd2").val().trim();
-		
-		var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
-		
-		var bool = regexp_passwd.test(pwd1);
-		
-		$(".requiredInfo").each(function(){
-		
+		$("#password").blur(function(event){
+			var pwd1 = $("#password").val().trim();
+			var pwd2 = $("#passwd2").val().trim();
+			
+			var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
+			
+			var bool = regexp_passwd.test(pwd1);
+			
 			if(pwd1 == ""){
 				alert("비밀번호를 입력하세요");
-				return;
 			}
 			
 			if(!bool){
@@ -43,32 +29,34 @@
 			else{
 				$("#error_passwd").hide();
 				$(":input").attr("disabled",false).removeClass("bgcol");
-				$("#btnRegister").attr("disabled",false); 			
+				$("#btnRegister").attr("disabled",false); 
+				$("#passwd2").focus();
 			}
-	
-		});
 		
-	}
-	
-	function PwdCheck(event){
+		});// end of $("#loginPwd").keydown()----------
 		
-		var pwd1 = $("#password").val().trim();
-		var pwd2 = $("#passwd2").val().trim();
+		$("#passwd2").blur(function(event){
+			var pwd1 = $("#password").val().trim();
+			var pwd2 = $("#passwd2").val().trim();
+			
+			
+			if(pwd1 != pwd2){
+				$("#error").show();
+				$(":input").attr("disabled",true).addClass("bgcol");
+				$("#btnRegister").attr("disabled",true);
+				$(this).attr("disabled",false).removeClass("bgcol");
+			}
+			else if(pwd1 == pwd2){
+				$("#error").hide();
+				$(":input").attr("disabled",false).removeClass("bgcol");
+				$("#btnRegister").attr("disabled",false);
+				$("#name").focus();
+			}
+		});// end of $("#loginPwd").keydown()----------
 		
-		if(pwd1 == pwd2){
-			$("#error").hide();
-			$(":input").attr("disabled",false).removeClass("bgcol");
-			$("#btnRegister").attr("disabled",false);
-			$("#passwd2").focus();
-		}
-		else if(pwd1 != pwd2){
-			$("#error").show();
-			$(":input").attr("disabled",true).addClass("bgcol");
-			$("#btnRegister").attr("disabled",true);
-			$(this).attr("disabled",false).removeClass("bgcol");
-		}
 		
-	}
+		
+	}); // end of $(document).ready()---------------------------	 
     
     function idCheck(){
     	
@@ -178,28 +166,28 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
-                    <input type="text" id="userid" name="userid" class="form-control requiredInfo" value="${userid}"/>
+                    <input type="text" id="userid" name="userid" class="form-control requiredInfo" value="${userid}" required/>
                   </div>
                   <button class="col-lg-2 btn btn-default" type="button" onClick="idCheck();">중복 확인</button>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="password">비밀번호 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" id="password" name="password" class="form-control requiredInfo"/>
+                    <input type="password" id="password" name="password" class="form-control requiredInfo" required/>
                     <span id="error_passwd" style="color: red;">암호는 영문자,숫자,특수기호가 혼합된 8~15 글자로만 입력가능합니다.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="passwd2">비밀번호 확인 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" name="passwd2" id="passwd2" class="form-control requiredInfo">
+                    <input type="password" name="passwd2" id="passwd2" class="form-control requiredInfo" required/>
                     <span id="error" name="error" style="color: red;">암호가 일치하지 않습니다.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="name">성명 <span class="require">*</span></label>
                   <div class="col-lg-5">
-                    <input type="text" id="name" name="name" class="form-control requiredInfo">
+                    <input type="text" id="name" name="name" class="form-control requiredInfo" required/>
                   </div>
                   <div class="col-lg-3">
                     <select class="form-control" name="gender" id="gender">
@@ -212,13 +200,13 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="birth">생년월일 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="date" id="birth" name="birth" class="form-control requiredInfo">
+                    <input type="date" id="birth" name="birth" class="form-control requiredInfo"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="email">E-Mail <span class="require">*</span></label>
                   <div class="col-lg-3">
-                    <input type="text" name="email1" id="email1" class="form-control requiredInfo">
+                    <input type="text" name="email1" id="email1" class="form-control requiredInfo"/>
                   </div>
                   <div class="col-lg-5">
                     <select class="form-control" name="email2" id="email2">
@@ -242,16 +230,16 @@
 					</select>
                   </div>
                   <div class="col-lg-3">
-                    <input type="text" name="hp2" id="hp2" class="form-control" size="4" maxlength="4">
+                    <input type="text" name="hp2" id="hp2" class="form-control" size="4" maxlength="4"/>
                   </div>
                   <div class="col-lg-3">
-                    <input type="text" name="hp3" id="hp3" class="form-control" size="4" maxlength="4">
+                    <input type="text" name="hp3" id="hp3" class="form-control" size="4" maxlength="4"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
                   <div class="col-lg-8">
-                    <input type="text" name="zipcode" id="zipcode" class="form-control">
+                    <input type="text" name="zipcode" id="zipcode" class="form-control"/>
                   </div>
                 </div>
                 <div class="form-group">
