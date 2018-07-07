@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Page level plugin styles START -->
 <link href="<%=request.getContextPath() %>/resources/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
@@ -25,8 +25,9 @@
   <div class="container">
     <ul class="breadcrumb">
         <li><a href="index.action">Home</a></li>
-        <li><a href="">Store</a></li>
-        <li class="active">Cool green dress with red bell</li>
+        <li>${cvo.cname}</li>
+        <li><a href="">${cvo.cdname}</a></li>
+        <li class="active">${acvo.actname}</li>
     </ul>
     <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="row margin-bottom-40">
@@ -109,7 +110,7 @@
               
               
               <div class="product-main-image">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg">
+                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg" alt="${acvo.actname}" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg">
               </div>
               <div class="product-other-images">
                 <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg"></a>
@@ -118,19 +119,15 @@
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
-              <h1>Cool green dress with red bell</h1>
+              <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
                 <div class="price">
-                  <strong><span>$</span>47.00</strong>
-                  <em>$<span>62.00</span></em>
-                </div>
-                <div class="availability">
-                  Availability: <strong>In Stock</strong>
+                  <strong><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/></strong><span>원</span><br/>
+                  <em><span><fmt:formatNumber value="${acvo.actd_price + (acvo.actd_price * 0.1)}" type="number"/>원</span></em>
                 </div>
               </div>
               <div class="description">
-                <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat 
-				Nostrud duis molestie at dolore.</p>
+                <p>${acvo.actd_content}</p>
               </div>
               <div class="product-page-options">
                 <div class="pull-left">
@@ -179,7 +176,7 @@
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade" id="Description">
-                  <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. </p>
+                  <p>${acvo.actd_content}</p>
                 </div>
                 <div class="tab-pane fade" id="Information">
                   <table class="datasheet">

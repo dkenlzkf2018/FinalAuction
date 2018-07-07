@@ -14,4 +14,6 @@ public interface InterBuyListDAO {
 
 	AuctionVO viewAuction(String actdnum);
 
+	CategoryVO getCategoryName(String actnum);
+
 }

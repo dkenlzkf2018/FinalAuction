@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.AuctionVO;
+import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.service.InterBuyListService;
 
@@ -179,10 +180,12 @@ public class BuyListController {
 				
 		AuctionVO acvo = service.viewAuction(actdnum);
 		
+		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
+		
+		req.setAttribute("cvo", cvo);
 		req.setAttribute("acvo", acvo);
-		req.setAttribute("usernum", loginuser.getUsernum());
 		
-		return "auction/viewAuction.tiles";
+		return "auction/auctionDetail.tiles";
 	}
 }

@@ -39,5 +39,11 @@ public class BuyListDAO implements InterBuyListDAO {
 		AuctionVO acvo = sqlsession.selectOne("buyList.viewAuction", actdnum);
 		return acvo;
 	}
+
+	@Override
+	public CategoryVO getCategoryName(String actnum) {
+		CategoryVO cvo = sqlsession.selectOne("buyList.getCategoryName", actnum);
+		return cvo;
+	}
 	
 }

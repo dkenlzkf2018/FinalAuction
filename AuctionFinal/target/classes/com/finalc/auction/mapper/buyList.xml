@@ -110,7 +110,7 @@
 		     , cdnum, cdname
 		     , actnum, actname, actimage
 		     , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
-		     , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday
+		     , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday, startprice
 		     , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
 		     , E.fk_userid AS panmaeja
 		from tbl_category A join tbl_category_detail B
@@ -121,6 +121,12 @@
 		on C.actnum = D.fk_actnum
 		join tbl_member_detail E
 		on D.fk_usernum = E.usernum
-		where actdnum = #{actdnum};
+		where D.actdnum = #{actdnum}
+	</select>
+	
+	<select id="getCategoryName" parameterType="String" resultType="com.finalc.auction.model.CategoryVO">
+		select cnum, cname, cdnum, fk_cnum, cdname
+		from tbl_category A join tbl_category_detail B on A.cnum = B.fk_cnum
+		where B.cdnum = (select fk_cdnum from tbl_auction where actnum = #{actnum})
 	</select>
 </mapper>

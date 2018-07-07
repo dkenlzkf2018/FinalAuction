@@ -100,7 +100,7 @@
 		 </c:if> 
 		 <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
 		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
-		 <input type="hidden" name="userid" value="${map.ACTDNUM}" />  
+		 <input type="hidden" name="actdnum" value="${map.ACTDNUM}" />  
         </c:forEach>
         </c:if>
          

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.finalc.auction.model.AuctionVO;
+import com.finalc.auction.model.CategoryVO;
 
 public interface InterBuyListService {
 
@@ -16,5 +17,7 @@ public interface InterBuyListService {
 	int getBindAuction(HashMap<String, String> map);
 
 	AuctionVO viewAuction(String actdnum);
+
+	CategoryVO getCategoryName(String actnum);
 
 }
