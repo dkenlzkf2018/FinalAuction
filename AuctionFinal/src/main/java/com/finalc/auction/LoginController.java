@@ -169,7 +169,9 @@ public class LoginController {
 	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.GET})
 	public String pwdFind() {
 		
-		return "member/pwdFind.tiles";
+		
+		
+		return "pwdFind.notiles";
 		
 	}
 	
