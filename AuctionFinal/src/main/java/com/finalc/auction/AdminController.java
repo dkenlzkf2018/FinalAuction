@@ -49,7 +49,7 @@ public class AdminController {
 		public String delCategory() {
 			
 			return "delCategory.admin";
-		}	
+		}
 		
 		
 	
