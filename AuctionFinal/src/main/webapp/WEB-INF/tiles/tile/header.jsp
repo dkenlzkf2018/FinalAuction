@@ -25,7 +25,7 @@
                     <ul class="list-unstyled list-inline pull-right">
                         <li><a href="shop-account.html">My Account</a></li>
                         <li><a href="buyList.action">낙찰 목록</a></li>
-                        <li><a href="shop-checkout.html">Checkout</a></li>
+                        <li><a href="boardlist.action">자유게시판</a></li>
                         <c:if test="${sessionScope.loginuser == null}">
                         	<li><a href="login.action">Log In</a></li>
                         </c:if>
