@@ -14,7 +14,7 @@
     						 border-bottom-width: 1px;
     						 opacity: 0.3;}
     						 
-   .comment-box-line-dashed { width: 760px;
+   .comment-box-line-dashed { width: 880px;
 							  border-bottom-style: dashed;
     						  border-bottom-width: 1px;
     						  margin-bottom: 25px;
@@ -82,7 +82,7 @@
 			success: function(json) {
 				$.each(json, function(entryIndex, entry){
 					var html = "<tr>";
-					html += "<td>"+entry.fk_userid+" : </td>";
+					html += "<td style='font-weight: bold;' >"+entry.fk_userid+" : </td>";
 					html += "<td>"+entry.cm_content+"</td>";
 					html += "<td style='text-align: center;'>"+entry.cm_writeday+"</td>";
 					html += "</tr>"
@@ -181,8 +181,8 @@
 			<c:if test="${not empty commentList}">
 				<c:forEach var="commentvo" items="${commentList}">
 					<tr>
-						<td style="font-size: 10pt; ">${commentvo.fk_userid}:&nbsp;&nbsp;</td>
-						<td>${commentvo.cm_content}</td>
+						<td style="font-size: 10pt; font-weight: bold;">${commentvo.fk_userid}:&nbsp;&nbsp;</td>
+						<td><span>${commentvo.cm_content}</span></td>
 						<td style="text-align: center;">${commentvo.cm_writeday}</td>
 					</tr>
 				</c:forEach>

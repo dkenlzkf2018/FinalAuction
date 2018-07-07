@@ -137,6 +137,7 @@
 	           fk_boardno, cm_status
 		from tbl_comment
 		where fk_boardno = #{boardno}
+		order by commentno desc
 	</select>
 <!-- 댓글보기 (07.05 끝) -->
 	
