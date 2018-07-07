@@ -5,69 +5,58 @@
  
 	jQuery(document).ready(function(){
 		
-		$("#password").keydown(function(event){
-			if(event.keyCode == 13) { // 엔터를 했을 경우
-				goPwdCheck(event);
-			}// end of if------------------------------
-		});// end of $("#loginPwd").keydown()----------
-		
-		$("#passwd2").keydown(function(event){
-			if(event.keyCode == 13) { // 엔터를 했을 경우
-				PwdCheck(event);
-			}// end of if------------------------------
-		});// end of $("#loginPwd").keydown()----------
-		
 		$("#error_passwd").hide();
 		$("#error").hide();
 		
+		$("#password").blur(function(event){
+			var pwd1 = $("#password").val().trim();
+			var pwd2 = $("#passwd2").val().trim();
+			
+			var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
+			
+			var bool = regexp_passwd.test(pwd1);
+			
+			if(pwd1 == ""){
+				alert("비밀번호를 입력하세요");
+			}
+			
+			if(!bool){
+				$("#error_passwd").show();
+				$(":input").attr("disabled",true).addClass("bgcol");
+				$("#btnRegister").attr("disabled",true); 
+				$(this).attr("disabled",false).removeClass("bgcol");			
+			}
+			else{
+				$("#error_passwd").hide();
+				$(":input").attr("disabled",false).removeClass("bgcol");
+				$("#btnRegister").attr("disabled",false); 
+				$("#passwd2").focus();
+			}
+		
+		});// end of $("#loginPwd").keydown()----------
+		
+		$("#passwd2").blur(function(event){
+			var pwd1 = $("#password").val().trim();
+			var pwd2 = $("#passwd2").val().trim();
+			
+			
+			if(pwd1 != pwd2){
+				$("#error").show();
+				$(":input").attr("disabled",true).addClass("bgcol");
+				$("#btnRegister").attr("disabled",true);
+				$(this).attr("disabled",false).removeClass("bgcol");
+			}
+			else if(pwd1 == pwd2){
+				$("#error").hide();
+				$(":input").attr("disabled",false).removeClass("bgcol");
+				$("#btnRegister").attr("disabled",false);
+				$("#name").focus();
+			}
+		});// end of $("#loginPwd").keydown()----------
+		
+		
+		
 	}); // end of $(document).ready()---------------------------	 
-    
-    function goPwdCheck(event){
-    	
-		var pwd1 = $("#password").val().trim();
-		var pwd2 = $("#passwd2").val().trim();
-		
-		var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
-		
-		var bool = regexp_passwd.test(pwd1);
-		
-		if(pwd1 == ""){
-			alert("비밀번호를 입력하세요");
-			$("#password").focus();
-			return;
-		}
-		
-		if(!bool){
-			$("#error_passwd").show();
-			$("#password").focus();
-			return;
-		}
-		else{
-			$("#error_passwd").hide();
-			$("#passwd2").focus();
-			return;
-		}
-		
-	}
-	
-	function PwdCheck(event){
-		
-		var pwd1 = $("#password").val().trim();
-		var pwd2 = $("#passwd2").val().trim();
-		
-		if(pwd1 == pwd2){
-			$("#error").hide();
-			$("#name").focus();
-			return;
-		}
-		else if(pwd1 != pwd2){
-			$("#error").show();
-			$("#passwd2").val("");
-			$("#passwd2").focus();
-			return;
-		}
-		
-	}
     
     function idCheck(){
     	
@@ -177,28 +166,28 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
-                    <input type="text" id="userid" name="userid" class="form-control requiredInfo" value="${userid}"/>
+                    <input type="text" id="userid" name="userid" class="form-control requiredInfo" value="${userid}" required/>
                   </div>
-                  <button class="col-lg-2 btn btn-default" onClick="idCheck();">중복 확인</button>
+                  <button class="col-lg-2 btn btn-default" type="button" onClick="idCheck();">중복 확인</button>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="password">비밀번호 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" id="password" name="password" class="form-control requiredInfo"/>
+                    <input type="password" id="password" name="password" class="form-control requiredInfo" required/>
                     <span id="error_passwd" style="color: red;">암호는 영문자,숫자,특수기호가 혼합된 8~15 글자로만 입력가능합니다.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="passwd2">비밀번호 확인 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" name="passwd2" id="passwd2" class="form-control requiredInfo">
+                    <input type="password" name="passwd2" id="passwd2" class="form-control requiredInfo" required/>
                     <span id="error" name="error" style="color: red;">암호가 일치하지 않습니다.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="name">성명 <span class="require">*</span></label>
                   <div class="col-lg-5">
-                    <input type="text" id="name" name="name" class="form-control requiredInfo">
+                    <input type="text" id="name" name="name" class="form-control requiredInfo" required/>
                   </div>
                   <div class="col-lg-3">
                     <select class="form-control" name="gender" id="gender">
@@ -211,13 +200,13 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="birth">생년월일 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="date" id="birth" name="birth" class="form-control requiredInfo">
+                    <input type="date" id="birth" name="birth" class="form-control requiredInfo"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="email">E-Mail <span class="require">*</span></label>
                   <div class="col-lg-3">
-                    <input type="text" name="email1" id="email1" class="form-control requiredInfo">
+                    <input type="text" name="email1" id="email1" class="form-control requiredInfo"/>
                   </div>
                   <div class="col-lg-5">
                     <select class="form-control" name="email2" id="email2">
@@ -241,16 +230,16 @@
 					</select>
                   </div>
                   <div class="col-lg-3">
-                    <input type="text" name="hp2" id="hp2" class="form-control" size="4" maxlength="4">
+                    <input type="text" name="hp2" id="hp2" class="form-control" size="4" maxlength="4"/>
                   </div>
                   <div class="col-lg-3">
-                    <input type="text" name="hp3" id="hp3" class="form-control" size="4" maxlength="4">
+                    <input type="text" name="hp3" id="hp3" class="form-control" size="4" maxlength="4"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
                   <div class="col-lg-8">
-                    <input type="text" name="zipcode" id="zipcode" class="form-control">
+                    <input type="text" name="zipcode" id="zipcode" class="form-control"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -263,8 +252,8 @@
               </form>
               <div class="row">
                 <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
-                  <button class="btn btn-primary" id="btnRegister" onClick="goRegist();">가입하기</button>
-                  <button class="btn btn-default" onClick="location.href='<%=request.getContextPath()%>/index.action';">메인으로</button>
+                  <button class="btn btn-primary" type="button" id="btnRegister" onClick="goRegist();">가입하기</button>
+                  <button class="btn btn-default" type="button" onClick="location.href='<%=request.getContextPath()%>/index.action';">메인으로</button>
                 </div>
               </div>
             </div>

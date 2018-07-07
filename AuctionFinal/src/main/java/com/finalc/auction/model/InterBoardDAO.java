@@ -42,6 +42,10 @@ public interface InterBoardDAO {
 
 	int deleteComment(HashMap<String, String> map);
 
+	int writeComment(CommentVO commentvo);
+
+	int updateCommentCount(String fk_boardno);
+
 
 
 
