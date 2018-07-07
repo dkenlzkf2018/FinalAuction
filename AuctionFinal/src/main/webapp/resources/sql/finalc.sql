@@ -1,9 +1,15 @@
 select *
 from tbl_member;
 
+<<<<<<< HEAD
 select userid, passwd, email, username, hp1
 delete from tbl_member
 where userid = 'leess';
+=======
+
+delete from tbl_member_detail
+where fk_userid = 'admin';
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 
 select userid, passwd, email, username, email, hp1
@@ -32,7 +38,11 @@ commit;
 select count(*)
 from tbl_member_detail
 <<<<<<< HEAD
+<<<<<<< HEAD
 where fk_userid = 'admion'
+=======
+
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 -----------------------------------------------
   -- ps. F5버튼은 새로고침이 아니라 RUN입니다. 주의하세요.
