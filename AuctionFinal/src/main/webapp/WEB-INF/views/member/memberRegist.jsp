@@ -15,7 +15,7 @@
 		var pwd1 = $("#password").val();
 		var pwd2 = $("#passwd2").val();
 		
-		if($("#passwd2").focus() && !$("#password").val("")){
+		if(){
 			
 			var regexp_passwd = new RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g);
 			
