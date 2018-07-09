@@ -34,17 +34,11 @@
 
        		<select data-placeholder="대분류" class="standardSelect" tabindex="1">
                <option value="">대분류</option>
-               <option value="United States">United States</option>
-               <option value="United Kingdom">United Kingdom</option>
-               <option value="Afghanistan">Afghanistan</option>
-               <option value="Aland Islands">Aland Islands</option>
-               <option value="Albania">Albania</option>
-               <option value="Algeria">Algeria</option>
-               <option value="American Samoa">American Samoa</option>
-               <option value="Andorra">Andorra</option>
-               <option value="Angola">Angola</option>
-               <option value="Anguilla">Anguilla</option>
-               <option value="Antarctica">Antarctica</option>
+               <option value="United States">의류</option>
+               <option value="United Kingdom">생활용품</option>
+               <option value="Afghanistan">디지털</option>
+               <option value="Aland Islands">스포츠</option>
+               <option value="Albania">기타</option>
        		</select>
        		
        		<select data-placeholder="소분류" class="standardSelect" tabindex="1">

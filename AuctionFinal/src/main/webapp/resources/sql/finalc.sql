@@ -251,7 +251,7 @@ where fk_userid = 'admion'
            cdnum
         );
         
--- 테스트
+-- 테스트 07-09
 /*  select usernum, userid, passwd, email, username, email, hp1
        , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
   from tbl_member A join tbl_member_detail B on A.userid = B.fk_userid;
