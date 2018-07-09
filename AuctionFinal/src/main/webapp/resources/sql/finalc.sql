@@ -1,5 +1,5 @@
 select *
-from tbl_member;
+from tbl_member_detail;
 
 <<<<<<< HEAD
 select userid, passwd, email, username, hp1
