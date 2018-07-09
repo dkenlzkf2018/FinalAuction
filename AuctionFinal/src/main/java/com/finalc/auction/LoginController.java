@@ -166,6 +166,15 @@ public class LoginController {
 		return "member/memberRegistEnd.tiles";
 	}
 	
+	@RequestMapping(value="/zipcodeSerch.action", method= {RequestMethod.GET})
+	public String ZipcodeSerch() {
+		
+		
+		
+		return "zipcodeSerch.notiles";
+		
+	}
+	
 	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.GET})
 	public String pwdFind() {
 		
@@ -174,5 +183,7 @@ public class LoginController {
 		return "pwdFind.notiles";
 		
 	}
+	
+	
 	
 }

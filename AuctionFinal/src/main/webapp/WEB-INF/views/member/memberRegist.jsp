@@ -108,8 +108,20 @@
           frm.method="post";
           frm.submit();
       }
-       
-       
+    }
+    
+    function goZipcodeSerch() {
+    	
+    	var url = "zipcodeSerch.action";
+        window.open("", "zipcodeSerch",
+                 "left=500px, top=100px, width=300px, height=100px");
+        
+        var frm = document.RegistFrm;
+        
+        frm.action="zipcodeSerch.action";
+        frm.method="post";
+        frm.submit();
+    	
     }
     
 </script>
@@ -240,6 +252,7 @@
                   <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
                   <div class="col-lg-8">
                     <input type="text" name="zipcode" id="zipcode" class="form-control"/>
+                    <button type="button" onClick="goZipcodeSerch();">우편 번호 찾기</button>
                   </div>
                 </div>
                 <div class="form-group">
