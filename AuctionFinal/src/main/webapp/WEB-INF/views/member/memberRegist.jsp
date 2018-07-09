@@ -112,7 +112,7 @@
     
     function goZipcodeSerch() {
     	
-    	var url = "zipcodeSerch.action";
+    	
         window.open("", "zipcodeSerch",
                  "left=600px, top=300px, width=600px, height=600px");
                
@@ -121,7 +121,7 @@
         frm.target = "zipcodeSerch";
         
         frm.action="zipcodeSerch.action";
-        frm.method="post";
+        frm.method="POST";
         frm.submit();
     	
     }

@@ -16,6 +16,6 @@ public interface InterLoginService {
 
 	int memberRegistDetail(HashMap<String, String> map);
 
-	List<HashMap<String, String>> serchZipcode(String dong);
+	List<ZipcodeVO> serchZipcode(String dong);
 
 }

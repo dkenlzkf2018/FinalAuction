@@ -34,7 +34,7 @@
     
 	<c:if test="${result == '0'}">
 	  <tr>
-    	<td colspan="3" align="center">
+    	<td colspan="2" align="center">
     		<span style="color: red; font-weight: bold;">${zipcodeNotExist}</span>
     	</td>  	
       </tr>	

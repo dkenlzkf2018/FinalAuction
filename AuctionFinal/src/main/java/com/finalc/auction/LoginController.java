@@ -181,9 +181,7 @@ public class LoginController {
 		
 		System.out.println("확인용1 : " + dong);
 		
-		req.setAttribute("dong", dong);
-		
-		List<HashMap<String, String>> zipcodeList = service.serchZipcode(dong);
+		List<ZipcodeVO> zipcodeList = service.serchZipcode(dong);
 		
 		System.out.println("확인용2 : "+ zipcodeList);
 		

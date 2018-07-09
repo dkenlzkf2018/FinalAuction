@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		
 		$("#error").hide();
 		
@@ -57,7 +57,7 @@
 		<tr align="center">
 			<td>
 			  동이름 :&nbsp;<input type="text" name="dong" id="dong" size="20" class="box" />
-			 <button type="button" class="box" onClick="goSearch();" id="goSearch">검색</button>      
+			 <button type="button" class="box" onClick="goSearch();">검색</button>      
 			</td>
 		</tr>
 		<tr align="center">
