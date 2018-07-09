@@ -52,7 +52,7 @@
 
 </head>
 <body style="background-color: #fff0f5;">
-	<form name="frmZipcode" action="zipcodeInfo.action" method="post">
+	<form name="frmZipcode">
 	<table style="width: 95%; height: 90%;">
 		<tr align="center">
 			<td>
