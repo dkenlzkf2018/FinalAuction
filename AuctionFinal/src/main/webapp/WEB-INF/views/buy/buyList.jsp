@@ -99,17 +99,10 @@
 		 <tr>
 		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		 </tr>
-<<<<<<< HEAD
 		 </c:if> 
 		 <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
 		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
 		 <input type="hidden" name="actdnum" value="${map.ACTDNUM}" />  
-        </c:forEach>
-        </c:if>
-         
-=======
-	 	</c:if> 
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
       </table>
       
       </form>
