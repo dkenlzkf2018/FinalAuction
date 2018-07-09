@@ -1,6 +1,7 @@
 package com.finalc.auction.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface InterLoginDAO {
 
@@ -11,5 +12,7 @@ public interface InterLoginDAO {
 	int memberRegist(HashMap<String, String> map);
 
 	int memberRegistDetail(HashMap<String, String> map);
+
+	List<ZipcodeVO> serchZipcode(String dong);
 
 }

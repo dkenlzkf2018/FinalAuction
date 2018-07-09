@@ -1,6 +1,7 @@
 package com.finalc.auction.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,12 @@ public class LoginDAO implements InterLoginDAO {
 	public int memberRegistDetail(HashMap<String, String> map) {
 		int RegMember = sqlsession.insert("login.memberRegistDetail", map);
 		return RegMember;
+	}
+
+	@Override
+	public List<ZipcodeVO> serchZipcode(String dong) {
+		List<ZipcodeVO> zipcodeList = sqlsession.selectList("login.serchZipcode", dong);
+		return zipcodeList;
 	}
 	
 }

@@ -1,8 +1,10 @@
 package com.finalc.auction.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.finalc.auction.model.MemberVO;
+import com.finalc.auction.model.ZipcodeVO;
 
 public interface InterLoginService {
 
@@ -13,5 +15,7 @@ public interface InterLoginService {
 	int memberRegist(HashMap<String, String> map);
 
 	int memberRegistDetail(HashMap<String, String> map);
+
+	List<ZipcodeVO> serchZipcode(String dong);
 
 }

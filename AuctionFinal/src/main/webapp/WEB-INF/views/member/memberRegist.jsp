@@ -114,9 +114,11 @@
     	
     	var url = "zipcodeSerch.action";
         window.open("", "zipcodeSerch",
-                 "left=500px, top=100px, width=300px, height=100px");
-        
+                 "left=600px, top=300px, width=600px, height=600px");
+               
         var frm = document.RegistFrm;
+        
+        frm.target = "zipcodeSerch";
         
         frm.action="zipcodeSerch.action";
         frm.method="post";
@@ -250,10 +252,10 @@
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
-                  <div class="col-lg-8">
-                    <input type="text" name="zipcode" id="zipcode" class="form-control"/>
-                    <button type="button" onClick="goZipcodeSerch();">우편 번호 찾기</button>
+                  <div class="col-lg-5">
+                    <input type="text" name="zipcode" id="zipcode" class="form-control" value="${zipcode}"/>
                   </div>
+                  <button class="col-lg-2 btn btn-default" type="button" onClick="goZipcodeSerch();">우편 번호 찾기</button>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="address">주소</label>

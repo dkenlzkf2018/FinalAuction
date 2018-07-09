@@ -1,6 +1,7 @@
 package com.finalc.auction;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.service.InterLoginService;
 import com.finalc.auction.model.MemberVO;
+import com.finalc.auction.model.ZipcodeVO;
 
 // 로그인 관련 컨트롤러
 
@@ -166,19 +168,33 @@ public class LoginController {
 		return "member/memberRegistEnd.tiles";
 	}
 	
-	@RequestMapping(value="/zipcodeSerch.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/zipcodeSerch.action", method= {RequestMethod.POST})
 	public String ZipcodeSerch() {
 		
-		
-		
 		return "zipcodeSerch.notiles";
+	}
+	
+	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.POST})
+	public String zipcodeInfo(HttpServletRequest req) {
 		
+		String dong = req.getParameter("dong");
+		
+		List<ZipcodeVO> zipcodeList = service.serchZipcode(dong);
+		
+		if(zipcodeList == null || zipcodeList.size() == 0) {
+			req.setAttribute("result", "0");
+			req.setAttribute("zipcodeNotExist", "해당 주소가 없습니다.");
+		}
+		else {
+			req.setAttribute("result", "1");
+			req.setAttribute("zipcodeList", zipcodeList);
+		}
+		
+		return "zipcodeInfo.notiles";
 	}
 	
 	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.GET})
 	public String pwdFind() {
-		
-		
 		
 		return "pwdFind.notiles";
 		
