@@ -54,49 +54,52 @@
           <th class="goods-page-deliverstatus">배송상태</th>
         </tr>
         
-        <c:if test="${sessionScope.loginuser.userid != null && buyMapList != null}">
-        <c:forEach var="map" items="${buyMapList}">
-         <tr class="ssi" style="margin-left:5%;">                  
-           <td class="goods-page-awardnum">
-             <%-- ${map.AWARDNUM} --%>
-             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /></a>
-           </td>
-           <td class="goods-page-actname">
-             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
-             <%--  --%>
-             <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
-           </td>
-           <td class="goods-page-awardday">
-             ${map.AWARDDAY}
-           </td>
-           <td class="goods-page-panmaeja">
-             ${map.PANMAEJA}
-           </td>
-           <td class="goods-page-awardprice">
-             <strong><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/></strong><span>원</span>
-           </td>
-           <c:if test="${map.DELIVERSTATUS == '0'}">
-           <td class="goods-page-deliverstatus">
-             <!-- <strong><a href="">주문완료</a></strong> -->
-             <strong>주문완료</strong>
-           </td>
-           </c:if>
-		   <c:if test="${map.DELIVERSTATUS == '1'}">
-           <td class="goods-page-deliverstatus">
-             <strong>배송중</strong>
-           </td>
-           </c:if>
-           <c:if test="${map.DELIVERSTATUS == '2'}">
-           <td class="goods-page-deliverstatus">
-             <strong>배송완료</strong>
-           </td>
-           </c:if>
-                           
-         </tr>
-         <c:if test="${sessionScope.loginuser.userid == null || buyMapList == null}">
+        <c:if test="${buyMapList != null}">
+	        <c:forEach var="map" items="${buyMapList}">
+	         <tr class="ssi" style="margin-left:5%;">                  
+	           <td class="goods-page-awardnum">
+	             <%-- ${map.AWARDNUM} --%>
+	             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /></a>
+	           </td>
+	           <td class="goods-page-actname">
+	             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
+	             <%--  --%>
+	             <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
+	           </td>
+	           <td class="goods-page-awardday">
+	             ${map.AWARDDAY}
+	           </td>
+	           <td class="goods-page-panmaeja">
+	             ${map.PANMAEJA}
+	           </td>
+	           <td class="goods-page-awardprice">
+	             <strong><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/></strong><span>원</span>
+	           </td>
+	           <c:if test="${map.DELIVERSTATUS == '0'}">
+	           <td class="goods-page-deliverstatus">
+	             <!-- <strong><a href="">주문완료</a></strong> -->
+	             <strong>주문완료</strong>
+	           </td>
+	           </c:if>
+			   <c:if test="${map.DELIVERSTATUS == '1'}">
+	           <td class="goods-page-deliverstatus">
+	             <strong>배송중</strong>
+	           </td>
+	           </c:if>
+	           <c:if test="${map.DELIVERSTATUS == '2'}">
+	           <td class="goods-page-deliverstatus">
+	             <strong>배송완료</strong>
+	           </td>
+	           </c:if>         
+	         </tr>
+	        </c:forEach>
+        </c:if>
+                  
+        <c:if test="${buyMapList == null}">
 		 <tr>
 		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		 </tr>
+<<<<<<< HEAD
 		 </c:if> 
 		 <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
 		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
@@ -104,6 +107,9 @@
         </c:forEach>
         </c:if>
          
+=======
+	 	</c:if> 
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
       </table>
       
       </form>
