@@ -186,7 +186,7 @@ public class BuyListController {
 		req.setAttribute("cvo", cvo);
 		req.setAttribute("acvo", acvo);
 		req.setAttribute("n", n);
-		return "buy/viewAuction.tiles";
+		return "auction/auctionDetail.tiles";
 	}
 	
 	@RequestMapping(value="/tender.action", method={RequestMethod.POST})
@@ -195,14 +195,28 @@ public class BuyListController {
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		String actnum = req.getParameter("actnum");
 		String actname = req.getParameter("actname");
+		String actd_endday = req.getParameter("actd_endday");
+		String actd_qty = req.getParameter("actd_qty");
+		String startprice = req.getParameter("startprice");
+		String actd_price = req.getParameter("actd_price");
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("actnum", actnum);
+		map.put("actname", actname);
+		map.put("actd_endday", actd_endday);
+		map.put("actd_qty", actd_qty);
+		map.put("startprice", startprice);
+		map.put("actd_price", actd_price);
+		
+		
+		System.out.println(actname);
 		if (loginuser == null) {
 			req.setAttribute("msg", "로그인을 먼저 하십시오!");
 			req.setAttribute("loc", "login.action");
 			return "msg.notiles";
 		}
 		else {
-			req.setAttribute("actnum", actnum);
-			req.setAttribute("actname", actname);
+			req.setAttribute("map", map);
 			return "tender.notiles";
 		}
 	}
@@ -211,25 +225,32 @@ public class BuyListController {
 	public String inputTender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
-		String actnum = req.getParameter("actnum");
-		System.out.println("actnum : " + actnum);
-		String tenderprice = req.getParameter("tenderprice");
-		System.out.println("tenderprice : " + tenderprice);
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("actnum", actnum);
-		map.put("usernum", loginuser.getUsernum());
-		map.put("tenderprice", tenderprice);
-		// 경매 입찰
-		int result = service.inputTender(map);
-		if (result > 0) {
-			req.setAttribute("msg", "경매 입찰 성공!!");
-			req.setAttribute("loc", "self.close();");
-		} 
-		else {
-			req.setAttribute("msg", "경매 입찰 실패!!");
-			req.setAttribute("loc", "javascript:history.back();");
+		if (loginuser == null) {
+			req.setAttribute("msg", "로그인을 먼저 하십시오!");
+			req.setAttribute("loc", "login.action");
+			return "msg.notiles";
 		}
-		return "msg.notiles";
+		else {
+			String actnum = req.getParameter("actnum");
+			System.out.println("actnum : " + actnum);
+			String tenderprice = req.getParameter("tenderprice");
+			System.out.println("tenderprice : " + tenderprice);
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("actnum", actnum);
+			map.put("usernum", loginuser.getUsernum());
+			map.put("tenderprice", tenderprice);
+			// 경매 입찰
+			int result = service.inputTender(map);
+			if (result > 0) {
+				req.setAttribute("msg", "경매 입찰 성공!!");
+				req.setAttribute("loc", "self.close();");
+			} 
+			else {
+				req.setAttribute("msg", "경매 입찰 실패!!");
+				req.setAttribute("loc", "javascript:history.back();");
+			}
+			return "msg.notiles";
+		}
 	}
 	
 }

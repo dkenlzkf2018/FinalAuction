@@ -76,7 +76,7 @@
 		var frm = document.tenderFrm;
 		var url = "<%=request.getContextPath()%>/tender.action";
     	window.open("", "tender",
-    			   "left=500px, top=100px, width=300px, height=100px");
+    			   "left=500px, top=100px, width=300px, height=100px status=1");
 		frm.method = "POST";
 		frm.action = url;
 		frm.target = "tender";
@@ -184,10 +184,10 @@
             <div class="col-md-6 col-sm-6">
               <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
-                <div class="pull-left">
-              	  <label class="control-label">현  재  가  : </label>
-              	  <fmt:formatNumber value="${acvo.startprice}" type="number"/>원
-              	
+                <div class="pull-left">                  
+	              <label class="control-label">현  재  가  : </label>
+	              <fmt:formatNumber value="${acvo.startprice}" type="number"/>원
+              	  
               	  <br/>
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
@@ -196,8 +196,12 @@
               	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
                 </div>  
                 <form name="tenderFrm">
-                	<input type="hidden" name="actnum" value="${actnum}"/>
-                	<input type="hidden" name="actname" value="${actname}"/>
+                	<input type="hidden" name="actnum" value="${acvo.actnum}"/>
+                	<input type="hidden" name="actname" value="${acvo.actname}"/>
+                	<input type="hidden" name="actd_endday" value="${acvo.actd_endday}"/>
+                	<input type="hidden" name="actd_qty" value="${acvo.actd_qty}"/>
+                	<input type="hidden" name="startprice" value="${acvo.startprice}"/>
+                	<input type="hidden" name="actd_price" value="${acvo.actd_price}"/>
                 </form>
               	  
               	
@@ -206,7 +210,7 @@
               <div class="product-page-options">
                 <div class="pull-left">
                   <label class="control-label">입  찰  수 : </label>
-                  <input style="border:none;" type="text" value="회 (총 판매수량 : ${acvo.actd_qty}개)" readonly />
+                  <input style="border:none;" type="text" value="${acvo.actd_qty}" readonly />
                 </div>
                 <div class="pull-left">
                   <label class="control-label">남은시간 :  </label>

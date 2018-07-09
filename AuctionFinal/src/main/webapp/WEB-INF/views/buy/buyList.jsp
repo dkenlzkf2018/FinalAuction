@@ -92,6 +92,9 @@
 	           </td>
 	           </c:if>         
 	         </tr>
+	         <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
+			 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
+			 <input type="hidden" name="actdnum" value="${map.ACTDNUM}" />  
 	        </c:forEach>
         </c:if>
                   
@@ -100,9 +103,7 @@
 		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		 </tr>
 		 </c:if> 
-		 <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
-		 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
-		 <input type="hidden" name="actdnum" value="${map.ACTDNUM}" />  
+		 
       </table>
       
       </form>
