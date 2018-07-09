@@ -1,5 +1,5 @@
 select *
-from tbl_member;
+from tbl_member_detail;
 
 <<<<<<< HEAD
 select userid, passwd, email, username, hp1
@@ -10,9 +10,12 @@ where userid = 'leess';
 delete from tbl_member_detail
 where fk_userid = 'admin';
 >>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+<<<<<<< HEAD
 
 select *
 from tbl_member_detail;
+=======
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 
 select userid, passwd, email, username, email, hp1
