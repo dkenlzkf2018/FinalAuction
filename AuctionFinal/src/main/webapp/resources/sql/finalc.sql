@@ -11,6 +11,9 @@ delete from tbl_member_detail
 where fk_userid = 'admin';
 >>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
+select *
+from tbl_member_detail;
+
 
 select userid, passwd, email, username, email, hp1
      , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
