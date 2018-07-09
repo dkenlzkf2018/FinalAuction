@@ -1,5 +1,5 @@
 select *
-from tbl_member_detail;
+from tbl_member;
 
 <<<<<<< HEAD
 select userid, passwd, email, username, hp1
@@ -250,6 +250,15 @@ where fk_userid = 'admion'
         PRIMARY KEY (
            cdnum
         );
+        
+-- 테스트
+/*  select usernum, userid, passwd, email, username, email, hp1
+       , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
+  from tbl_member A join tbl_member_detail B on A.userid = B.fk_userid;
+
+select cnum, cname, cdnum, fk_cnum, cdname
+from tbl_category A join tbl_category_detail B on A.cnum = b.fk_cnum;
+*/
   
   /* 게시판 */
   CREATE TABLE tbl_board (

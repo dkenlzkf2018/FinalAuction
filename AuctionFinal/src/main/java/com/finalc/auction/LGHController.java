@@ -17,13 +17,12 @@ public class LGHController {
 	@Autowired
 	private InterLGHService service;
 	
-
 	// 관리자 회원관리 Controller 단
-		@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
-		public String adminMain(HttpServletRequest req) {
-			List<MemberVO> memberList = service.getMemberList();
-			
-			req.setAttribute("memberList", memberList);
-			return "management/memberList.admin";
-		}
+	@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
+	public String adminMain(HttpServletRequest req) {
+		List<MemberVO> memberList = service.getMemberList();
+		
+		req.setAttribute("memberList", memberList);
+		return "management/memberList.admin";
+	}
 }

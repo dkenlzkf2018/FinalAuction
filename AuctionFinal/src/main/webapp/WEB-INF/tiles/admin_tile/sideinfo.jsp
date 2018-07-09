@@ -24,33 +24,32 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>게시판 관리</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="*.action">Basic Table</a></li>
+                        <li><i class="fa fa-table"></i><a href="*.action">질문 게시판</a></li>
+                        <li><i class="fa fa-table"></i><a href="*.action">후기 게시판</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>카테고리 관리</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-list"></i><a href="<%=request.getContextPath()%>/adminCategory.action">카테고리 관리</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>회원 관리</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-user"></i><a href="<%=request.getContextPath()%>/admin/memberList.action">회원 리스트</a></li>
                         <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>카테고리 관리</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa ti-credit-card"></i>주문/배송 관리</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="*.action">Basic Table</a></li>
-                        <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>회원 관리</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="*.action">Basic Table</a></li>
-                        <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>주문/배송 관리</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="*.action">주문 관리</a></li>
-                        <li><i class="fa fa-table"></i><a href="*.action">배송 관리</a></li>
+                        <li><i class="fa fa-shopping-cart"></i><a href="*.action">주문 관리</a></li>
+                        <li><i class="fa fa-truck"></i><a href="*.action">배송 관리</a></li>
                     </ul>
                 </li>
                 
-                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <!--
                 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Components</a>
@@ -81,11 +80,11 @@
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                     </ul>
-                </li>
+                </li> -->
 
-                <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
+                <!-- <h3 class="menu-title">Icons</h3> --><!-- /.menu-title -->
 
-                <li class="menu-item-has-children dropdown">
+<!--                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
@@ -111,7 +110,7 @@
                         <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
                     </ul>
                 </li>
-                <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Extras</h3>/.menu-title
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -119,7 +118,7 @@
                         <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
                         <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

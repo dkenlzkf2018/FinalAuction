@@ -7,7 +7,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                <h1>관리자</h1>
             </div>
         </div>
     </div>
@@ -15,9 +15,9 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Table</a></li>
-                    <li class="active">Data table</li>
+                    <li><a href="<%=request.getContextPath()%>/adminMain.action">관리자</a></li>
+                    <li><a href="<%=request.getContextPath()%>/admin/memberList.action">회원 관리</a></li>
+                    <li class="active">회원 리스트</li>
                 </ol>
             </div>
         </div>
