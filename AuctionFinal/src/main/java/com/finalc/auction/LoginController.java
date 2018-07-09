@@ -168,13 +168,13 @@ public class LoginController {
 		return "member/memberRegistEnd.tiles";
 	}
 	
-	@RequestMapping(value="/zipcodeSerch.action", method= {RequestMethod.POST})
+	@RequestMapping(value="/ZipcodeSerch.action", method= {RequestMethod.POST})
 	public String ZipcodeSerch() {
 		
-		return "zipcodeSerch.notiles";
+		return "ZipcodeSerch.notiles";
 	}
 	
-	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.POST})
+	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
 	public String zipcodeInfo(HttpServletRequest req) {
 		
 		String dong = req.getParameter("dong");

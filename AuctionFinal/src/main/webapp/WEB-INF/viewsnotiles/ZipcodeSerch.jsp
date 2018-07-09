@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>우편번호 찾기</title>
 </head>
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
 
@@ -39,9 +37,9 @@
 		else {
 			$("#error").hide();
 			
-			var frm = document.frmZipcode;
-			frm.method = "post";
+			var frm = document.frmZipcode;			
 			frm.action = "zipcodeInfo.action";
+			frm.method = "get";
 			frm.submit();
 		}
 		
@@ -56,8 +54,8 @@
 	<table style="width: 95%; height: 90%;">
 		<tr align="center">
 			<td>
-			  동이름 :&nbsp;<input type="text" name="dong" id="dong" size="20" class="box" />
-			 <button type="button" class="box" onClick="goSearch();">검색</button>      
+			  동이름 :&nbsp;<input type="text" name="dong" id="dong" size="20"/>
+			 <button type="button" onClick="goSearch();">검색</button>      
 			</td>
 		</tr>
 		<tr align="center">
