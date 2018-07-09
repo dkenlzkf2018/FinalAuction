@@ -35,7 +35,11 @@
 		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, #{birth}, #{gender}, #{email1} || '@' || #{email2}, to_number(#{zipcode}), #{addr1}, #{addr2}, #{hp1},  #{hp2},  #{hp3})
 	</insert>
 	
-	<select id="serchZipcode" parameterType="HashMap" resultType="com.finalc.auction.model.ZipcodeVO">
+	<resultMap type="HashMap" id="getzipcodeListMap">
+		<result property="dong" column="dong" javaType="String" />
+	</resultMap>
+	
+	<select id="serchZipcode" parameterType="HashMap" resultMap="getzipcodeListMap">
 		select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS address
 		from tbl_zipcode
 		where sido like '%' || #{dong} || '%'

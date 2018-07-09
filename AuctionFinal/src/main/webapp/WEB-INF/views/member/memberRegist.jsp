@@ -114,12 +114,12 @@
     	
     	var url = "ZipcodeSerch.action";
     	
-        window.open("", "zipcodeSerch",
+        window.open("", "ZipcodeSerch",
                  "left=600px, top=300px, width=600px, height=600px");
                
         var frm = document.RegistFrm;
         
-        frm.target = "zipcodeSerch";
+        frm.target = "ZipcodeSerch";
         
         frm.action="ZipcodeSerch.action";
         frm.method="post";

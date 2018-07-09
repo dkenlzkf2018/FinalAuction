@@ -181,7 +181,11 @@ public class LoginController {
 		
 		System.out.println("확인용1 : " + dong);
 		
-		List<ZipcodeVO> zipcodeList = service.serchZipcode(dong);
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("dong", dong);
+		
+		List<HashMap<String, String>> zipcodeList = service.serchZipcode(map);
 		
 		System.out.println("확인용2 : "+ zipcodeList);
 		

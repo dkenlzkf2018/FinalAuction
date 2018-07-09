@@ -41,13 +41,13 @@
 	</c:if>
 	
 	<c:if test="${result == '1'}">
-	  <c:forEach var="zipcodeVO" items="${zipcodeList}">
+	  <c:forEach var="map" items="${zipcodeList}">
 	    <tr>
       	   <td style="text-align: center;">
-      	      ${zipcodeVO.zipcode}
+      	      ${map.zipcode}
       	   </td>
       	   <td>
-      	       <span style="cursor:pointer;" onClick="goMove('${zipcodeVO.zipcode}','${zipcodeVO.address}');">${zipcodeVO.address}</span>
+      	       <span style="cursor:pointer;" onClick="goMove('${map.zipcode}','${map.address}');">${map.address}</span>
       	   </td>
         </tr>
 	  </c:forEach>

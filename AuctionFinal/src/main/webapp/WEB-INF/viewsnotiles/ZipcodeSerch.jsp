@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
 
-	jQuery(document).ready(function(){
+	$(document).ready(function(){
 		
 		$("#error").hide();
 		
@@ -20,7 +20,7 @@
 				goSearch();
 			}
 		}); 
-			
+	
 	}); // end of $(document).ready()------------------------
 
 	
@@ -37,9 +37,9 @@
 		else {
 			$("#error").hide();
 			
-			var frm = document.frmZipcode;			
-			frm.action = "zipcodeInfo.action";
+			var frm = document.frmZipcode;
 			frm.method = "get";
+			frm.action = "zipcodeInfo.action";
 			frm.submit();
 		}
 		
@@ -50,22 +50,22 @@
 
 </head>
 <body style="background-color: #fff0f5;">
-	<form name="frmZipcode">
+	<form name="frmZipcode" action="zipcodeInfo.action" method="get">
 	<table style="width: 95%; height: 90%;">
-		<tr align="center">
-			<td>
-			  동이름 :&nbsp;<input type="text" name="dong" id="dong" size="20"/>
-			 <button type="button" onClick="goSearch();">검색</button>      
+		<tr>
+			<td align="center">
+			  동이름 :&nbsp;<input type="text" name="dong" id="dong" size="20" class="box" />
+			 <button type="button" class="box" onClick="goSearch();">검색</button>      
 			</td>
 		</tr>
-		<tr align="center">
-			<td>
+		<tr>
+			<td align="center">
 				(검색예: 오금, 다산아파트)
 			</td>
 		</tr>
-		<tr align="center">
-			<td>
-				<span style="color: red; font-size: 16pt; font-weight: bold;" id="error">동이름을 입력하세요</span>
+		<tr id="error" align="center">
+			<td style="color: red; font-size: 16pt; font-weight: bold;">
+				동이름을 입력하세요!!
 			</td>
 		</tr>
 	</table>
