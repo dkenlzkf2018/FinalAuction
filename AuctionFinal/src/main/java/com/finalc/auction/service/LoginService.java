@@ -46,5 +46,11 @@ public class LoginService implements InterLoginService {
 		List<ZipcodeVO> zipcodeList = dao.serchZipcode(sido);
 		return zipcodeList;
 	}
+
+	@Override
+	public int updatePwdUser(String pwd) {
+		int n = dao.updatePwdUser(pwd);
+		return n;
+	}
 	
 }

@@ -179,26 +179,12 @@ public class LoginController {
 	public String zipcodeInfo(HttpServletRequest req) {
 		
 		String sido = req.getParameter("sido");
-				
-		List<ZipcodeVO> zipcodeList = null;
 		
-		zipcodeList = service.serchZipcode(sido);
+		System.out.println(sido);
 		
-		int cnt = 0;
-		while(zipcodeList.toString().length() == zipcodeList.size()) {
-			cnt++;
-			if(cnt==1)
-				zipcodeList = new ArrayList<ZipcodeVO>(); 
-			
-			String zipcode = req.getParameter("zipcode");
-			String address = req.getParameter("address");
-			
-			ZipcodeVO zvo = new ZipcodeVO(zipcode, address);
-			
-			zipcodeList.add(zvo);
-		}
+		List<ZipcodeVO> zipcodeList = service.serchZipcode(sido);
 		
-		System.out.println("확인용 zipcodeList : "+ zipcodeList);
+		System.out.println("확인용 zipcodeList : " + zipcodeList);
 		
 		if(zipcodeList == null || zipcodeList.size() == 0) {
 			req.setAttribute("result", "0");
@@ -216,7 +202,29 @@ public class LoginController {
 	public String pwdFind() {
 		
 		return "pwdFind.notiles";
+	}
+	
+	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.GET})
+	public String pwdConfirm(HttpServletRequest req) {
 		
+		String method = req.getMethod();
+		req.setAttribute("method", method);
+		
+	    String userid =	req.getParameter("userid");
+	    req.setAttribute("userid", userid);
+	    
+	    if("POST".equalsIgnoreCase(method)) {
+	    	String pwd = req.getParameter("password");
+	    	
+	    	int n = 0;
+	    	if(userid != null && pwd != null) {
+	    		n = service.updatePwdUser(pwd);
+	    	}
+	    	
+	    	req.setAttribute("n", n);
+	    }
+		
+		return "pwdConfirm.notiles";
 	}
 	
 }

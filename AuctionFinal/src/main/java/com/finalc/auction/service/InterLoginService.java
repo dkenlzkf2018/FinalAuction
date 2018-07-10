@@ -18,4 +18,6 @@ public interface InterLoginService {
 
 	List<ZipcodeVO> serchZipcode(String sido);
 
+	int updatePwdUser(String pwd);
+
 }

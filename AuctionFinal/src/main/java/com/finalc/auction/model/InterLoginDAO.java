@@ -15,4 +15,6 @@ public interface InterLoginDAO {
 
 	List<ZipcodeVO> serchZipcode(String sido);
 
+	int updatePwdUser(String pwd);
+
 }

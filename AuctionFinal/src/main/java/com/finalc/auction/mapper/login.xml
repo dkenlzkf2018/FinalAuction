@@ -35,15 +35,15 @@
 		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, #{birth}, #{gender}, #{email1} || '@' || #{email2}, to_number(#{zipcode}), #{addr1}, #{addr2}, #{hp1},  #{hp2},  #{hp3})
 	</insert>
 	 
-	<resultMap type="HashMap" id="getzipcodeListMap">
-		<result property="zipcode" column="zipcode" javaType="String" />
-		<result property="address" column="address" javaType="String" />
-	</resultMap>
-	
-	<select id="serchZipcode" parameterType="HashMap" resultType="com.finalc.auction.model.ZipcodeVO">
-		select zipcode, sido||' '||sigungu||' '||eupmyun||' '||doro AS address
+	<select id="serchZipcode" parameterType="com.finalc.auction.model.ZipcodeVO">
+		select zipcode, sido||' '||sigungu||' '||eupmyun||' '||doro||' '||building||' '||buildname||' '||dongname||' '||riname||' '||dong2name AS address
 		from tbl_zipcode
 		where sido like '%' || #{sido} || '%'
 	</select>
 	
+	<update id="updatePwdUser" parameterType="String">
+		update tbl_member set password = #{pwd}
+		where userid = ${userid}
+	</update>
+	 
 </mapper>

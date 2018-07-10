@@ -1,5 +1,6 @@
 package com.finalc.auction.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,8 +40,15 @@ public class LoginDAO implements InterLoginDAO {
 
 	@Override
 	public List<ZipcodeVO> serchZipcode(String sido) {
-		List<ZipcodeVO> zipcodeList = sqlsession.selectList("login.serchZipcode", sido);
+		List<ZipcodeVO> zipcodeList  = sqlsession.selectList("login.serchZipcode", sido);
 		return zipcodeList;
+	}
+
+	@Override
+	public int updatePwdUser(String pwd) {
+		int n = sqlsession.update("login.updatePwdUser", pwd);
+		return n;
+		
 	}
 	
 }
