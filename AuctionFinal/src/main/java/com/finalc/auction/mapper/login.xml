@@ -34,7 +34,7 @@
 		insert into tbl_member_detail(usernum, fk_userid, username, birth, gender, email, zipcode, addr1, addr2, hp1, hp2, hp3)
 		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, #{birth}, #{gender}, #{email1} || '@' || #{email2}, to_number(#{zipcode}), #{addr1}, #{addr2}, #{hp1},  #{hp2},  #{hp3})
 	</insert>
-	
+	 
 	<resultMap type="HashMap" id="getzipcodeListMap">
 		<result property="zipcode" column="zipcode" javaType="String" />
 		<result property="address" column="address" javaType="String" />
