@@ -44,7 +44,7 @@
 	  <c:forEach var="map" items="${zipcodeList}">
 	    <tr>
       	   <td style="text-align: center;">
-      	      ${map.zipcode}
+      	      ${map.address}
       	   </td>
       	   <td>
       	       <span style="cursor:pointer;" onClick="goMove('${map.zipcode}','${map.address}');">${map.address}</span>

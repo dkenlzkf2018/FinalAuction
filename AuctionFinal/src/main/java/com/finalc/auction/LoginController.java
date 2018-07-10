@@ -178,16 +178,24 @@ public class LoginController {
 	public String zipcodeInfo(HttpServletRequest req) {
 		
 		String dong = req.getParameter("dong");
-		
+		String sido = req.getParameter("sido");
+		String sigungu = req.getParameter("sigungu");
+		String eupmyun = req.getParameter("eupmyun");
+		String doro = req.getParameter("doro");
+		String zipcode = req.getParameter("zipcode");
 		System.out.println("확인용1 : " + dong);
+	
+		ZipcodeVO zvo = new ZipcodeVO();
 		
-		HashMap<String, String> map = new HashMap<String, String>();
+		zvo.setZipcode(zipcode);
+		zvo.setZipcode(sido);
+		zvo.setZipcode(sigungu);
+		zvo.setZipcode(eupmyun);
+		zvo.setZipcode(doro);
 		
-		map.put("dong", dong);
+		List<ZipcodeVO> zipcodeList = service.serchZipcode(dong);
 		
-		List<HashMap<String, String>> zipcodeList = service.serchZipcode(map);
-		
-		System.out.println("확인용2 : "+ zipcodeList);
+		System.out.println("확인용3 : "+ zipcodeList);
 		
 		if(zipcodeList == null || zipcodeList.size() == 0) {
 			req.setAttribute("result", "0");
@@ -207,7 +215,5 @@ public class LoginController {
 		return "pwdFind.notiles";
 		
 	}
-	
-	
 	
 }

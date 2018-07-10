@@ -36,11 +36,15 @@
 	</insert>
 	
 	<resultMap type="HashMap" id="getzipcodeListMap">
-		<result property="dong" column="dong" javaType="String" />
+		<result property="zipcode" column="zipcode" javaType="String" />
+		<result property="sido" column="sido" javaType="String" />
+		<result property="sigungu" column="sigungu" javaType="String" />
+		<result property="eupmyun" column="eupmyun" javaType="String" />
+		<result property="doro" column="doro" javaType="String" />
 	</resultMap>
 	
-	<select id="serchZipcode" parameterType="HashMap" resultMap="getzipcodeListMap">
-		select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS address
+	<select id="serchZipcode" parameterType="String" resultMap="getzipcodeListMap">
+		select zipcode, sido, sigungu, eupmyun, doro
 		from tbl_zipcode
 		where sido like '%' || #{dong} || '%'
 	</select>
