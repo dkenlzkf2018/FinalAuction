@@ -246,7 +246,7 @@ public class BuyListController {
 			if (result > 0) {
 				req.setAttribute("msg", "경매 입찰 성공!!");
 				req.setAttribute("loc", "self.close();");
-			} 
+			}
 			else {
 				req.setAttribute("msg", "경매 입찰 실패!!");
 				req.setAttribute("loc", "javascript:history.back();");

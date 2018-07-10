@@ -76,7 +76,7 @@
 		var frm = document.tenderFrm;
 		var url = "<%=request.getContextPath()%>/tender.action";
     	window.open("", "tender",
-    			   "left=500px, top=100px, width=300px, height=100px status=1");
+    			   "left=569px, top=885px, width=569px, height=885px status=1");
 		frm.method = "GET";
 		frm.action = url;
 		frm.target = "tender";
