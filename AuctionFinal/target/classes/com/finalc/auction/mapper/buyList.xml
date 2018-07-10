@@ -129,4 +129,8 @@
 		from tbl_category A join tbl_category_detail B on A.cnum = B.fk_cnum
 		where B.cdnum = (select fk_cdnum from tbl_auction where actnum = #{actnum})
 	</select>
+	
+	<insert id="inputTender" parameterType="HashMap">
+		
+	</insert>
 </mapper>

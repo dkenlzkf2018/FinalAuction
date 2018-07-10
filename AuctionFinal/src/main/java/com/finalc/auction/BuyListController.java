@@ -189,7 +189,7 @@ public class BuyListController {
 		return "auction/auctionDetail.tiles";
 	}
 	
-	@RequestMapping(value="/tender.action", method={RequestMethod.POST})
+	@RequestMapping(value="/tender.action", method={RequestMethod.GET, RequestMethod.POST})
 	public String tender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
@@ -221,7 +221,7 @@ public class BuyListController {
 		}
 	}
 	
-	@RequestMapping(value="/inputTender.action", method={RequestMethod.POST})
+	@RequestMapping(value="/inputTender.action", method={RequestMethod.GET, RequestMethod.POST})
 	public String inputTender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
@@ -239,6 +239,8 @@ public class BuyListController {
 			map.put("actnum", actnum);
 			map.put("usernum", loginuser.getUsernum());
 			map.put("tenderprice", tenderprice);
+			
+			
 			// 경매 입찰
 			int result = service.inputTender(map);
 			if (result > 0) {
