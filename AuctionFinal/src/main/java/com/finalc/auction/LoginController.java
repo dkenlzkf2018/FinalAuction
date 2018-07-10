@@ -1,5 +1,6 @@
 package com.finalc.auction;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -177,25 +178,27 @@ public class LoginController {
 	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
 	public String zipcodeInfo(HttpServletRequest req) {
 		
-		String dong = req.getParameter("dong");
 		String sido = req.getParameter("sido");
-		String sigungu = req.getParameter("sigungu");
-		String eupmyun = req.getParameter("eupmyun");
-		String doro = req.getParameter("doro");
-		String zipcode = req.getParameter("zipcode");
-		System.out.println("확인용1 : " + dong);
-	
-		ZipcodeVO zvo = new ZipcodeVO();
+				
+		List<ZipcodeVO> zipcodeList = null;
 		
-		zvo.setZipcode(zipcode);
-		zvo.setZipcode(sido);
-		zvo.setZipcode(sigungu);
-		zvo.setZipcode(eupmyun);
-		zvo.setZipcode(doro);
+		zipcodeList = service.serchZipcode(sido);
 		
-		List<ZipcodeVO> zipcodeList = service.serchZipcode(dong);
+		int cnt = 0;
+		while(zipcodeList.toString().length() == zipcodeList.size()) {
+			cnt++;
+			if(cnt==1)
+				zipcodeList = new ArrayList<ZipcodeVO>(); 
+			
+			String zipcode = req.getParameter("zipcode");
+			String address = req.getParameter("address");
+			
+			ZipcodeVO zvo = new ZipcodeVO(zipcode, address);
+			
+			zipcodeList.add(zvo);
+		}
 		
-		System.out.println("확인용3 : "+ zipcodeList);
+		System.out.println("확인용 zipcodeList : "+ zipcodeList);
 		
 		if(zipcodeList == null || zipcodeList.size() == 0) {
 			req.setAttribute("result", "0");

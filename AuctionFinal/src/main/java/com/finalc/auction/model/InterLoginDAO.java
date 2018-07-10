@@ -13,6 +13,6 @@ public interface InterLoginDAO {
 
 	int memberRegistDetail(HashMap<String, String> map);
 
-	List<ZipcodeVO> serchZipcode(String dong);
+	List<ZipcodeVO> serchZipcode(String sido);
 
 }

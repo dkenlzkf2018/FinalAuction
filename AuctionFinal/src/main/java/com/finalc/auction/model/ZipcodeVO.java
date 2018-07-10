@@ -16,7 +16,10 @@ public class ZipcodeVO {
 	
 	private String address;
 	
-	public ZipcodeVO() {}
+	public ZipcodeVO(String zipcode, String address) {		
+		this.zipcode = zipcode;
+		this.setAddress(address);
+	}
 	
 	public ZipcodeVO(String zipnum, String zipcode, String sido, String sigungu, String eupmyun, String doro,
 			String building, String buildname, String dongname, String riname, String dong2name) {
@@ -42,7 +45,7 @@ public class ZipcodeVO {
 		this.dongname = dongname;
 		this.riname = riname;
 		this.dong2name = dong2name;
-		this.address = address;
+		this.setAddress(address);
 	}
 
 	public String getZipnum() {
@@ -133,12 +136,13 @@ public class ZipcodeVO {
 		this.dong2name = dong2name;
 	}
 	
-	public String getAddress(String sido, String sigungu, String eupmyun, String doro) {
+	public String getAddress() {
 		String address = sido + sigungu + eupmyun + doro;
 		return address;
 	}
-	
-	public void setAddress(String sido, String sigungu, String eupmyun, String doro) {
+
+	public void setAddress(String address) {
+		address = sido + sigungu + eupmyun + doro;
 		this.address = address;
 	}
 	

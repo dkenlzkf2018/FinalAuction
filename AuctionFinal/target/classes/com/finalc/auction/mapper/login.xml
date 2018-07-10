@@ -37,16 +37,13 @@
 	
 	<resultMap type="HashMap" id="getzipcodeListMap">
 		<result property="zipcode" column="zipcode" javaType="String" />
-		<result property="sido" column="sido" javaType="String" />
-		<result property="sigungu" column="sigungu" javaType="String" />
-		<result property="eupmyun" column="eupmyun" javaType="String" />
-		<result property="doro" column="doro" javaType="String" />
+		<result property="address" column="address" javaType="String" />
 	</resultMap>
 	
-	<select id="serchZipcode" parameterType="String" resultMap="getzipcodeListMap">
-		select zipcode, sido, sigungu, eupmyun, doro
+	<select id="serchZipcode" parameterType="String" resultType="com.finalc.auction.model.ZipcodeVO">
+		select zipcode, sido||' '||sigungu||' '||eupmyun||' '||doro AS address
 		from tbl_zipcode
-		where sido like '%' || #{dong} || '%'
+		where sido like '%' || #{sido} || '%'
 	</select>
 	
 </mapper>

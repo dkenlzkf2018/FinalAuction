@@ -38,8 +38,8 @@ public class LoginDAO implements InterLoginDAO {
 	}
 
 	@Override
-	public List<ZipcodeVO> serchZipcode(String dong) {
-		List<ZipcodeVO> zipcodeList = sqlsession.selectList("login.serchZipcode", dong);
+	public List<ZipcodeVO> serchZipcode(String sido) {
+		List<ZipcodeVO> zipcodeList = sqlsession.selectList("login.serchZipcode", sido);
 		return zipcodeList;
 	}
 	
