@@ -1,13 +1,12 @@
 package com.finalc.auction;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.service.InterLoginService;
 import com.finalc.auction.model.MemberVO;
+import com.finalc.auction.model.ZipcodeVO;
 
 // 로그인 관련 컨트롤러
 
@@ -69,8 +69,7 @@ public class LoginController {
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
 	public String memberRegist() {
 		
-		return "member/memberRegist.tiles";
-		
+		return "member/memberRegist.tiles";		
 	}
 	
 	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
@@ -168,5 +167,47 @@ public class LoginController {
 		
 		return "member/memberRegistEnd.tiles";
 	}
+	
+	@RequestMapping(value="/ZipcodeSerch.action", method= {RequestMethod.POST})
+	public String ZipcodeSerch() {
+		
+		return "ZipcodeSerch.notiles";
+	}
+	
+	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
+	public String zipcodeInfo(HttpServletRequest req) {
+		
+		String dong = req.getParameter("dong");
+		
+		System.out.println("확인용1 : " + dong);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("dong", dong);
+		
+		List<HashMap<String, String>> zipcodeList = service.serchZipcode(map);
+		
+		System.out.println("확인용2 : "+ zipcodeList);
+		
+		if(zipcodeList == null || zipcodeList.size() == 0) {
+			req.setAttribute("result", "0");
+			req.setAttribute("zipcodeNotExist", "해당 주소가 없습니다.");
+		}
+		else {
+			req.setAttribute("result", "1");
+			req.setAttribute("zipcodeList", zipcodeList);
+		}
+		
+		return "zipcodeInfo.notiles";
+	}
+	
+	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.GET})
+	public String pwdFind() {
+		
+		return "pwdFind.notiles";
+		
+	}
+	
+	
 	
 }

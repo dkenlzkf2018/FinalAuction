@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
@@ -24,14 +25,14 @@
     </div>
 </div>
 
-<div class="content mt-3">
+<div class="content mt-4">
     <div class="animated fadeIn">
         <div class="row">
 
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">회원 리스트</strong>
+                    <strong class="card-title">낙찰 리스트</strong>
                 </div>
                 <div class="card-body">
           <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -39,27 +40,19 @@
               <tr>
                 <th>번호</th>
                 <th>아이디</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>생년월일</th>
-                <th>성별</th>
-                <th>이메일</th>
-                <th>주소</th>
-                <th>등급</th>
+                <th>상품명</th>
+                <th>낙찰일</th>
+                <th>낙찰가</th>
               </tr>
             </thead>
             <tbody>
-              <c:forEach var="membervo" items="${memberList}">
+              <c:forEach var="map" items="${awardList}">
 	              <tr>
-	                <td>${membervo.usernum}</td>
-	                <td>${membervo.userid}</td>
-	                <td>${membervo.username}</td>
-	                <td>${membervo.hp1}-${membervo.hp2}-${membervo.hp3}</td>
-	                <td>${membervo.birth}</td>
-	                <td>${membervo.gender}</td>
-	                <td>${membervo.email}</td>
-	                <td>${membervo.addr1} ${membervo.addr2}</td>
-	                <td>${membervo.grade}</td>
+	                <td>${map.AWARDNUM}</td>
+	                <td>${map.USERID}</td>
+	                <td>${map.ACTNAME}</td>
+	                <td>${map.AWARDDAY}</td>
+	                <td>${map.AWARDPRICE}</td>
 	              </tr>
               </c:forEach>
             </tbody>

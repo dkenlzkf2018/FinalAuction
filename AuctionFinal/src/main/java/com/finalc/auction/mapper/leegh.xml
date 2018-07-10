@@ -9,5 +9,26 @@
 		select usernum, userid, passwd, email, username, email, hp1
      		 , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
 		from tbl_member A join tbl_member_detail B on A.userid = B.fk_userid
+		where A.user_status = 1
+	</select>
+	
+	<resultMap type="HashMap" id="awardList">
+		<result property="AWARDNUM" column="awardnum" javaType="String"/>
+		<result property="USERID" column="userid" javaType="String"/>
+		<result property="ACTNAME" column="actname" javaType="String"/>
+		<result property="AWARDDAY" column="awardday" javaType="String"/>
+		<result property="AWARDPRICE" column="awardprice" javaType="String"/>
+	</resultMap>
+	
+	<select id="getAwardList" resultMap="awardList">
+		select awardnum
+		     , (select fk_userid
+		                  from tbl_member_detail
+		                  where usernum = fk_usernum) as userid
+		     , (select actname 
+		        from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
+		        where B.actdnum = fk_actdnum) as actname
+		     , awardday, awardprice
+		from tbl_award
 	</select>
 </mapper>
