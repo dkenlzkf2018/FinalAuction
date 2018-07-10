@@ -141,7 +141,7 @@
     <script src="<%=request.getContextPath() %>/resources/assets-admin/js/popper.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/assets-admin/js/plugins.js"></script>
     <script src="<%=request.getContextPath() %>/resources/assets-admin/js/main.js"></script>
-	<script type="text/javascript" src="<%= request.getContextPath() %>/utiljs/util.js"></script>
+	<script src="<%=request.getContextPath() %>/resources/js/util.js"></script>
 
     <script type="text/javascript">
 
