@@ -1,20 +1,30 @@
 select *
 from tbl_member;
 
+
 <<<<<<< HEAD
+from 
+
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 select userid, passwd, email, username, hp1
 delete from tbl_member
 where userid = 'leess';
-=======
+
 
 delete from tbl_member_detail
 where fk_userid = 'admin';
+<<<<<<< HEAD
 >>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 <<<<<<< HEAD
 
 select *
 from tbl_member_detail;
 =======
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+=======
+
 >>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 
@@ -41,12 +51,23 @@ ROLLBACK;
 
 commit;
 
+select awardnum
+     , (select fk_userid
+                  from tbl_member_detail
+                  where usernum = fk_usernum) as userid
+     , (select actname 
+        from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
+        where B.actdnum = fk_actdnum) as actname
+     , awardday, awardprice
+from tbl_award;
+
 select count(*)
 from tbl_member_detail
 <<<<<<< HEAD
-<<<<<<< HEAD
 where fk_userid = 'admion'
 =======
+
+where fk_userid = 'admion'
 
 >>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
@@ -650,6 +671,11 @@ from tbl_category A join tbl_category_detail B on A.cnum = b.fk_cnum;
      ON tbl_zipcode (
         ZIPNUM ASC
      );
+ 
+select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS juso
+from tbl_zipcode
+where sido like '%'||'강원'||'%';
+
   
   ALTER TABLE tbl_zipcode
      ADD
@@ -868,7 +894,6 @@ CREATE TABLE tbl_joinACList (
 
 
 
-=======
 where fk_userid = 'admin';
 
 
@@ -904,10 +929,7 @@ alter table tbl_hugiboard  modify (ep_writeday default sysdate);
 insert into tbl_category_detail(cdnum, fk_cnum, cdname)
 values(seq_category_detail.nextval, 1, '여성의류');
 
-<<<<<<< HEAD
-commit;
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
-=======
+
 commit;
 
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+commit;

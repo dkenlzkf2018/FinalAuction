@@ -1,5 +1,6 @@
 package com.finalc.auction;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ public class LGHController {
 	@Autowired
 	private InterLGHService service;
 	
+<<<<<<< HEAD
 	// 관리자 회원관리 Controller 단
 	@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
 	public String adminMain(HttpServletRequest req) {
@@ -24,5 +26,27 @@ public class LGHController {
 		
 		req.setAttribute("memberList", memberList);
 		return "management/memberList.admin";
+=======
+
+	@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
+	public String memberList(HttpServletRequest req) {
+		List<MemberVO> memberList = service.getMemberList();
+		
+		List<HashMap<String, String>> awardList = service.getAwardList();
+		
+		req.setAttribute("awardList", awardList);
+		
+		req.setAttribute("memberList", memberList);
+		return "management/memberList.admin";
+	}
+	
+	@RequestMapping(value="/admin/awardList.action", method={RequestMethod.GET})
+	public String adminMain(HttpServletRequest req) {
+		List<HashMap<String, String>> awardList = service.getAwardList();
+		
+		req.setAttribute("awardList", awardList);
+		
+		return "management/awardList.admin";
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 	}
 }
