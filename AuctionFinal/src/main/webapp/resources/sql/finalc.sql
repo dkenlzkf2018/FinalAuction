@@ -1,6 +1,9 @@
 select *
 from tbl_member_detail;
 
+
+from 
+
 <<<<<<< HEAD
 select userid, passwd, email, username, hp1
 delete from tbl_member
@@ -35,14 +38,19 @@ ROLLBACK;
 
 commit;
 
+select awardnum
+     , (select fk_userid
+                  from tbl_member_detail
+                  where usernum = fk_usernum) as userid
+     , (select actname 
+        from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
+        where B.actdnum = fk_actdnum) as actname
+     , awardday, awardprice
+from tbl_award;
+
 select count(*)
 from tbl_member_detail
-<<<<<<< HEAD
-<<<<<<< HEAD
 where fk_userid = 'admion'
-=======
-
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 -----------------------------------------------
   -- ps. F5버튼은 새로고침이 아니라 RUN입니다. 주의하세요.
