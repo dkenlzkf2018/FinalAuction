@@ -40,7 +40,7 @@
 		<result property="address" column="address" javaType="String" />
 	</resultMap>
 	
-	<select id="serchZipcode" parameterType="String" resultType="com.finalc.auction.model.ZipcodeVO">
+	<select id="serchZipcode" parameterType="HashMap" resultType="com.finalc.auction.model.ZipcodeVO">
 		select zipcode, sido||' '||sigungu||' '||eupmyun||' '||doro AS address
 		from tbl_zipcode
 		where sido like '%' || #{sido} || '%'

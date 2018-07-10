@@ -10,7 +10,9 @@ where userid = 'leess';
 delete from tbl_member_detail
 where fk_userid = 'admin';
 
-
+select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS address
+from tbl_zipcode
+where sido like '%' || '강원도' || '%';
 
 select userid, passwd, email, username, email, hp1
      , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
@@ -894,3 +896,4 @@ values(seq_category_detail.nextval, 1, '여성의류');
 commit;
 
 commit;
+
