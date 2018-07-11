@@ -18,16 +18,7 @@ public class LGHController {
 	@Autowired
 	private InterLGHService service;
 	
-<<<<<<< HEAD
 	// 관리자 회원관리 Controller 단
-	@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
-	public String adminMain(HttpServletRequest req) {
-		List<MemberVO> memberList = service.getMemberList();
-		
-		req.setAttribute("memberList", memberList);
-		return "management/memberList.admin";
-=======
-
 	@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
 	public String memberList(HttpServletRequest req) {
 		List<MemberVO> memberList = service.getMemberList();
@@ -47,6 +38,5 @@ public class LGHController {
 		req.setAttribute("awardList", awardList);
 		
 		return "management/awardList.admin";
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 	}
 }

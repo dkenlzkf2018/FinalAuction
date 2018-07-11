@@ -5,9 +5,17 @@
 
 <!-- ==== 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
 <mapper namespace="admin">
+	<resultMap type="HashMap" id="adminCategory">
+		<result property="CNUM" column="cnum" javaType="String"/>
+		<result property="CNAME" column="cname" javaType="String"/>
+		<result property="CDNUM" column="cdnum" javaType="String"/>
+		<result property="CDNAME" column="cdname" javaType="String"/>
+	</resultMap>
+	
 	<select id="getAdminCategory" resultType="com.finalc.auction.model.CategoryVO">
 		select cnum, cname, cdnum, fk_cnum, cdname
 		from tbl_category A join tbl_category_detail B on A.cnum = B.fk_cnum
-		<!-- from tbl_category A join tbl_category_detail B on A.userid = B.fk_userid -->
 	</select>
+	
+	
 </mapper>

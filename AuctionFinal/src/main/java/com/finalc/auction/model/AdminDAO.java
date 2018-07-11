@@ -15,10 +15,8 @@ public class AdminDAO implements InterAdminDAO {
 	
 	// 관리자 메인 Controller 단
 	@Override
-	public List<HashMap<String, String>> getadMin(HashMap<String, String> map) {
-		System.out.println("Dao 단 map : " + map);
-		List<HashMap<String, String>> adMapList = sqlsession.selectList("adMin.getadMin", map);
-		System.out.println("3. DAO 단 adMapList : " + adMapList);
+	public List<HashMap<String, String>> getAdMin() {
+		List<HashMap<String, String>> adMapList = sqlsession.selectList("adMin.getadMin");
 		return adMapList;
 	}
 

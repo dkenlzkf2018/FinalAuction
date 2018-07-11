@@ -3,6 +3,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets-admin/css/lib/chosen/chosen.min.css">
+
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
@@ -25,51 +27,50 @@
 </div>
 
 
-<div class="col-xs-6 col-sm-6">
-   <div class="card">
-       <div class="card-header">
+<div class="col-xs-4 col-sm-2">    
+	<div class="card">
+    	<div class="card-header">
            <strong class="card-title">카테고리 등록</strong>
-       </div>
-       <div class="card-body">
-
-       		<select data-placeholder="대분류" class="standardSelect" tabindex="1">
-               <option value="">대분류</option>
-               <option value="United States">의류</option>
-               <option value="United Kingdom">생활용품</option>
-               <option value="Afghanistan">디지털</option>
-               <option value="Aland Islands">스포츠</option>
-               <option value="Albania">기타</option>
-       		</select>
-       		
+        </div>
+        <div class="card-body">
+        	<c:forEach var="categoryvo" items="$">
        		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
-               <option value="">소분류</option>
-               <option value="United States">United States</option>
-               <option value="United Kingdom">United Kingdom</option>
-               <option value="Afghanistan">Afghanistan</option>
-               <option value="Aland Islands">Aland Islands</option>
-               <option value="Albania">Albania</option>
-               <option value="Algeria">Algeria</option>
-               <option value="American Samoa">American Samoa</option>
-               <option value="Andorra">Andorra</option>
-               <option value="Angola">Angola</option>
-               <option value="Anguilla">Anguilla</option>
-               <option value="Antarctica">Antarctica</option>
-       		</select>       		
-       </div>
-   </div>
-</div>
+               <option value=""></option>
+               <option value="United States">${categoryvo.cdname}</option>
+               <option value="United Kingdom">${categoryvo.cdname}</option>
+               <option value="Afghanistan">${categoryvo.cdname}</option>
+               <option value="Aland Islands">${categoryvo.cdname}</option>
+               <option value="Albania">${categoryvo.cdname}</option>
+       		</select>
+       		</c:forEach>
+       		<%-- <c:forEach var="membervo" items="${memberList}">
+	              <tr>
+	                <td>${membervo.usernum}</td>
+	                <td>${membervo.userid}</td>
+	                <td>${membervo.username}</td>
+	                <td>${membervo.hp1}-${membervo.hp2}-${membervo.hp3}</td>
+	                <td>${membervo.birth}</td>
+	                <td>${membervo.gender}</td>
+	                <td>${membervo.email}</td>
+	                <td>${membervo.addr1} ${membervo.addr2}</td>
+	                <td>${membervo.grade}</td>
+	              </tr>
+              </c:forEach> --%>       		
+        </div>
+    </div>
+</div>    
 
-<script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/lib/chosen/chosen.jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets-admin/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets-admin/js/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets-admin/js/plugins.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets-admin/js/main.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets-admin/js/lib/chosen/chosen.jquery.min.js"></script>
 
 <script>
     jQuery(document).ready(function() {
         jQuery(".standardSelect").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Oops, nothing found!",
+            disable_search_threshold: 1,
+            no_results_text: "이런, 없는 내용입니다!", /* 여기에 글이 써지면 안되는데 */
             width: "100%"
         });
     });
