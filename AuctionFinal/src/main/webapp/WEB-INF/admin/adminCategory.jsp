@@ -33,29 +33,13 @@
            <strong class="card-title">카테고리 등록</strong>
         </div>
         <div class="card-body">
-        	<c:forEach var="categoryvo" items="$">
        		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
+       		<c:forEach var="categoryvo" items="${categoryList}"> <!-- select문 안에 forEach문이 있어야한다. -->
                <option value=""></option>
-               <option value="United States">${categoryvo.cdname}</option>
-               <option value="United Kingdom">${categoryvo.cdname}</option>
-               <option value="Afghanistan">${categoryvo.cdname}</option>
-               <option value="Aland Islands">${categoryvo.cdname}</option>
-               <option value="Albania">${categoryvo.cdname}</option>
-       		</select>
+               <option value="cdnum">${categoryvo.cdnum}</option>
+               <option value="cdname">${categoryvo.cdname}</option>
        		</c:forEach>
-       		<%-- <c:forEach var="membervo" items="${memberList}">
-	              <tr>
-	                <td>${membervo.usernum}</td>
-	                <td>${membervo.userid}</td>
-	                <td>${membervo.username}</td>
-	                <td>${membervo.hp1}-${membervo.hp2}-${membervo.hp3}</td>
-	                <td>${membervo.birth}</td>
-	                <td>${membervo.gender}</td>
-	                <td>${membervo.email}</td>
-	                <td>${membervo.addr1} ${membervo.addr2}</td>
-	                <td>${membervo.grade}</td>
-	              </tr>
-              </c:forEach> --%>       		
+       		</select>
         </div>
     </div>
 </div>    
@@ -66,7 +50,7 @@
 <script src="<%=request.getContextPath()%>/resources/assets-admin/js/main.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets-admin/js/lib/chosen/chosen.jquery.min.js"></script>
 
-<script>
+<script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery(".standardSelect").chosen({
             disable_search_threshold: 1,
@@ -74,5 +58,22 @@
             width: "100%"
         });
     });
+    
+	$('#add_category').submit(function(event) {
+		var form = $(this);
+		$.ajax({
+			type : form.attr('method'),
+			url : form.attr('action'),
+			data : form.serialize()
+		}).done(function(c) {				
+			$("#category").append("<option value=" + c.cdnum + ">" + c.cdname + "</option>");
+			$("#category").val(c.id);
+			
+			alert(c.name + " 카테고리가 추가되었습니다.");
+		}).fail(function() {
+			alert('error');
+		});
+		event.preventDefault();
+	});    
 </script>
                         
