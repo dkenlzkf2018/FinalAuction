@@ -7,44 +7,10 @@
 	String ctxname = request.getContextPath();
 %>
 
-<style>
-	#div_pwd {
-		width: 70%;
-		height: 15%;
-		margin-bottom: 5%;
-		margin-left: 10%;
-		position: relative;
-	}
-	
-	#div_pwd2 {
-		width: 70%;
-		height: 15%;
-		margin-bottom: 5%;
-		margin-left: 10%;
-		position: relative;
-	}
-	
-	#div_findResult {
-		width: 70%;
-		height: 15%;
-		margin-bottom: 5%;
-		margin-left: 10%;		
-		position: relative;
-	}
-	
-	#div_btnUpdate {
-		width: 70%;
-		height: 15%;
-		margin-bottom: 5%;
-		margin-left: 10%;
-		position: relative;
-	}
-	
-</style>
-
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.0.0.js"></script>
 <script type="text/javascript">
 	
-	JQuery(document).ready(function(){
+	$(document).ready(function(){
 		
 		$("#btnUpdate").click(function(event){
 			
@@ -76,7 +42,7 @@
 			else {
 				var frm = document.pwdConfirmFrm;
 				frm.method = "post";
-				frm.action = "<%= ctxname %>/pwdConfirm.action";
+				frm.action = "pwdConfirm.action";
 				frm.submit();	
 			}
 		});
@@ -97,18 +63,16 @@
       <input type="password" name="pwd2" id="pwd2" size="15" placeholder="PASSWORD" required />
    </div>
    
+   <div id="div_btnUpdate" align="center">
+	   	<button type="button" id="btnUpdate">암호변경하기</button>
+	</div>
+   
    <input type="hidden" name="userid" id="userid" value="${userid}" />
    
    <c:if test="${method.equals('POST') && n==1 }">
    		<div id="div_confirmResult" align="center">
    			ID : ${userid}님의 암호가 새로이 변경되었습니다.<br/>
    		</div>
-   </c:if>
-   
-   <c:if test="${method.equals('GET')}">
-	   <div id="div_btnUpdate" align="center">
-	   		<button type="button" class="btn btn-success" id="btnUpdate">암호변경하기</button>
-	   </div>		
    </c:if>
    
 </form>

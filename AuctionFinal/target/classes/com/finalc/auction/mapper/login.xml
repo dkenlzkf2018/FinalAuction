@@ -45,5 +45,12 @@
 		update tbl_member set password = #{pwd}
 		where userid = ${userid}
 	</update>
+	
+	<select id="isUserExists" parameterType="String" resultType="Integer">
+		select count(*)
+		from tbl_member A join tbl_member_detail B
+		on A.userid = B.fk_userid
+		where userid = #{userid}
+	</select>
 	 
 </mapper>

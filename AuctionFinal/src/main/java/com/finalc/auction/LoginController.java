@@ -3,6 +3,7 @@ package com.finalc.auction;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -180,8 +181,6 @@ public class LoginController {
 		
 		String sido = req.getParameter("sido");
 		
-		System.out.println(sido);
-		
 		List<ZipcodeVO> zipcodeList = service.serchZipcode(sido);
 		
 		System.out.println("확인용 zipcodeList : " + zipcodeList);
@@ -198,13 +197,77 @@ public class LoginController {
 		return "zipcodeInfo.notiles";
 	}
 	
-	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.GET})
-	public String pwdFind() {
+	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.POST})
+	public String pwdFind(HttpServletRequest req) {
+		
+		String method = req.getMethod();
+		
+		req.setAttribute("method", method);
+		
+		if("post".equalsIgnoreCase(method)) {
+			// 비밀번호 찾기 모달창에서 찾기 버튼을 클릭했을 경우
+			String userid = req.getParameter("userid");
+			String email = req.getParameter("email");
+			
+			System.out.println(userid);
+			System.out.println(email);
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			
+			map.put("userid", userid);
+			map.put("email", email);
+			
+			int n = service.isUserExists(map); 
+			
+			if(n==1) {
+				
+				GoogleMail mail = new GoogleMail();
+				
+				Random rnd = new Random();
+				
+				String certificationCode = "";
+				// certificationCode ==> "ewtyq0452029"
+				
+				char randchar = ' ';
+				for(int i=0; i<5; i++) {
+					// min 부터 max 사이의 값으로 랜덤한 정수를 얻으려면
+					// int rndnum = rnd.nextInt(max - min + 1) + min;  
+					randchar = (char)(rnd.nextInt('z' - 'a' + 1) + 'a');
+					certificationCode += randchar;
+				}
+				
+				int randnum = 0;
+				for(int i=0; i<7; i++) {
+					randnum = (int)(rnd.nextInt(10-0+1)+0);
+					certificationCode += randnum;
+				}
+				
+				try {
+					mail.sendmail(email, certificationCode);
+					req.setAttribute("certificationCode", certificationCode);
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+					
+					req.setAttribute("sendFailmsg", "메일발송에 실패했습니다.");
+					n = -1;
+				}
+				
+			}
+			
+			req.setAttribute("n", n);  
+			// n이 0이면 존재하지 않은 userid 또는 email 인 경우
+			// n이 1이면 userid 와 email 존재하면서 메일발송이 성공한 경우
+			// n이 -1이면 userid 와 email 존재하는데 메일발송이 실패한 경우
+			
+			req.setAttribute("userid", userid);
+			req.setAttribute("email", email);
+		}
 		
 		return "pwdFind.notiles";
 	}
 	
-	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.POST})
 	public String pwdConfirm(HttpServletRequest req) {
 		
 		String method = req.getMethod();
@@ -214,12 +277,15 @@ public class LoginController {
 	    req.setAttribute("userid", userid);
 	    
 	    if("POST".equalsIgnoreCase(method)) {
-	    	String pwd = req.getParameter("password");
+	    	String pwd = req.getParameter("pwd2");
+	    	req.setAttribute("passwd", pwd);
 	    	
 	    	int n = 0;
 	    	if(userid != null && pwd != null) {
 	    		n = service.updatePwdUser(pwd);
 	    	}
+	    	
+	    	System.out.println(n);
 	    	
 	    	req.setAttribute("n", n);
 	    }

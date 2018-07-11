@@ -17,4 +17,6 @@ public interface InterLoginDAO {
 
 	int updatePwdUser(String pwd);
 
+	int isUserExists(HashMap<String, String> map);
+
 }

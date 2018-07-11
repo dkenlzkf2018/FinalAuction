@@ -50,5 +50,11 @@ public class LoginDAO implements InterLoginDAO {
 		return n;
 		
 	}
+
+	@Override
+	public int isUserExists(HashMap<String, String> map) {
+		int n = sqlsession.selectOne("login.isUserExists", map);
+		return n;
+	}
 	
 }

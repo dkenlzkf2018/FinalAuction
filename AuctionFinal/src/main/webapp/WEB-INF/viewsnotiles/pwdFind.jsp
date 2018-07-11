@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.0.0.js"></script>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 </head>
 <script type="text/javascript">
-	JQuery(document).ready(function(){
-			
-		$("#btnFind").click(function(){
-			var frm = document.pwdFindFrm;
-			frm.method = "post";
-			frm.action = "<%= request.getContextPath() %>/pwdFind.action";
-			frm.submit();
+
+	$(document).ready(function(){
+		$("#btnConfirmCode").click(function(){
+			goConfirm();
 		});
+	});
+	
+	function goSerch(){
+		
+		var frm = document.pwdFindFrm;
+		frm.method = "post";
+		frm.action = "pwdFind.action";
+		frm.submit();
+		
 		
 		var method = "${method}";
 		var userid = "${userid}";
@@ -28,30 +38,34 @@
 		
 		if(method=="POST" && n==1) {
 			$("#div_btnFind").hide();
+			$("#div_userid").hide();
+			$("#div_email").hide();
 		}
 		else if(method=="POST" && (n == -1 || n == 0)) {
 			$("#div_btnFind").show();
+			$("#div_userid").show();
+			$("#div_email").show();
 		}		
-		
-		$("#btnConfirmCode").click(function(){
-			if( $("#input_confirmCode").val() == "${certificationCode}" ) {
-				alert("인증성공 되었습니다.");
 				
-				var frm = document.pwdFindFrm;
-				frm.method = "get"; // 새암호와 새암호확인을 입력받기 위한 폼만을 띄워주기 때문에 get 방식으로 한다.
-				frm.action = "pwdConfirm.action";
-				frm.submit();
-			}
-			else {
-				alert("인증코드를 다시 입력하세요!!");
-				$("#input_confirmCode").val("");
-				$("#input_confirmCode").focus();
-			}
+	}
+	
+	function goConfirm(){
+		
+		if( $("#input_confirmCode").val() == "${certificationCode}") {
+			alert("인증성공 되었습니다.");
 			
-		});
+			var frm = document.pwdFindFrm;
+			frm.method = "post"; // 새암호와 새암호확인을 입력받기 위한 폼만을 띄워주기 때문에 get 방식으로 한다.
+			frm.action = "pwdConfirm.action";
+			frm.submit();
+		}
+		else {
+			alert("인증코드를 다시 입력하세요!!");
+			$("#input_confirmCode").val("");
+			$("#input_confirmCode").focus();
+		}
 		
-		
-	});
+	}
 	
 </script>
 
@@ -74,7 +88,7 @@
    	      	  인증코드를 입력해주세요<br/>
    	      	 <input type="text" name="input_confirmCode" id="input_confirmCode" required />
    	      	 <br/><br/>
-   	      	 <button type="button" class="btn btn-info" id="btnConfirmCode">인증하기</button>    
+   	      	 <button type="button" id="btnConfirmCode" onClick="goConfirm();">인증하기</button>    
    	      </div>
    	   </c:if>
    	   
@@ -89,7 +103,7 @@
    </div>
    
    <div id="div_btnFind" align="center">
-   		<button type="button" class="btn btn-success" id="btnFind">찾기</button>
+   		<br/><button type="button" id="btnFind" onClick="goSerch();">찾기</button>
    </div>
    
 </form>

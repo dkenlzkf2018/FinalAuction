@@ -20,4 +20,6 @@ public interface InterLoginService {
 
 	int updatePwdUser(String pwd);
 
+	int isUserExists(HashMap<String, String> map);
+
 }
