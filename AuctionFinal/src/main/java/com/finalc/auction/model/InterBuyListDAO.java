@@ -16,4 +16,6 @@ public interface InterBuyListDAO {
 
 	int inputTender(HashMap<String, String> map);
 
+	String getTender(String actnum);
+
 }

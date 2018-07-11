@@ -77,7 +77,7 @@
 		var url = "<%=request.getContextPath()%>/tender.action";
     	window.open("", "tender",
     			   "left=569px, top=885px, width=569px, height=885px status=1");
-		frm.method = "GET";
+		frm.method = "POST";
 		frm.action = url;
 		frm.target = "tender";
 		frm.submit();
@@ -186,8 +186,7 @@
               <div class="price-availability-block clearfix">
                 <div class="pull-left">                  
 	              <label class="control-label">현  재  가  : </label>
-	              <fmt:formatNumber value="${acvo.startprice}" type="number"/>원
-              	  
+	              <fmt:formatNumber value="${nowprice}" type="number"/>원
               	  <br/>
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
@@ -202,6 +201,7 @@
                 	<input type="hidden" name="actd_qty" value="${acvo.actd_qty}"/>
                 	<input type="hidden" name="startprice" value="${acvo.startprice}"/>
                 	<input type="hidden" name="actd_price" value="${acvo.actd_price}"/>
+                	<input type="hidden" name="nowprice" value="${nowprice}"/>
                 </form>
               	  
               	

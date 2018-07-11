@@ -50,4 +50,11 @@ public class BuyListService implements InterBuyListService {
 		int result = dao.inputTender(map);
 		return result;
 	}
+
+
+	@Override
+	public String getTender(String actnum) {
+		String price = dao.getTender(actnum);
+		return price;
+	}
 }

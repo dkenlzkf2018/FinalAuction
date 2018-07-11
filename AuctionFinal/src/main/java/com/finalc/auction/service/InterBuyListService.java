@@ -20,4 +20,6 @@ public interface InterBuyListService {
 	// #Buy 12. 경매 입찰(insert)하는 Interface Service 단
 	int inputTender(HashMap<String, String> map);
 
+	String getTender(String actnum);
+
 }

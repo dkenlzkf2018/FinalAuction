@@ -134,4 +134,10 @@
 		insert into tbl_joinaclist(joinactnum, fk_actnum, fk_usernum, tenderday, tenderprice)
 		values(seq_joinaclist.nextval, #{actnum}, #{usernum}, default, #{tenderprice})
 	</insert>
+	
+	<select id="getTender" parameterType="String" resultType="String">
+		select max(tenderprice) AS tenderprice
+		from tbl_joinaclist
+		where fk_actnum = #{actnum}
+	</select>
 </mapper>

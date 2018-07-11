@@ -45,5 +45,11 @@ public class BuyListDAO implements InterBuyListDAO {
 		int result = sqlsession.insert("buyList.inputTender",map);
 		return result;
 	}
+
+	@Override
+	public String getTender(String actnum) {
+		String price = sqlsession.selectOne("buyList.getTender", actnum);
+		return price;
+	}
 	
 }

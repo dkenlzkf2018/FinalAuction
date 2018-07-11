@@ -141,24 +141,45 @@
     <script src="<%=request.getContextPath() %>/resources/assets-admin/js/popper.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/assets-admin/js/plugins.js"></script>
     <script src="<%=request.getContextPath() %>/resources/assets-admin/js/main.js"></script>
-	<script src="<%=request.getContextPath() %>/resources/js/util.js"></script>
 
     <script type="text/javascript">
 
 	jQuery(document).ready(function () {
 		jQuery("#payment-button").click(function(){
-			var startprice = Number("${map.startprice}");
-			var priceCtrl = jQuery("#tenderprice").val();
-			var qtyCtrl = jQuery("#qty").val();
-			var endprice = Number("${map.actd_price}");
-			var startQty = Number("${map.actd_qty}");
+			var startprice = Number("${map.startprice}");	// 시작가격
+			var priceCtrl = jQuery("#tenderprice").val();	// 입찰가격 (입력값)
+			var endprice = Number("${map.actd_price}");		// 구매가격
+			var qtyCtrl = jQuery("#qty").val();				// 수량 입력값
+			var startQty = Number("${map.actd_qty}");		// 초기 수량 입력값
+			var nowprice = Number("${nowprice}");			// 현재가
 			var raw = 1000;
+			
+			
+			// 숫자외에 다른 문자를 입력하였을 경우
+			var regExp = /^[0-9]+$/;
+			for (var i=0; i<priceCtrl.length; i++) {
+				if (priceCtrl.charAt(i) != " " && regExp.test(priceCtrl.charAt(i)) == false) {
+					alert("숫자만 입력하세요");
+					document.inputTenderFrm.tenderprice.focus();
+					return false;
+				}
+			}
+			
+			// 입찰 값이 비었을 경우
+			if (priceCtrl.trim() == "") {
+				alert("입찰금액을 입력해주십시오");
+				return false;
+			}
+			
+			
 			var price = 0;
+			// 입찰값이 있다면 price에 집어넣고
+			// 아니면 시작가격을 올린다.
 			if (priceCtrl) {
-				price = priceCtrl.value;
+				price = priceCtrl;
 			}
 			else {
-				price = startprice;
+				price = nowprice;
 			}
 			price = Number(price);
 			
@@ -174,38 +195,44 @@
 			qty = Covert.stringToNumber(qty); */
 			
 			
-			if (priceCtrl.trim() == "") {
-				alert("입찰금액을 입력해주십시오");
-				return false;
-			}
-			var regExp = /^[0-9]+$/;
-			var bool = reqExp.test(priceCtrl);
 			
-			if (!bool) {
-				alert("숫자가 아닌 값을 입력하셨습니다.");
+			// 시작가격보다 입찰가격이 낮은 경우
+			if (price < startprice) {
+				alert("입찰 금액은 시작가격(1000원) 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
-			if (priceCtrl <= startprice) {
+			if (price < nowprice) {
 				alert("입찰 금액은 현재가 + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
+			
+			// 10원단위로는 입력할 수 없음
 			if (price > 100 * parseInt(price / 100)){
 				alert("10원단위로 입찰하실 수 없습니다.");
 				return false;
 			}
 			
-			if (priceCtrl > endprice) {
+			if (price > 1000 * parseInt(price / 1000)){
+				alert("100원단위로 입찰하실 수 없습니다.");
+				return false;
+			}
+			
+			if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
 			}
+			
 			else {
 				var frm = document.inputTenderFrm;
 				var url = "<%=request.getContextPath()%>/inputTender.action";
-				frm.method = "GET";
+				frm.method = "POST";
 				frm.action = url;
 				frm.submit();
 			}
+			
+			
 		});
+		
 	});
 
 </script>

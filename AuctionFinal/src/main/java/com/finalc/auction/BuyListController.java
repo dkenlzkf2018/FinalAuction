@@ -177,19 +177,27 @@ public class BuyListController {
 		String actdnum = req.getParameter("actdnum");
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
-				
+		
 		AuctionVO acvo = service.viewAuction(actdnum);
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
-		
-		int n = 1;
-		req.setAttribute("cvo", cvo);
+		String nowprice = "";
+		String tenderprice = service.getTender(acvo.getActnum());
+		if (tenderprice == null) {
+			nowprice = acvo.getStartprice();
+		}
+		else {
+			nowprice = tenderprice;
+		}
+		int n = 1;			// 만일 현재가(입찰가)와 구매가 가격이 같다면
 		req.setAttribute("acvo", acvo);
+		req.setAttribute("cvo", cvo);
 		req.setAttribute("n", n);
+		req.setAttribute("nowprice", nowprice);
 		return "auction/auctionDetail.tiles";
 	}
 	
-	@RequestMapping(value="/tender.action", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/tender.action", method={RequestMethod.POST})
 	public String tender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
@@ -199,6 +207,7 @@ public class BuyListController {
 		String actd_qty = req.getParameter("actd_qty");
 		String startprice = req.getParameter("startprice");
 		String actd_price = req.getParameter("actd_price");
+		String nowprice = req.getParameter("nowprice");
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("actnum", actnum);
@@ -209,7 +218,7 @@ public class BuyListController {
 		map.put("actd_price", actd_price);
 		
 		
-		System.out.println(actname);
+		System.out.println("BuyListController.java 상품명 : " + actname);
 		if (loginuser == null) {
 			req.setAttribute("msg", "로그인을 먼저 하십시오!");
 			req.setAttribute("loc", "login.action");
@@ -221,7 +230,7 @@ public class BuyListController {
 		}
 	}
 	
-	@RequestMapping(value="/inputTender.action", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/inputTender.action", method={RequestMethod.POST})
 	public String inputTender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
@@ -245,11 +254,11 @@ public class BuyListController {
 			int result = service.inputTender(map);
 			if (result > 0) {
 				req.setAttribute("msg", "경매 입찰 성공!!");
-				req.setAttribute("loc", "self.close();");
+				req.setAttribute("loc", "javascript:self.close();");
 			}
 			else {
 				req.setAttribute("msg", "경매 입찰 실패!!");
-				req.setAttribute("loc", "javascript:history.back();");
+				req.setAttribute("loc", "javascript:self.close();");
 			}
 			return "msg.notiles";
 		}
