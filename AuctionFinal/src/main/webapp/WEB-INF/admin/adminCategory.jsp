@@ -57,9 +57,10 @@
             no_results_text: "이런, 없는 내용입니다!", /* 여기에 글이 써지면 안되는데 */
             width: "100%"
         });
-    });
+    });   
     
-	$('#add_category').submit(function(event) {
+    
+/* 	$('#add_category').submit(function(event) {
 		var form = $(this);
 		$.ajax({
 			type : form.attr('method'),
@@ -74,6 +75,6 @@
 			alert('error');
 		});
 		event.preventDefault();
-	});    
+	}); */    
 </script>
                         
