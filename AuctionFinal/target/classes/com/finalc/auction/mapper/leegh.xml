@@ -18,6 +18,7 @@
 		<result property="ACTNAME" column="actname" javaType="String"/>
 		<result property="AWARDDAY" column="awardday" javaType="String"/>
 		<result property="AWARDPRICE" column="awardprice" javaType="String"/>
+		<result property="DELIVERSTATUS" column="deliverstatus" javaType="String"/>
 	</resultMap>
 	
 	<select id="getAwardList" resultMap="awardList">
@@ -29,6 +30,33 @@
 		        from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
 		        where B.actdnum = fk_actdnum) as actname
 		     , awardday, awardprice
+		     , (select deliverstatus
+				from tbl_deliver
+		     	where fk_awardnum = awardnum) as deliverstatus
 		from tbl_award
 	</select>
+	
+	<select id="getHugiList" resultType="com.finalc.auction.model.HugiBoardVO">
+		select ep_boardno, fk_userid
+		    , (select actname 
+		       from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
+		       where B.actdnum = fk_actdnum) as fk_actdnum
+		    , ep_content, ep_writeday, ep_satisfaction, ep_boardstatus
+		from tbl_hugiboard
+	</select>
+	
+	<update id="hugiDel" parameterType="String">
+		update tbl_hugiboard set ep_boardstatus = 0
+		where ep_boardno = #{ep_boardno}
+	</update>
+	
+	<update id="hugiRecover" parameterType="String">
+		update tbl_hugiboard set ep_boardstatus = 1
+		where ep_boardno = #{ep_boardno}
+	</update>
+	
+	<update id="deliverSet" parameterType="HashMap">
+		update tbl_deliver set deliverstatus = #{deliverstatus}
+		where fk_awardnum = #{awardnum}
+	</update>
 </mapper>

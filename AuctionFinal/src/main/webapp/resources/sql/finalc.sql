@@ -4,9 +4,19 @@ from tbl_member_detail;
 update tbl_member set passwd = 'qwer1234#'
 where userid = 'dkenlzkf';
 
+<<<<<<< HEAD
 select *
 from tbl_member;
+=======
+select ep_boardno, fk_userid
+    , (select actname 
+       from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
+       where B.actdnum = fk_actdnum) as actname
+    , ep_content, ep_writeday, ep_satisfaction, ep_boardstatus
+from tbl_hugiboard;
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
+<<<<<<< HEAD
 select count(*)
 		from tbl_member A join tbl_member_detail B
 		on A.userid = B.fk_userid
@@ -15,6 +25,13 @@ select count(*)
 select *
 delete from tbl_member;
 
+=======
+=======
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+select userid, passwd, email, username, hp1
+delete from tbl_member
+where userid = 'leess';
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 
 delete from tbl_member_detail
