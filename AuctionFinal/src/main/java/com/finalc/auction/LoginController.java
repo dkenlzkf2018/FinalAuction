@@ -277,15 +277,20 @@ public class LoginController {
 	    
 	    int n = 0;
 	    
+	    HashMap<String, String> map = new HashMap<String, String>();
+	    
 	    System.out.println("userid : " + userid);
-	    if("GET".equalsIgnoreCase(method)) {
+	    
+	    if("GET".equalsIgnoreCase(method)) {	    	
 	    	String pwd = req.getParameter("pwd");
 	    	System.out.println("pwd : " + pwd);	    	
 	    	req.setAttribute("pwd", pwd);
 	    	
-	    	if(userid != null && pwd != null) {
-	    		n = service.updatePwdUser(pwd);
-	    		n = service.updatePwdUser1(userid);
+	 	    map.put("pwd", pwd);
+	 	    map.put("userid", userid);
+	    	
+	    	if(userid != null && pwd != null) {	
+	    		n = service.updatePwdUser(map);
 	    	}
 	    	
 	    	System.out.println(n);

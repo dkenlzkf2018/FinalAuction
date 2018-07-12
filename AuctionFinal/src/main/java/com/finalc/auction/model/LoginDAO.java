@@ -45,8 +45,8 @@ public class LoginDAO implements InterLoginDAO {
 	}
 
 	@Override
-	public int updatePwdUser(String pwd) {
-		int n = sqlsession.update("login.updatePwdUser", pwd);
+	public int updatePwdUser(HashMap<String, String> map) {
+		int n = sqlsession.update("login.updatePwdUser", map);
 		return n;
 		
 	}
@@ -57,11 +57,5 @@ public class LoginDAO implements InterLoginDAO {
 		return n;
 	}
 
-	@Override
-	public int updatePwdUser1(String userid) {
-		int n = sqlsession.update("login.updatePwdUser", userid);
-		return n;
-		
-	}
 	
 }

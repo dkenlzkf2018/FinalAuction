@@ -41,7 +41,7 @@
 		where sido like '%' || #{sido} || '%'
 	</select>
 	
-	<update id="updatePwdUser" parameterType="String">
+	<update id="updatePwdUser" parameterType="HashMap">
 		update tbl_member set passwd = #{pwd}
 		where userid = #{userid}
 	</update>
