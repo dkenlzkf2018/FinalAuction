@@ -1,9 +1,18 @@
 package com.finalc.auction.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AuctionVO {
 	private String actnum; // 경매번호
 	private String actname; // 경매 이름
-	private String actimage; // 경매품 이미지
+	private String actimage; // 경매 이미지
+	
+	private String filename; // WAS(톰캣)에 저장될 파일명(20161121324325454354353333432.png)
+	private String orgFilename; // 진짜 파일명(강아지.png)   // 사용자가 파일을 업로드 하거나 파일을 다운로드 할때 사용되어지는 파일명
+	private String fileSize;    // 파일크기
+	
+	private MultipartFile attach; // 진짜 파일 => 톰캣 디스크에 저장됨.
+								  // MultipartFile attach는 오라클 tblBoard 테이블의 컬럼이 아니다.
 	
 	private CategoryVO categoryVO; // 카테고리 VO
 	
@@ -18,6 +27,8 @@ public class AuctionVO {
 	private String actd_lowertenderprice; // 최저입찰가격
 	private String actd_startday; // 경매시작일 default = sysdate
 	private String actd_endday; // 경매종료일 >= 경매시작일 + 1
+
+	
 	
 	public String getActnum() {
 		return actnum;
@@ -37,12 +48,53 @@ public class AuctionVO {
 	public void setActimage(String actimage) {
 		this.actimage = actimage;
 	}
+	public MultipartFile getAttach() {
+		return attach;
+	}
+	public void setAttach(MultipartFile attach) {
+		this.attach = attach;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public String getOrgFilename() {
+		return orgFilename;
+	}
+	public void setOrgFilename(String orgFilename) {
+		this.orgFilename = orgFilename;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+	
+	// ====================== 카테고리 =========================
 	public CategoryVO getCategoryVO() {
 		return categoryVO;
 	}
 	public void setCategoryVO(CategoryVO categoryVO) {
 		this.categoryVO = categoryVO;
 	}
+	public String getFk_cnum() {
+		return categoryVO.getFk_cnum();
+	}
+	public void setFk_cnum(String fk_cnum) {
+		categoryVO.setCnum(fk_cnum);
+	}
+	public String getFk_cdnum() {
+		return categoryVO.getCdnum();
+	}
+	public void setFk_cdnum(String fk_cdnum) {
+		categoryVO.setCdnum(fk_cdnum);;
+	}
+	// ====================== 카테고리 =========================
+	
 	public String getActdnum() {
 		return actdnum;
 	}
@@ -111,15 +163,16 @@ public class AuctionVO {
 	}
 	
 	public AuctionVO() {}
-	
-	public AuctionVO(String actnum, String actname, String actimage, CategoryVO categoryVO, String actdnum,
-			String fk_auctionnum, String fk_usernum, String actd_price, String actd_qty, String actd_status,
-			String actd_content, String startprice, String actd_lowertenderprice, String actd_startday,
-			String actd_endday) {
+	public AuctionVO(String actnum, String actname, String actimage, String orgFilename, String fileSize,
+			CategoryVO categoryVO, String actdnum, String fk_auctionnum, String fk_usernum, String actd_price,
+			String actd_qty, String actd_status, String actd_content, String startprice, String actd_lowertenderprice,
+			String actd_startday, String actd_endday) {
 		super();
 		this.actnum = actnum;
 		this.actname = actname;
 		this.actimage = actimage;
+		this.orgFilename = orgFilename;
+		this.fileSize = fileSize;
 		this.categoryVO = categoryVO;
 		this.actdnum = actdnum;
 		this.fk_auctionnum = fk_auctionnum;
@@ -133,7 +186,5 @@ public class AuctionVO {
 		this.actd_startday = actd_startday;
 		this.actd_endday = actd_endday;
 	}
-	
-	
 	
 }

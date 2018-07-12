@@ -5,13 +5,40 @@
 
 <!-- ==== #27. 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
 <mapper namespace="auction">
+	
+	<!-- 카테고리 리스트를 불러오는 sql문 -->
 	<select id="getCategoryList" resultType="com.finalc.auction.model.CategoryVO">
 		select cnum, cname
 		from tbl_category
 	</select>
+	<!-- 카테고리 상세 리스트를 불러오는 sql문 -->
 	<select id="getCategoryDetailList" resultType="com.finalc.auction.model.CategoryVO">
 		select cdnum, fk_cnum, cdname
 		from tbl_category_detail
 	</select>
+	
+	<!-- 경매품을 삽입하는 sql문 (이미지 없음) -->
+	<insert id="add_auction" parameterType="com.finalc.auction.model.AuctionVO">
+		insert into tbl_auction (actnum, fk_cdnum, actname, actimage, orgfilename, filesize, filename)
+		values (seq_auction.nextval, #{cdnum}, #{actname}, 'defaultauction.jpg', default, default, default)
+	</insert>
+	<!-- 경매품을 삽입하는 sql문 (이미지 없음) -->
+	
+	<!-- 경매품을 삽입하는 sql문 (이미지 있음) -->
+	<insert id="add_auctionWithFile" parameterType="com.finalc.auction.model.AuctionVO">
+		insert into tbl_auction (actnum, fk_cdnum, actname, actimage, orgfilename, filesize, filename)
+		values (seq_auction.nextval, #{cdnum}, #{actname}, #{actimage}, #{orgFilename}, #{filesize}, #{filename})
+	</insert>
+	<!-- 경매품을 삽입하는 sql문 (이미지 있음) -->
+	
+	<!-- 경매품을 삽입하는 sql문 (상세 정보) -->
+	<insert id="auction.add_detail" parameterType="com.finalc.auction.model.AuctionVO">
+		insert into tbl_Auction_Detail (actdnum, fk_actnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice, actd_startday, actd_endday, startprice)
+		values (seq_auction_detail.nextval,	seq_auction.currval, #{usernum}, #{actd_price}, #{actd_qty}, default, #{actd_content}, #{actd_lowertenderprice}, default, to_timestamp(#{actd_endday}, 'yyyy-mm-dd"T"hh24:mi'), #{startprice})
+	</insert>
+	<!-- 경매품을 삽입하는 sql문 (상세 정보) -->
+	
+	
+	
+	
 </mapper>
- 

@@ -76,7 +76,6 @@ public class BoardServive implements InterBoardService {
 		
 		int n = dao.write_add(boardvo);
 		
-		
 		return n;
 	}// 게시글 쓰기 (파일 첨부 없는거 끝)
 	

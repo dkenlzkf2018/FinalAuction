@@ -1,14 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="com.finalc.auction.model.CategoryVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="UTF-8" />
-<title>상품 등록 페이지</title>
-
 <STYLE type="text/css">
 	#addauction {
 		width:800px;
@@ -42,7 +36,6 @@
 				<%
 			}
 			%>
-			
 			
 			$("#categoryDetail").empty();
 			$("#categoryDetail").append(categoryIndex);
@@ -134,37 +127,38 @@
 			return;
 		}
 		
-		var enddate = document.getElementById("enddate").value.trim();
-		var endtime = document.getElementById("endtime").value.trim();
-		if(enddate == "") {
-			alert("날짜를 입력하십시오...");
-			return;
-		}
-		if(endtime == "") {
-			alert("시간을 입력하십시오...");
+		var actd_endday = document.getElementById("actd_endday").value.trim();
+		if(actd_endday == "") {
+			alert("종료시간을 입력하십시오...");
 			return;
 		}
 		
-		
+		// 엔터키 등을 변경
+		content.value = content.value.replace(/<p><br><\/p>/gi, "<br>"); //<p><br></p> -> <br>로 변환
+		content.value = content.value.replace(/<\/p><p>/gi, "<br>"); //</p><p> -> <br>로 변환
+		content.value = content.value.replace(/(<\/p><br>|<p><br>)/gi, "<br><br>"); //</p><br>, <p><br> -> <br><br>로 변환
+		content.value = content.value.replace(/(<p>|<\/p>)/gi, ""); //<p> 또는 </p> 모두 제거시
 		
 		// form 전송하기
-		var frm = document.writeFrm;
-		frm.action = "<%=request.getContextPath()%>/writeEnd.action";
-		frm.method = "post";
+		var frm = document.addAboutAuction;
+		frm.action = "<%=request.getContextPath()%>/AuctionUploadEnd.action";
+		frm.method = "POST";
 		frm.submit();
 		
 	}
 	
 </SCRIPT>
-</head>
-<body>
-	<form name="addaboutauction">
+
+	<form name="addAboutAuction" enctype="multipart/form-data">
 	<div class="row">
 	<div align="center">
 	<table class="table" id="addauction">
 		<tr>
 			<th class="names">게시자 아이디</th>
-			<td><input type="text" value="${sessionScope.loginuser.userid}" name="${sessionScope.loginuser.usernum}" readonly/></td>
+			<td>
+				<input type="hidden" value="${sessionScope.loginuser.usernum}" name="usernum"/>
+				<input type="text" value="${sessionScope.loginuser.userid}" readonly/>
+			</td>
 		</tr>
 		<TR>
 			<th class="names">경매명</th>
@@ -172,13 +166,13 @@
 		</TR>
 		<TR>
        		<th class="names">상품 이미지</th>
-       		<td><input type="file" name="actimage"/></td>
+       		<td><input type="file" id="actimage" name="actimage"/></td>
 		</TR>
 		<TR>
 			<th class="names">대분류</th>
 			<td>
 				<div class="col-lg-5 col-sm-5">
-				<select class="form-control" id="category" name="fk_cnum">
+				<select class="form-control" id="category" name="cnum">
 					<option value="">:::선택하세요:::</option>
 					<c:forEach var="map" items="${categoryList}">
 						<option value="${map.cnum}" data-filter=".${map.cname}">${map.cname}</option>
@@ -191,7 +185,7 @@
 			<th class="names">상세분류</th>
 			<td>
 				<div class="col-lg-5 col-sm-5">
-					<select class="form-control" id="categoryDetail" name="fk_cdnum">
+					<select class="form-control" id="categoryDetail" name="cdnum">
 						<option value="">:::선택하세요:::</option>
 		            </select>
 					<%-- <c:forEach var="map" items="${categoryList}">
@@ -228,9 +222,8 @@
 		</TR>
 		<TR>
 			<th class="names">경매종료일</th>
-			<td><div class="col-lg-5 col-sm-5">
-					<input type="date" id="enddate" name="enddate" class="form-control" />
-					<input type="time" id="endtime" name="endtime" class="form-control" />
+			<td><div class="col-lg-8 col-sm-8">
+					<input type="datetime-local" id="actd_endday" name="actd_endday" class="form-control" />
 				</div></td>
 		</TR>
 		<TR>
@@ -256,5 +249,3 @@
 	</div>
 	</div>
 	</form>
-</body>
-</html>
