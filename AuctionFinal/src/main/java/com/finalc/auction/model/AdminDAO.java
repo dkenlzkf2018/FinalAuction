@@ -26,6 +26,12 @@ public class AdminDAO implements InterAdminDAO {
 		List<CategoryVO> categoryList = sqlsession.selectList("admin.getAdminCategory");
 		return categoryList;
 	}
+
+	@Override
+	public List<CategoryVO> getAdminCategoryDetail() {
+		List<CategoryVO> categoryListDetail = sqlsession.selectList("admin.getAdminCategoryDetail");
+		return categoryListDetail;
+	}
 	
 	// 일반게시판 단
 	

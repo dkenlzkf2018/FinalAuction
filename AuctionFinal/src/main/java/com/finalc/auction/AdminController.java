@@ -34,7 +34,10 @@ public class AdminController {
 		public String adminMain(HttpServletRequest req) {
 			List<CategoryVO> adminCategory = service.getAdminCategory();
 			
+			List<CategoryVO> adminCategoryDetail = service.getAdminCategoryDetail();
+			
 			req.setAttribute("adminCategory", adminCategory);
+			req.setAttribute("adminCategoryDetail", adminCategoryDetail);
 			
 			return "adminCategory.admin";
 		}	

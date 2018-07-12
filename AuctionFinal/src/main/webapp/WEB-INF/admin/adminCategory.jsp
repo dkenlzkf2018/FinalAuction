@@ -33,17 +33,25 @@
            <strong class="card-title">카테고리 등록</strong>
         </div>
         <div class="card-body">
-       		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
-       		<c:forEach var="categoryvo" items="${categoryList}"> <!-- select문 안에 forEach문이 있어야한다. -->
+       		<select data-placeholder="대분류" class="standardSelect" tabindex="1">
+       		<c:forEach var="categoryvo" items="${adminCategory}"  varStatus="status"> <!-- select문 안에 forEach문이 있어야한다. -->
                <option value=""></option>
-               <%-- <option value="cdnum">${categoryvo.cnum}</option>
-               <option value="cdnum">${categoryvo.cname}</option>
+               <option value="${categoryvo.cnum}">${categoryvo.cname}</option>
+       		</c:forEach>
+       		</select>
+        </div>
+        <div class="card-body">
+       		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
+       		<c:forEach var="categoryDetailvo" items="${adminCategoryDetail}"  varStatus="status"> <!-- select문 안에 forEach문이 있어야한다. -->
+               <option value=""></option>
+               <option value="${categoryDetailvo.cdnum}">${categoryDetailvo.cdname}</option>
+               <%-- <option value="cdnum">${categoryvo.cname}</option>
                <option value="cdnum">${categoryvo.cdnum}</option>
                <option value="cdname">${categoryvo.cdname}</option> --%>
-                <option value="United States">United States</option>
+                <!-- <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Afghanistan">Afghanistan</option>
-                <option value="Aland Islands">Aland Islands</option>
+                <option value="Aland Islands">Aland Islands</option> -->
        		</c:forEach>
        		</select>
         </div>

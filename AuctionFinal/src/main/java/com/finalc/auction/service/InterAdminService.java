@@ -13,6 +13,8 @@ public interface InterAdminService {
 	// 안녕 게시판 페이지 시발아
 	List<BoardVO> getGenerBoard();
 
+	List<CategoryVO> getAdminCategoryDetail();
+
 	
 	
 
