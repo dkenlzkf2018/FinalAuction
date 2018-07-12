@@ -36,8 +36,14 @@
        		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
        		<c:forEach var="categoryvo" items="${categoryList}"> <!-- select문 안에 forEach문이 있어야한다. -->
                <option value=""></option>
+               <%-- <option value="cdnum">${categoryvo.cnum}</option>
+               <option value="cdnum">${categoryvo.cname}</option>
                <option value="cdnum">${categoryvo.cdnum}</option>
-               <option value="cdname">${categoryvo.cdname}</option>
+               <option value="cdname">${categoryvo.cdname}</option> --%>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Aland Islands">Aland Islands</option>
        		</c:forEach>
        		</select>
         </div>
@@ -61,7 +67,7 @@
     
     
 /* 	$('#add_category').submit(function(event) {
-		var form = $(this);
+		var form = $(this);0000
 		$.ajax({
 			type : form.attr('method'),
 			url : form.attr('action'),
