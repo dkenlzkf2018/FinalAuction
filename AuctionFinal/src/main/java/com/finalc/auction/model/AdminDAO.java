@@ -20,11 +20,15 @@ public class AdminDAO implements InterAdminDAO {
 		return adMapList;
 	}
 
+	// 카테고리 페이지 단
 	@Override
 	public List<CategoryVO> getAdminCategory() {
 		List<CategoryVO> categoryList = sqlsession.selectList("admin.getAdminCategory");
 		return categoryList;
 	}
+	
+	// 일반게시판 단
+	
 	
 	// 카테고리 관리 페이지 Controller 단
 	/*@Override

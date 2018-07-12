@@ -67,7 +67,7 @@
     
     
 /* 	$('#add_category').submit(function(event) {
-		var form = $(this);0000
+		var form = $(this);
 		$.ajax({
 			type : form.attr('method'),
 			url : form.attr('action'),

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.service.InterAdminService;
 
@@ -39,11 +40,14 @@ public class AdminController {
 		}	
 		
 	// 일반 게시판 (공지사항, Q&A 등)	
-		/*@RequestMapping(value="/adminBoard.action", method={RequestMethod.GET})
-		public String generBoard() {
+		@RequestMapping(value="/generBoard.action", method={RequestMethod.GET})
+		public String generBoard(HttpServletRequest req) {
+			List<BoardVO> generBoard = service.getGenerBoard();
+			
+			req.setAttribute("generBoard", generBoard);
 			
 			return "generBoard.admin";
-		}*/
+		}
 		
 /*	// 카테고리 등록 Controller 단
 		@RequestMapping(value="/addCategory.action", method={RequestMethod.GET})
