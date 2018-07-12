@@ -42,8 +42,8 @@ public class LoginService implements InterLoginService {
 	}
 
 	@Override
-	public List<ZipcodeVO> serchZipcode(String sido) {
-		List<ZipcodeVO> zipcodeList = dao.serchZipcode(sido);
+	public List<HashMap<String, String>> serchZipcode(HashMap<String, String> map) {
+		List<HashMap<String, String>> zipcodeList = dao.serchZipcode(map);
 		return zipcodeList;
 	}
 

@@ -180,8 +180,15 @@ public class LoginController {
 	public String zipcodeInfo(HttpServletRequest req) {
 		
 		String sido = req.getParameter("sido");
+		String address = req.getParameter("address");
+		String zipcode = req.getParameter("zipcode");
+		HashMap<String, String> map = new HashMap<String, String>();
 		
-		List<ZipcodeVO> zipcodeList = service.serchZipcode(sido);
+		map.put("sido", sido);
+		map.put("address", address);
+		map.put("zipcode", zipcode);
+		
+		List<HashMap<String, String>> zipcodeList = service.serchZipcode(map);
 		
 		System.out.println("확인용 zipcodeList : " + zipcodeList);
 		
@@ -270,8 +277,7 @@ public class LoginController {
 		
 		String method = req.getMethod();
 		req.setAttribute("method", method);
-		System.out.println(method);
-		
+	
 	    String userid =	req.getParameter("userid");
 	    req.setAttribute("userid", userid);
 	    
@@ -279,11 +285,8 @@ public class LoginController {
 	    
 	    HashMap<String, String> map = new HashMap<String, String>();
 	    
-	    System.out.println("userid : " + userid);
-	    
 	    if("GET".equalsIgnoreCase(method)) {	    	
 	    	String pwd = req.getParameter("pwd");
-	    	System.out.println("pwd : " + pwd);	    	
 	    	req.setAttribute("pwd", pwd);
 	    	
 	 	    map.put("pwd", pwd);
@@ -292,9 +295,7 @@ public class LoginController {
 	    	if(userid != null && pwd != null) {	
 	    		n = service.updatePwdUser(map);
 	    	}
-	    	
-	    	System.out.println(n);
-	    	
+
 	    	req.setAttribute("n", n);
 	    }
 		

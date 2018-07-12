@@ -16,7 +16,7 @@ public interface InterLoginService {
 
 	int memberRegistDetail(HashMap<String, String> map);
 
-	List<ZipcodeVO> serchZipcode(String sido);
+	List<HashMap<String, String>> serchZipcode(HashMap<String, String> map);
 
 	int updatePwdUser(HashMap<String, String> map);
 	
