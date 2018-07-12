@@ -9,4 +9,12 @@ public interface InterLGHDAO {
 
 	List<HashMap<String, String>> getAwardList();
 
+	List<HugiBoardVO> getHugiList();
+
+	int hugiDel(String ep_boardno);
+
+	int hugiRecover(String ep_boardno);
+
+	int deliverSet(HashMap<String, String> map);
+
 }
