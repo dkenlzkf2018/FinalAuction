@@ -48,6 +48,12 @@ public class ZipcodeVO {
 		this.setAddress(address);
 	}
 
+	public ZipcodeVO(String sido, String zipcode, String address) {
+		this.sido = sido;
+		this.zipcode = zipcode;
+		this.setAddress(address);
+	}
+
 	public String getZipnum() {
 		return zipnum;
 	}

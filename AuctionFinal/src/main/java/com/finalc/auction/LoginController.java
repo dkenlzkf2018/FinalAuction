@@ -179,10 +179,22 @@ public class LoginController {
 	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
 	public String zipcodeInfo(HttpServletRequest req) {
 		
+		List<ZipcodeVO> zipcodeList = null;
+		
+		zipcodeList = new ArrayList<ZipcodeVO>(); 
+		
 		String sido = req.getParameter("sido");
+		String zipcode = req.getParameter("zipcode");
+		String address = req.getParameter("address");
 		
-		List<ZipcodeVO> zipcodeList = service.serchZipcode(sido);
+		HashMap<String, String> map = new HashMap<String, String>();
 		
+		zipcodeList = service.serchZipcode(map);
+		
+		ZipcodeVO zipvo = new ZipcodeVO(sido, zipcode, address); 
+		zipcodeList.add(zipvo);
+		
+		System.out.println("확인용 zipvo : " + zipvo);
 		System.out.println("확인용 zipcodeList : " + zipcodeList);
 		
 		if(zipcodeList == null || zipcodeList.size() == 0) {

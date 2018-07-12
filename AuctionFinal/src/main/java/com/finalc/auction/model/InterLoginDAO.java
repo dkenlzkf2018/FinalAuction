@@ -17,7 +17,7 @@ public interface InterLoginDAO {
 	
 	int isUserExists(HashMap<String, String> map);
 
-	List<ZipcodeVO> serchZipcode(String sido);
+	List<ZipcodeVO> serchZipcode(HashMap<String, String> map);
 
 
 }

@@ -35,12 +35,12 @@
 		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, #{birth}, #{gender}, #{email1} || '@' || #{email2}, to_number(#{zipcode}), #{addr1}, #{addr2}, #{hp1},  #{hp2},  #{hp3})
 	</insert>
 	 
-	<resultMap type="HashMap" id="serchZipcodeList">
+	<resultMap type="HsahMap" id="serchZipcodeList">
 		<result property="zipcode" column="zipcode" javaType="String" />
 		<result property="address" column="address" javaType="String" />
 	</resultMap> 
 	 
-	<select id="serchZipcode" parameterType="HashMap" resultMap="serchZipcodeList">
+	<select id="serchZipcode" parameterType="HsahMap" resultMap="serchZipcodeList">
 		select zipcode, sido||' '||sigungu||' '||eupmyun||' '||doro||' '||building||' '||buildname||' '||dongname||' '||riname||' '||dong2name AS address
 		from tbl_zipcode
 		where sido like '%' || #{sido} || '%'
