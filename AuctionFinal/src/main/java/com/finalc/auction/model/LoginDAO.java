@@ -39,8 +39,8 @@ public class LoginDAO implements InterLoginDAO {
 	}
 
 	@Override
-	public List<ZipcodeVO> serchZipcode(HashMap<String, String> map) {
-		List<ZipcodeVO> zipcodeList  = sqlsession.selectList("login.serchZipcode", map);
+	public List<HashMap<String, String>> serchZipcode(HashMap<String, String> map) {
+		List<HashMap<String, String>> zipcodeList  = sqlsession.selectList("login.serchZipcode", map);
 		return zipcodeList;
 	}
 

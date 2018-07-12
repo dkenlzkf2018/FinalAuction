@@ -179,23 +179,17 @@ public class LoginController {
 	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
 	public String zipcodeInfo(HttpServletRequest req) {
 		
-		List<ZipcodeVO> zipcodeList = null;
+		List<HashMap<String, String>> zipcodeList = null;
 		
-		zipcodeList = new ArrayList<ZipcodeVO>(); 
-		
-		String sido = req.getParameter("sido");
-		String zipcode = req.getParameter("zipcode");
-		String address = req.getParameter("address");
+		zipcodeList = new ArrayList<HashMap<String, String>>();
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
+		map.put("sido", req.getParameter("sido"));
+		
 		zipcodeList = service.serchZipcode(map);
 		
-		ZipcodeVO zipvo = new ZipcodeVO(sido, zipcode, address); 
-		zipcodeList.add(zipvo);
 		
-		System.out.println("확인용 zipvo : " + zipvo);
-		System.out.println("확인용 zipcodeList : " + zipcodeList);
 		
 		if(zipcodeList == null || zipcodeList.size() == 0) {
 			req.setAttribute("result", "0");
@@ -204,6 +198,11 @@ public class LoginController {
 		else {
 			req.setAttribute("result", "1");
 			req.setAttribute("zipcodeList", zipcodeList);
+			String zipcode = req.getParameter("zipcode");
+			String addr1 = req.getParameter("addr1");
+			
+			req.setAttribute("zipcode", zipcode);
+			req.setAttribute("addr1", addr1);
 		}
 		
 		return "zipcodeInfo.notiles";
