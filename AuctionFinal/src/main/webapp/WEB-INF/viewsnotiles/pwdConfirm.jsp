@@ -41,7 +41,7 @@
 			}
 			else {
 				var frm = document.pwdConfirmFrm;
-				frm.method = "post";
+				frm.method = "get";
 				frm.action = "pwdConfirm.action";
 				frm.submit();	
 			}
@@ -69,7 +69,7 @@
    
    <input type="hidden" name="userid" id="userid" value="${userid}" />
    
-   <c:if test="${method.equals('POST') && n==1 }">
+   <c:if test="${method.equals('GET') && n==1 }">
    		<div id="div_confirmResult" align="center">
    			ID : ${userid}님의 암호가 새로이 변경되었습니다.<br/>
    		</div>

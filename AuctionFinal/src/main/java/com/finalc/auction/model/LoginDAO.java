@@ -56,5 +56,12 @@ public class LoginDAO implements InterLoginDAO {
 		int n = sqlsession.selectOne("login.isUserExists", map);
 		return n;
 	}
+
+	@Override
+	public int updatePwdUser1(String userid) {
+		int n = sqlsession.update("login.updatePwdUser", userid);
+		return n;
+		
+	}
 	
 }

@@ -19,6 +19,8 @@ public interface InterLoginService {
 	List<ZipcodeVO> serchZipcode(String sido);
 
 	int updatePwdUser(String pwd);
+	
+	int updatePwdUser1(String userid);
 
 	int isUserExists(HashMap<String, String> map);
 

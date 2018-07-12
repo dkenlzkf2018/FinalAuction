@@ -42,8 +42,8 @@
 	</select>
 	
 	<update id="updatePwdUser" parameterType="String">
-		update tbl_member set password = #{pwd}
-		where userid = ${userid}
+		update tbl_member set passwd = #{pwd}
+		where userid = #{userid}
 	</update>
 	
 	<select id="isUserExists" parameterType="String" resultType="Integer">

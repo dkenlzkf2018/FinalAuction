@@ -1,16 +1,20 @@
 select *
 from tbl_member_detail;
 
+update tbl_member set passwd = 'qwer1234#'
+where userid = 'dkenlzkf';
 
-<<<<<<< HEAD
-from 
+select *
+from tbl_member;
 
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
-select userid, passwd, email, username, hp1
-delete from tbl_member
-where userid = 'leess';
+select count(*)
+		from tbl_member A join tbl_member_detail B
+		on A.userid = B.fk_userid
+    where userid = 'dkenlzkf';
+
+select *
+delete from tbl_member;
+
 
 
 delete from tbl_member_detail

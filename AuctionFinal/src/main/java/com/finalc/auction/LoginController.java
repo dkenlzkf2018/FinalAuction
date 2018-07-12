@@ -201,23 +201,21 @@ public class LoginController {
 	public String pwdFind(HttpServletRequest req) {
 		
 		String method = req.getMethod();
-		
+		String userid = "", email = "";
+		int n = 0;
 		req.setAttribute("method", method);
 		
 		if("post".equalsIgnoreCase(method)) {
 			// 비밀번호 찾기 모달창에서 찾기 버튼을 클릭했을 경우
-			String userid = req.getParameter("userid");
-			String email = req.getParameter("email");
-			
-			System.out.println(userid);
-			System.out.println(email);
+			userid = req.getParameter("userid");
+			email = req.getParameter("email");
 			
 			HashMap<String, String> map = new HashMap<String, String>();
 			
 			map.put("userid", userid);
 			map.put("email", email);
 			
-			int n = service.isUserExists(map); 
+			n = service.isUserExists(map); 
 			
 			if(n==1) {
 				
@@ -255,34 +253,39 @@ public class LoginController {
 				
 			}
 			
-			req.setAttribute("n", n);  
-			// n이 0이면 존재하지 않은 userid 또는 email 인 경우
-			// n이 1이면 userid 와 email 존재하면서 메일발송이 성공한 경우
-			// n이 -1이면 userid 와 email 존재하는데 메일발송이 실패한 경우
-			
-			req.setAttribute("userid", userid);
-			req.setAttribute("email", email);
 		}
+		req.setAttribute("n", n);  
+		// n이 0이면 존재하지 않은 userid 또는 email 인 경우
+		// n이 1이면 userid 와 email 존재하면서 메일발송이 성공한 경우
+		// n이 -1이면 userid 와 email 존재하는데 메일발송이 실패한 경우
+		
+		req.setAttribute("userid", userid);
+		req.setAttribute("email", email);
 		
 		return "pwdFind.notiles";
 	}
 	
-	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.POST})
+	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.GET})
 	public String pwdConfirm(HttpServletRequest req) {
 		
 		String method = req.getMethod();
 		req.setAttribute("method", method);
+		System.out.println(method);
 		
 	    String userid =	req.getParameter("userid");
 	    req.setAttribute("userid", userid);
 	    
-	    if("POST".equalsIgnoreCase(method)) {
-	    	String pwd = req.getParameter("pwd2");
-	    	req.setAttribute("passwd", pwd);
+	    int n = 0;
+	    
+	    System.out.println("userid : " + userid);
+	    if("GET".equalsIgnoreCase(method)) {
+	    	String pwd = req.getParameter("pwd");
+	    	System.out.println("pwd : " + pwd);	    	
+	    	req.setAttribute("pwd", pwd);
 	    	
-	    	int n = 0;
 	    	if(userid != null && pwd != null) {
 	    		n = service.updatePwdUser(pwd);
+	    		n = service.updatePwdUser1(userid);
 	    	}
 	    	
 	    	System.out.println(n);

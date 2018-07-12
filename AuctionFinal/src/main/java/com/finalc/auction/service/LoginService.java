@@ -52,11 +52,19 @@ public class LoginService implements InterLoginService {
 		int n = dao.updatePwdUser(pwd);
 		return n;
 	}
+	
+	@Override
+	public int updatePwdUser1(String userid) {
+		int n = dao.updatePwdUser1(userid);
+		return n;
+	}
 
 	@Override
 	public int isUserExists(HashMap<String, String> map) {
 		int n = dao.isUserExists(map);
 		return n;
 	}
+
+	
 	
 }

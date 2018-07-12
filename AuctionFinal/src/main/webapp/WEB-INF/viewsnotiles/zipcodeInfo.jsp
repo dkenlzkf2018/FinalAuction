@@ -11,7 +11,7 @@
 	
 	// *** 팝업창에서 부모창으로 값 넘기기 *** //
  	function goMove(zipcode, address) {
-		var frm = opener.window.document.RegistFrm;
+		var frm = document.RegistFrm;
 		frm.zipcode.value = zipcode;
 		frm.addr1.value = address;
 		frm.addr2.focus();
