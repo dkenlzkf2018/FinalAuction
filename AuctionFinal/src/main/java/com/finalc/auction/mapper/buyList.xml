@@ -145,4 +145,21 @@
 		from tbl_joinaclist
 		where fk_actnum = to_number(#{actnum})
 	</select>
+	
+	<select id="searchTender" parameterType="HashMap" resultType="com.finalc.auction.model.JoinaclistVO">
+		select joinactnum, fk_actnum, fk_usernum, tenderday, tenderprice
+		from tbl_joinaclist
+		where fk_actnum = #{actnum}
+		  and tenderprice = #{nowprice}
+	</select>
+	
+	<insert id="inputAward" parameterType="HashMap">
+		insert into tbl_award(awardnum, fk_usernum, fk_actdnum, awardday, awardprice)
+		values(seq_award.nextval, #{fk_usernum}, #{fk_actdnum}, #{tenderday}, #{tenderprice})
+	</insert>
+	
+	<update id="updateAward" parameterType="HashMap">
+		update tbl_auction_detail set actd_status = 0
+		where fk_actnum = #{actnum}
+	</update>
 </mapper>

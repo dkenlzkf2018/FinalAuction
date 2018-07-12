@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.InterBuyListDAO;
+import com.finalc.auction.model.JoinaclistVO;
 
 @Service
 public class BuyListService implements InterBuyListService {
@@ -62,6 +63,27 @@ public class BuyListService implements InterBuyListService {
 	public int getTenderCount(String actnum) {
 		int count = dao.getTenderCount(actnum);
 		return count;
+	}
+
+
+	@Override
+	public JoinaclistVO searchTender(HashMap<String, String> map) {
+		JoinaclistVO jvo = dao.searchTender(map);
+		return jvo;
+	}
+
+
+	@Override
+	public int inputAward(HashMap<String, String> map) {
+		int award1 = dao.inputAward(map);
+		return award1;
+	}
+
+
+	@Override
+	public int updateAD(HashMap<String, String> map) {
+		int award2 = dao.updateAD(map);
+		return award2;
 	}
 
 }

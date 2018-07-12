@@ -57,5 +57,23 @@ public class BuyListDAO implements InterBuyListDAO {
 		int count = sqlsession.selectOne("buyList.getTenderCount", actnum);
 		return count;
 	}
+
+	@Override
+	public JoinaclistVO searchTender(HashMap<String, String> map) {
+		JoinaclistVO jvo = sqlsession.selectOne("buyList.searchTender", map);
+		return jvo;
+	}
+
+	@Override
+	public int inputAward(HashMap<String, String> map) {
+		int award1 = sqlsession.insert("buyList.inputAward", map);
+		return award1;
+	}
+
+	@Override
+	public int updateAD(HashMap<String, String> map) {
+		int award2 = sqlsession.update("buyList.updateAward", map);
+		return award2;
+	}
 	
 }

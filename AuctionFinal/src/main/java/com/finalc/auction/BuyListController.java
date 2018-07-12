@@ -17,6 +17,7 @@ import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.HugiBoardVO;
+import com.finalc.auction.model.JoinaclistVO;
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.service.InterBuyListService;
 
@@ -177,6 +178,7 @@ public class BuyListController {
 		return "auction/auctionDetail.tiles";
 	}
 	
+	// 입찰 시작
 	@RequestMapping(value="/tender.action", method={RequestMethod.POST})
 	public String tender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -211,6 +213,7 @@ public class BuyListController {
 		}
 	}
 	
+	// 입찰하기 끝
 	@RequestMapping(value="/inputTender.action", method={RequestMethod.POST})
 	public String inputTender(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -243,5 +246,48 @@ public class BuyListController {
 			}
 			return "msg.notiles";
 		}
-	}	
+	}
+	
+	// 낙찰(현재날짜와 경매종료날짜가 같을 경우)
+	@RequestMapping(value="/inputAward.action", method={RequestMethod.POST})
+	public String award(HttpServletRequest req) {
+		String actnum = req.getParameter("actnum");
+		String nowprice = req.getParameter("nowprice");
+		String actname = req.getParameter("actname");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("actnum", actnum);
+		map.put("nowprice", nowprice);
+		// 입찰 내역을 조회하여 가장 높은 입찰가격의 회원번호와 경매번호와 낙찰가격(최상 입찰가)을 가져온다.
+		JoinaclistVO jvo = service.searchTender(map);
+		System.out.println("jvo : " + jvo);
+		if (jvo != null) {
+			int award1 = 0;
+			int award2 = 0;
+			map.put("fk_usernum", jvo.getFk_usernum());
+			map.put("tenderday", jvo.getTenderday());
+			map.put("tenderprice", jvo.getTenderprice());
+			award1 = service.inputAward(map);
+			
+			if (award1 > 0) {
+				award2 = service.updateAD(map);
+				if (award2 > 0) {
+					req.setAttribute("msg", ""+actname+" 경매 낙찰 성공!!");
+					req.setAttribute("loc", "javascript:opener.location.reload();");
+					
+				}
+				else {
+					req.setAttribute("msg", "경매 낙찰 실패!!");
+					req.setAttribute("loc", "javascript:opener.location.reload();");
+					
+				}
+				
+			}
+			else {
+				req.setAttribute("msg", "경매 낙찰 실패!!");
+				req.setAttribute("loc", "javascript:opener.location.reload();");
+			}
+		}
+		return "msg.notiles";
+		
+	}
 }

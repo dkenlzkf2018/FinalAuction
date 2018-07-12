@@ -20,4 +20,10 @@ public interface InterBuyListDAO {
 
 	int getTenderCount(String actnum);
 
+	JoinaclistVO searchTender(HashMap<String, String> map);
+
+	int inputAward(HashMap<String, String> map);
+
+	int updateAD(HashMap<String, String> map);
+
 }

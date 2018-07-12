@@ -12,8 +12,15 @@
 <!-- Page level plugin styles END -->
 
 <script type="text/javascript">
+	//경매종료일
+	var endday = new Date("${acvo.actd_endday}");
+	// 현재일(시간)
+	var nowday = new Date();
+	// 경매종료까지 남은 일수(시간)
+	var remainday = new Date(endday - nowday);
 	
-	
+	// 경매 남은시간 또는 경매종료를 출력해주는 문자열
+	var strNow = "";
 	jQuery(document).ready(function () {
 		
 		loopshowNowTime();
@@ -24,16 +31,6 @@
 	
 	// 남은 일자 계산
 	function showNowTime() {
-		// 경매종료일
-		var endday = new Date("${acvo.actd_endday}");
-		// 현재일(시간)
-		var nowday = new Date();
-		// 경매종료까지 남은 일수(시간)
-		var remainday = new Date(endday - nowday);
-		
-			
-		
-		var strNow = "";
 	
 		strNow = remainday.getDate() + "일 ";
 				
@@ -59,7 +56,7 @@
 		else if (nowday == endday) {
 			strNow += hour + "시간 " + minute + "분 " + second + "초";
 			var frm = document.tenderFrm;
-			frm.method = "post";
+			frm.method = "POST";
 			frm.action = "<%=request.getContextPath()%>/insertAward.action";
 			frm.submit();
 		}
@@ -123,6 +120,7 @@
 				location.href="";
 			}
 			else {
+				alert("아직 경매진행중입니다.");
 				return false;
 			}
 		}
@@ -132,12 +130,10 @@
 				location.href="";
 			}
 			else {
+				alert("경매가 종료되었습니다.");
 				return false;
 			}
 		}
-		
-		
-		
 	}
 </script>
 
@@ -259,6 +255,7 @@
                 	<input type="hidden" name="actd_qty" value="${acvo.actd_qty}"/>
                 	<input type="hidden" name="startprice" value="${acvo.startprice}"/>
                 	<input type="hidden" name="actd_price" value="${acvo.actd_price}"/>
+                	<input type="hidden" name="fk_usernum" value="${acvo.fk_usernum}"/>
                 	<input type="hidden" name="nowprice" value="${nowprice}"/>
                 </form>
               	  
@@ -294,7 +291,8 @@
                 <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
                 
                 <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-                <c:if test="${sessionScope.loginuser != null && acvo.fk_usernum != sessionScope.loginuser.usernum}">
+                <c:if test="${(sessionScope.loginuser != null && acvo.fk_usernum != sessionScope.loginuser.usernum)
+                			  (nowprice }">
                 <button class="btn btn-default" type="button" onclick="goPay()">구매하기</button>&nbsp;
                 </c:if>
                 <button class="btn btn-default" type="submit">관심상품등록</button>
