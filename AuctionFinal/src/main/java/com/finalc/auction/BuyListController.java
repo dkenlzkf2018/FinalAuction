@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.CategoryVO;
+import com.finalc.auction.model.HugiBoardVO;
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.service.InterBuyListService;
 
@@ -141,36 +143,6 @@ public class BuyListController {
 		}
 	}
 	
-	/*// #Buy 8. 경매 입찰
-	@RequestMapping(value="/bindAuction.action", method={RequestMethod.GET})
-	public String bindAuction(HttpServletRequest req) {
-		
-		// #Buy 9. 전송방식이 GET이므로 로그인 검사를 한다.
-		HttpSession session = req.getSession();
-		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
-		System.out.println("1. loginuser : " + loginuser);
-		session.setAttribute("loginuser", loginuser);
-				
-		if (loginuser == null) {
-			req.setAttribute("msg", "로그인을 먼저 하십시오!");
-			req.setAttribute("loc", "login.action");
-			return "msg.notiles";
-		} 
-		else {
-			// #Buy 10. 입찰하는 회원번호와 입찰 대상의 경매번호를 HashMap에 저장한다.
-			String actnum = req.getParameter("actnum");
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("actnum", actnum);
-			map.put("usernum", loginuser.getUsernum());
-			
-			// #Buy 11. 입찰하는 회원번호와 입찰 대상의 경매번호를 HashMap에 저장한다.
-			int bind = service.getBindAuction(map);
-			
-			return "buy/bindAuction.tiles";
-		}
-		
-	}*/
-	
 	// #Auction 1. 사용자가 경매에 등록한 상품의 정보를 조회한다.
 	@RequestMapping(value="/viewAuction.action", method={RequestMethod.GET})
 	public String viewAuction(HttpServletRequest req) {
@@ -182,18 +154,26 @@ public class BuyListController {
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
 		String nowprice = "";
+		
+		// 입찰내역 중 최고 입찰금
 		String tenderprice = service.getTender(acvo.getActnum());
-		if (tenderprice == null) {
+		
+		// 입찰 수
+		int count = service.getTenderCount(acvo.getActnum());
+		if (tenderprice == null || count == 0) {
+			// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
 			nowprice = acvo.getStartprice();
 		}
 		else {
+			// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
 			nowprice = tenderprice;
 		}
-		int n = 1;			// 만일 현재가(입찰가)와 구매가 가격이 같다면
+		
 		req.setAttribute("acvo", acvo);
 		req.setAttribute("cvo", cvo);
-		req.setAttribute("n", n);
 		req.setAttribute("nowprice", nowprice);
+		req.setAttribute("count", count);
+		
 		return "auction/auctionDetail.tiles";
 	}
 	
@@ -226,6 +206,7 @@ public class BuyListController {
 		}
 		else {
 			req.setAttribute("map", map);
+			req.setAttribute("nowprice", nowprice);
 			return "tender.notiles";
 		}
 	}
@@ -254,14 +235,13 @@ public class BuyListController {
 			int result = service.inputTender(map);
 			if (result > 0) {
 				req.setAttribute("msg", "경매 입찰 성공!!");
-				req.setAttribute("loc", "javascript:self.close();");
+				req.setAttribute("loc", "javascript:opener.location.reload(); self.close();");
 			}
 			else {
 				req.setAttribute("msg", "경매 입찰 실패!!");
-				req.setAttribute("loc", "javascript:self.close();");
+				req.setAttribute("loc", "javascript:opener.location.reload(); self.close();");
 			}
 			return "msg.notiles";
 		}
-	}
-	
+	}	
 }

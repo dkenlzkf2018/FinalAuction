@@ -82,7 +82,6 @@
 		from tbl_award
 	</select>
 	
-	
 	<!-- <resultMap type="HashMap" id="getViewAuctionMap">
 		<result property="cnum" column="cnum" javaType="String" />
 		<result property="cname" column="cname" javaType="String" />
@@ -135,9 +134,15 @@
 		values(seq_joinaclist.nextval, #{actnum}, #{usernum}, default, #{tenderprice})
 	</insert>
 	
-	<select id="getTender" parameterType="String" resultType="String">
+	<select id="getTenderPrice" parameterType="String" resultType="String">
 		select max(tenderprice) AS tenderprice
 		from tbl_joinaclist
-		where fk_actnum = #{actnum}
+		where fk_actnum = to_number(#{actnum})
+	</select>
+	
+	<select id="getTenderCount" parameterType="String" resultType="Integer">
+		select count(*)
+		from tbl_joinaclist
+		where fk_actnum = to_number(#{actnum})
 	</select>
 </mapper>

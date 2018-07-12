@@ -93,7 +93,7 @@
                                   
                                       <div class="form-group">
                                           <label for="cc-payment" class="control-label mb-1">현재가</label>
-                                          <input style="color:red;" id="nowprice" name="nowprice" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${map.startprice}" readonly />
+                                          <input style="color:red;" id="nowprice" name="nowprice" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${nowprice}" readonly />
                                       </div>
                                       <div class="form-group has-success">
                                           <label for="cc-name" class="control-label mb-1">입찰 수량</label>
@@ -101,7 +101,7 @@
                                           <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                       </div>
                                       <div class="form-group">
-                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${map.startprice + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
+                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${nowprice + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
                                           <input id="tenderprice" name="tenderprice" type="text" />
                                                                                     원 (콤마','없이 100원 단위로 입력하세요.)
                                           <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
@@ -206,12 +206,19 @@
 				return false;
 			}
 			
+			// 1원단위로는 입력할 수 없음
+			if (price > 10 * parseInt(price / 10)){
+				alert("1원단위로 입찰하실 수 없습니다.");
+				return false;
+			}
+			
 			// 10원단위로는 입력할 수 없음
 			if (price > 100 * parseInt(price / 100)){
 				alert("10원단위로 입찰하실 수 없습니다.");
 				return false;
 			}
 			
+			// 100원 단위로는 입력할 수 없음
 			if (price > 1000 * parseInt(price / 1000)){
 				alert("100원단위로 입찰하실 수 없습니다.");
 				return false;

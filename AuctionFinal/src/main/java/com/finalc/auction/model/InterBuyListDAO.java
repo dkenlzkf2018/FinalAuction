@@ -18,4 +18,6 @@ public interface InterBuyListDAO {
 
 	String getTender(String actnum);
 
+	int getTenderCount(String actnum);
+
 }

@@ -57,4 +57,11 @@ public class BuyListService implements InterBuyListService {
 		String price = dao.getTender(actnum);
 		return price;
 	}
+	
+	@Override
+	public int getTenderCount(String actnum) {
+		int count = dao.getTenderCount(actnum);
+		return count;
+	}
+
 }

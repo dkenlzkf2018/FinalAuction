@@ -12,18 +12,30 @@
 <!-- Page level plugin styles END -->
 
 <script type="text/javascript">
+	
+	
 	jQuery(document).ready(function () {
+		
 		loopshowNowTime();
+		
 	});
 	
-	function showNowTime() {
-		var endday = new Date("${acvo.actd_endday}");
-		var nowday = new Date();
-		var remainday = new Date(endday - nowday);
-				
-		//console.log(startNow);
 	
-		var strNow = remainday.getDate() + "일 ";
+	
+	// 남은 일자 계산
+	function showNowTime() {
+		// 경매종료일
+		var endday = new Date("${acvo.actd_endday}");
+		// 현재일(시간)
+		var nowday = new Date();
+		// 경매종료까지 남은 일수(시간)
+		var remainday = new Date(endday - nowday);
+		
+			
+		
+		var strNow = "";
+	
+		strNow = remainday.getDate() + "일 ";
 				
 		var hour = "";
 		hour = remainday.getHours();
@@ -41,17 +53,25 @@
 		} else {
 			second = ""+remainday.getSeconds();
 		}
-		if (remainday < endday) {
+		if (nowday < endday) {
 			strNow += hour + "시간 " + minute + "분 " + second + "초";
 		}
-		else if (remainday <= endday ){
-			strNow = "경매종료"; 
+		else if (nowday == endday) {
+			strNow += hour + "시간 " + minute + "분 " + second + "초";
+			var frm = document.tenderFrm;
+			frm.method = "post";
+			frm.action = "<%=request.getContextPath()%>/insertAward.action";
+			frm.submit();
+		}
+		else {
+			strNow = "경매종료";
 		}
 		console.log(strNow);
 		$("#clock").html("<span>"+strNow+"</span>");
 	
 	}// end of function showNowTime() -----------------------------
 	
+	// 남은 일자 1초마다 -시키기
 	function loopshowNowTime() {
 		showNowTime();
 		
@@ -63,6 +83,7 @@
 		
 	}// end of loopshowNowTime() --------------------------
 
+	// 구매 후기(구매 게시판 후기)
 	function reviewRegist() {
 		var frm = document.reviewFrm;
 		
@@ -71,16 +92,52 @@
 		frm.submit();
 	}
 	
+	// 입찰하기 버튼
 	function goTender() {
+		if (strNow == "경매종료") {
+			alert("경매기간이 지난 상품입니다.");
+			return false;
+		}
+		else {
+			var frm = document.tenderFrm;
+			var url = "<%=request.getContextPath()%>/tender.action";
+	    	window.open("", "tender",
+	    			   "left=569px, top=885px, width=569px, height=885px status=1");
+			frm.method = "POST";
+			frm.action = url;
+			frm.target = "tender";
+			frm.submit();
+		}
+	}
+	
+	// 구매하기 버튼
+	function goPay() {
+		var fk_usernum = "${acvo.fk_usernum}";
+		var usernum = "${sessionScope.loginuser.usernum}";
+		var nowprice = "${nowprice}";
+		var endprice = "${acvo.actd_price}";
+		console.log(fk_usernum+" "+usernum+" "+nowprice+" "+endprice);
+		if (strNow == "경매종료" && fk_usernum != usernum) {
+			if(confirm("회원님께서 입찰하신 상품이 낙찰되었습니다. 결제창으로 이동하시겠습니까?")) {
+				// nowprice와 usernum를 넘긴다.
+				location.href="";
+			}
+			else {
+				return false;
+			}
+		}
+		if (strNow != "경매종료" && fk_usernum != usernum) {
+			if(confirm("상품즉시구매!! 결제창으로 이동하시겠습니까?")) {
+				// endprice와 usernum을 넘긴다.
+				location.href="";
+			}
+			else {
+				return false;
+			}
+		}
 		
-		var frm = document.tenderFrm;
-		var url = "<%=request.getContextPath()%>/tender.action";
-    	window.open("", "tender",
-    			   "left=569px, top=885px, width=569px, height=885px status=1");
-		frm.method = "POST";
-		frm.action = url;
-		frm.target = "tender";
-		frm.submit();
+		
+		
 	}
 </script>
 
@@ -187,6 +244,7 @@
                 <div class="pull-left">                  
 	              <label class="control-label">현  재  가  : </label>
 	              <fmt:formatNumber value="${nowprice}" type="number"/>원
+              	  
               	  <br/>
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
@@ -210,7 +268,7 @@
               <div class="product-page-options">
                 <div class="pull-left">
                   <label class="control-label">입  찰  수 : </label>
-                  <input style="border:none;" type="text" value="${acvo.actd_qty}" readonly />
+                  <input style="border:none;" type="text" value="${count}" readonly />
                 </div>
                 <div class="pull-left">
                   <label class="control-label">남은시간 :  </label>
@@ -223,6 +281,7 @@
               </div>
               
               <div class="product-page-cart">
+              <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
                 <div class="pull-left">
               	  <label class="control-label">수량 : </label>
                 </div>
@@ -231,13 +290,15 @@
                 	<input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
                 </div>
                 <br/><br/><br/>
+                
                 <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
-                <c:if test="${n == 1}">
+                
                 <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-                <button class="btn btn-default" type="submit">구매하기</button>&nbsp;
+                <c:if test="${sessionScope.loginuser != null && acvo.fk_usernum != sessionScope.loginuser.usernum}">
+                <button class="btn btn-default" type="button" onclick="goPay()">구매하기</button>&nbsp;
                 </c:if>
                 <button class="btn btn-default" type="submit">관심상품등록</button>
-                
+                </c:if>
               </div>
               <!-- <div class="review">
                 <input type="range" value="4" step="0.25" id="backing4">
@@ -461,8 +522,6 @@
         Layout.initImageZoom();
         Layout.initTouchspin();
         Layout.initUniform();
-        
-        
     });
 </script>
 <!-- END PAGE LEVEL JAVASCRIPTS -->

@@ -62,7 +62,7 @@
 	             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /></a>
 	           </td>
 	           <td class="goods-page-actname">
-	             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
+	             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
 	             <%--  --%>
 	             <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
 	           </td>
