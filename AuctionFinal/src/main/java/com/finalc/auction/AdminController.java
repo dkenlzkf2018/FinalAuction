@@ -36,13 +36,13 @@ public class AdminController {
 			
 			List<CategoryVO> adminCategoryDetail = service.getAdminCategoryDetail();
 			
-			req.setAttribute("adminCategory", adminCategory);
+			req.setAttribute("adminCategory", adminCategory); /* req.setAttribute는 값은 해당 뷰단에서 c:forEach문에서 items에 들어가는 값과 동일하게 줘야함*/
 			req.setAttribute("adminCategoryDetail", adminCategoryDetail);
 			
 			return "adminCategory.admin";
 		}	
 		
-	// 일반 게시판 (공지사항, Q&A 등)	
+	// 일반 게시판 (공지사항, Q&A 등)
 		@RequestMapping(value="/generBoard.action", method={RequestMethod.GET})
 		public String generBoard(HttpServletRequest req) {
 			List<BoardVO> generBoard = service.getGenerBoard();

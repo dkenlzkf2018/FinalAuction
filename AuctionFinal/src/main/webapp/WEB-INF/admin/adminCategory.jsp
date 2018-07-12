@@ -27,33 +27,35 @@
 </div>
 
 
-<div class="col-xs-4 col-sm-2">    
+<div class="col-md-12">    
 	<div class="card">
     	<div class="card-header">
            <strong class="card-title">카테고리 등록</strong>
         </div>
-        <div class="card-body">
-       		<select data-placeholder="대분류" class="standardSelect" tabindex="1">
-       		<c:forEach var="categoryvo" items="${adminCategory}"  varStatus="status"> <!-- select문 안에 forEach문이 있어야한다. -->
-               <option value=""></option>
-               <option value="${categoryvo.cnum}">${categoryvo.cname}</option>
-       		</c:forEach>
-       		</select>
-        </div>
-        <div class="card-body">
-       		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
-       		<c:forEach var="categoryDetailvo" items="${adminCategoryDetail}"  varStatus="status"> <!-- select문 안에 forEach문이 있어야한다. -->
-               <option value=""></option>
-               <option value="${categoryDetailvo.cdnum}">${categoryDetailvo.cdname}</option>
-               <%-- <option value="cdnum">${categoryvo.cname}</option>
-               <option value="cdnum">${categoryvo.cdnum}</option>
-               <option value="cdname">${categoryvo.cdname}</option> --%>
-                <!-- <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Afghanistan">Afghanistan</option>
-                <option value="Aland Islands">Aland Islands</option> -->
-       		</c:forEach>
-       		</select>
+        <div class="card-body col-md-12">
+        	<div class="col-md-6">
+	       		<select data-placeholder="대분류" class="standardSelect" tabindex="1">
+	       		<c:forEach var="categoryvo" items="${adminCategory}"  varStatus="status"> <!-- select문 안에 forEach문이 있어야한다. -->
+	               <option value=""></option>
+	               <option value="${categoryvo.cnum}">${categoryvo.cname}</option>
+	       		</c:forEach>
+	       		</select>
+       		</div>
+       		<div class="col-md-6">
+	       		<select data-placeholder="소분류" class="standardSelect" tabindex="1">
+		       		<c:forEach var="categoryDetailvo" items="${adminCategoryDetail}"  varStatus="status"> <!-- select문 안에 forEach문이 있어야한다. -->
+		               <option value=""></option>
+		               <option value="${categoryDetailvo.cdnum}">${categoryDetailvo.cdname}</option>
+		               <%-- <option value="cdnum">${categoryvo.cname}</option>
+		               <option value="cdnum">${categoryvo.cdnum}</option>
+		               <option value="cdname">${categoryvo.cdname}</option> --%>
+		                <!-- <option value="United States">United States</option>
+		                <option value="United Kingdom">United Kingdom</option>
+		                <option value="Afghanistan">Afghanistan</option>
+		                <option value="Aland Islands">Aland Islands</option> -->
+		       		</c:forEach>
+	       		</select>
+       		</div>
         </div>
     </div>
 </div>    

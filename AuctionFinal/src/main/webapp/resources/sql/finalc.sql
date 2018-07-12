@@ -2,10 +2,13 @@ select *
 from tbl_member;
 
 
-<<<<<<< HEAD
-from 
+select ep_boardno, fk_userid
+    , (select actname 
+       from tbl_auction A join tbl_auction_detail B on A.actnum = B.fk_actnum 
+       where B.actdnum = fk_actdnum) as actname
+    , ep_content, ep_writeday, ep_satisfaction, ep_boardstatus
+from tbl_hugiboard;
 
-<<<<<<< HEAD
 =======
 >>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 select userid, passwd, email, username, hp1
