@@ -180,15 +180,8 @@ public class LoginController {
 	public String zipcodeInfo(HttpServletRequest req) {
 		
 		String sido = req.getParameter("sido");
-		String address = req.getParameter("address");
-		String zipcode = req.getParameter("zipcode");
-		HashMap<String, String> map = new HashMap<String, String>();
 		
-		map.put("sido", sido);
-		map.put("address", address);
-		map.put("zipcode", zipcode);
-		
-		List<HashMap<String, String>> zipcodeList = service.serchZipcode(map);
+		List<ZipcodeVO> zipcodeList = service.serchZipcode(sido);
 		
 		System.out.println("확인용 zipcodeList : " + zipcodeList);
 		

@@ -9,16 +9,6 @@
 <title>우편번호 검색 결과</title>
 <script type="text/javascript">
 	
-	// *** 팝업창에서 부모창으로 값 넘기기 *** //
- 	function goMove(zipcode, address) {
-		var frm = document.RegistFrm;
-		frm.zipcode.value = zipcode;
-		frm.addr1.value = address;
-		frm.addr2.focus();
-		
-		self.window.close(); // 팝업창 닫기
-	} 
- 	
 </script>
 
 </head>
