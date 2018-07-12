@@ -71,7 +71,7 @@ public class AuctionController {
 		String actd_price = req.getParameter("actd_price");
 		String actd_qty = req.getParameter("actd_qty");
 		String actd_content = req.getParameter("actd_content");
-		String startprice = req.getParameter("startprice");
+		String startprice = req.getParameter("startprice");	
 		String actd_lowertenderprice = req.getParameter("actd_lowertenderprice");
 		String actd_startday = req.getParameter("actd_startday");
 		String actd_endday = req.getParameter("actd_endday");
@@ -304,4 +304,15 @@ public class AuctionController {
 		
 		return "msg.notiles";
 	}
+	
+	@RequestMapping(value="/AuctionShow.action", method={RequestMethod.GET})  
+	public String ShowAuction(HttpServletRequest req, HttpServletResponse res) {
+		
+		String actnum = req.getParameter("actnum");
+		String actdnum = req.getParameter("actdnum");
+		String fk_cdnum = req.getParameter("fk_cdnum");
+		
+		return "AuctionShow.tiles";
+	}
+	
 }
