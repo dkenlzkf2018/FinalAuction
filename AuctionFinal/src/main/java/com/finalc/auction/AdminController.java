@@ -32,11 +32,11 @@ public class AdminController {
 	// 카테고리 관리 페이지 Controller 단
 		@RequestMapping(value="/adminCategory.action", method={RequestMethod.GET})
 		public String adminMain(HttpServletRequest req) {
-			List<CategoryVO> adminCategory = service.getAdminCategory();
+			List<CategoryVO> categoryList = service.getAdminCategory();
 			
 			List<CategoryVO> adminCategoryDetail = service.getAdminCategoryDetail();
 			
-			req.setAttribute("adminCategory", adminCategory); /* req.setAttribute는 값은 해당 뷰단에서 c:forEach문에서 items에 들어가는 값과 동일하게 줘야함*/
+			req.setAttribute("categoryList", categoryList); /* req.setAttribute는 값은 해당 뷰단에서 c:forEach문에서 items에 들어가는 값과 동일하게 줘야함*/
 			req.setAttribute("adminCategoryDetail", adminCategoryDetail);
 			
 			return "adminCategory.admin";
