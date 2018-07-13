@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style type="text/css">
+	.hidden {display: none;}
+</style>
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
@@ -24,51 +26,49 @@
     </div>
 </div>
 
-<div class="content mt-3">
+<div class="content mt-4">
     <div class="animated fadeIn">
         <div class="row">
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <strong class="card-title">회원 리스트</strong>
-                </div>
-                <div class="card-body">
-          <table id="bootstrap-data-table" class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>번호</th>
-                <th>아이디</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>생년월일</th>
-                <th>성별</th>
-                <th>이메일</th>
-                <th>주소</th>
-                <th>등급</th>
-              </tr>
-            </thead>
-            <tbody>
-              <c:forEach var="membervo" items="${memberList}">
+	        <div class="col-md-12">
+	            <div class="card">
+	                <div class="card-header">
+	                    <strong class="card-title">후기 리스트</strong>
+	                </div>
+	                <div class="card-body">
+	          <table id="bootstrap-data-table" class="table table-striped table-bordered">
+	            <thead>
 	              <tr>
-	                <td>${membervo.usernum}</td>
-	                <td>${membervo.userid}</td>
-	                <td>${membervo.username}</td>
-	                <td>${membervo.hp1}-${membervo.hp2}-${membervo.hp3}</td>
-	                <td>${membervo.birth}</td>
-	                <td>${membervo.gender}</td>
-	                <td>${membervo.email}</td>
-	                <td>${membervo.addr1} ${membervo.addr2}</td>
-	                <td>${membervo.grade}</td>
+	                <th>번호</th>
+	                <th>작성자</th>
+	                <th>상품명</th>
+	                <th>내용</th>
+	                <th>작성일</th>
+	                <th>만족도</th>
+	                <th>비고</th>
 	              </tr>
-              </c:forEach>
-            </tbody>
-          </table>
-                </div>
-            </div>
-        </div>
-
-
+	            </thead>
+	            <tbody>
+	              <c:forEach var="hugivo" items="${hugiList}" varStatus="status">
+		              <tr data-toggle="collapse">
+		                <td>${hugivo.ep_boardno}</td>
+		                <td>${hugivo.fk_userid}</td>
+		                <td>${hugivo.fk_actdnum}</td>
+		                <td>${hugivo.ep_content}</td>
+		                <td>${hugivo.ep_writeday}</td>
+		                <td>${hugivo.ep_satisfaction}</td>
+		                <c:if test="${hugivo.ep_boardstatus == 1}">
+		                	<td><button onClick="location.href='<%=request.getContextPath()%>/admin/hugiDel.action?ep_boardno=${hugivo.ep_boardno}'">삭제</button></td>
+		                </c:if>
+		                <c:if test="${hugivo.ep_boardstatus == 0}">
+		                	<td><button onClick="location.href='<%=request.getContextPath()%>/admin/hugiRecover.action?ep_boardno=${hugivo.ep_boardno}'">복구</button></td>
+		                </c:if>
+		              </tr>
+	              </c:forEach>
+	            </tbody>
+	          </table>
+	                </div>
+	            </div>
+	        </div>
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->

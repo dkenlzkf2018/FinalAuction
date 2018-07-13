@@ -1,13 +1,14 @@
 package com.finalc.auction;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.service.InterLoginService;
 import com.finalc.auction.model.MemberVO;
+import com.finalc.auction.model.ZipcodeVO;
 
 // 로그인 관련 컨트롤러
 
@@ -69,8 +71,7 @@ public class LoginController {
 	@RequestMapping(value="/memberRegist.action", method= {RequestMethod.GET})
 	public String memberRegist() {
 		
-		return "member/memberRegist.tiles";
-		
+		return "member/memberRegist.tiles";		
 	}
 	
 	@RequestMapping(value="/idCheck.action", method= {RequestMethod.GET})
@@ -167,6 +168,142 @@ public class LoginController {
 		req.setAttribute("RegMember1", RegMember1); 
 		
 		return "member/memberRegistEnd.tiles";
+	}
+	
+	@RequestMapping(value="/ZipcodeSerch.action", method= {RequestMethod.POST})
+	public String ZipcodeSerch() {
+		
+		return "ZipcodeSerch.notiles";
+	}
+	
+	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
+	public String zipcodeInfo(HttpServletRequest req) {
+		
+		List<HashMap<String, String>> zipcodeList = null;
+		
+		zipcodeList = new ArrayList<HashMap<String, String>>();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("sido", req.getParameter("sido"));
+		
+		zipcodeList = service.serchZipcode(map);
+		
+		
+		
+		if(zipcodeList == null || zipcodeList.size() == 0) {
+			req.setAttribute("result", "0");
+			req.setAttribute("zipcodeNotExist", "해당 주소가 없습니다.");
+		}
+		else {
+			req.setAttribute("result", "1");
+			req.setAttribute("zipcodeList", zipcodeList);
+			String zipcode = req.getParameter("zipcode");
+			String addr1 = req.getParameter("addr1");
+			
+			req.setAttribute("zipcode", zipcode);
+			req.setAttribute("addr1", addr1);
+		}
+		
+		return "zipcodeInfo.notiles";
+	}
+	
+	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.POST})
+	public String pwdFind(HttpServletRequest req) {
+		
+		String method = req.getMethod();
+		String userid = "", email = "";
+		int n = 0;
+		req.setAttribute("method", method);
+		
+		if("post".equalsIgnoreCase(method)) {
+			// 비밀번호 찾기 모달창에서 찾기 버튼을 클릭했을 경우
+			userid = req.getParameter("userid");
+			email = req.getParameter("email");
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			
+			map.put("userid", userid);
+			map.put("email", email);
+			
+			n = service.isUserExists(map); 
+			
+			if(n==1) {
+				
+				GoogleMail mail = new GoogleMail();
+				
+				Random rnd = new Random();
+				
+				String certificationCode = "";
+				// certificationCode ==> "ewtyq0452029"
+				
+				char randchar = ' ';
+				for(int i=0; i<5; i++) {
+					// min 부터 max 사이의 값으로 랜덤한 정수를 얻으려면
+					// int rndnum = rnd.nextInt(max - min + 1) + min;  
+					randchar = (char)(rnd.nextInt('z' - 'a' + 1) + 'a');
+					certificationCode += randchar;
+				}
+				
+				int randnum = 0;
+				for(int i=0; i<7; i++) {
+					randnum = (int)(rnd.nextInt(10-0+1)+0);
+					certificationCode += randnum;
+				}
+				
+				try {
+					mail.sendmail(email, certificationCode);
+					req.setAttribute("certificationCode", certificationCode);
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+					
+					req.setAttribute("sendFailmsg", "메일발송에 실패했습니다.");
+					n = -1;
+				}
+				
+			}
+			
+		}
+		req.setAttribute("n", n);  
+		// n이 0이면 존재하지 않은 userid 또는 email 인 경우
+		// n이 1이면 userid 와 email 존재하면서 메일발송이 성공한 경우
+		// n이 -1이면 userid 와 email 존재하는데 메일발송이 실패한 경우
+		
+		req.setAttribute("userid", userid);
+		req.setAttribute("email", email);
+		
+		return "pwdFind.notiles";
+	}
+	
+	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.GET})
+	public String pwdConfirm(HttpServletRequest req) {
+		
+		String method = req.getMethod();
+		req.setAttribute("method", method);
+	
+	    String userid =	req.getParameter("userid");
+	    req.setAttribute("userid", userid);
+	    
+	    int n = 0;
+	    
+	    HashMap<String, String> map = new HashMap<String, String>();
+	    
+	    if("GET".equalsIgnoreCase(method)) {	    	
+	    	String pwd = req.getParameter("pwd");
+	    	req.setAttribute("pwd", pwd);
+	    	
+	 	    map.put("pwd", pwd);
+	 	    map.put("userid", userid);
+	    	
+	    	if(userid != null && pwd != null) {	
+	    		n = service.updatePwdUser(map);
+	    	}
+
+	    	req.setAttribute("n", n);
+	    }
+		
+		return "pwdConfirm.notiles";
 	}
 	
 }

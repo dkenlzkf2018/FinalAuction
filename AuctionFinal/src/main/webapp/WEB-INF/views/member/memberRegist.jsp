@@ -108,8 +108,23 @@
           frm.method="post";
           frm.submit();
       }
-       
-       
+    }
+    
+    function goZipcodeSerch() {
+    	
+    	var url = "ZipcodeSerch.action";
+    	
+        window.open("", "ZipcodeSerch",
+                 "left=600px, top=300px, width=1100px, height=600px");
+               
+        var frm = document.RegistFrm;
+        
+        frm.target = "ZipcodeSerch";
+        
+        frm.action="ZipcodeSerch.action";
+        frm.method="post";
+        frm.submit();
+    	
     }
     
 </script>
@@ -138,7 +153,7 @@
 <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.action">Home</a></li>
             <li><a href="login.action">Log in</a></li>
             <li class="active">회원가입</li>
         </ul>
@@ -238,14 +253,15 @@
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="zipcode">우편번호</label>
-                  <div class="col-lg-8">
-                    <input type="text" name="zipcode" id="zipcode" class="form-control"/>
+                  <div class="col-lg-5">
+                    <input type="text" name="zipcode" id="zipcode" class="form-control" value="${zipcode}"/>
                   </div>
+                  <button class="col-lg-2 btn btn-default" type="button" onClick="goZipcodeSerch();">우편 번호 찾기</button>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="address">주소</label>
                   <div class="col-lg-8">
-                      <input type="text" name="addr1" id="addr1" class="form-control"/><br/>
+                      <input type="text" name="addr1" id="addr1" class="form-control" value="${addr1}"/><br/>
                       <input type="text" name="addr2" id="addr2" class="form-control"/>
                   </div>
                 </div>
