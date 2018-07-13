@@ -13,7 +13,7 @@
 		
 		$("#error").hide();
 		
-		$("#dong").keydown(function(event){
+		$("#sido").keydown(function(event){
 			
 			if(event.keyCode == 13) {
 				// 엔터를 했을 경우
@@ -26,12 +26,12 @@
 	
 	function goSearch() {
         
-		var dong = $("#dong").val().trim();
+		var dong = $("#sido").val().trim();
 		
 		if(dong == "") {
 			$("#error").show();
-			$("#dong").val("");
-			$("#dong").focus();
+			$("#sido").val("");
+			$("#sido").focus();
 			return;
 		}
 		else {
@@ -54,7 +54,7 @@
 	<table style="width: 95%; height: 90%;">
 		<tr>
 			<td align="center">
-			  동이름 :&nbsp;<input type="text" name="dong" id="dong" size="20" class="box" />
+			  동이름 :&nbsp;<input type="text" name="sido" id="sido" size="20" class="box" />
 			 <button type="button" class="box" onClick="goSearch();">검색</button>      
 			</td>
 		</tr>

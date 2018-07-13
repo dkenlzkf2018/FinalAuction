@@ -30,6 +30,7 @@
                         	<li><a href="login.action">Log In</a></li>
                         </c:if>
                         <c:if test="${sessionScope.loginuser != null}">
+                        	<li><a href="myPage.action">My Page</a></li>
                         	<li><a href="logout.action">Log Out</a></li>
                         </c:if>
                     </ul>

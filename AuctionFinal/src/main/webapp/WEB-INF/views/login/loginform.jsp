@@ -68,14 +68,14 @@
 		
 		var url = "pwdFind.action?userid="+userid;
 	    window.open("", "pwdFind",
-	                "left=500px, top=100px, width=300px, height=100px");
+	                "left=500px, top=100px, width=300px, height=200px");
 	       
 	    var frm = document.loginFrm;
 	    
 	    frm.target = "pwdFind";
 	    
 	    frm.action="pwdFind.action";
-	    frm.method="get";
+	    frm.method="post";
 	    frm.submit();
 		
 	}

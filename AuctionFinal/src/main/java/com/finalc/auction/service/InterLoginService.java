@@ -18,4 +18,8 @@ public interface InterLoginService {
 
 	List<HashMap<String, String>> serchZipcode(HashMap<String, String> map);
 
+	int updatePwdUser(HashMap<String, String> map);
+	
+	int isUserExists(HashMap<String, String> map);
+
 }

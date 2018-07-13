@@ -115,7 +115,7 @@
     	var url = "ZipcodeSerch.action";
     	
         window.open("", "ZipcodeSerch",
-                 "left=600px, top=300px, width=600px, height=600px");
+                 "left=600px, top=300px, width=1100px, height=600px");
                
         var frm = document.RegistFrm;
         
@@ -261,7 +261,7 @@
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="address">주소</label>
                   <div class="col-lg-8">
-                      <input type="text" name="addr1" id="addr1" class="form-control"/><br/>
+                      <input type="text" name="addr1" id="addr1" class="form-control" value="${addr1}"/><br/>
                       <input type="text" name="addr2" id="addr2" class="form-control"/>
                   </div>
                 </div>

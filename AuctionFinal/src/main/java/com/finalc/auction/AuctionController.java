@@ -317,7 +317,15 @@ public class AuctionController {
 		map.put("actdnum", actdnum);
 		map.put("fk_cdnum", fk_cdnum);
 		
-		return "AuctionShow.tiles";
+		int n = service.ShowAuction(map);
+		
+		List<AuctionVO> auctionList = service.getAuctionList(actdnum);
+		if(n == 1) {
+			return "auction/AuctionShow.action?actnum="+actnum+"&actdnum="+actdnum;
+		}
+		else {
+			return "auction/AuctionShow.tiles";
+		}
 	}
 	
 }

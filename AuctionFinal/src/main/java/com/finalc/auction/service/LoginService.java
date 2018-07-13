@@ -46,5 +46,19 @@ public class LoginService implements InterLoginService {
 		List<HashMap<String, String>> zipcodeList = dao.serchZipcode(map);
 		return zipcodeList;
 	}
+
+	@Override
+	public int updatePwdUser(HashMap<String, String> map) {
+		int n = dao.updatePwdUser(map);
+		return n;
+	}
+	
+	@Override
+	public int isUserExists(HashMap<String, String> map) {
+		int n = dao.isUserExists(map);
+		return n;
+	}
+
+	
 	
 }
