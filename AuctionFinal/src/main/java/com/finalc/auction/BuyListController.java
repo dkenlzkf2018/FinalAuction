@@ -34,7 +34,7 @@ public class BuyListController {
 	public String buyList(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
-		System.out.println("1. loginuser : " + loginuser);
+		
 		session.setAttribute("loginuser", loginuser);
 				
 		if (loginuser == null) {
@@ -44,6 +44,7 @@ public class BuyListController {
 		} 
 		
 		else {
+			System.out.println("1. 접속한 유저아이디 : " + loginuser.getUserid());
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("usernum", loginuser.getUsernum());
 			// ===== #110. 페이징 처리 하기 =====
@@ -133,7 +134,7 @@ public class BuyListController {
 			
 			List<HashMap<String, String>> buyMapList = new ArrayList<HashMap<String, String>>();
 			buyMapList = service.getBuyList(map);
-			System.out.println("4. Controller 단 buyMapList : " + buyMapList);
+			System.out.println("4. Controller 단 buyMapList");
 			req.setAttribute("buyMapList", buyMapList);
 			req.setAttribute("pagebar", pagebar);
 			req.setAttribute("startRno", startRno);
@@ -158,7 +159,7 @@ public class BuyListController {
 		
 		// 입찰내역 중 최고 입찰금
 		String tenderprice = service.getTender(acvo.getActnum());
-		
+		System.out.println("시작가격 : " + acvo.getStartprice() + "원");
 		// 입찰 수
 		int count = service.getTenderCount(acvo.getActnum());
 		if (tenderprice == null || count == 0) {
@@ -169,11 +170,15 @@ public class BuyListController {
 			// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
 			nowprice = tenderprice;
 		}
-		
+		int pr1 = Integer.parseInt(nowprice);
+		int pr2 = Integer.parseInt(acvo.getActd_price());
 		req.setAttribute("acvo", acvo);
 		req.setAttribute("cvo", cvo);
 		req.setAttribute("nowprice", nowprice);
+		System.out.println("nowprice : " + nowprice + "원");
 		req.setAttribute("count", count);
+		req.setAttribute("pr1", pr1);
+		req.setAttribute("pr2", pr2);
 		
 		return "auction/auctionDetail.tiles";
 	}
@@ -198,6 +203,7 @@ public class BuyListController {
 		map.put("actd_qty", actd_qty);
 		map.put("startprice", startprice);
 		map.put("actd_price", actd_price);
+		
 		
 		
 		System.out.println("BuyListController.java 상품명 : " + actname);
@@ -250,44 +256,29 @@ public class BuyListController {
 	
 	// 낙찰(현재날짜와 경매종료날짜가 같을 경우)
 	@RequestMapping(value="/inputAward.action", method={RequestMethod.POST})
-	public String award(HttpServletRequest req) {
+	public void inputAward(HttpServletRequest req) {
 		String actnum = req.getParameter("actnum");
+		String actdnum = req.getParameter("actdnum");
 		String nowprice = req.getParameter("nowprice");
-		String actname = req.getParameter("actname");
+		System.out.println("받아온 값들 : " +actnum+ ", " +actdnum+ ", " + nowprice);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("actnum", actnum);
+		map.put("actdnum", actdnum);
 		map.put("nowprice", nowprice);
 		// 입찰 내역을 조회하여 가장 높은 입찰가격의 회원번호와 경매번호와 낙찰가격(최상 입찰가)을 가져온다.
 		JoinaclistVO jvo = service.searchTender(map);
+		int award1 = 0;
+		int award2 = 0;
 		System.out.println("jvo : " + jvo);
 		if (jvo != null) {
-			int award1 = 0;
-			int award2 = 0;
 			map.put("fk_usernum", jvo.getFk_usernum());
-			map.put("tenderday", jvo.getTenderday());
 			map.put("tenderprice", jvo.getTenderprice());
 			award1 = service.inputAward(map);
-			
+			System.out.println("award1 : " + award1);
 			if (award1 > 0) {
 				award2 = service.updateAD(map);
-				if (award2 > 0) {
-					req.setAttribute("msg", ""+actname+" 경매 낙찰 성공!!");
-					req.setAttribute("loc", "javascript:opener.location.reload();");
-					
-				}
-				else {
-					req.setAttribute("msg", "경매 낙찰 실패!!");
-					req.setAttribute("loc", "javascript:opener.location.reload();");
-					
-				}
-				
-			}
-			else {
-				req.setAttribute("msg", "경매 낙찰 실패!!");
-				req.setAttribute("loc", "javascript:opener.location.reload();");
+				System.out.println("award2 : " + award2);
 			}
 		}
-		return "msg.notiles";
-		
 	}
 }

@@ -102,8 +102,9 @@
                                       </div>
                                       <div class="form-group">
                                           <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${nowprice + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
-                                          <input id="tenderprice" name="tenderprice" type="text" />
-                                                                                    원 (콤마','없이 100원 단위로 입력하세요.)
+                                          <input id="tenderprice" name="tenderprice" type="text" class="form-control cc-name valid" data-val="true" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
+                                          <!-- <input id="tenderprice" name="tenderprice" type="text" /> -->
+                                                                                    원 (콤마','없이 1000원 단위로 입력하세요.)
                                           <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                       </div>
                                       <button id="payment-button" type="button" class="btn btn-lg btn-info btn-block" >
@@ -111,7 +112,8 @@
                                               <span id="payment-button-amount">입찰하기</span>
                                               <span id="payment-button-sending" style="display:none;">Sending…</span>
                                       </button>
-                                      <input type="hidden" name="actnum" value="${map.actnum}">
+                                      <input type="hidden" name="actnum" value="${map.actnum}" />
+                                      <input type="hidden" name="actdnum" value="${map.actdnum}" />
                                           <%-- <button type="button" onclick="goInput('#tenderprice')">입찰하기</button> --%>
                                       
                                   
@@ -152,8 +154,7 @@
 			var qtyCtrl = jQuery("#qty").val();				// 수량 입력값
 			var startQty = Number("${map.actd_qty}");		// 초기 수량 입력값
 			var nowprice = Number("${nowprice}");			// 현재가
-			var raw = 1000;
-			
+			var raw = 1000;									// 가격 정해야함
 			
 			// 숫자외에 다른 문자를 입력하였을 경우
 			var regExp = /^[0-9]+$/;
@@ -219,15 +220,15 @@
 			}
 			
 			// 100원 단위로는 입력할 수 없음
-			if (price > 1000 * parseInt(price / 1000)){
+			if (price > raw * parseInt(price / raw)){
 				alert("100원단위로 입찰하실 수 없습니다.");
 				return false;
 			}
 			
-			if (price > endprice) {
+			/* if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
-			}
+			} */
 			
 			else {
 				var frm = document.inputTenderFrm;

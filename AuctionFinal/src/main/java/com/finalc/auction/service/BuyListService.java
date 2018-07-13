@@ -21,7 +21,7 @@ public class BuyListService implements InterBuyListService {
 	@Override
 	public List<HashMap<String, String>> getBuyList(HashMap<String, String> map) {
 		List<HashMap<String, String>> buyMapList = dao.getBuyList(map);
-		System.out.println("2. Service 단 buyMapList : " + buyMapList);
+		System.out.println("2. Service 단 buyMapList");
 		return buyMapList;
 	}
 

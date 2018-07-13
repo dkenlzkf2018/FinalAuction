@@ -12,26 +12,25 @@
 <!-- Page level plugin styles END -->
 
 <script type="text/javascript">
-	//경매종료일
-	var endday = new Date("${acvo.actd_endday}");
-	// 현재일(시간)
-	var nowday = new Date();
-	// 경매종료까지 남은 일수(시간)
-	var remainday = new Date(endday - nowday);
 	
-	// 경매 남은시간 또는 경매종료를 출력해주는 문자열
 	var strNow = "";
+	
 	jQuery(document).ready(function () {
 		
 		loopshowNowTime();
 		
 	});
 	
-	
-	
 	// 남은 일자 계산
 	function showNowTime() {
-	
+		//경매종료일
+		var endday = new Date("${acvo.actd_endday}");
+		// 현재일(시간)
+		var nowday = new Date();
+		// 경매종료까지 남은 일수(시간)
+		var remainday = new Date(endday - nowday);
+				
+		// 경매 남은시간 또는 경매종료를 출력해주는 문자열
 		strNow = remainday.getDate() + "일 ";
 				
 		var hour = "";
@@ -53,11 +52,10 @@
 		if (nowday < endday) {
 			strNow += hour + "시간 " + minute + "분 " + second + "초";
 		}
-		else if (nowday == endday) {
-			strNow += hour + "시간 " + minute + "분 " + second + "초";
+		else if (nowday == endday){
 			var frm = document.tenderFrm;
 			frm.method = "POST";
-			frm.action = "<%=request.getContextPath()%>/insertAward.action";
+			frm.action = "inputAward.action";
 			frm.submit();
 		}
 		else {
@@ -114,23 +112,12 @@
 		var nowprice = "${nowprice}";
 		var endprice = "${acvo.actd_price}";
 		console.log(fk_usernum+" "+usernum+" "+nowprice+" "+endprice);
-		if (strNow == "경매종료" && fk_usernum != usernum) {
-			if(confirm("회원님께서 입찰하신 상품이 낙찰되었습니다. 결제창으로 이동하시겠습니까?")) {
-				// nowprice와 usernum를 넘긴다.
-				location.href="";
-			}
-			else {
-				alert("아직 경매진행중입니다.");
-				return false;
-			}
-		}
 		if (strNow != "경매종료" && fk_usernum != usernum) {
 			if(confirm("상품즉시구매!! 결제창으로 이동하시겠습니까?")) {
 				// endprice와 usernum을 넘긴다.
 				location.href="";
 			}
 			else {
-				alert("경매가 종료되었습니다.");
 				return false;
 			}
 		}
@@ -247,7 +234,7 @@
               	  <br/>
               	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
               	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
-                </div>  
+                </div>
                 <form name="tenderFrm">
                 	<input type="hidden" name="actnum" value="${acvo.actnum}"/>
                 	<input type="hidden" name="actname" value="${acvo.actname}"/>
@@ -281,21 +268,27 @@
               <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
                 <div class="pull-left">
               	  <label class="control-label">수량 : </label>
-                </div>
-                &nbsp;&nbsp;&nbsp;
-                <div class="product-quantity">
-                	<input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+              	  <input type="text" value="${acvo.actd_qty}" />
                 </div>
                 <br/><br/><br/>
-                
-                <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
-                
-                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-                <c:if test="${(sessionScope.loginuser != null && acvo.fk_usernum != sessionScope.loginuser.usernum)
-                			  (nowprice }">
-                <button class="btn btn-default" type="button" onclick="goPay()">구매하기</button>&nbsp;
-                </c:if>
-                <button class="btn btn-default" type="submit">관심상품등록</button>
+                	<c:if test="${pr1 < pr2}">
+                	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+                	
+	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+	                
+		            <button class="btn btn-default" type="button" onclick="goPay()">구매하기</button>&nbsp;
+		                
+		            <button class="btn btn-default" type="submit">관심상품등록</button>
+	                </c:if>
+	                
+	                <c:if test="${nowprice >= acvo.actd_price}">
+                	
+	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+	                
+		            <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+		                
+		            <button class="btn btn-default" type="submit">관심상품등록</button>
+	                </c:if>
                 </c:if>
               </div>
               <!-- <div class="review">
