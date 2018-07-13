@@ -312,6 +312,11 @@ public class AuctionController {
 		String actdnum = req.getParameter("actdnum");
 		String fk_cdnum = req.getParameter("fk_cdnum");
 		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("actnum", actnum);
+		map.put("actdnum", actdnum);
+		map.put("fk_cdnum", fk_cdnum);
+		
 		return "AuctionShow.tiles";
 	}
 	
