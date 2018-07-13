@@ -48,7 +48,7 @@
 	       			<option value="">:::선택하세요:::</option>
 	       			<c:forEach var="map" items="${categoryDetailList}">
 		       		<%-- <c:forEach var="categoryDetailvo" items="${adminCategoryDetail}"> --%> <!-- select문 안에 forEach문이 있어야한다. -->
-		               <option value="${categoryDetailvo.cdnum}">${categoryDetailvo.cdname}</option>
+		               <option value="${categoryDetailvo.cdnum}" data-filter=".${categoryDetailvo.cdname}">${categoryDetailvo.cdname}</option>
 		               <%-- <option value="${categoryDetailvo.cdnum}">${categoryDetailvo.cdname}</option> --%>
 		       		</c:forEach>
 	       		</select>
