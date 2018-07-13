@@ -14,7 +14,7 @@
 		var frm = document.registerFrm;
 		window.opener.document.getElementById("zipcode").value = zipcode;
 		window.opener.document.getElementById("addr1").value = address;	
-		
+		window.opener.document.getElementById("addr1").focus();
 		self.window.close();
 	}
 	
