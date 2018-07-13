@@ -34,15 +34,28 @@
 		insert into tbl_member_detail(usernum, fk_userid, username, birth, gender, email, zipcode, addr1, addr2, hp1, hp2, hp3)
 		values(seq_member_detail.nextval, (select userid from tbl_member where userid = #{userid}), #{name}, #{birth}, #{gender}, #{email1} || '@' || #{email2}, to_number(#{zipcode}), #{addr1}, #{addr2}, #{hp1},  #{hp2},  #{hp3})
 	</insert>
-	
-	<resultMap type="HashMap" id="getzipcodeListMap">
-		<result property="dong" column="dong" javaType="String" />
-	</resultMap>
-	
-	<select id="serchZipcode" parameterType="HashMap" resultMap="getzipcodeListMap">
-		select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS address
+	 
+	<resultMap type="HashMap" id="zipcodeMap">
+		<result property="zipcode" column="zipcode" javaType="String" />
+		<result property="address" column="address" javaType="String" />
+	</resultMap> 
+	 
+	<select id="serchZipcode" parameterType="HashMap" resultMap="zipcodeMap">
+		select zipcode, sido||' '||sigungu||' '||eupmyun||' '||doro||' '||building||' '||buildname||' '||dongname||' '||riname||' '||dong2name AS address
 		from tbl_zipcode
-		where sido like '%' || #{dong} || '%'
+		where sido||' '||sigungu||' '||eupmyun||' '||doro||' '||building||' '||buildname||' '||dongname||' '||riname||' '||dong2name like '%' || #{sido} || '%'
 	</select>
 	
+	<update id="updatePwdUser" parameterType="HashMap">
+		update tbl_member set passwd = #{pwd}
+		where userid = #{userid}
+	</update>
+	
+	<select id="isUserExists" parameterType="String" resultType="Integer">
+		select count(*)
+		from tbl_member A join tbl_member_detail B
+		on A.userid = B.fk_userid
+		where userid = #{userid}
+	</select>
+	 
 </mapper>
