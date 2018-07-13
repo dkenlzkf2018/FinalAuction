@@ -1,5 +1,6 @@
 package com.finalc.auction.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.finalc.auction.model.BoardVO;
@@ -7,13 +8,21 @@ import com.finalc.auction.model.CategoryVO;
 
 public interface InterAdminService {
 
-	// 안녕 카테고리 시발아
+	// 카테고리 페이지
 	List<CategoryVO> getAdminCategory();
 
-	// 안녕 게시판 페이지 시발아
+	List<CategoryVO> getAdminCategoryDetail();
+
+	// 카테고리 추가
+	int addCategory(HashMap<String, String> map);
+	
+	// 카테고리 삭제
+	
+	
+	// 게시판 페이지
 	List<BoardVO> getGenerBoard();
 
-	List<CategoryVO> getAdminCategoryDetail();
+
 
 	
 	

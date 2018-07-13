@@ -32,6 +32,17 @@ public class AdminDAO implements InterAdminDAO {
 		List<CategoryVO> categoryListDetail = sqlsession.selectList("admin.getAdminCategoryDetail");
 		return categoryListDetail;
 	}
+
+	// 카테고리 등록 단
+	@Override
+	public int addCategory(HashMap<String, String> map) {
+		int n = sqlsession.insert("admin.addCategory", map);
+		return n;
+	}
+	
+	// 카테고리 삭제 단
+	
+	
 	
 	// 일반게시판 단
 	

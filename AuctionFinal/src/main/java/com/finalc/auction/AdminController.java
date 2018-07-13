@@ -1,5 +1,6 @@
 package com.finalc.auction;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,10 @@ public class AdminController {
 		public String adminMain(HttpServletRequest req) {
 			List<CategoryVO> categoryList = service.getAdminCategory();
 			
-			List<CategoryVO> adminCategoryDetail = service.getAdminCategoryDetail();
+			List<CategoryVO> categoryDetailList = service.getAdminCategoryDetail();
 			
 			req.setAttribute("categoryList", categoryList); /* req.setAttribute는 값은 해당 뷰단에서 c:forEach문에서 items에 들어가는 값과 동일하게 줘야함*/
-			req.setAttribute("adminCategoryDetail", adminCategoryDetail);
+			req.setAttribute("categoryDetailList", categoryDetailList);
 			
 			return "adminCategory.admin";
 		}	
@@ -52,13 +53,52 @@ public class AdminController {
 			return "generBoard.admin";
 		}
 		
-/*	// 카테고리 등록 Controller 단
-		@RequestMapping(value="/addCategory.action", method={RequestMethod.GET})
-		public String addCategory() {
+	// 카테고리 등록 Controller 단 -> 주석달아놓기
+		@RequestMapping(value="/admin/addCategory.action", method={RequestMethod.GET})
+		public String addCategory(HttpServletRequest req) {
+			String cdname = req.getParameter("cdname");
+			String cnum = req.getParameter("cnum");
 			
-			return "addCategory.admin";
+			HashMap<String, String> map = new HashMap<String, String>();
+			
+			map.put("cdname", cdname);
+			map.put("cnum", cnum);
+			
+			int n = service.addCategory(map);
+			
+			String msg = "", loc = "";
+			
+			
+			if(n == 1) {
+				msg = "추가 완료";
+				loc = "/auction/adminCategory.action";
+			}
+			else {
+				msg = "추가 실패";
+				loc = "/auction/adminCategory.action";
+			}
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg.notiles";
 		}
 		
+		// 카테고리 삭제 Controller 단
+		@RequestMapping(value="/admin/delCategory.action", method={RequestMethod.GET})
+		public String delCategory(HttpServletRequest req) {
+			
+			String cdname = req.getParameter("cdname");
+			
+			req.setAttribute("", o);
+			
+			
+			
+			
+			return "delCategory.admin";
+		}
+		
+/*		
 	// 카테고리 수정 Controller 단
 		@RequestMapping(value="/modiCategory.action", method={RequestMethod.GET})
 		public String modiCategory() {
@@ -76,3 +116,4 @@ public class AdminController {
 	// 
 	
 }
+

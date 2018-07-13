@@ -6,7 +6,7 @@
 <!-- ==== 루트 엘리먼트 & 네임스페이스 설정(프로젝트 전체내에서 유일해야 한다.) ==== -->
 <mapper namespace="admin">
 	
-	 <!-- 같은 메뉴라고 해도 조인을 해도될지 안해도 좋을지 생각해보고 하쇼-->
+	 <!-- 카테고리 페이지 / 같은 메뉴라고 해도 조인을 해도될지 안해도 좋을지 생각해보고 하기-->
 	<select id="getAdminCategory" resultType="com.finalc.auction.model.CategoryVO">
 		select cnum, cname
 		from tbl_category
@@ -16,5 +16,13 @@
 		select cdnum, fk_cnum, cdname
 		from tbl_category_detail
 	</select>
+	
+	<!-- 카테고리 추가 -->
+	<insert id="addCategory" parameterType="HashMap">
+		insert into tbl_category_detail(cdnum, fk_cnum, cdname)
+		values(seq_category_detail.nextval, #{cnum}, #{cdname})
+	</insert>
+	
+	<!-- 카테고리 삭제 -->
 	
 </mapper>
