@@ -48,11 +48,11 @@ nhn.husky.SE2M_AttachQuickPhoto = jindo.$Class({
 	 * 서비스별로 팝업에  parameter를 추가하여 URL을 생성하는 함수	 
 	 * nhn.husky.SE2M_AttachQuickPhoto.prototype.makePopupURL로 덮어써서 사용하시면 됨.
 	 */
-	makePopupURL : function(){
-		var sPopupUrl = "./resources/smarteditor/sample/photo_uploader/photo_uploader.html";
+	 makePopupURL : function(){
+		var sPopupUrl = "./resources/smarteditor/sample/photo_uploader/photo_uploader.html"; 
 		
 		return sPopupUrl;
-	},
+	}, 
 	
 	/**
 	 * 팝업에서 호출되는 메세지.

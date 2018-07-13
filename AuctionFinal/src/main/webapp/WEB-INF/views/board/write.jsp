@@ -907,7 +907,7 @@ if(window.frameElement){
             	</td>
          	</tr>
          	
-         	<%-- # 135. 파일 첨부 타입 추가하기. --%>
+         
          	<tr>
          		<th>파일첨부</th>
          		<td><input type="file" name="attach"/></td>
@@ -915,13 +915,7 @@ if(window.frameElement){
 
 		</table>
 		<br/>
-		
-		<%--
-		==== #122. 답변글쓰기인 경우 
-		           부모글의 seq값인 fk_seq값과
-		           부모글의 groupno 값과
-		           부모글의 depthno 값을 hidden 타입으로 보내준다. ====
-		--%>            
+
 		<input type="hidden" name="fk_boardno"  value="${fk_boardno}" />
 		<input type="hidden" name="groupno" value="${groupno}" />
 		<input type="hidden" name="deptthno" value="${deptthno}" />

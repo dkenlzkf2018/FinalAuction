@@ -485,7 +485,7 @@ a.href=b+"/smart_editor2_in.css"; 이것을 a.href="../smarteditor/css/smart_edi
      bSupportDragAndDropAPI = true; 는 이미지파일 다중업로드(1번에 여러개의 이미지파일 업로드가능). HTML5 를 지원하는 브라우저(IE10 이상, 크롬, 파이어폭스)
      bSupportDragAndDropAPI = false; 는 이미지파일 단일업로드(1번에 1개의 이미지파일만 업로드가능). HTML5 를 지원하지 않는 브라우저(IE9 이하) 이다.
          
-     HTML5 를 지원하지 않는 브라우저(IE10 이상)를 위해서 작성한다라면     
+     HTML5 를 지원하는 브라우저(IE10 이상)를 위해서 작성한다라면     
      bSupportDragAndDropAPI = true; 으로 변경해주고서 아래와 같이 한다
      
      HTML5 를 지원하는 브라우저(IE10 이상, 크롬, 파이어폭스)를 위해서는 다중사진첨부 컨트롤러를 작성하려면 아래와 같이 한다.

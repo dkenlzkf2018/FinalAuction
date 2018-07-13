@@ -335,7 +335,7 @@
     	var tempFile,
     		sUploadURL;
     	
-    	sUploadURL= '/board/image/multiplePhotoUpload.action';     //다중파일업로드시 동작되는 컨트롤러 URL
+    	sUploadURL= '/auction/images/multiplePhotoUpload.action';     //다중파일업로드시 동작되는 컨트롤러 URL
 
     	
     	//파일을 하나씩 보내고, 결과를 받음.
@@ -459,28 +459,19 @@
 	 * Ajax 통신 시 error가 발생할 때 처리하는 함수입니다.
 	 * @return
 	 */
-function onAjaxError (){
-		alert("[가이드]사진 업로더할 서버URL셋팅이 필요합니다.-onAjaxError");
-	}
 
  	/**
       * 이미지 업로드 시작
       * 확인 버튼 클릭하면 호출되는 msg
       */
-     function uploadImage (e){
-    	 if(!bSupportDragAndDropAPI){
-    		 generalUpload();
-    	 }else{
-    		 html5Upload();
-    	 }
-     }
+
      
  	/**
  	 * jindo에 파일 업로드 사용.(iframe에 Form을 Submit하여 리프레시없이 파일을 업로드하는 컴포넌트)
  	 */
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : '/board/image/photoUpload.action',	// 파일업로드시 동작되는 컨트롤러 url
+ 			sUrl  : '/auction/images/multiplePhotoUpload.action',	// 파일업로드시 동작되는 컨트롤러 url
  	        sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후  redirect 페이지 url
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
