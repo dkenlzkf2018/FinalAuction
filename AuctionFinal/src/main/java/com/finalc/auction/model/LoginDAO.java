@@ -57,4 +57,10 @@ public class LoginDAO implements InterLoginDAO {
 		return n;
 	}
 
+	@Override
+	public int memberEdit(HashMap<String, String> map) {
+		int n = sqlsession.update("login.memberEdit", map);
+		return n;
+	}
+
 }

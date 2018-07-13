@@ -22,4 +22,6 @@ public interface InterLoginService {
 	
 	int isUserExists(HashMap<String, String> map);
 
+	int memberEdit(HashMap<String, String> map);
+
 }

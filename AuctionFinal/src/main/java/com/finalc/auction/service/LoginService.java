@@ -59,6 +59,12 @@ public class LoginService implements InterLoginService {
 		return n;
 	}
 
+	@Override
+	public int memberEdit(HashMap<String, String> map) {
+		int n = dao.memberEdit(map);
+		return n;
+	}
+
 	
 	
 }

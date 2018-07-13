@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -304,6 +305,73 @@ public class LoginController {
 	    }
 		
 		return "pwdConfirm.notiles";
+	}
+	
+	@RequestMapping(value="/myPage.action", method= {RequestMethod.GET})
+	public String myPage(HttpServletRequest req) {
+		
+		return "member/myPage.tiles";
+	}
+	
+	@RequestMapping(value="/myInfoEdit.action", method= {RequestMethod.GET})
+	public String myInfoEdit(HttpServletRequest req) {
+		
+		return "member/myInfoEdit.tiles";
+	}
+	
+	@RequestMapping(value="/myInfoEditEnd.action", method= {RequestMethod.GET})
+	public String myInfoEditEnd(HttpServletRequest req) {
+		
+		String userid = req.getParameter("userid");
+		String pwd = req.getParameter("passwd");
+		String name = req.getParameter("name");
+		String email1 = req.getParameter("email1");
+		String email2 = req.getParameter("email2");
+		String hp1 = req.getParameter("hp1");
+		String hp2 = req.getParameter("hp2");
+		String hp3 = req.getParameter("hp3");
+		String zipcode = req.getParameter("zipcode");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+				
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("pwd", pwd);
+		map.put("name", name);
+		map.put("email1", email1);
+		map.put("email2", email2);
+		map.put("hp1", hp1);
+		map.put("hp2", hp2);
+		map.put("hp3", hp3);
+		map.put("zipcode", zipcode);
+		map.put("addr1", addr1);
+		map.put("addr2", addr2);
+			
+		int RegMember = service.memberEdit(map);
+		
+		if(RegMember == 1) {
+			String msg = "변경성공";
+			String loc = "login.action";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return"msg.notiles";
+		}
+		else if(RegMember == 0){
+			String msg = "변경실패";
+			String loc = "javascript:history.back()";
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return"msg.notiles"; 
+		}
+		
+		
+		req.setAttribute("RegMember", RegMember); 
+		
+		return "member/myInfoEditEnd.tiles";
 	}
 	
 }
