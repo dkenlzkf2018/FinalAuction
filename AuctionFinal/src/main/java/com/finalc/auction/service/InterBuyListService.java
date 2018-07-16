@@ -8,7 +8,7 @@ import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.JoinaclistVO;
 
 public interface InterBuyListService {
-
+	
 	// #Buy 3. 구매 리스트 Interface Service 단
 	List<HashMap<String, String>> getBuyList(HashMap<String, String> map);
 

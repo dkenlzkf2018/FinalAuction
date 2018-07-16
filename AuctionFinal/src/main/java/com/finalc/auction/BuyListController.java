@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.CategoryVO;
-import com.finalc.auction.model.HugiBoardVO;
 import com.finalc.auction.model.JoinaclistVO;
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.service.InterBuyListService;
@@ -148,7 +146,10 @@ public class BuyListController {
 	// #Auction 1. 사용자가 경매에 등록한 상품의 정보를 조회한다.
 	@RequestMapping(value="/viewAuction.action", method={RequestMethod.GET})
 	public String viewAuction(HttpServletRequest req) {
-		String actdnum = req.getParameter("actdnum");
+		
+		String actdnum = req.getParameter("actdnum");		
+		
+		
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		
@@ -180,7 +181,6 @@ public class BuyListController {
 		req.setAttribute("pr1", pr1);
 		req.setAttribute("pr2", pr2);
 		req.setAttribute("actdnum", actdnum);
-
 		
 		return "auction/auctionDetail.tiles";
 	}
