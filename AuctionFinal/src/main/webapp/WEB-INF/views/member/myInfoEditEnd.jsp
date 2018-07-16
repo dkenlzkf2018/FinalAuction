@@ -3,7 +3,7 @@
 
 <script type="text/javascript">
 	if(${RegMember1 == 0}){
-		alert("가입에 실패하였습니다. 다시 시도해 주세야");
+		alert("변경에 실패하였습니다. 다시 시도해 주세야");
 		location.href="<%= request.getContextPath() %>/myInfoEdit.action";
 	}
 	else if(${RegMember1 == 1}){

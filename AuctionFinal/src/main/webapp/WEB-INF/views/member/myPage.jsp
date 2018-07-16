@@ -31,6 +31,7 @@
 
 <h1 align="center"><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 페이지</h1>
 <form name="myPageFrm" id="myPageFrm" method="get">
+	
 	<div class="main" align="center" style="margin-top: 50px;">
       <div class="container">
           <div>
@@ -59,6 +60,7 @@
           </div>
       </div>
     </div>
+    
 </form>
 
 <form name="InfoFrm">

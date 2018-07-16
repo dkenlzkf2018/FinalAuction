@@ -358,6 +358,8 @@ public class LoginController {
 	@RequestMapping(value="/myInfoEditEnd.action", method= {RequestMethod.GET})
 	public String myInfoEditEnd(HttpServletRequest req) {
 		
+		
+		
 		String userid = req.getParameter("userid");
 		String pwd = req.getParameter("passwd");
 		String name = req.getParameter("name");
@@ -382,7 +384,18 @@ public class LoginController {
 		map.put("zipcode", zipcode);
 		map.put("addr1", addr1);
 		map.put("addr2", addr2);
-			
+		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		loginuser.setEmail(email1+"@"+email2);
+		loginuser.setHp1(hp1);
+		loginuser.setHp2(hp2);
+		loginuser.setHp3(hp3);
+		loginuser.setZipcode(zipcode);
+		loginuser.setAddr1(addr1);
+		loginuser.setAddr2(addr2);
+		
 		int RegMember = service.memberEdit(map);
 		
 		if(RegMember == 1) {
@@ -404,7 +417,7 @@ public class LoginController {
 			
 			return"msg.notiles"; 
 		}
-		
+		req.setAttribute("loginuser", loginuser);
 		req.setAttribute("RegMember", RegMember); 
 		
 		return "member/myInfoEditEnd.tiles";
