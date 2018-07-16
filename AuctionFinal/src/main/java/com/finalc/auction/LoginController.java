@@ -358,8 +358,6 @@ public class LoginController {
 	@RequestMapping(value="/myInfoEditEnd.action", method= {RequestMethod.POST})
 	public String myInfoEditEnd(HttpServletRequest req) {
 		
-		
-		
 		String userid = req.getParameter("userid");
 		String name = req.getParameter("name");
 		String email1 = req.getParameter("email1");
@@ -398,13 +396,9 @@ public class LoginController {
 		
 		if(RegMember == 1) {
 			
-			String gobackURL = (String)session.getAttribute("gobackURL");
-			req.setAttribute("gobackURL", gobackURL);
-			session.removeAttribute("gobackURL");
-			
 			req.setAttribute("loginuser", loginuser);
 			req.setAttribute("RegMember", RegMember); 
-						
+			
 		}
 		
 		return "myInfoEditEnd.notiles";

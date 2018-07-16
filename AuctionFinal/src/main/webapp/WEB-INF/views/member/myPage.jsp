@@ -63,7 +63,7 @@
     
 </form>
 
-<form name="InfoFrm">
+<form name="InfoFrm" method="post">
 	<div align="center" style="margin-bottom: 20px;">
 		<button type="button" class="btn btn-default" id="myInfo" onClick="goMyInfo();">내 정보 보기</button>
 	</div>

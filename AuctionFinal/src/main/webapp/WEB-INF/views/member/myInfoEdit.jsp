@@ -37,7 +37,13 @@
           frm.method="post";
           frm.submit();
           
+          self.window.close();
+          
+          javascript:history.back();
       }
+      
+      window.location.reload();
+      
     }
     
     function goZipcodeSerch() {
@@ -70,7 +76,7 @@
           <div class="col-md-9 col-sm-7">
             <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 정보 수정</h1>
             <div class="content-form-page">
-              <form name="RegistFrm" role="form" class="form-horizontal form-without-legend">
+              <form name="RegistFrm" role="form" class="form-horizontal form-without-legend" method="post">
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="userid">아이디 <span class="require">*</span></label>
                   <div class="col-lg-6">
