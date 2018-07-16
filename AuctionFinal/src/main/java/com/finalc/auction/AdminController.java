@@ -24,6 +24,7 @@ public class AdminController {
 	
 
 	// 관리자 메인 Controller 단
+<<<<<<< HEAD
 		@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
 		public String adminMain() {
 			
@@ -115,5 +116,12 @@ public class AdminController {
 		
 	// 
 	
+=======
+	@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
+	public String adminMain() {
+		return "adminMain.admin";
+	}
+		
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 }
 

@@ -30,6 +30,12 @@
                         	<li><a href="login.action">Log In</a></li>
                         </c:if>
                         <c:if test="${sessionScope.loginuser != null}">
+                        	<c:if test="${sessionScope.loginuser.userid eq 'admin'}">
+                        		<li><a href="adminMain.action">Admin Page</a></li>
+                        	</c:if>
+                        	<c:if test="${!(sessionScope.loginuser.userid eq 'admin')}">
+                        		<li><a href="myPage.action">My Page</a></li>
+                        	</c:if>
                         	<li><a href="logout.action">Log Out</a></li>
                         </c:if>
                     </ul>
