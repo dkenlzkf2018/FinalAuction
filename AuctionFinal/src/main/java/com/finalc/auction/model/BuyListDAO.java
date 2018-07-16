@@ -74,5 +74,17 @@ public class BuyListDAO implements InterBuyListDAO {
 		int award2 = sqlsession.update("buyList.updateAward", map);
 		return award2;
 	}
+
+	@Override
+	public int inputDeliver(HashMap<String, String> map) {
+		int deliver = sqlsession.insert("buyList.inputDeliver", map);
+		return deliver;
+	}
+
+	@Override
+	public HashMap<String, String> getDeliverData(HashMap<String, String> map) {
+		HashMap<String, String> deliverMap = sqlsession.selectOne("buyList.getDeliverData", map);
+		return deliverMap;
+	}
 	
 }

@@ -86,4 +86,18 @@ public class BuyListService implements InterBuyListService {
 		return award2;
 	}
 
+
+	@Override
+	public int inputDeliver(HashMap<String, String> map) {
+		int deliver = dao.inputDeliver(map);
+		return deliver;
+	}
+
+
+	@Override
+	public HashMap<String, String> getDeliverData(HashMap<String, String> map) {
+		HashMap<String, String> deliverMap = dao.getDeliverData(map);
+		return deliverMap;
+	}
+
 }

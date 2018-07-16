@@ -179,6 +179,8 @@ public class BuyListController {
 		req.setAttribute("count", count);
 		req.setAttribute("pr1", pr1);
 		req.setAttribute("pr2", pr2);
+		req.setAttribute("actdnum", actdnum);
+
 		
 		return "auction/auctionDetail.tiles";
 	}
@@ -256,29 +258,48 @@ public class BuyListController {
 	
 	// 낙찰(현재날짜와 경매종료날짜가 같을 경우)
 	@RequestMapping(value="/inputAward.action", method={RequestMethod.POST})
-	public void inputAward(HttpServletRequest req) {
+	public String inputAward(HttpServletRequest req) {		
+		
 		String actnum = req.getParameter("actnum");
 		String actdnum = req.getParameter("actdnum");
 		String nowprice = req.getParameter("nowprice");
-		System.out.println("받아온 값들 : " +actnum+ ", " +actdnum+ ", " + nowprice);
+		String actd_price = req.getParameter("actd_price");
+		//System.out.println("받아온 값들 : " +actnum+ ", " +actdnum+ ", " + nowprice);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("actnum", actnum);
 		map.put("actdnum", actdnum);
 		map.put("nowprice", nowprice);
+		map.put("actd_price", actd_price);
 		// 입찰 내역을 조회하여 가장 높은 입찰가격의 회원번호와 경매번호와 낙찰가격(최상 입찰가)을 가져온다.
 		JoinaclistVO jvo = service.searchTender(map);
+		// System.out.println("jvo : " + jvo);
+		// System.out.println("fk : " + jvo.getFk_usernum());
+		
+		
+		map.put("fk_usernum", jvo.getFk_usernum());
 		int award1 = 0;
 		int award2 = 0;
-		System.out.println("jvo : " + jvo);
+		int deliver = 0;
+		
 		if (jvo != null) {
-			map.put("fk_usernum", jvo.getFk_usernum());
-			map.put("tenderprice", jvo.getTenderprice());
 			award1 = service.inputAward(map);
-			System.out.println("award1 : " + award1);
+			//System.out.println("award1 : " + award1);
 			if (award1 > 0) {
 				award2 = service.updateAD(map);
-				System.out.println("award2 : " + award2);
+				//System.out.println("award2 : " + award2);
+				if (award2 > 0) {
+					HashMap<String, String> deliverMap = service.getDeliverData(map);
+					map.put("AWARDNUM", deliverMap.get("awardnum"));
+					map.put("ADDR", deliverMap.get("addr"));
+					deliver = service.inputDeliver(map);
+					if (deliver > 0) {
+						req.setAttribute("msg", "경매가 종료되었습니다.");
+						req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);
+					}
+				}
+				
 			}
 		}
+		return "msg.notiles";
 	}
 }

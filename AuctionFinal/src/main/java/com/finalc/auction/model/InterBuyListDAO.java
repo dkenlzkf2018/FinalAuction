@@ -26,4 +26,8 @@ public interface InterBuyListDAO {
 
 	int updateAD(HashMap<String, String> map);
 
+	int inputDeliver(HashMap<String, String> map);
+
+	HashMap<String, String> getDeliverData(HashMap<String, String> map);
+
 }
