@@ -921,8 +921,8 @@ if(window.frameElement){
 		<input type="hidden" name="deptthno" value="${deptthno}" />
 		
 		
-		<button type="button" id="btnWrite" style="margin-left: 25%;">쓰기</button>
-		<button type="button" style="margin-right: 30%;" onClick="javascript:history.back();">취소</button>
+		<button type="button" id="btnWrite" style="margin-left: 52%;">쓰기</button>
+		<button type="button" style="margin-right: 10%;" onClick="javascript:history.back();">취소</button>
 	</form>
 
 </div>	
