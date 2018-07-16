@@ -6,6 +6,7 @@
 <script type="text/javascript">
 
 	jQuery(document).ready(function(){
+		
 		$("#myPageFrm").hide();
 	});
 	
@@ -13,7 +14,7 @@
 		
 		$("#myInfo").hide();
 		$("#myPageFrm").show();
-			
+		
 	}
 	
 	function goEdit(){

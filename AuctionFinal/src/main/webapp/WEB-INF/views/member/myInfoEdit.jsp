@@ -39,10 +39,8 @@
           
           self.window.close();
           
-          javascript:history.back();
+          
       }
-      
-      window.location.reload();
       
     }
     
