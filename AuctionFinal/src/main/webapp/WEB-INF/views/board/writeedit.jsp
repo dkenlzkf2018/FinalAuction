@@ -84,10 +84,10 @@
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><input type="text" id="subject" value="${boardvo.subject}" style="width: 920px;" /></td>
+			<td><input type="text" id="subject" value="${boardvo.subject}" style="width: 520px;" /></td>
 		</tr>
 		<tr>
-			<th>내용</th>
+			<th style="text-align: center;">내용</th>
 			<%-- <td><textarea id="content" rows="10" cols="130">대<br/>한"\r\n"민"\n"국</textarea></td> --%> 
 			<%-- <td><textarea id="content" rows="10" cols="130">대&#10;한민&#10;국</textarea></td> --%>
 			<!-- ※ textarea 태그에서는 일반적인 <br/> 태그나  \r\n, \r, \n 을 사용하여 개행처리를 할 수 없다.
@@ -97,7 +97,7 @@
 					<textarea id="content" rows="10" cols="130">${fn:replace(boardvo.content, "<br/>", "&#10;")}</textarea> 
 				--%>
 				
-				<textarea id="content" rows="10" cols="130" style="width: 412px;">${boardvo.content}</textarea>
+				<textarea id="content" rows="10" cols="130" style="width: 350x;">${boardvo.content}</textarea>
 				
             	<!-- ________________________________스마트에디터 시작________________________________ -->
             	
@@ -867,8 +867,8 @@
 			<p>글 수정시 여기에 값을 넣어주면 됩니다.</p>
 		</textarea>
 	</form>
-</div>
- -->
+</div> -->
+
 <script type="text/javascript">
 if(window.frameElement){
 	jindo.$("se2_sample").style.display = "none";
@@ -923,8 +923,8 @@ if(window.frameElement){
 	</table>
 	
 	<br/>
-	<button type="button" id="btnUpdate">완료</button> 
-	<button type="button" onClick="javascript:history.back();">취소</button>
+	<button type="button" id="btnUpdate" style="margin-left: 52%;">완료</button> 
+	<button type="button" onClick="javascript:history.back();" style="margin-right: 10%;">취소</button>
 
 	<form name="editFrm">
 		<input type="hidden" name="boardno" value="${boardvo.boardno}" />

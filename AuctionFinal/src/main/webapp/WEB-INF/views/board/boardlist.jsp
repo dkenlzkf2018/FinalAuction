@@ -90,10 +90,7 @@
 				<th style="width: 70px;  text-align: center">작성자</th>
 				<th style="width: 180px; text-align: center">작성일</th>
 				<th style="width: 70px;  text-align: center">조회수</th>
-				
-				<!-- # 144. 파일과 크기를 보여주도록 수정 -->
-				<th style="width: 70px; text-align: center">파일</th>
-				<th style="width: 100px;  text-align: center">크기(bytes)</th>
+	
 			</tr>
 		</thead>
 		<tbody>
@@ -126,10 +123,10 @@
 					    <!-- 답변글인 경우 -->
 					    <c:if test="${boardvo.fk_boardno > 0}">
 						    <c:if test="${boardvo.commentcount > 0}">
-						        <span class="subject" onClick="goView('${boardvo.boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentcount}]</span></span> 
+						        <span class="subject" onClick="goView('${boardvo.fk_boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentcount}]</span></span> 
 						    </c:if>
 						    <c:if test="${boardvo.commentcount == 0}">
-						        <span class="subject" onClick="goView('${boardvo.boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}</span>
+						        <span class="subject" onClick="goView('${boardvo.fk_boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}</span>
 						    </c:if>
 					    </c:if>
 					    
@@ -138,20 +135,7 @@
 					<td align="center">${boardvo.writeday}</td>
 					<td align="center">${boardvo.viewcount}</td>
 					
-					<!-- # 145. 첨부 파일 여부 표시 하기. -->
-	<%-- 				<td align="center">
-						<c:if test="${not empty boardvo.fileName}">
-							<img src="<%= request.getContextPath() %>/resources/images/disk.gif">
-						</c:if>
-					</td>
-					
-					<td align="center">
-						<c:if test="${not empty boardvo.fileSize}">
-							${boardvo.fileSize} <!-- 파일크기 -->
-						</c:if>
-					</td> --%>
-					
-				</tr>
+			  </tr>
 			</c:forEach>			
 		</tbody>
 	</table>

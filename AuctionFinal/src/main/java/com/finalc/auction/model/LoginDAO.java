@@ -1,5 +1,6 @@
 package com.finalc.auction.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,8 +40,21 @@ public class LoginDAO implements InterLoginDAO {
 
 	@Override
 	public List<HashMap<String, String>> serchZipcode(HashMap<String, String> map) {
-		List<HashMap<String, String>> zipcodeList = sqlsession.selectList("login.serchZipcode", map);
+		List<HashMap<String, String>> zipcodeList  = sqlsession.selectList("login.serchZipcode", map);
 		return zipcodeList;
 	}
-	
+
+	@Override
+	public int updatePwdUser(HashMap<String, String> map) {
+		int n = sqlsession.update("login.updatePwdUser", map);
+		return n;
+		
+	}
+
+	@Override
+	public int isUserExists(HashMap<String, String> map) {
+		int n = sqlsession.selectOne("login.isUserExists", map);
+		return n;
+	}
+
 }
