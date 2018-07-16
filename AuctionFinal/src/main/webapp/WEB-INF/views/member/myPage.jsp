@@ -33,7 +33,6 @@
 <form name="myPageFrm" id="myPageFrm" method="get">
 	<div class="main" align="center" style="margin-top: 50px;">
       <div class="container">
-      
           <div>
             <h3><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 정보</h3>
             <div class="content-form-page">
@@ -52,7 +51,6 @@
                 </div>
             </div>
           </div>
-      
           <div class="row" align="center">
                 <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
                   <button class="btn btn-primary" type="button" id="btnRegister" onClick="goEdit();">정보수정</button>

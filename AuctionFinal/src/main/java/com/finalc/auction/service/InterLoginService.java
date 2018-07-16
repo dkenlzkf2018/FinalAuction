@@ -24,4 +24,5 @@ public interface InterLoginService {
 
 	int memberEdit(HashMap<String, String> map);
 
+
 }

@@ -386,6 +386,7 @@ public class LoginController {
 		int RegMember = service.memberEdit(map);
 		
 		if(RegMember == 1) {
+			
 			String msg = "변경성공";
 			String loc = "myPage.action";
 			

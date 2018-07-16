@@ -22,4 +22,5 @@ public interface InterLoginDAO {
 	int memberEdit(HashMap<String, String> map);
 
 
+
 }
