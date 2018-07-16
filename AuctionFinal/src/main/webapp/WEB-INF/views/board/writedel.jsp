@@ -33,8 +33,6 @@
 	}
 </script>
 
-
-
 <div style="padding-left: 10%;">
 	<h3 style="margin-bottom: 50px;">게시물 삭제</h3>
 	
@@ -44,6 +42,7 @@
 				
 				<td>
 					<input type="hidden" name="boardno" value="${boardno}" />
+					
 				</td>
 			</tr>
 		</table>
