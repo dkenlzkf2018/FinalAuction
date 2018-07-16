@@ -39,7 +39,7 @@
 			
 			var frm = document.frmZipcode;
 			frm.method = "get";
-			frm.action = "zipcodeEidtInfo.action";
+			frm.action = "zipcodeEditInfo.action";
 			frm.submit();
 		}
 		
@@ -50,7 +50,7 @@
 
 </head>
 <body style="background-color: #fff0f5;">
-	<form name="frmZipcode" action="zipcodeInfo.action" method="get">
+	<form name="frmZipcode" action="zipcodeEditInfo.action" method="get">
 	<table style="width: 95%; height: 90%;">
 		<tr>
 			<td align="center">

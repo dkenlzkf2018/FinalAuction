@@ -34,15 +34,14 @@
          var frm = document.RegistFrm;
           
           frm.action="myInfoEditEnd.action";
-          frm.method="get";
+          frm.method="post";
           frm.submit();
+          
       }
     }
     
     function goZipcodeSerch() {
-    	
-    	var url = "ZipcodeSerchEdit.action";
-    	
+   
         window.open("", "ZipcodeSerch",
                  "left=600px, top=300px, width=1100px, height=600px");
                
@@ -138,12 +137,11 @@
                   </div>
                 </div>            
                 </div>
-                <input type="hidden" id="passwd" name="passwd" value="${sessionScope.loginuser.passwd}" />
               </form>
               <div class="row">
                 <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
-                  <button class="btn btn-primary" type="button" id="btnRegister" onClick="goRegist();">수정하기</button>
-                  <button class="btn btn-default" type="button" onClick="location.href='<%=request.getContextPath()%>/myPage.action';">돌아가기</button>
+                  <button class="btn btn-default" type="button" id="btnRegister" onClick="goRegist();">수정하기</button>
+                  <button class="btn btn-primary" type="button" onClick="location.href='<%=request.getContextPath()%>/myPage.action';">돌아가기</button>
                 </div>
               </div>
             </div>

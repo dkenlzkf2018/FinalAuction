@@ -183,7 +183,7 @@ public class LoginController {
 		return "ZipcodeSerchEdit.notiles";
 	}
 	
-	@RequestMapping(value="/ZipcodeSerchEditInfo.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/zipcodeEditInfo.action", method= {RequestMethod.GET})
 	public String ZipcodeSerchEditInfo(HttpServletRequest req) {
 		
 		List<HashMap<String, String>> zipcodeList = null;
@@ -210,7 +210,7 @@ public class LoginController {
 			req.setAttribute("addr1", addr1);
 		}
 		
-		return "ZipcodeSerchEditInfo.notiles";
+		return "zipcodeEditInfo.notiles";
 	}
 	
 	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
@@ -349,19 +349,18 @@ public class LoginController {
 		return "member/myPage.tiles";
 	}
 	
-	@RequestMapping(value="/myInfoEdit.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/myInfoEdit.action", method= {RequestMethod.POST})
 	public String myInfoEdit(HttpServletRequest req) {
 		
 		return "member/myInfoEdit.tiles";
 	}
 	
-	@RequestMapping(value="/myInfoEditEnd.action", method= {RequestMethod.GET})
+	@RequestMapping(value="/myInfoEditEnd.action", method= {RequestMethod.POST})
 	public String myInfoEditEnd(HttpServletRequest req) {
 		
 		
 		
 		String userid = req.getParameter("userid");
-		String pwd = req.getParameter("passwd");
 		String name = req.getParameter("name");
 		String email1 = req.getParameter("email1");
 		String email2 = req.getParameter("email2");
@@ -374,7 +373,6 @@ public class LoginController {
 				
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userid", userid);
-		map.put("pwd", pwd);
 		map.put("name", name);
 		map.put("email1", email1);
 		map.put("email2", email2);
@@ -400,27 +398,16 @@ public class LoginController {
 		
 		if(RegMember == 1) {
 			
-			String msg = "변경성공";
-			String loc = "myPage.action";
+			String gobackURL = (String)session.getAttribute("gobackURL");
+			req.setAttribute("gobackURL", gobackURL);
+			session.removeAttribute("gobackURL");
 			
-			req.setAttribute("msg", msg);
-			req.setAttribute("loc", loc);
-			
-			return"msg.notiles";
-		}
-		else if(RegMember == 0){
-			String msg = "변경실패";
-			String loc = "javascript:history.back()";
-			req.setAttribute("msg", msg);
-			req.setAttribute("loc", loc);
-			
-			return"msg.notiles"; 
+			req.setAttribute("loginuser", loginuser);
+			req.setAttribute("RegMember", RegMember); 
+						
 		}
 		
-		req.setAttribute("loginuser", loginuser);
-		req.setAttribute("RegMember", RegMember); 
-		
-		return "member/myInfoEditEnd.tiles";
+		return "myInfoEditEnd.notiles";
 	}
 	
 }
