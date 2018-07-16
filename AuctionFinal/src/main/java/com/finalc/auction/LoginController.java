@@ -411,12 +411,12 @@ public class LoginController {
 		else if(RegMember == 0){
 			String msg = "변경실패";
 			String loc = "javascript:history.back()";
-			
 			req.setAttribute("msg", msg);
 			req.setAttribute("loc", loc);
 			
 			return"msg.notiles"; 
 		}
+		
 		req.setAttribute("loginuser", loginuser);
 		req.setAttribute("RegMember", RegMember); 
 		
