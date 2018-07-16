@@ -46,5 +46,8 @@ public interface InterBoardService {
 	
 
 
+	
+
+
 
 }
