@@ -56,8 +56,6 @@ public class AdminDAO implements InterAdminDAO {
 		return adMapList;
 	}*/
 	
-	// 카테고리 등록 Controller 단
-	
 	// 카테고리 수정 Controller 단
 	
 	// 카테고리 삭제 Controller 단
