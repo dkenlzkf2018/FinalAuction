@@ -90,10 +90,7 @@
 				<th style="width: 70px;  text-align: center">작성자</th>
 				<th style="width: 180px; text-align: center">작성일</th>
 				<th style="width: 70px;  text-align: center">조회수</th>
-				
-				<!-- # 144. 파일과 크기를 보여주도록 수정 -->
-				<th style="width: 70px; text-align: center">파일</th>
-				<th style="width: 100px;  text-align: center">크기(bytes)</th>
+	
 			</tr>
 		</thead>
 		<tbody>
@@ -138,20 +135,7 @@
 					<td align="center">${boardvo.writeday}</td>
 					<td align="center">${boardvo.viewcount}</td>
 					
-					<!-- # 145. 첨부 파일 여부 표시 하기. -->
-	<%-- 				<td align="center">
-						<c:if test="${not empty boardvo.fileName}">
-							<img src="<%= request.getContextPath() %>/resources/images/disk.gif">
-						</c:if>
-					</td>
-					
-					<td align="center">
-						<c:if test="${not empty boardvo.fileSize}">
-							${boardvo.fileSize} <!-- 파일크기 -->
-						</c:if>
-					</td> --%>
-					
-				</tr>
+			  </tr>
 			</c:forEach>			
 		</tbody>
 	</table>

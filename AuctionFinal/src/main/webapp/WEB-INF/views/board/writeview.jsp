@@ -200,9 +200,9 @@
 		
 		<input type="text" name="cm_content" id="cm_content" size="80" style="line-height: 40px;"/>
 		
-		<button type="button" onClick="goWrite();"  class="btn btn-link">쓰기</button>
+		<button type="button" onClick="goWrite();"  class="btn btn-outline-secondary">쓰기</button>
 		
-		<button type="button" class="btn btn-link" onClick="javascript:location.href='<%= request.getContextPath() %>/write.action?fk_boardno=${boardvo.boardno}&groupno=${boardvo.groupno}&deptthno=${boardvo.deptthno}'">답변쓰기</button> 
+		<button type="button"  onClick="javascript:location.href='<%= request.getContextPath() %>/write.action?fk_boardno=${boardvo.boardno}&groupno=${boardvo.groupno}&deptthno=${boardvo.deptthno}'">답변쓰기</button> 
 	<br/>
 		
 	</form> 
@@ -212,3 +212,4 @@
 		
 	
 </div>
+

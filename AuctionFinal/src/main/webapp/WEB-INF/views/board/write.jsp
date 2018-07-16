@@ -54,7 +54,7 @@
 			// form 전송하기
 			var frm = document.writeFrm;
 			frm.action = "<%=request.getContextPath()%>/writeEnd.action";
-			frm.method = "post";
+			frm.method = "POST";
 			frm.submit();
 			
 		});
@@ -89,7 +89,7 @@
             	
             	<!-- ________________________________스마트에디터 시작________________________________ -->
             	
-            			<%-- <span id="rev">Version: 2.8.2.12056 </span> --%>
+ <!-- <span id="rev">Version: 2.8.2.12056 </span> -->
 
 <!-- SE2 Markup Start -->	
 <div id="smart_editor2">
@@ -855,8 +855,8 @@
 			<p>글 수정시 여기에 값을 넣어주면 됩니다.</p>
 		</textarea>
 	</form>
-</div>
- -->
+</div> -->
+
 <script type="text/javascript">
 if(window.frameElement){
 	jindo.$("se2_sample").style.display = "none";
@@ -907,7 +907,7 @@ if(window.frameElement){
             	</td>
          	</tr>
          	
-         	<%-- # 135. 파일 첨부 타입 추가하기. --%>
+         
          	<tr>
          		<th>파일첨부</th>
          		<td><input type="file" name="attach"/></td>
@@ -915,13 +915,7 @@ if(window.frameElement){
 
 		</table>
 		<br/>
-		
-		<%--
-		==== #122. 답변글쓰기인 경우 
-		           부모글의 seq값인 fk_seq값과
-		           부모글의 groupno 값과
-		           부모글의 depthno 값을 hidden 타입으로 보내준다. ====
-		--%>            
+
 		<input type="hidden" name="fk_boardno"  value="${fk_boardno}" />
 		<input type="hidden" name="groupno" value="${groupno}" />
 		<input type="hidden" name="deptthno" value="${deptthno}" />
