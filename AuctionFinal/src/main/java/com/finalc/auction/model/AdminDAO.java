@@ -46,21 +46,8 @@ public class AdminDAO implements InterAdminDAO {
 		int n = sqlsession.update("admin.delCategory", map);
 		return n;
 	}
-
-
-/*	@Override
-	public int delCategory(HashMap<String, String> map) {
-		int n = sqlsession.delete("admin.delCategory", map);
-		return n;
-	}*/
-	
 	
 	// 일반게시판 단
-	
-	
-	
-	
-	// 카테고리 수정 Controller 단
 	
 	
 }

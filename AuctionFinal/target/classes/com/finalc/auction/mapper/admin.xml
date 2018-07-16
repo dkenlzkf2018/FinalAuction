@@ -28,4 +28,6 @@
 		update tbl_category_detail set categostau = 0
 		where cdname = #{cdname}
 	</update>
+	
+	
 </mapper>

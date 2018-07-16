@@ -103,9 +103,9 @@
         });
 	
         // 카테고리 삭제
-        jQuery("#cnum").bind("change", function() {
+        /* jQuery("#cnum").bind("change", function() {
         	jQuery("#category").val(jQuery(this).val());
-        });
+        }); */
     }); 
     
     // 카테고리 추가

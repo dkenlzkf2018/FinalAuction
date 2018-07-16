@@ -104,11 +104,11 @@ public class AdminController {
 			
 			if(n == 1) {
 				msg = "삭제 완료";
-				loc = "/adminCategory.action";
+				loc = "/auction/adminCategory.action";
 			}
 			else {
 				msg = "삭제 실패";
-				loc = "/adminCategory.action";
+				loc = "/auction/adminCategory.action";
 			}
 			
 			req.setAttribute("msg", msg);

@@ -19,7 +19,7 @@
                 <li class="active">
                     <a href="/auction/adminMain.action"> <i class="menu-icon fa fa-dashboard"></i>관리자 메인</a>
                 </li>
-                <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Admin Menus</h3><!-- /.menu-title -->
 			<!-- 관리 sideinfo 미완  -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>게시판 관리</a>
@@ -31,7 +31,7 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>카테고리 관리</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-list"></i><a href="<%=request.getContextPath()%>/adminCategory.action">카테고리 관리</a></li>
+                        <li><i class="fa fa-list"></i><a href="<%=request.getContextPath()%>/adminCategory.action">카테고리 등록&삭제</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
