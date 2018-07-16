@@ -123,10 +123,10 @@
 					    <!-- 답변글인 경우 -->
 					    <c:if test="${boardvo.fk_boardno > 0}">
 						    <c:if test="${boardvo.commentcount > 0}">
-						        <span class="subject" onClick="goView('${boardvo.boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentcount}]</span></span> 
+						        <span class="subject" onClick="goView('${boardvo.fk_boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentcount}]</span></span> 
 						    </c:if>
 						    <c:if test="${boardvo.commentcount == 0}">
-						        <span class="subject" onClick="goView('${boardvo.boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}</span>
+						        <span class="subject" onClick="goView('${boardvo.fk_boardno}');"><span style="color: red; font-style: italic; padding-left: ${boardvo.deptthno * 20}px;">└Re&nbsp;&nbsp;</span>${boardvo.subject}</span>
 						    </c:if>
 					    </c:if>
 					    
