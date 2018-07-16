@@ -13,16 +13,41 @@ public class AdminDAO implements InterAdminDAO {
 	@Autowired
 	private SqlSessionTemplate sqlsession;
 	
-	// 관리자 페이지 요청 단
+	// 관리자 메인 Controller 단
 	@Override
-	public List<HashMap<String, String>> getadMin(HashMap<String, String> map) {
-		System.out.println("Dao 단 map : " + map);
-		List<HashMap<String, String>> adMapList = sqlsession.selectList("adMin.getadMin", map);
-		System.out.println("3. DAO 단 adMapList : " + adMapList);
+	public List<HashMap<String, String>> getAdMin() {
+		List<HashMap<String, String>> adMapList = sqlsession.selectList("adMin.getadMin");
 		return adMapList;
 	}
+
+	// 카테고리 페이지 단
+	@Override
+	public List<CategoryVO> getAdminCategory() {
+		List<CategoryVO> categoryList = sqlsession.selectList("admin.getAdminCategory");
+		return categoryList;
+	}
+
+	@Override
+	public List<CategoryVO> getAdminCategoryDetail() {
+		List<CategoryVO> categoryListDetail = sqlsession.selectList("admin.getAdminCategoryDetail");
+		return categoryListDetail;
+	}
+
+	// 카테고리 등록 단
+	@Override
+	public int addCategory(HashMap<String, String> map) {
+		int n = sqlsession.insert("admin.addCategory", map);
+		return n;
+	}
+
+	// 카테고리 삭제 단
+	@Override
+	public int delCategory(HashMap<String, String> map) {
+		int n = sqlsession.update("admin.delCategory", map);
+		return n;
+	}
 	
-	// 카테고리 관리 단
-	// @Override
-	// public 
+	// 일반게시판 단
+	
+	
 }
