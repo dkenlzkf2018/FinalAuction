@@ -7,26 +7,6 @@
       
    }); // end of $(document).ready()---------------------------    
     
-    function idCheck(){
-       
-       var userid = $("#userid").val();
-       
-       var url = "idCheck.action?userid="+userid;
-       window.open("", "idCheck",
-                "left=500px, top=100px, width=300px, height=100px");
-       
-       var frm = document.RegistFrm;
-       
-       frm.target = "idCheck";
-       
-       frm.action="idCheck.action";
-       frm.method="get";
-       frm.submit();
-       
-    }
-    /* <span id="error_passwd">암호는 영문자,숫자,특수기호가 혼합된 8~15 글자로만 입력가능합니다.</span> 
-        <span class="error">암호가 일치하지 않습니다.</span>
-    */
     function goRegist() {
        
       var flagBool = false;
@@ -53,15 +33,15 @@
       else {
          var frm = document.RegistFrm;
           
-          frm.action="memberRegistEnd.action";
-          frm.method="post";
+          frm.action="myInfoEditEnd.action";
+          frm.method="get";
           frm.submit();
       }
     }
     
     function goZipcodeSerch() {
     	
-    	var url = "ZipcodeSerch.action";
+    	var url = "ZipcodeSerchEdit.action";
     	
         window.open("", "ZipcodeSerch",
                  "left=600px, top=300px, width=1100px, height=600px");
@@ -70,7 +50,7 @@
         
         frm.target = "ZipcodeSerch";
         
-        frm.action="ZipcodeSerch.action";
+        frm.action="ZipcodeSerchEdit.action";
         frm.method="post";
         frm.submit();
     	
@@ -89,7 +69,7 @@
         <div class="row margin-bottom-40">          
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-7">
-            <h1>회원 가입</h1>
+            <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 정보 수정</h1>
             <div class="content-form-page">
               <form name="RegistFrm" role="form" class="form-horizontal form-without-legend">
                 <div class="form-group">

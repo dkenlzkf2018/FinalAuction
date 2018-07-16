@@ -177,6 +177,42 @@ public class LoginController {
 		return "ZipcodeSerch.notiles";
 	}
 	
+	@RequestMapping(value="/ZipcodeSerchEdit.action", method= {RequestMethod.POST})
+	public String ZipcodeSerchEdit() {
+		
+		return "ZipcodeSerchEdit.notiles";
+	}
+	
+	@RequestMapping(value="/ZipcodeSerchEditInfo.action", method= {RequestMethod.GET})
+	public String ZipcodeSerchEditInfo(HttpServletRequest req) {
+		
+		List<HashMap<String, String>> zipcodeList = null;
+		
+		zipcodeList = new ArrayList<HashMap<String, String>>();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("sido", req.getParameter("sido"));
+		
+		zipcodeList = service.serchZipcode(map);
+		
+		if(zipcodeList == null || zipcodeList.size() == 0) {
+			req.setAttribute("result", "0");
+			req.setAttribute("zipcodeNotExist", "해당 주소가 없습니다.");
+		}
+		else {
+			req.setAttribute("result", "1");
+			req.setAttribute("zipcodeList", zipcodeList);
+			String zipcode = req.getParameter("zipcode");
+			String addr1 = req.getParameter("addr1");
+			
+			req.setAttribute("zipcode", zipcode);
+			req.setAttribute("addr1", addr1);
+		}
+		
+		return "ZipcodeSerchEditInfo.notiles";
+	}
+	
 	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
 	public String zipcodeInfo(HttpServletRequest req) {
 		
@@ -351,7 +387,7 @@ public class LoginController {
 		
 		if(RegMember == 1) {
 			String msg = "변경성공";
-			String loc = "login.action";
+			String loc = "myPage.action";
 			
 			req.setAttribute("msg", msg);
 			req.setAttribute("loc", loc);
