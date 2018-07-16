@@ -468,7 +468,7 @@ public class BoardController {
 			// path 가 첨부파일들을 저장할 WAS(톰캣)의 폴더가 된다. 
 			
 		//	System.out.println(">>>> 확인용 path ==> " + path); 
-			// >>>> 확인용 path ==> C:\springworkspaceTeach\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Board\resources\photo_upload
+			// >>>> 확인용 path ==> C:\SpringWorkspaceTeach\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Board\resources\photo_upload
 			
 			// 2. 파일첨부를 위한 변수의 설정 및 값을 초기화한 후 파일올리기
 			String newFilename = "";
@@ -513,7 +513,7 @@ public class BoardController {
 	    
 		return "redirect:" + callback + "?callback_func="+callback_func+file_result;
 		
-	}// end of String photoUpload(PhotoVO photovo, HttpServletRequest req)-------------------    
+	}// end of String photoUpload(PhotoVO photovo, HttpServletRequest req)-------------------        
 	
 	
 	// ==== #스마트에디터2. 드래그앤드롭을 사용한 다중사진 파일업로드 ====
@@ -583,6 +583,5 @@ public class BoardController {
 			e.printStackTrace();
 		}
 		
-	}// end of void multiplePhotoUpload(HttpServletRequest req, HttpServletResponse res)---------------- // 스마트 에디터 다중 파일 업로드 (07.13 11:40 끝)
-
+	}// end of void multiplePhotoUpload(HttpServletRequest req, HttpServletResponse res)---------------- 
 }

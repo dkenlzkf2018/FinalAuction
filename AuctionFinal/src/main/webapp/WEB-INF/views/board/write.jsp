@@ -54,7 +54,7 @@
 			// form 전송하기
 			var frm = document.writeFrm;
 			frm.action = "<%=request.getContextPath()%>/writeEnd.action";
-			frm.method = "post";
+			frm.method = "POST";
 			frm.submit();
 			
 		});
@@ -89,7 +89,7 @@
             	
             	<!-- ________________________________스마트에디터 시작________________________________ -->
             	
-            			<%-- <span id="rev">Version: 2.8.2.12056 </span> --%>
+ <!-- <span id="rev">Version: 2.8.2.12056 </span> -->
 
 <!-- SE2 Markup Start -->	
 <div id="smart_editor2">
@@ -855,8 +855,8 @@
 			<p>글 수정시 여기에 값을 넣어주면 됩니다.</p>
 		</textarea>
 	</form>
-</div>
- -->
+</div> -->
+
 <script type="text/javascript">
 if(window.frameElement){
 	jindo.$("se2_sample").style.display = "none";

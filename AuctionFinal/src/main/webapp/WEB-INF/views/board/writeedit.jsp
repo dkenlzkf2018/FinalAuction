@@ -867,8 +867,8 @@
 			<p>글 수정시 여기에 값을 넣어주면 됩니다.</p>
 		</textarea>
 	</form>
-</div>
- -->
+</div> -->
+
 <script type="text/javascript">
 if(window.frameElement){
 	jindo.$("se2_sample").style.display = "none";
