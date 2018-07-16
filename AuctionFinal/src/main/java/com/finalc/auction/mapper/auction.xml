@@ -32,10 +32,35 @@
 	<!-- 경매품을 삽입하는 sql문 (이미지 있음) -->
 	
 	<!-- 경매품을 삽입하는 sql문 (상세 정보) -->
-	<insert id="auction.add_detail" parameterType="com.finalc.auction.model.AuctionVO">
+	<insert id="add_detail" parameterType="com.finalc.auction.model.AuctionVO">
 		insert into tbl_Auction_Detail (actdnum, fk_actnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice, actd_startday, actd_endday, startprice)
 		values (seq_auction_detail.nextval,	seq_auction.currval, #{usernum}, #{actd_price}, #{actd_qty}, default, #{actd_content}, #{actd_lowertenderprice}, default, to_timestamp(#{actd_endday}, 'yyyy-mm-dd"T"hh24:mi'), #{startprice})
 	</insert>
 	<!-- 경매품을 삽입하는 sql문 (상세 정보) -->
+	
+	<!-- 경매목록을 보여주는 sql문 -->
+	<select id="ShowAuction" parameterType="HashMap" resultType="Integer">
+		select count(*)
+		from tbl_auction
+	</select>
+	<!-- 경매목록을 보여주는 sql문 -->
+	
+	<!-- 경매목록에 띄워줄 상품리스트 sql문 -->
+	<select id="getAuctionList" parameterType="String" resultType="com.finalc.auction.model.AuctionVO">
+		select actnum, actname, actimage, filename, orgfilename, filesize
+			 , A.fk_cdnum, B.actdnum, fk_actnum, fk_auctionnum, fk_usernum
+			 , actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
+			 , to_char(actd_startday, 'yyyy-mm-dd hh24:mi:ss') as actd_startday, 
+			 , to_char(actd_endday, 'yyyy-mm-dd hh24:mi:ss') as actd_endday, startprice
+		from tbl_auction A join tbl_auction_detail B
+		on A.actnum = B.fk_actnum
+		where actd_status = 1 
+		<if test="!fk_cdnum.equals('')">
+			and 
+			A.fk_cdnum = #{fk_cdnum}
+		</if>
+		order by actd_startday desc
+	</select>
+	<!-- 경매목록에 띄워줄 상품리스트 sql문 -->	
 	
 </mapper>

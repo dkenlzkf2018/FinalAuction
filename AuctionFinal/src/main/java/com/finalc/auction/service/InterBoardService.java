@@ -41,9 +41,7 @@ public interface InterBoardService {
 
 	int writedel(HashMap<String, String> map)throws Throwable;
 
-	int ShowAuction(HashMap<String, String> map);
-
-	List<AuctionVO> getAuctionList(String actdnum);
+	int writeComment(CommentVO commentvo) throws Throwable;
 
 	
 

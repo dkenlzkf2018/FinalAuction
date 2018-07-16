@@ -1,6 +1,7 @@
 package com.finalc.auction.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,20 @@ public class AuctionService implements InterAuctionService {
 		int n = dao.add_auctionWithFile(map);
 		System.out.println(">> 확인용 service-2 n : " + n);
 		return n;
+	}
+
+	@Override
+	public int ShowAuction(HashMap<String, String> map) {
+		int n = dao.ShowAuction(map);
+		
+		return n;
+	}
+
+	@Override
+	public List<AuctionVO> getAuctionList(String fk_cdnum) {
+		List<AuctionVO> auctionList = dao.getAuctionList(fk_cdnum);
+		
+		return auctionList;
 	}
 
 }

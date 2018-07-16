@@ -305,6 +305,7 @@ public class AuctionController {
 		return "msg.notiles";
 	}
 	
+	// 경매상품 리스트를 보여주는 컨트롤단
 	@RequestMapping(value="/AuctionShow.action", method={RequestMethod.GET})  
 	public String ShowAuction(HttpServletRequest req, HttpServletResponse res) {
 		
@@ -317,15 +318,14 @@ public class AuctionController {
 		map.put("actdnum", actdnum);
 		map.put("fk_cdnum", fk_cdnum);
 		
-		int n = service.ShowAuction(map);
+		serviceA.ShowAuction(map);
 		
-		List<AuctionVO> auctionList = service.getAuctionList(actdnum);
-		if(n == 1) {
-			return "auction/AuctionShow.action?actnum="+actnum+"&actdnum="+actdnum;
-		}
-		else {
-			return "auction/AuctionShow.tiles";
-		}
+		List<AuctionVO> auctionList = serviceA.getAuctionList(fk_cdnum);
+		
+		req.setAttribute("fk_cdnum", fk_cdnum);
+		req.setAttribute("auctionList", auctionList);
+		
+		return "auction/AuctionShow.action?fk_cdnum="+fk_cdnum+"&auctionList="+auctionList;
 	}
 	
 }

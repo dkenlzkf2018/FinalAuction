@@ -27,8 +27,6 @@ public class AuctionVO {
 	private String actd_lowertenderprice; // 최저입찰가격
 	private String actd_startday; // 경매시작일 default = sysdate
 	private String actd_endday; // 경매종료일 >= 경매시작일 + 1
-
-	
 	
 	public String getActnum() {
 		return actnum;
@@ -91,7 +89,7 @@ public class AuctionVO {
 		return categoryVO.getCdnum();
 	}
 	public void setFk_cdnum(String fk_cdnum) {
-		categoryVO.setCdnum(fk_cdnum);;
+		categoryVO.setCdnum(fk_cdnum);
 	}
 	// ====================== 카테고리 =========================
 	
