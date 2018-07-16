@@ -14,16 +14,17 @@
 <script type="text/javascript">
 	
 	var strNow = "";
-	
+	var actd_price = Number("${acvo.actd_price}");
+	var nowprice = Number("${nowprice}");
 	jQuery(document).ready(function () {
 		
-		if (strNow == "낙찰") {
+		if (strNow == "경매종료") {
 			var frm = document.tenderFrm;
-			frm.method = "GET";
-			frm.action = "<%=request.getContextPath()%>/inputAward.action";
+			frm.method = "POST";
+			frm.action = "inputAward.action";
 			frm.submit();
 		} else {
-			loopshowNowTime();		
+			loopshowNowTime();
 		}
 		
 	});
@@ -36,9 +37,10 @@
 		var now = new Date();
 		var nowTime = parseInt(now.getTime()/1000);
 		
-		days = ((end - now) / 1000 / 60 / 60 / 24); 
+		
+		days = (end - now) / 1000 / 60 / 60 / 24;
 		daysRound = Math.floor(days); 
-		hours = ((end - now) / 1000 / 60 / 60 - (24 * daysRound)); 
+		hours = (end - now) / 1000 / 60 / 60 - (24 * daysRound); 
 		hoursRound = Math.floor(hours); 
 		minutes = (end - now) / 1000 / 60 - (24 * 60 * daysRound) - (60 * hoursRound); 
 		minutesRound = Math.floor(minutes); 
@@ -46,10 +48,15 @@
 		secondsRound = Math.round(seconds);
 
 		if (nowTime < endTime) {
-			strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
+			if (nowprice == actd_price) {
+				strNow = "경매종료";
+			}
+			else {
+				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
+			}
 		}
 		else if (nowTime == endTime){
-			strNow = "낙찰";
+			strNow = "경매종료";
 			var frm = document.tenderFrm;
 			frm.method = "POST";
 			frm.action = "inputAward.action";
@@ -81,16 +88,19 @@
 		var frm = document.reviewFrm;
 		
 		frm.method = "get";
-		frm.action = "reviewRegist.action";
+		frm.action = "reviewRegistLGH.action";
 		frm.submit();
 	}
 	
+	
+	
 	// 입찰하기 버튼
 	function goTender() {
-		if (strNow == "경매종료") {
-			alert("경매기간이 지난 상품입니다.");
+		if (strNow == "경매종료" || actd_price == nowprice) {
+			alert("경매종료된 상품입니다.");
 			return false;
 		}
+		
 		else {
 			var frm = document.tenderFrm;
 			var url = "<%=request.getContextPath()%>/tender.action";
@@ -105,6 +115,11 @@
 	
 	// 구매하기 버튼
 	function goPay() {
+		if (strNow == "경매종료" || actd_price == nowprice) {
+			alert("경매종료된 상품입니다.");
+			return false;
+		}
+		
 		var fk_usernum = "${acvo.fk_usernum}";
 		var usernum = "${sessionScope.loginuser.usernum}";
 		var nowprice = "${nowprice}";
@@ -362,7 +377,7 @@
                     </div>
                   </c:forEach>
                   <!-- BEGIN FORM-->
-                  <form action="#" class="reviews-form" role="form" name="reviewFrm">
+                  <form class="reviews-form" name="reviewFrm">
                   	<input type="hidden" name="actdnum" value="${actdnum}"/>
                     <h2>Write a review</h2>
                     <div class="form-group">

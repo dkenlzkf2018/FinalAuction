@@ -225,10 +225,23 @@
 				return false;
 			}
 			
-			/* if (price > endprice) {
+			if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
-			} */
+			}
+			
+			if (price == endprice) {
+				if(confirm("즉시구매가로 낙찰받으시겠습니까?")) {
+					var frm = document.inputTenderFrm;
+					var url = "<%=request.getContextPath()%>/inputTender.action";
+					frm.method = "POST";
+					frm.action = url;
+					frm.submit();
+				}
+				else {
+					return false;
+				}
+			}
 			
 			else {
 				var frm = document.inputTenderFrm;

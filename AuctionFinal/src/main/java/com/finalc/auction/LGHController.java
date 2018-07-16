@@ -19,7 +19,7 @@ public class LGHController {
 	@Autowired
 	private InterLGHService service;
 	
-
+	// 관리자 회원관리 Controller 단
 	@RequestMapping(value="/admin/memberList.action", method={RequestMethod.GET})
 	public String memberList(HttpServletRequest req) {
 		List<MemberVO> memberList = service.getMemberList();
