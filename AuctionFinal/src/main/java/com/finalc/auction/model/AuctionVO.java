@@ -15,6 +15,8 @@ public class AuctionVO {
 								  // MultipartFile attach는 오라클 tblBoard 테이블의 컬럼이 아니다.
 	
 	private CategoryVO categoryVO; // 카테고리 VO
+	private String fk_cnum;
+	private String fk_cdnum;
 	
 	private String actdnum; // 경매 상세정보 일련번호
 	private String fk_auctionnum; // actnum -> 경매번호
@@ -80,16 +82,16 @@ public class AuctionVO {
 		this.categoryVO = categoryVO;
 	}
 	public String getFk_cnum() {
-		return categoryVO.getFk_cnum();
+		return fk_cnum;
 	}
 	public void setFk_cnum(String fk_cnum) {
-		categoryVO.setCnum(fk_cnum);
+		this.fk_cnum = fk_cnum;
 	}
 	public String getFk_cdnum() {
-		return categoryVO.getCdnum();
+		return fk_cdnum;
 	}
 	public void setFk_cdnum(String fk_cdnum) {
-		categoryVO.setCdnum(fk_cdnum);
+		this.fk_cdnum = fk_cdnum;
 	}
 	// ====================== 카테고리 =========================
 	
@@ -161,6 +163,7 @@ public class AuctionVO {
 	}
 	
 	public AuctionVO() {}
+	
 	public AuctionVO(String actnum, String actname, String actimage, String orgFilename, String fileSize,
 			CategoryVO categoryVO, String actdnum, String fk_auctionnum, String fk_usernum, String actd_price,
 			String actd_qty, String actd_status, String actd_content, String startprice, String actd_lowertenderprice,
@@ -172,6 +175,55 @@ public class AuctionVO {
 		this.orgFilename = orgFilename;
 		this.fileSize = fileSize;
 		this.categoryVO = categoryVO;
+		this.actdnum = actdnum;
+		this.fk_auctionnum = fk_auctionnum;
+		this.fk_usernum = fk_usernum;
+		this.actd_price = actd_price;
+		this.actd_qty = actd_qty;
+		this.actd_status = actd_status;
+		this.actd_content = actd_content;
+		this.startprice = startprice;
+		this.actd_lowertenderprice = actd_lowertenderprice;
+		this.actd_startday = actd_startday;
+		this.actd_endday = actd_endday;
+	}
+	
+	public AuctionVO(String actnum, String actname, String actimage, String orgFilename, String fileSize,
+			String fk_cdnum, String actdnum, String fk_auctionnum, String fk_usernum, String actd_price,
+			String actd_qty, String actd_status, String actd_content, String startprice, String actd_lowertenderprice,
+			String actd_startday, String actd_endday) {
+		super();
+		this.actnum = actnum;
+		this.actname = actname;
+		this.actimage = actimage;
+		this.orgFilename = orgFilename;
+		this.fileSize = fileSize;
+		this.categoryVO.setCdnum(fk_cdnum);
+		this.actdnum = actdnum;
+		this.fk_auctionnum = fk_auctionnum;
+		this.fk_usernum = fk_usernum;
+		this.actd_price = actd_price;
+		this.actd_qty = actd_qty;
+		this.actd_status = actd_status;
+		this.actd_content = actd_content;
+		this.startprice = startprice;
+		this.actd_lowertenderprice = actd_lowertenderprice;
+		this.actd_startday = actd_startday;
+		this.actd_endday = actd_endday;
+	}
+	
+	public AuctionVO(String actnum, String actname, String actimage, String orgFilename, String fileSize,
+			String fk_cnum, String fk_cdnum, String actdnum, String fk_auctionnum, String fk_usernum, String actd_price,
+			String actd_qty, String actd_status, String actd_content, String startprice, String actd_lowertenderprice,
+			String actd_startday, String actd_endday) {
+		super();
+		this.actnum = actnum;
+		this.actname = actname;
+		this.actimage = actimage;
+		this.orgFilename = orgFilename;
+		this.fileSize = fileSize;
+		this.categoryVO.setCnum(fk_cnum);
+		this.categoryVO.setCdnum(fk_cdnum);
 		this.actdnum = actdnum;
 		this.fk_auctionnum = fk_auctionnum;
 		this.fk_usernum = fk_usernum;

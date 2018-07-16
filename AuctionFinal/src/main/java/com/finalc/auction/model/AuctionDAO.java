@@ -51,7 +51,7 @@ public class AuctionDAO implements InterAuctionDAO {
 
 	@Override
 	public List<AuctionVO> getAuctionList(String fk_cdnum) {
-		
+		System.out.println(">> 확인용 fk_cdnum : " + fk_cdnum);
 		List<AuctionVO> auctionList = sqlsession.selectList("auction.getAuctionList", fk_cdnum);
 		
 		return auctionList;
