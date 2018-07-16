@@ -13,8 +13,12 @@
     <meta name="description" content="Super Auction Admin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+	<%-- <link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/resources/images/favicon.ico"> 
+		파비콘 링크가 안걸어져...!
+	--%>
+
+    <!-- <link rel="apple-touch-icon" href="apple-icon.png"> --> 
+    <!-- <link rel="shortcut icon" href="favicon.ico"> -->
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets-admin/css/normalize.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets-admin/css/bootstrap.min.css">

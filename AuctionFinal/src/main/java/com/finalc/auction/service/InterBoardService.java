@@ -3,6 +3,7 @@ package com.finalc.auction.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
@@ -41,6 +42,8 @@ public interface InterBoardService {
 	int writedel(HashMap<String, String> map)throws Throwable;
 
 	int writeComment(CommentVO commentvo) throws Throwable;
+
+	
 
 
 	

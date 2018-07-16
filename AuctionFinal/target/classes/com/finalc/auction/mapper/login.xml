@@ -58,4 +58,9 @@
 		where userid = #{userid}
 	</select>
 	 
+	<update id="memberEdit" parameterType="HashMap">
+		update tbl_member_detail set email = #{email1}||'@'||#{email2}, hp1 = #{hp1}, hp2 = #{hp2}, hp3 = #{hp3}, zipcode = #{zipcode}, addr1 = #{addr1}, addr2 = #{addr2} 
+		where fk_userid = #{userid}
+	</update>
+	 
 </mapper>
