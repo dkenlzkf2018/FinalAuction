@@ -52,7 +52,7 @@ nhn.husky.SE2M_AttachQuickPhoto = jindo.$Class({
 		var sPopupUrl = "./resources/smarteditor/sample/photo_uploader/photo_uploader.html";
 		
 		return sPopupUrl;
-	},
+	}, 
 	
 	/**
 	 * 팝업에서 호출되는 메세지.
