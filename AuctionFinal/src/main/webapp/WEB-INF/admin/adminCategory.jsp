@@ -96,9 +96,15 @@
             no_results_text: "이런, 없는 내용입니다!", /* 여기에 글이 써지면 안되는데 */
             width: "100%"
         });
+        
         // 카테고리 추가
         jQuery("#category").bind("change", function() {
         	jQuery("#cnum").val(jQuery(this).val());
+        });
+	
+        // 카테고리 삭제
+        jQuery("#cnum").bind("change", function() {
+        	jQuery("#category").val(jQuery(this).val());
         });
     }); 
     
@@ -109,6 +115,15 @@
     	frm.method = "get";
     	frm.action = "<%=request.getContextPath()%>/admin/addCategory.action";
     	frm.submit();
-    }   
+    }
+    
+    // 카테고리 삭제
+    function delCategory() {
+    	var frm = document.delcd;
+    	
+    	frm.method = "get";
+    	frm.action = "<%=request.getContextPath()%>/admin/delCategory.action";
+    	frm.submit();
+    }    
 </script>
                         

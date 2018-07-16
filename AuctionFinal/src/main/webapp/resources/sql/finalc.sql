@@ -262,6 +262,13 @@ where fk_userid = 'admion';
         PRIMARY KEY (
            cnum
         );
+ 
+ -- 카테고리 삭제       
+ alter table tbl_category
+ add categostau number(1) default 1 not null 
+
+select *
+ from tbl_category
   
   /* 카테고리 디테일 */
   CREATE TABLE tbl_category_detail (

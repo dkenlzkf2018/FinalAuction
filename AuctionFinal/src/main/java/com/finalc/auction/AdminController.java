@@ -91,9 +91,12 @@ public class AdminController {
 			
 			String cdname = req.getParameter("cdname");
 			
+			String cnum = req.getParameter("cnum");
+			
 			HashMap<String, String> map = new HashMap<String, String>();
 			
 			map.put("cdname", cdname);
+			map.put("cnum", cnum);
 			
 			int n = service.delCategory(map);
 			
