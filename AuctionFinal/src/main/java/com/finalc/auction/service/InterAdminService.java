@@ -17,10 +17,12 @@ public interface InterAdminService {
 	int addCategory(HashMap<String, String> map);
 	
 	// 카테고리 삭제
-	
+	int delCategory(HashMap<String, String> map);
 	
 	// 게시판 페이지
 	List<BoardVO> getGenerBoard();
+
+	
 
 
 

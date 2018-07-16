@@ -39,26 +39,21 @@ public class AdminDAO implements InterAdminDAO {
 		int n = sqlsession.insert("admin.addCategory", map);
 		return n;
 	}
-	
+
 	// 카테고리 삭제 단
-	
+	@Override
+	public int delCategory(HashMap<String, String> map) {
+		int n = sqlsession.delete("admin.delCategory", map);
+		return n;
+	}
 	
 	
 	// 일반게시판 단
 	
 	
-	// 카테고리 관리 페이지 Controller 단
-	/*@Override
-	public List<HashMap<String, String>> getadMin(HashMap<String, String> map) {
-		System.out.println("Dao 단 map : " + map);
-		List<HashMap<String, String>> adMapList = sqlsession.selectList("adMin.getadMin", map);
-		System.out.println("3. DAO 단 adMapList : " + adMapList);
-		return adMapList;
-	}*/
+	
 	
 	// 카테고리 수정 Controller 단
-	
-	// 카테고리 삭제 Controller 단
 	
 	
 }

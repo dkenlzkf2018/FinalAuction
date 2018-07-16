@@ -24,7 +24,7 @@ public class AdminController {
 	
 
 	// 관리자 메인 Controller 단
-<<<<<<< HEAD
+
 		@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
 		public String adminMain() {
 			
@@ -91,12 +91,27 @@ public class AdminController {
 			
 			String cdname = req.getParameter("cdname");
 			
-			req.setAttribute("", o);
+			HashMap<String, String> map = new HashMap<String, String>();
 			
+			map.put("cdname", cdname);
 			
+			int n = service.delCategory(map);
 			
+			String msg = "", loc = "";
 			
-			return "delCategory.admin";
+			if(n == 1) {
+				msg = "삭제 완료";
+				loc = "/adminCategory.action";
+			}
+			else {
+				msg = "삭제 실패";
+				loc = "/adminCategory.action";
+			}
+			
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			
+			return "msg.notiles";
 		}
 		
 /*		
@@ -106,22 +121,8 @@ public class AdminController {
 			
 			return "modiCategory.admin";
 		}
-		
-	// 카테고리 삭제 Controller 단
-		@RequestMapping(value="/delCategory.action", method={RequestMethod.GET})
-		public String delCategory() {
-			
-			return "delCategory.admin";
-		}*/
-		
-	// 
+*/
 	
-=======
-	@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
-	public String adminMain() {
-		return "adminMain.admin";
-	}
 		
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 }
 

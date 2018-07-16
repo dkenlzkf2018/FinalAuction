@@ -43,8 +43,15 @@ public class AdminService implements InterAdminService{
 		int n = dao.addCategory(map);
 		return n;
 	}
-	
+
 	// 카테고리 삭제
+	@Override
+	public int delCategory(HashMap<String, String> map) {
+		int n = dao.delCategory(map);
+		return n;
+	}
+	
+	
 	
 
 	

@@ -24,5 +24,8 @@
 	</insert>
 	
 	<!-- 카테고리 삭제 -->
-	
+	<update id="delCategory" parameterType="HashMap">
+		update tbl_category set cdnum = 0
+		where ep_boardno = #{ep_boardno}
+	</update>
 </mapper>
