@@ -46,7 +46,7 @@ public class LGHDAO implements InterLGHDAO {
 	public int deliverSet(HashMap<String, String> map) {
 		int n = 0;
 		HashMap<String, String> map1 = new HashMap<String, String>();
-		for(int i=1; i<map.size()-1; i++) {
+		for(int i=1; i<map.size()/2+1; i++) {
 			map1.put("deliverstatus", map.get("deliverstatus"+i));
 			map1.put("awardnum", map.get("awardnum"+i));
 			n = sqlsession.update("leegh.deliverSet", map1);

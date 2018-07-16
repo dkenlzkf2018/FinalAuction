@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class AuctionDAO implements InterAuctionDAO {
@@ -39,6 +40,21 @@ public class AuctionDAO implements InterAuctionDAO {
 		}
 		System.out.println(">> 확인용 dao-2 : " + result);
 		return result;
+	}
+
+	@Override
+	public int ShowAuction(HashMap<String, String> map) {
+		int n = sqlsession.selectOne("auction.ShowAuction", map);
+		
+		return n;
+	}
+
+	@Override
+	public List<AuctionVO> getAuctionList(String fk_cdnum) {
+		
+		List<AuctionVO> auctionList = sqlsession.selectList("auction.getAuctionList", fk_cdnum);
+		
+		return auctionList;
 	}
 
 }
