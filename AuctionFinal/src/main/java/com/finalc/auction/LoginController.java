@@ -404,7 +404,6 @@ public class LoginController {
 			return"msg.notiles"; 
 		}
 		
-		
 		req.setAttribute("RegMember", RegMember); 
 		
 		return "member/myInfoEditEnd.tiles";

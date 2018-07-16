@@ -13,7 +13,7 @@
       
       $(".requiredInfo").each(function(){
          var data = $(this).val().trim();
-         if(data == "") {
+         if(data == "") { 
             flagBool = true;
             return false;
             /*
