@@ -1,5 +1,5 @@
 select *
-from tbl_member_detail;
+from tbl_member;
 
 update tbl_member set passwd = 'qwer1234#'
 where userid = 'dkenlzkf';

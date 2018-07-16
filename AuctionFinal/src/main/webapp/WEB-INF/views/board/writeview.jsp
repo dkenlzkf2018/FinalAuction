@@ -175,19 +175,23 @@
 	<span style="margin-top: 3%; font-size: 16pt;"></span>
 	
 	<div class="table2" style="display: block;">
-	<table id="table2" style="margin-bottom: 2%; margin-top: 2%;">
 
+		<table id="table2" style="margin-top: 2%;">
+			<tr>
+				<th style="width: 8%; text-align: center;"></th>
+				<th style="width: 67%; text-align: center;"></th>
+				<th style="text-align: center;"></th>
+			</tr>
 			<tbody id="commentDisplay"></tbody>
 			<c:if test="${not empty commentList}">
 				<c:forEach var="commentvo" items="${commentList}">
 					<tr>
-						<td style="font-size: 10pt; font-weight: bold;">${commentvo.fk_userid}:&nbsp;&nbsp;</td>
-						<td><span>${commentvo.cm_content}</span></td>
+						<td style="text-align: left; font-weight: bold;">${commentvo.fk_userid} : </td>
+						<td>${commentvo.cm_content}</td>
 						<td style="text-align: center;">${commentvo.cm_writeday}</td>
 					</tr>
 				</c:forEach>
 			</c:if> 
-		
 		</table>
 		
 		<div class="comment-box-line-dashed"></div>
@@ -200,10 +204,8 @@
 		
 		<input type="text" name="cm_content" id="cm_content" size="80" style="line-height: 40px;"/>
 		
-		<button type="button" onClick="goWrite();"  class="btn btn-link">쓰기</button>
-		
-		<button type="button" class="btn btn-link" onClick="javascript:location.href='<%= request.getContextPath() %>/write.action?fk_boardno=${boardvo.boardno}&groupno=${boardvo.groupno}&deptthno=${boardvo.deptthno}'">답변쓰기</button> 
-	<br/>
+		<button type="button" onClick="goWrite();">쓰기</button>
+	<br/> 
 		
 	</form> 
 	
@@ -212,3 +214,4 @@
 		
 	
 </div>
+

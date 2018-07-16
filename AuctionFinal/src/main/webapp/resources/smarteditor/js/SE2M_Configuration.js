@@ -9,17 +9,17 @@ nhn.husky.SE2M_Configuration = nhn.husky.SE2M_Configuration || {};
  * CSS LazyLoad를 위한 경로
  */
 nhn.husky.SE2M_Configuration.SE2B_CSSLoader = {
-	sCSSBaseURI : "./resources/smarteditor/css"
+		sCSSBaseURI : "./resources/smarteditor/css"  
 };
 
 /**
  * 편집영역 설정
  */
 nhn.husky.SE2M_Configuration.SE_EditingAreaManager = {
-	sCSSBaseURI : "./resources/smarteditor/css",		// smart_editor2_inputarea.html 파일의 상대경로
-	sBlankPageURL : "./resources/smarteditor/smart_editor2_inputarea.html",
-	sBlankPageURL_EmulateIE7 : "./resources/smarteditor/smart_editor2_inputarea_ie8.html",
-	aAddtionalEmulateIE7 : [] // IE8 default 사용, IE9 ~ 선택적 사용
+		sCSSBaseURI : "./resources/smarteditor/css",	
+		sBlankPageURL : "./resources/smarteditor/smart_editor2_inputarea.html", 
+		sBlankPageURL_EmulateIE7 : "./resources/smarteditor/smart_editor2_inputarea_ie8.html", 
+		aAddtionalEmulateIE7 : [] // IE8 default 사용, IE9 ~ 선택적 사용
 };
 
 /**

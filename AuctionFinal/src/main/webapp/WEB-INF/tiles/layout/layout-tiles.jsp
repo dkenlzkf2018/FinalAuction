@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-  <title>Metronic Shop UI</title>
+  <title>Super Auction</title>
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -55,17 +55,18 @@
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
   <!-- Theme styles END -->
   
-  <%-- 스마트 에디터 구현 시작(no frame 사용시) --%>
-  <link href="<%=request.getContextPath()%>/resources/smarteditor/css/smart_editor2.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/resources/smarteditor/css/smart_editor2.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/lib/jindo2.all.js" charset="utf-8"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/lib/jindo_component.js" charset="utf-8"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
-  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/SE2BasicCreator.js" charset="utf-8"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/js/smarteditor2.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/lib/jindo2.all.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/lib/jindo_component.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/SE2BasicCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/js/smarteditor2.min.js" charset="utf-8"></script> 
+
 
   <!-- 사진첨부샘플  --> 
-  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/smarteditor/sample/js/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/smarteditor/sample/js/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script> 
+  
   <%-- 스마트 에디터 구현 끝(no frame 사용시) --%>    
       
    
