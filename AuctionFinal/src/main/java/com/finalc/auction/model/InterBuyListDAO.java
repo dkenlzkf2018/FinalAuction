@@ -10,6 +10,24 @@ public interface InterBuyListDAO {
 
 	int getTotalCount();
 
-	int getBindAuction(HashMap<String, String> map);
+	AuctionVO viewAuction(String actdnum);
+
+	CategoryVO getCategoryName(String actnum);
+
+	int inputTender(HashMap<String, String> map);
+
+	String getTender(String actnum);
+
+	int getTenderCount(String actnum);
+
+	JoinaclistVO searchTender(HashMap<String, String> map);
+
+	int inputAward(HashMap<String, String> map);
+
+	int updateAD(HashMap<String, String> map);
+
+	int inputDeliver(HashMap<String, String> map);
+
+	HashMap<String, String> getDeliverData(HashMap<String, String> map);
 
 }

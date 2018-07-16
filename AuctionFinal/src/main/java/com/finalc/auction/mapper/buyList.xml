@@ -71,7 +71,7 @@
 		  on V.actdnum = F.fk_actdnum
 		  join tbl_deliver G
 		  on F.awardnum = G.fk_awardnum
-		  where F.fk_usernum = #{usernum} and V.actd_status = 1
+		  where F.fk_usernum = #{usernum} and V.actd_status = 0
 		  order by awardnum desc
 		  )T
 		  where T.RNO >= #{startRno} and T.RNO <![CDATA[<=]]> #{endRno} 
@@ -80,5 +80,102 @@
 	<select id="getTotalCount" resultType="Integer">
 		select count(*)
 		from tbl_award
+	</select>
+	
+	<!-- <resultMap type="HashMap" id="getViewAuctionMap">
+		<result property="cnum" column="cnum" javaType="String" />
+		<result property="cname" column="cname" javaType="String" />
+		<result property="cdnum" column="cdnum" javaType="String" />
+		<result property="cdname" column="cdname" javaType="String" />
+		<result property="actnum" column="actnum" javaType="String" />
+		<result property="actname" column="actname" javaType="String" />
+		<result property="actimage" column="actimage" javaType="String" />
+		<result property="actdnum" column="actdnum" javaType="String" />
+		<result property="fk_usernum" column="fk_usernum" javaType="String" />
+		<result property="actd_price" column="actd_price" javaType="String" />
+		<result property="actd_qty" column="actd_qty" javaType="String" />
+		<result property="actd_status" column="actd_status" javaType="String" />
+		<result property="actd_content" column="actd_content" javaType="String" />
+		<result property="actd_lowertenderprice" column="actd_lowertenderprice" javaType="String" />
+		<result property="actd_startday" column="actd_startday" javaType="String" />
+		<result property="actd_endday" column="actd_endday" javaType="String" />
+		<result property="panmaeja" column="panmaeja" javaType="String" />
+	</resultMap> -->
+	
+	
+	
+	<select id="viewAuction" parameterType="String" resultType="com.finalc.auction.model.AuctionVO">
+		select cnum, cname
+		     , cdnum, cdname
+		     , actnum, actname, actimage
+		     , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
+		     , to_char(actd_startday, 'yyyy-mm-dd hh24:mi:ss') AS actd_startday, startprice
+		     , to_char(actd_endday, 'yyyy-mm-dd hh24:mi:ss') AS actd_endday
+		     , E.fk_userid AS panmaeja
+		from tbl_category A join tbl_category_detail B
+		on A.cnum = B.fk_cnum
+		join tbl_auction C
+		on B.cdnum = C.fk_cdnum
+		join tbl_auction_detail D
+		on C.actnum = D.fk_actnum
+		join tbl_member_detail E
+		on D.fk_usernum = E.usernum
+		where D.actdnum = #{actdnum}
+	</select>
+	
+	<select id="getCategoryName" parameterType="String" resultType="com.finalc.auction.model.CategoryVO">
+		select cnum, cname, cdnum, fk_cnum, cdname
+		from tbl_category A join tbl_category_detail B on A.cnum = B.fk_cnum
+		where B.cdnum = (select fk_cdnum from tbl_auction where actnum = #{actnum})
+	</select>
+	
+	<insert id="inputTender" parameterType="HashMap">
+		insert into tbl_joinaclist(joinactnum, fk_actnum, fk_usernum, tenderday, tenderprice)
+		values(seq_joinaclist.nextval, #{actnum}, #{usernum}, default, #{tenderprice})
+	</insert>
+	
+	<select id="getTenderPrice" parameterType="String" resultType="String">
+		select max(tenderprice) AS tenderprice
+		from tbl_joinaclist
+		where fk_actnum = to_number(#{actnum})
+	</select>
+	
+	<select id="getTenderCount" parameterType="String" resultType="Integer">
+		select count(*)
+		from tbl_joinaclist
+		where fk_actnum = to_number(#{actnum})
+	</select>
+	
+	<select id="searchTender" parameterType="HashMap" resultType="com.finalc.auction.model.JoinaclistVO">
+		select joinactnum, fk_actnum, fk_usernum, tenderday, tenderprice
+		from tbl_joinaclist
+		where fk_actnum = to_number(#{actnum}) and tenderprice = to_number(#{nowprice})
+	</select>
+	
+	<insert id="inputAward" parameterType="HashMap">
+		insert into tbl_award(AWARDNUM, FK_USERNUM, FK_ACTDNUM, AWARDDAY, AWARDPRICE)
+		values(seq_award.nextval, #{fk_usernum}, #{actdnum}, sysdate, #{nowprice})
+	</insert>
+	
+	<update id="updateAward" parameterType="HashMap">
+		update tbl_auction_detail set actd_status = 0
+		where fk_actnum = #{actnum}
+	</update>
+	
+	<insert id="inputDeliver" parameterType="HashMap">
+		insert into tbl_deliver(deliverno, fk_usernum, fk_awardnum, deliverstatus, invoiceno, deliverlocation)
+		values(seq_deliver.nextval, #{fk_usernum}, #{AWARDNUM}, default, 's' || to_char(sysdate, 'yyyymmdd') || '-' || seq_deliver.nextval, #{ADDR})
+	</insert>
+	
+	<resultMap type="HashMap" id="deliverMap">
+		<result property="awardnum" column="awardnum" javaType="String"/>
+		<result property="addr" column="addr" javaType="String"/>
+	</resultMap>
+	
+	<select id="getDeliverData" parameterType="HashMap" resultMap="deliverMap">
+		select awardnum, addr1 || ' ' || addr2 AS addr
+		from tbl_award A join tbl_member_detail B
+		on A.fk_usernum = B.usernum
+		where A.fk_usernum = #{fk_usernum} and A.fk_actdnum = #{actdnum}
 	</select>
 </mapper>

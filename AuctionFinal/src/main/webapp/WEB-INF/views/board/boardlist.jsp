@@ -152,6 +152,7 @@
 	</div>
 	
 	
+	
 	<%-- ==== #117. 페이지바 보여주기 ==== --%>
 	<div align="center" style="width: 70%; margin-left: -180px; margin-top: 30px;"> 
 		${pagebar}
