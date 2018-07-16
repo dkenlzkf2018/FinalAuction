@@ -8,6 +8,8 @@
 	jQuery(document).ready(function(){
 		
 		$("#myPageFrm").hide();
+		
+		$
 	});
 	
 	function goMyInfo() {
@@ -17,6 +19,7 @@
 		
 	}
 	
+	
 	function goEdit(){
 		
 		var frm = document.myPageFrm;
@@ -24,7 +27,6 @@
 		frm.action="myInfoEdit.action";
 		frm.method="post";
 		frm.submit();
-		
 		
 	}
 
@@ -53,6 +55,7 @@
                 </div>
             </div>
           </div>
+          
           <div class="row" align="center">
                 <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
                   <button class="btn btn-primary" type="button" id="btnRegister" onClick="goEdit();">정보수정</button>
@@ -62,11 +65,12 @@
       </div>
     </div>
     
+    
 </form>
 
 <form name="InfoFrm" method="post">
 	<div align="center" style="margin-bottom: 20px;">
-		<button type="button" class="btn btn-default" id="myInfo" onClick="goMyInfo();">내 정보 보기</button>
+		<button type="button" class="btn btn-default" id="myInfo" onClick="goMyInfo(); ">내 정보 보기</button>
 	</div>
 </form>
 
