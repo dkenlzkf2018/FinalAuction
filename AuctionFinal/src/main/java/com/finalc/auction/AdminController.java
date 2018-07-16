@@ -17,12 +17,9 @@ public class AdminController {
 	
 
 	// 관리자 메인 Controller 단
-		@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
-		public String adminMain() {
-			
-			return "adminMain.admin";
-		}
+	@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
+	public String adminMain() {
+		return "adminMain.admin";
+	}
 		
-		
-	
 }

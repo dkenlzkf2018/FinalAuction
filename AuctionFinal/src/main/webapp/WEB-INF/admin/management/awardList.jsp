@@ -79,13 +79,10 @@
 						                		<option value="2">배송완료</option>
 					                		</c:if>
 					                		<c:if test="${map.DELIVERSTATUS == 1}">
-						                		<option value="0">주문완료</option>
 						                		<option value="${map.DELIVERSTATUS}" selected>배송중</option>
 						                		<option value="2">배송완료</option>
 					                		</c:if>
 					                		<c:if test="${map.DELIVERSTATUS == 2}">
-						                		<option value="0">주문완료</option>
-						                		<option value="1">배송중</option>
 						                		<option value="${map.DELIVERSTATUS}" selected>배송완료</option>
 					                		</c:if>
 					                	</select>
