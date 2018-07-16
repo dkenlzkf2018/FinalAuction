@@ -19,5 +19,8 @@ public interface InterLoginDAO {
 
 	List<HashMap<String, String>> serchZipcode(HashMap<String, String> map);
 
+	int memberEdit(HashMap<String, String> map);
+
+
 
 }
