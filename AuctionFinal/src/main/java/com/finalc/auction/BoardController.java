@@ -584,4 +584,7 @@ public class BoardController {
 		}
 		
 	}// end of void multiplePhotoUpload(HttpServletRequest req, HttpServletResponse res)---------------- 
+	
+	
+	
 }

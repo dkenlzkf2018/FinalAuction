@@ -43,5 +43,8 @@ public interface InterBoardService {
 	int writeComment(CommentVO commentvo) throws Throwable;
 
 
+	
+
+
 
 }
