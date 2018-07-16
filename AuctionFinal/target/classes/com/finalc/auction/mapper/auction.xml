@@ -15,6 +15,7 @@
 	<select id="getCategoryDetailList" resultType="com.finalc.auction.model.CategoryVO">
 		select cdnum, fk_cnum, cdname
 		from tbl_category_detail
+		where categostau = 1
 	</select>
 	
 	<!-- 경매품을 삽입하는 sql문 (이미지 없음) -->
