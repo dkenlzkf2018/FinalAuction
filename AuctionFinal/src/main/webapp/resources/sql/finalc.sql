@@ -264,11 +264,13 @@ where fk_userid = 'admion';
         );
  
  -- 카테고리 삭제       
- alter table tbl_category
+ alter table tbl_category_detail
  add categostau number(1) default 1 not null 
 
+rollback;
+
 select *
- from tbl_category
+ from tbl_category_detail
   
   /* 카테고리 디테일 */
   CREATE TABLE tbl_category_detail (
