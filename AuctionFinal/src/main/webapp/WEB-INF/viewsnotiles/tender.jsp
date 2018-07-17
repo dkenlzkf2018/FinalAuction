@@ -81,7 +81,7 @@
 	                          </div>
 
                         </div>
-                        <form name="inputTenderFrm">
+                        <form name="inputTenderFrm" method="POST">
                         <div class="card-body">
                           <!-- Credit Card -->
                           <div id="pay-invoice">
@@ -114,6 +114,8 @@
                                       </button>
                                       <input type="hidden" name="actnum" value="${map.actnum}" />
                                       <input type="hidden" name="actdnum" value="${map.actdnum}" />
+                                      
+                                      
                                           <%-- <button type="button" onclick="goInput('#tenderprice')">입찰하기</button> --%>
                                       
                                   
@@ -202,7 +204,7 @@
 				alert("입찰 금액은 시작가격(1000원) 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
-			if (price < nowprice) {
+			if (price <= nowprice) {
 				alert("입찰 금액은 현재가 + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
@@ -228,19 +230,6 @@
 			if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
-			}
-			
-			if (price == endprice) {
-				if(confirm("즉시구매가로 낙찰받으시겠습니까?")) {
-					var frm = document.inputTenderFrm;
-					var url = "<%=request.getContextPath()%>/inputTender.action";
-					frm.method = "POST";
-					frm.action = url;
-					frm.submit();
-				}
-				else {
-					return false;
-				}
 			}
 			
 			else {

@@ -16,24 +16,26 @@
 	var strNow = "";
 	var actd_price = Number("${acvo.actd_price}");
 	var nowprice = Number("${nowprice}");
+	var actd_status = Number("${acvo.actd_status}");
 	jQuery(document).ready(function () {
 		
-		if (strNow == "경매종료") {
+		/* if ((nowprice < actd_price) && actd_status == 1) {
+			loopshowNowTime();
+		} else if ((nowprice == actd_price) && actd_status == 1) {
 			var frm = document.tenderFrm;
 			frm.method = "POST";
 			frm.action = "inputAward.action";
 			frm.submit();
 		} else {
-			loopshowNowTime();
-		}
-		
+			strNow = "경매종료";
+		} */
+		loopshowNowTime();
 	});
 	
 	// 남은 일자 계산
 	function showNowTime() {
 		var end = new Date("${acvo.actd_endday}");
 		var endTime = parseInt(end.getTime()/1000);
-		// console.log(endTime);
 		var now = new Date();
 		var nowTime = parseInt(now.getTime()/1000);
 		
@@ -48,14 +50,20 @@
 		secondsRound = Math.round(seconds);
 
 		if (nowTime < endTime) {
-			if (nowprice == actd_price) {
-				strNow = "경매종료";
-			}
-			else {
+			if (nowprice != actd_price && actd_status == 1) {
 				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
 			}
+			else if (nowprice == actd_price && actd_status == 1) {
+				strNow = "경매종료";
+				var frm = document.tenderFrm;
+				frm.method = "POST";
+				frm.action = "inputAward.action";
+				frm.submit();
+			}else {
+				strNow = "경매종료";
+			}
 		}
-		else if (nowTime == endTime){
+		else if (nowTime == endTime && actd_status == 1){
 			strNow = "경매종료";
 			var frm = document.tenderFrm;
 			frm.method = "POST";
@@ -115,20 +123,23 @@
 	
 	// 구매하기 버튼
 	function goPay() {
-		if (strNow == "경매종료" || actd_price == nowprice) {
+		if (strNow == "경매종료") {
 			alert("경매종료된 상품입니다.");
 			return false;
 		}
 		
 		var fk_usernum = "${acvo.fk_usernum}";
 		var usernum = "${sessionScope.loginuser.usernum}";
-		var nowprice = "${nowprice}";
-		var endprice = "${acvo.actd_price}";
-		console.log(fk_usernum+" "+usernum+" "+nowprice+" "+endprice);
+		console.log(fk_usernum+" "+usernum+" "+nowprice+" "+actd_price);
 		if (strNow != "경매종료" && fk_usernum != usernum) {
-			if(confirm("상품즉시구매!! 결제창으로 이동하시겠습니까?")) {
+			if(confirm("즉시구매 하시겠습니까?")) {
 				// endprice와 usernum을 넘긴다.
-				location.href="";
+				
+				var frm = document.tenderFrm;
+				frm.method = "POST";
+				frm.action = "quickgumae.action";
+				frm.submit();
+				
 			}
 			else {
 				return false;
@@ -257,7 +268,7 @@
                 	<input type="hidden" name="startprice" value="${acvo.startprice}"/>
                 	<input type="hidden" name="actd_price" value="${acvo.actd_price}"/>
                 	<input type="hidden" name="fk_usernum" value="${acvo.fk_usernum}"/>
-                	<input type="hidden" name="nowprice" value="${nowprice}"/>
+                	<input type="hidden" id="nowprice" name="nowprice" value="${nowprice}"/>
                 </form>
               	
               </div>
