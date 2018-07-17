@@ -66,8 +66,14 @@ public class LoginService implements InterLoginService {
 	}
 
 	@Override
-	public List<HashMap<String,String>> JoinList(String usernum) {
-		List<HashMap<String,String>> JoinList = dao.JoinList(usernum);
+	public int getTotalCount() {
+		int n = dao.getTotalCount();
+		return n;
+	}
+
+	@Override
+	public List<HashMap<String, String>> JoinList(HashMap<String, String> map) {
+		List<HashMap<String,String>> JoinList = dao.JoinList(map);
 		return JoinList;
 	}
 

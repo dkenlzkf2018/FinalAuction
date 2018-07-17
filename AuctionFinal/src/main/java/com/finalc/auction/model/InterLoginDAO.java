@@ -21,7 +21,9 @@ public interface InterLoginDAO {
 
 	int memberEdit(HashMap<String, String> map);
 
-	List<HashMap<String,String>> JoinList(String usernum);
+	List<HashMap<String, String>> JoinList(HashMap<String, String> map);
+
+	int getTotalCount();
 
 
 
