@@ -9,7 +9,6 @@
 		
 		$("#myPageFrm").hide();
 		
-		$
 	});
 	
 	function goMyInfo() {
