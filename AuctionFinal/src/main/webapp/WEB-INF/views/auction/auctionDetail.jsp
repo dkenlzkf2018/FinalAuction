@@ -256,8 +256,10 @@
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
               	  <br/>
+              	  
               	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
               	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
+              	  
                 </div>
                 <form name="tenderFrm">
                 	<input type="hidden" name="actnum" value="${acvo.actnum}"/>
@@ -290,29 +292,33 @@
               
               <div class="product-page-cart">
               <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
-                <div class="pull-left">
-              	  <label class="control-label">수량 : </label>
-              	  <input type="text" value="${acvo.actd_qty}" />
-                </div>
-                <br/><br/><br/>
-                	<c:if test="${pr1 < pr2}">
-                	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
-                	
-	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-	                
+              	<c:if test="${pr1 < pr2}">
+	               <div class="pull-left">
+	             	  <label class="control-label">수량 : </label>
+	             	  <input type="text" value="${acvo.actd_qty}" />
+	               </div>
+	               <br/><br/><br/>
+	               	
+	              	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+	              	
+	               <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+	               
 		            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
 		                
 		            <button class="btn btn-default" type="submit">관심상품등록</button>
-	                </c:if>
+                </c:if>
 	                
-	                <c:if test="${pr1 >= pr2}">
-                	
-	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+	            <c:if test="${pr1 >= pr2}">
+                	<div class="pull-left">
+	             	  
+	            	</div>
+	                <br/><br/><br/>
+	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 비활성화시킨다. -->
 	                
 		            <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
 		                
 		            <button class="btn btn-default" type="submit">관심상품등록</button>
-	                </c:if>
+	            </c:if>
                 </c:if>
               </div>
               <!-- <div class="review">

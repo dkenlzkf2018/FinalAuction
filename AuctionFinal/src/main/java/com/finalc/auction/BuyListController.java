@@ -159,7 +159,6 @@ public class BuyListController {
 		
 		List<HugiBoardVO> hugiBoardList = serviceLGH.getReviewByActdnum(actdnum);
 		
-		
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		
@@ -202,11 +201,7 @@ public class BuyListController {
 		String fk_userid = req.getParameter("fk_userid");
 		String ep_content = req.getParameter("ep_content");
 		String ep_satisfaction = req.getParameter("ep_satisfaction");
-		String msg = "", loc = "";
-		if (ep_content == null) {
-			msg = "댓글 내용을 기입하여 주십시오.";
-			loc = "javascript:history.go(-1);";
-		}
+		String msg = "", loc = "";		
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("actdnum", actdnum);
@@ -214,10 +209,10 @@ public class BuyListController {
 		map.put("ep_content", ep_content);
 		map.put("ep_satisfaction", ep_satisfaction);
 		
+		
 		int n = serviceLGH.reviewRegist(map);
 		
 		List<HugiBoardVO> hugiBoardList = serviceLGH.getReviewByActdnum(actdnum);
-		
 		
 		if(n == 1) {
 			msg = "댓글 등록 완료";
@@ -229,7 +224,7 @@ public class BuyListController {
 		}
 		req.setAttribute("msg", msg);
 		req.setAttribute("loc", loc);
-		
+			
 		return "msg.notiles";
 	}
 	
