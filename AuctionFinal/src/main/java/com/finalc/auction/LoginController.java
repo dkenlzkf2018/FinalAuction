@@ -346,6 +346,8 @@ public class LoginController {
 	@RequestMapping(value="/myPage.action", method= {RequestMethod.GET})
 	public String myPage(HttpServletRequest req) {
 		
+		
+		
 		return "member/myPage.tiles";
 	}
 	
@@ -402,6 +404,12 @@ public class LoginController {
 		}
 		
 		return "myInfoEditEnd.notiles";
+	}
+	
+	@RequestMapping(value="/myJoinList.action", method= {RequestMethod.POST})
+	public String myJoinList(HttpServletRequest req) {
+		
+		return "member/myJoinList.tiles";
 	}
 	
 }

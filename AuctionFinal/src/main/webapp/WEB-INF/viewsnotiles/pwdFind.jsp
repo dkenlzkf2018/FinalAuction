@@ -97,13 +97,6 @@
       </div>
    </c:if>
    
-   <c:if test="${n == 0}">
-   	  <span style="color: red;">사용자 정보가 없습니다.</span>
-   </c:if>
-   
-   <c:if test="${n == -1}">
-   	  <span style="color: red;">${sendFailmsg}</span>
-   </c:if>
 </div>
 
 <div id="div_btnFind" align="center">
