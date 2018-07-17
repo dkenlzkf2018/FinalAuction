@@ -409,7 +409,11 @@ public class LoginController {
 		
 		String usernum = req.getParameter("usernum");
 		
+		System.out.println(usernum);
+		
 		List<HashMap<String,String>> JoinList = service.JoinList(usernum);
+		
+		System.out.println(JoinList);
 		
 		req.setAttribute("JoinList", JoinList);
 		

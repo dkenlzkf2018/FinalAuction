@@ -64,7 +64,7 @@
 	</update>
 	 
 	<select id="JoinList" parameterType="String" resultType="HashMap">
-		select A.joinactnum, A.fk_actnum, A.fk_usernum, A.tenderday, A.tenderprice, B.actd_endday
+		select to_char(A.joinactnum), to_char(A.fk_actnum), to_char(A.fk_usernum), to_char(A.tenderday, 'yyyy-mm-dd'), to_char(A.tenderprice, '999,999,999'), to_char(B.actd_endday, 'yyyy-mm-dd')
 		from tbl_joinaclist A join tbl_auction_detail B
 		on A.fk_actnum = B.actdnum
 		where A.fk_usernum = (select usernum from tbl_member_detail where usernum = #{usernum})

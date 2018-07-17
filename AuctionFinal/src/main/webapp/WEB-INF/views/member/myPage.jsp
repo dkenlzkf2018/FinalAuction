@@ -14,7 +14,7 @@
 	function goMyInfo() {
 		
 		$("#myInfo").hide();
-		$("#myjoinList").hide();
+		$("#MyJoinListFrm").hide();
 		$("#myPageFrm").show();
 		
 	}
@@ -32,10 +32,16 @@
 	
 	function goMyJoinList() {
 		
+		var frm = document.MyJoinListFrm;
+				
 		$("#myInfo").hide();
 		$("#myPageFrm").hide();
-		$("#myjoinList").hide();
 		$("#MyJoinListFrm").show();
+		
+		frm.action="myJoinList.action"
+		frm.method="get";
+		frm.submit();
+		
 	}
 
 </script>
@@ -82,18 +88,18 @@
             <h3><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 입찰정보</h3>
             <table id="JoinList" name="JoinList">
             	<thead>
-					<tr>
-						<th style="width: 70px; text-align: center;">입찰물품 번호</th>
-						<th style="width: 360px; text-align: center;">경매번호</th>
-						<th style="width: 70px; text-align: center;">입찰금액</th>
-						<th style="width: 180px; text-align: center;">입찰 날짜</th>
-						<th style="width: 70px; text-align: center;">경매 마감 날짜</th>						
+					<tr align="center">
+						<th style="width: 90px; text-align: center;">입찰물품 번호</th>
+						<th style="width: 90px; text-align: center;">경매번호</th>
+						<th style="width: 210px; text-align: center;">입찰금액</th>
+						<th style="width: 270px; text-align: center;">입찰 날짜</th>
+						<th style="width: 270px; text-align: center;">경매 마감 날짜</th>						
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${JoinList == null}">
+					<c:if test="${JoinList == null}">					
 						<tr>
-							<th colspan="5">목록이 없습니다.</th>
+							<th colspan="5"><div align="center"><span style="color: red; text-align: center;">목록이 없습니다.</span></div></th>
 						</tr>
 					</c:if>
 					<c:if test="${JoinList != null}">

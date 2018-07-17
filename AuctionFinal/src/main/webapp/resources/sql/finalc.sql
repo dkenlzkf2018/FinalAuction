@@ -16,8 +16,9 @@ select ep_boardno, fk_userid
 from tbl_hugiboard;
 
 select *
-from tbl_joinaclist
-where FK_USERNUM = (select usernum from tbl_member_detail where usernum = 8);
+from tbl_joinaclist A join tbl_auction_detail B
+on A.fk_actnum = B.actnum
+
 
 select *
 		from tbl_member A join tbl_member_detail B
