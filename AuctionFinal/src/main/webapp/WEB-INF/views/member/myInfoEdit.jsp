@@ -39,7 +39,8 @@
           
           self.window.close();
           
-          javascript:history.back();
+          javascript:history.go(-2);
+          
           return;
       }
       
