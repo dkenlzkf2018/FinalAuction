@@ -83,7 +83,7 @@
             <table id="JoinList" name="JoinList">
             	<thead>
 					<tr>
-						<th style="width: 70px; text-align: center;">입차물품 번호</th>
+						<th style="width: 70px; text-align: center;">입찰물품 번호</th>
 						<th style="width: 360px; text-align: center;">경매번호</th>
 						<th style="width: 70px; text-align: center;">입찰금액</th>
 						<th style="width: 180px; text-align: center;">입찰 날짜</th>

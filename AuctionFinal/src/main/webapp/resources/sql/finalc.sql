@@ -15,12 +15,14 @@ select ep_boardno, fk_userid
     , ep_content, ep_writeday, ep_satisfaction, ep_boardstatus
 from tbl_hugiboard;
 
+select *
+from tbl_joinaclist
+where FK_USERNUM = (select usernum from tbl_member_detail where usernum = 8);
 
-
-select count(*)
+select *
 		from tbl_member A join tbl_member_detail B
 		on A.userid = B.fk_userid
-    where userid = 'dkenlzkf';
+    where usernum = 2;
 
 select *
 delete from tbl_member;
