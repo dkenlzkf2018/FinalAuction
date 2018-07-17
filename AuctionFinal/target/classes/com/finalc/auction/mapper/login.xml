@@ -63,4 +63,11 @@
 		where fk_userid = #{userid}
 	</update>
 	 
+	<select id="JoinList" parameterType="String" resultType="HashMap">
+		select A.joinactnum, A.fk_actnum, A.fk_usernum, A.tenderday, A.tenderprice, B.actd_endday
+		from tbl_joinaclist A join tbl_auction_detail B
+		on A.fk_actnum = B.actdnum
+		where A.fk_usernum = (select usernum from tbl_member_detail where usernum = #{usernum})
+	</select>
+	 
 </mapper>

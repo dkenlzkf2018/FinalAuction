@@ -91,34 +91,36 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="">
-					</c:if>
+					<c:if test="${JoinList == null}">
 						<tr>
-							<td align="center">
-							
-							</td>
-							
-							<td>								
-							</td>
-							
-							<td>
-							</td>
-							
-							<td align="center">
-							</td>
-							
-							<td align="center">
-							</td>
-							
-							<td align="center">
-								
-							</td>
-							
-							<td align="center">
-								
-							</td>
+							<th colspan="5">목록이 없습니다.</th>
 						</tr>
-					
+					</c:if>
+					<c:if test="${JoinList != null}">
+						<c:forEach var="list" items="${JoinList}">
+							<tr>
+								<td align="center">
+									${JoinList.joinactnum}
+								</td>
+								
+								<td align="center">		
+									${JoinList.fk_actnum}						
+								</td>
+								
+								<td align="center">
+									${JoinList.tenderprice}
+								</td>
+								
+								<td align="center">
+									${JoinList.tenderday}
+								</td>
+								
+								<td align="center">
+									${JoinList.actd_endday}
+								</td>
+							</tr>
+						</c:forEach>
+					</c:if>
 				</tbody>
             </table>
           </div>

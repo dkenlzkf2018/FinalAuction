@@ -346,8 +346,6 @@ public class LoginController {
 	@RequestMapping(value="/myPage.action", method= {RequestMethod.GET})
 	public String myPage(HttpServletRequest req) {
 		
-		
-		
 		return "member/myPage.tiles";
 	}
 	
@@ -406,8 +404,14 @@ public class LoginController {
 		return "myInfoEditEnd.notiles";
 	}
 	
-	@RequestMapping(value="/myJoinList.action", method= {RequestMethod.POST})
+	@RequestMapping(value="/myJoinList.action", method= {RequestMethod.GET})
 	public String myJoinList(HttpServletRequest req) {
+		
+		String usernum = req.getParameter("usernum");
+		
+		List<HashMap<String,String>> JoinList = service.JoinList(usernum);
+		
+		req.setAttribute("JoinList", JoinList);
 		
 		return "member/myJoinList.tiles";
 	}
