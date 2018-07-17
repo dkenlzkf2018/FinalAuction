@@ -103,12 +103,12 @@
         	alert("내용을 입력하세요");
         	return;
         }
-        	        
+		
 		content.value = content.value.replace(/<p><br><\/p>/gi, "<br>"); //<p><br></p> -> <br>로 변환
 		content.value = content.value.replace(/<\/p><p>/gi, "<br>"); //</p><p> -> <br>로 변환
 		content.value = content.value.replace(/(<\/p><br>|<p><br>)/gi, "<br><br>"); //</p><br>, <p><br> -> <br><br>로 변환
 		content.value = content.value.replace(/(<p>|<\/p>)/gi, ""); //<p> 또는 </p> 모두 제거시
-
+		
 		var startprice = document.getElementById("startprice").value.trim();
 		if(startprice == "") {
 			alert("경매시작가를 입력하십시오...");
@@ -156,7 +156,7 @@
 		<tr>
 			<th class="names">게시자 아이디</th>
 			<td>
-				<input type="hidden" value="${sessionScope.loginuser.usernum}" name="usernum"/>
+				<input type="hidden" value="${sessionScope.loginuser.usernum}" name="fk_usernum"/>
 				<input type="text" value="${sessionScope.loginuser.userid}" readonly/>
 			</td>
 		</tr>
@@ -166,13 +166,13 @@
 		</TR>
 		<TR>
        		<th class="names">상품 이미지</th>
-       		<td><input type="file" id="actimage" name="actimage"/></td>
+       		<td><input type="file" name="attach"/></td>
 		</TR>
 		<TR>
 			<th class="names">대분류</th>
 			<td>
 				<div class="col-lg-5 col-sm-5">
-				<select class="form-control" id="category" name="cnum">
+				<select class="form-control" id="category" name="fk_cnum">
 					<option value="">:::선택하세요:::</option>
 					<c:forEach var="map" items="${categoryList}">
 						<option value="${map.cnum}" data-filter=".${map.cname}">${map.cname}</option>
@@ -185,7 +185,7 @@
 			<th class="names">상세분류</th>
 			<td>
 				<div class="col-lg-5 col-sm-5">
-					<select class="form-control" id="categoryDetail" name="cdnum">
+					<select class="form-control" id="categoryDetail" name="fk_cdnum">
 						<option value="">:::선택하세요:::</option>
 		            </select>
 					<%-- <c:forEach var="map" items="${categoryList}">

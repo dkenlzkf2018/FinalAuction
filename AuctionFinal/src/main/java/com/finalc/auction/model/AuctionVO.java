@@ -3,6 +3,7 @@ package com.finalc.auction.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AuctionVO {
+	
 	private String actnum; // 경매번호
 	private String actname; // 경매 이름
 	private String actimage; // 경매 이미지

@@ -54,8 +54,8 @@ public class AuctionController {
 	
 	// 옥션 상품 게시 완료 기능 (0709)
 	@RequestMapping(value="/AuctionUploadEnd.action", method={RequestMethod.POST})  
-	public String AuctionUploadEnd(HttpServletRequest req, HttpSession session) {
-		
+	public String AuctionUploadEnd(HttpServletRequest req, HttpSession session, AuctionVO auctionVO) {
+		/*
 		String usernum = req.getParameter("usernum");
 		String actname = req.getParameter("actname");
 		
@@ -155,7 +155,7 @@ public class AuctionController {
 		map.put("filename", filename);
 		map.put("orgFilename", orgFilename);
 		map.put("fileSize", fileSize);
-		
+		*/
 		
 		/*AuctionVO avo = new AuctionVO();
 		avo.setActname(actname);
@@ -174,7 +174,7 @@ public class AuctionController {
 		avo.setOrgFilename(orgFilename);
 		avo.setFileSize(fileSize);*/
 		
-		
+		/*
 		int n = 0;
 		if(actimage == null) {
 			// 파일 첨부가 없으면
@@ -197,8 +197,10 @@ public class AuctionController {
 		req.setAttribute("loc", loc);
 		
 		return "msg.notiles";
+		*/
+		
 		//______________________________________첨부파일이 있는경우 파일업로드 하기 시작_______________________________________//
-		/*if(!auctionVO.getActimage().isEmpty()) {
+		if(!auctionVO.getAttach().isEmpty()) {
 			// 이미지가 비어있지 않다면(첨부파일이 있는 경우라면)
 			
 			// WAS의 webapp의 절대경로를 알아야 한다.
@@ -215,18 +217,19 @@ public class AuctionController {
 			// 파일 크기를 읽어오는 용도
 			
 			try {
-				bytes = auctionVO.getActimage().getBytes();
+				bytes = auctionVO.getAttach().getBytes();
 				// getBytes() = 첨부됨 파일을 바이트 단위로 읽어온다.
 				System.out.println(">> 확인용 bytes : "+bytes);
 				
 				newFileName = fileManager.doFileUpload(bytes, auctionVO.getAttach().getOriginalFilename(), path);
 				// 파일 업로드 후, 현재시간 + 나노시 형식의 파일명을 리턴하여 newFileName으로 저장
-				auctionVO.setActname(newFileName);
-				auctionVO.setOrgFilename(auctionVO.getAttach().getOriginalFilename());;
+				auctionVO.setActimage(newFileName);
+				auctionVO.setFilename(newFileName);
+				
+				auctionVO.setOrgFilename(auctionVO.getAttach().getOriginalFilename());
 				// auctionVO.getActimage().getOriginalFilename() 는 실제 파일명
 				// 다운로드시 입력되는 파일명.
 				fileSize = auctionVO.getAttach().getSize();
-				
 				auctionVO.setFileSize(String.valueOf(fileSize));
 			} catch (Exception e) {
 				
@@ -236,7 +239,7 @@ public class AuctionController {
 		
 		int n = 0;
 		System.out.println(">> 확인용 n1 : "+n);
-		if(auctionVO.getActimage().isEmpty()) {
+		if(auctionVO.getAttach().isEmpty()) {
 			// 파일 첨부가 없으면
 			n = serviceA.add_auction(auctionVO);
 			System.out.println(">> 확인용 n2 : "+ n);
@@ -258,7 +261,7 @@ public class AuctionController {
 		req.setAttribute("msg", msg);
 		req.setAttribute("loc", loc);
 		
-		return "msg.notiles";*/
+		return "msg.notiles";
 	} // 옥션 상품 게시 완료 기능 (0709)
 	
 	@RequestMapping(value="/auctionDetail.action", method={RequestMethod.GET})  
@@ -318,14 +321,15 @@ public class AuctionController {
 		map.put("actdnum", actdnum);
 		map.put("fk_cdnum", fk_cdnum);
 		
-		serviceA.ShowAuction(map);
+		int totalCnt = serviceA.ShowAuction(map);
 		
 		List<AuctionVO> auctionList = serviceA.getAuctionList(fk_cdnum);
 		
+		req.setAttribute("totalCnt", totalCnt);
 		req.setAttribute("fk_cdnum", fk_cdnum);
 		req.setAttribute("auctionList", auctionList);
-		
-		return "auction/AuctionShow.action?fk_cdnum="+fk_cdnum+"&auctionList="+auctionList;
+
+		return "auction/AuctionShow.tiles";
 	}
 	
 }

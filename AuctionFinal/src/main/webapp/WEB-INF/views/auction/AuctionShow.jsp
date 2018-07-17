@@ -29,12 +29,12 @@
 		</select>
 	</div>
 </div>
-<div>
+<div class="row">
 <c:forEach var="auctionvo" items="${auctionList}">
 	<c:if test="${ auctionvo.fk_cnum == cnum }" >
 		<form>
 		<div class="auction" onClick="goProductPage(${auctionvo.actnum})">
-			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="product-item">
 					<div class="pi-img-wrapper">
 						<img src="assets/pages/img/products/model1.jpg" class="img-responsi ve" alt="Berry Lace Dress">
@@ -43,8 +43,13 @@
 							<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
 						</div>
 					</div>
-					<h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
-					<div class="pi-price">$29.00</div>
+					<h3><a onClick="goProductPage(${auctionvo.actnum})">${auctionvo.actname}</a></h3>
+					<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+					<div class="row"></div>
+					<div class="pi-price">즉시구매가 : ${auctionvo.actd_price} 원</div>
+					<div class="row"></div>
+					<div class="">${auctionvo.actd_endday} 까지</div>
+					<div class="row"></div>
 					<a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
 				</div>
 			</div>
@@ -54,3 +59,4 @@
 </c:forEach>
 </div>
 </div>
+<div class="row" style="margin-top:10pt; margin-bottom:10pt;"></div>

@@ -24,15 +24,15 @@ public class AuctionService implements InterAuctionService {
 
 	// 0709 옥션등록 하는 서비스 (첨부 이미지 없음)
 	@Override
-	public int add_auction(HashMap<String, String> map) {
-		int n = dao.add_auction(map);
+	public int add_auction(AuctionVO auctionVO) {
+		int n = dao.add_auction(auctionVO);
 		System.out.println(">> 확인용 service-1 n : " + n);
 		return n;
 	}
 	// 0709 옥션등록 하는 서비스 (첨부 이미지 있음)
 	@Override
-	public int add_auctionWithFile(HashMap<String, String> map) {
-		int n = dao.add_auctionWithFile(map);
+	public int add_auctionWithFile(AuctionVO auctionVO) {
+		int n = dao.add_auctionWithFile(auctionVO);
 		System.out.println(">> 확인용 service-2 n : " + n);
 		return n;
 	}
