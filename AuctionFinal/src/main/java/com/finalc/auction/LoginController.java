@@ -417,7 +417,11 @@ public class LoginController {
 		
 		map.put("usernum", loginuser.getUsernum());
 		
-		List<HashMap<String, String>> JoinList = service.JoinList(map);
+		List<HashMap<String, String>> JoinList = new ArrayList<HashMap<String, String>>();
+		
+		JoinList = service.JoinList(map);
+		
+		req.setAttribute("JoinList", JoinList);
 		
 		return "member/myJoinList.tiles";
 	

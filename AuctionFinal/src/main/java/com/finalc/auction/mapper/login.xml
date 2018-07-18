@@ -73,7 +73,7 @@
 	</resultMap>
 	
 	<select id="JoinList" parameterType="HashMap" resultMap="getBuyListMap">
-		select rownum AS RNO, joinactnum, actnum, usernum, tenderday, tenderprice, actd_endday
+		select joinactnum, actnum, usernum, tenderday, tenderprice, actd_endday
 		from
 		(
 		select to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS fk_actnum, to_char(A.fk_usernum) AS usernum
@@ -83,14 +83,8 @@
 		from tbl_joinaclist A join tbl_auction_detail B
 		on A.fk_actnum = B.actdnum
 		where A.fk_usernum = #{usernum}
-		)T
-		where T.RNO >= #{startRno} and T.RNO <![CDATA[<=]]> #{endRno} 
+		)V
+		
 	</select>
 	
-	<select id="getTotalCount" resultType="String">
-		select count(*)
-		from tbl_joinaclist
-		where fk_usernum = #{usernum}
-	</select>
-	 
 </mapper>
