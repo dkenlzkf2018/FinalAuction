@@ -57,9 +57,9 @@
 		from tbl_auction A join tbl_auction_detail B
 		on A.actnum = B.fk_actnum
 		where actd_status = 1
-		<if test='fk_cdnum != null'>
+		<if test='!(value == null)'>
 			and
-			A.fk_cdnum = #{fk_cdnum}
+			A.fk_cdnum = #{value}
 		</if>
 		order by actd_startday desc
 	</select>

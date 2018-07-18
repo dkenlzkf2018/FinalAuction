@@ -54,9 +54,6 @@ public class AuctionDAO implements InterAuctionDAO {
 		System.out.println(">> 확인용 fk_cdnum : " + fk_cdnum);
 		List<AuctionVO> auctionList = sqlsession.selectList("auction.getAuctionList", fk_cdnum);
 		
-		for (AuctionVO avo:auctionList) {
-			System.out.println(">> 확인용 AuctionVO name : " + avo.getActname());
-		}
 		System.out.println(">> 확인용 auctionList의 Size : "+auctionList.size());
 		return auctionList;
 	}

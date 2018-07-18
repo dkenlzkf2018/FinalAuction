@@ -199,7 +199,7 @@ public class AuctionVO {
 		this.actimage = actimage;
 		this.orgFilename = orgFilename;
 		this.fileSize = fileSize;
-		this.categoryVO.setCdnum(fk_cdnum);
+		this.fk_cdnum = fk_cdnum;
 		this.actdnum = actdnum;
 		this.fk_auctionnum = fk_auctionnum;
 		this.fk_usernum = fk_usernum;
@@ -223,8 +223,8 @@ public class AuctionVO {
 		this.actimage = actimage;
 		this.orgFilename = orgFilename;
 		this.fileSize = fileSize;
-		this.categoryVO.setCnum(fk_cnum);
-		this.categoryVO.setCdnum(fk_cdnum);
+		this.fk_cnum = fk_cnum;
+		this.fk_cdnum = fk_cdnum;
 		this.actdnum = actdnum;
 		this.fk_auctionnum = fk_auctionnum;
 		this.fk_usernum = fk_usernum;

@@ -32,7 +32,7 @@
 <div class="row">
 
 <c:forEach var="auctionvo" items="${auctionList}">
-	<c:if test="${ auctionvo.fk_cnum == cnum }" >
+	<c:if test="${ auctionvo.fk_cdnum == fk_cdnum || fk_cdnum == null}" >
 		<form>
 		<div class="auction" onClick="goProductPage(${auctionvo.actnum})">
 			<div class="col-md-3 col-sm-6 col-xs-12">

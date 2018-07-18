@@ -312,6 +312,8 @@ public class AuctionController {
 	@RequestMapping(value="/AuctionShow.action", method={RequestMethod.GET})  
 	public String ShowAuction(HttpServletRequest req, HttpServletResponse res) {
 		
+	//	String cdnum = req.getParameter("cdnum");
+		
 		String actnum = req.getParameter("actnum");
 		String actdnum = req.getParameter("actdnum");
 		String fk_cdnum = req.getParameter("fk_cdnum");
@@ -320,6 +322,7 @@ public class AuctionController {
 		map.put("actnum", actnum);
 		map.put("actdnum", actdnum);
 		map.put("fk_cdnum", fk_cdnum);
+	//	map.put("cdnum", cdnum);
 		
 		int totalCnt = serviceA.ShowAuction(map);
 		
@@ -328,6 +331,7 @@ public class AuctionController {
 		req.setAttribute("totalCnt", totalCnt);
 		req.setAttribute("fk_cdnum", fk_cdnum);
 		req.setAttribute("auctionList", auctionList);
+	//	req.setAttribute("cdnum", cdnum);
 
 		return "auction/AuctionShow.tiles";
 	}
