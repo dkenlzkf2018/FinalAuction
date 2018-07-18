@@ -64,8 +64,10 @@
 	</update>
 	
 	<resultMap type="HashMap" id="getBuyListMap">
+		<result property="ACTIMAGE" column="actimage" javaType="String" />
 		<result property="JOINACTNUM" column="joinactnum" javaType="String" />
 		<result property="ACTNUM" column="actnum" javaType="String" />
+		<result property="ACTNAME" column="actname" javaType="String" />
 		<result property="USERNUM" column="usernum" javaType="String" />
 		<result property="TENDERDAY" column="tenderday" javaType="String" />
 		<result property="TENDERPRICE" column="tenderprice" javaType="String" />
@@ -73,14 +75,16 @@
 	</resultMap>
 	
 	<select id="JoinList" parameterType="HashMap" resultMap="getBuyListMap">
-		select joinactnum, actnum, usernum, tenderday, tenderprice, actd_endday
+		select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, actd_endday
 		from
 		(
-		select to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, to_char(A.fk_usernum) AS usernum
+		select C.actimage, to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, C.actname, to_char(A.fk_usernum) AS usernum
 			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
 			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday
 		from tbl_joinaclist A join tbl_auction_detail B
 		on A.fk_actnum = B.actdnum
+		join tbl_auction C
+		on A.fk_actnum = C.actnum
 		where A.fk_usernum = #{usernum}
 		)V
 		

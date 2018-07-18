@@ -42,8 +42,10 @@
       <form name="JoinListFrm">
       <table summary="Shopping cart">
         <tr>
+          <th class="goods-page-actimage">상품 이미지</th>
           <th class="goods-page-actnum">상품번호</th>
-          <th class="goods-page-awardnum">낙찰번호</th>
+          <th class="goods-page-actname">상품이름</th>
+          <th class="goods-page-awardnum">낙찰번호</th>          
           <th class="goods-page-awardday">구매일자</th>
           <th class="goods-page-awardprice">입찰가</th>
           <th class="goods-page-endday">종료일</th>
@@ -52,8 +54,14 @@
         <c:if test="${JoinList != null}">
 	        <c:forEach var="map" items="${JoinList}">
 	         <tr class="ssi" style="margin-left:5%;">  
+	           <td class="goods-page-actimage">
+	             <img src="<%= request.getContextPath() %>/resources/actimages/${map.ACTIMAGE}" width="80px"/>
+	           </td>
 	           <td class="goods-page-actnnum">
 	             ${map.ACTNUM}
+	           </td>
+	           <td class="goods-page-actname">
+	             ${map.ACTNAME}
 	           </td>
 	           <td class="goods-page-awardnum">
 	             ${map.JOINACTNUM}
@@ -73,7 +81,7 @@
                   
         <c:if test="${JoinList == null}">
 		 <tr>
-		  	<td colspan="6"><span style="color: red;">입찰한 상품이 존재하지 않습니다.</span></td>
+		  	<td colspan="8"><span style="color: red;">입찰한 상품이 존재하지 않습니다.</span></td>
 		 </tr>
 		 </c:if> 
 		 
