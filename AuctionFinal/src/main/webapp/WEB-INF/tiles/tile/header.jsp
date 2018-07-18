@@ -36,6 +36,7 @@
                         	<c:if test="${!(sessionScope.loginuser.userid eq 'admin')}">
                         		<li><a href="myPage.action">My Page</a></li>
                         	</c:if>
+                        	<li><a href="AuctionUpload.action">경매 등록</a></li>
                         	<li><a href="logout.action">Log Out</a></li>
                         </c:if>
                     </ul>
@@ -145,7 +146,7 @@
 	              <ul class="dropdown-menu">
 	              	<c:forEach var="categoryDetailvo" items="${categoryDetailList}">
 	              		<c:if test="${categoryvo.cnum eq categoryDetailvo.fk_cnum}">
-	              			<li><a href="shop-product-list.html">${categoryDetailvo.cdname}</a></li>
+	              			<li><a href="/auction/AuctionShow.action?fk_cdnum=${categoryDetailvo.cdnum}">${categoryDetailvo.cdname}</a></li>
 	              		</c:if>
 	                </c:forEach>
 	              </ul>
