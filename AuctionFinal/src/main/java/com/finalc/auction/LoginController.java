@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -176,6 +177,42 @@ public class LoginController {
 		return "ZipcodeSerch.notiles";
 	}
 	
+	@RequestMapping(value="/ZipcodeSerchEdit.action", method= {RequestMethod.POST})
+	public String ZipcodeSerchEdit() {
+		
+		return "ZipcodeSerchEdit.notiles";
+	}
+	
+	@RequestMapping(value="/zipcodeEditInfo.action", method= {RequestMethod.GET})
+	public String ZipcodeSerchEditInfo(HttpServletRequest req) {
+		
+		List<HashMap<String, String>> zipcodeList = null;
+		
+		zipcodeList = new ArrayList<HashMap<String, String>>();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("sido", req.getParameter("sido"));
+		
+		zipcodeList = service.serchZipcode(map);
+		
+		if(zipcodeList == null || zipcodeList.size() == 0) {
+			req.setAttribute("result", "0");
+			req.setAttribute("zipcodeNotExist", "해당 주소가 없습니다.");
+		}
+		else {
+			req.setAttribute("result", "1");
+			req.setAttribute("zipcodeList", zipcodeList);
+			String zipcode = req.getParameter("zipcode");
+			String addr1 = req.getParameter("addr1");
+			
+			req.setAttribute("zipcode", zipcode);
+			req.setAttribute("addr1", addr1);
+		}
+		
+		return "zipcodeEditInfo.notiles";
+	}
+	
 	@RequestMapping(value="/zipcodeInfo.action", method= {RequestMethod.GET})
 	public String zipcodeInfo(HttpServletRequest req) {
 		
@@ -304,6 +341,67 @@ public class LoginController {
 	    }
 		
 		return "pwdConfirm.notiles";
+	}
+	
+	@RequestMapping(value="/myPage.action", method= {RequestMethod.GET})
+	public String myPage(HttpServletRequest req) {
+		
+		return "member/myPage.tiles";
+	}
+	
+	@RequestMapping(value="/myInfoEdit.action", method= {RequestMethod.POST})
+	public String myInfoEdit(HttpServletRequest req) {
+		
+		return "member/myInfoEdit.tiles";
+	}
+	
+	@RequestMapping(value="/myInfoEditEnd.action", method= {RequestMethod.POST})
+	public String myInfoEditEnd(HttpServletRequest req) {
+		
+		String userid = req.getParameter("userid");
+		String name = req.getParameter("name");
+		String email1 = req.getParameter("email1");
+		String email2 = req.getParameter("email2");
+		String hp1 = req.getParameter("hp1");
+		String hp2 = req.getParameter("hp2");
+		String hp3 = req.getParameter("hp3");
+		String zipcode = req.getParameter("zipcode");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+				
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("name", name);
+		map.put("email1", email1);
+		map.put("email2", email2);
+		map.put("hp1", hp1);
+		map.put("hp2", hp2);
+		map.put("hp3", hp3);
+		map.put("zipcode", zipcode);
+		map.put("addr1", addr1);
+		map.put("addr2", addr2);
+		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		loginuser.setEmail(email1+"@"+email2);
+		loginuser.setHp1(hp1);
+		loginuser.setHp2(hp2);
+		loginuser.setHp3(hp3);
+		loginuser.setZipcode(zipcode);
+		loginuser.setAddr1(addr1);
+		loginuser.setAddr2(addr2);
+		
+		int RegMember = service.memberEdit(map);
+		
+		if(RegMember == 1) {
+			
+			req.setAttribute("loginuser", loginuser);
+			req.setAttribute("RegMember", RegMember); 
+			
+		}
+		
+		return "myInfoEditEnd.notiles";
 	}
 	
 }

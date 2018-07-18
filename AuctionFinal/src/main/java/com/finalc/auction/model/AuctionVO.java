@@ -3,6 +3,7 @@ package com.finalc.auction.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AuctionVO {
+	
 	private String actnum; // 경매번호
 	private String actname; // 경매 이름
 	private String actimage; // 경매 이미지
@@ -198,7 +199,7 @@ public class AuctionVO {
 		this.actimage = actimage;
 		this.orgFilename = orgFilename;
 		this.fileSize = fileSize;
-		this.categoryVO.setCdnum(fk_cdnum);
+		this.fk_cdnum = fk_cdnum;
 		this.actdnum = actdnum;
 		this.fk_auctionnum = fk_auctionnum;
 		this.fk_usernum = fk_usernum;
@@ -222,8 +223,8 @@ public class AuctionVO {
 		this.actimage = actimage;
 		this.orgFilename = orgFilename;
 		this.fileSize = fileSize;
-		this.categoryVO.setCnum(fk_cnum);
-		this.categoryVO.setCdnum(fk_cdnum);
+		this.fk_cnum = fk_cnum;
+		this.fk_cdnum = fk_cdnum;
 		this.actdnum = actdnum;
 		this.fk_auctionnum = fk_auctionnum;
 		this.fk_usernum = fk_usernum;
