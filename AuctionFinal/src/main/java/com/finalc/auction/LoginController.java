@@ -408,8 +408,6 @@ public class LoginController {
 	@RequestMapping(value="/myJoinList.action", method= {RequestMethod.GET})
 	public String myJoinList(HttpServletRequest req) {
 		
-		
-		
 		return "member/myJoinList.tiles";
 	
 	}
