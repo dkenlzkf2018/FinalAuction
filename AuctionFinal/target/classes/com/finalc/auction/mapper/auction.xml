@@ -42,7 +42,8 @@
 	<!-- 경매목록을 보여주는 sql문 -->
 	<select id="ShowAuction" parameterType="HashMap" resultType="Integer">
 		select count(*)
-		from tbl_auction
+		from tbl_auction_detail
+		where actd_status = 1
 	</select>
 	<!-- 경매목록을 보여주는 sql문 -->
 	

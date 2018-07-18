@@ -30,6 +30,7 @@
 	</div>
 </div>
 <div class="row">
+
 <c:forEach var="auctionvo" items="${auctionList}">
 	<c:if test="${ auctionvo.fk_cnum == cnum }" >
 		<form>
@@ -37,9 +38,9 @@
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="product-item">
 					<div class="pi-img-wrapper">
-						<img src="assets/pages/img/products/model1.jpg" class="img-responsi ve" alt="Berry Lace Dress">
+						<img src="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" width="100%" class="img-responsi ve" alt="${auctionvo.orgFilename}" />
 						<div>
-							<a href="assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+							<a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
 							<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
 						</div>
 					</div>

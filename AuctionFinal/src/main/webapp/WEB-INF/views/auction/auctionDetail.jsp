@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Page level plugin styles START -->
 <link href="<%=request.getContextPath() %>/resources/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/resources/assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
@@ -12,12 +12,128 @@
 <!-- Page level plugin styles END -->
 
 <script type="text/javascript">
+	
+	var strNow = "";
+	var actd_price = Number("${acvo.actd_price}");
+	var nowprice = Number("${nowprice}");
+	jQuery(document).ready(function () {
+		
+		if (strNow == "경매종료") {
+			var frm = document.tenderFrm;
+			frm.method = "POST";
+			frm.action = "inputAward.action";
+			frm.submit();
+		} else {
+			loopshowNowTime();
+		}
+		
+	});
+	
+	// 남은 일자 계산
+	function showNowTime() {
+		var end = new Date("${acvo.actd_endday}");
+		var endTime = parseInt(end.getTime()/1000);
+		// console.log(endTime);
+		var now = new Date();
+		var nowTime = parseInt(now.getTime()/1000);
+		
+		
+		days = (end - now) / 1000 / 60 / 60 / 24;
+		daysRound = Math.floor(days); 
+		hours = (end - now) / 1000 / 60 / 60 - (24 * daysRound); 
+		hoursRound = Math.floor(hours); 
+		minutes = (end - now) / 1000 / 60 - (24 * 60 * daysRound) - (60 * hoursRound); 
+		minutesRound = Math.floor(minutes); 
+		seconds = (end - now) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound); 
+		secondsRound = Math.round(seconds);
+
+		if (nowTime < endTime) {
+			if (nowprice == actd_price) {
+				strNow = "경매종료";
+			}
+			else {
+				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
+			}
+		}
+		else if (nowTime == endTime){
+			strNow = "경매종료";
+			var frm = document.tenderFrm;
+			frm.method = "POST";
+			frm.action = "inputAward.action";
+			frm.submit();
+		}
+		else if (nowTime > endTime){
+			strNow = "경매종료";
+		}
+		
+		//console.log(strNow);
+		$("#clock").html("<span>"+strNow+"</span>");
+	
+	}// end of function showNowTime() -----------------------------
+	
+	// 남은 일자 1초마다 -시키기
+	function loopshowNowTime() {
+		showNowTime();
+		
+		var timejugi = 1000;   // 시간을 1초 마다 자동 갱신하려고.
+		
+		setTimeout(function() {
+						loopshowNowTime();	
+					}, timejugi);
+		
+	}// end of loopshowNowTime() --------------------------
+
+	// 구매 후기(구매 게시판 후기)
 	function reviewRegist() {
 		var frm = document.reviewFrm;
 		
 		frm.method = "get";
-		frm.action = "reviewRegist.action";
+		frm.action = "reviewRegistLGH.action";
 		frm.submit();
+	}
+	
+	
+	
+	// 입찰하기 버튼
+	function goTender() {
+		if (strNow == "경매종료" || actd_price == nowprice) {
+			alert("경매종료된 상품입니다.");
+			return false;
+		}
+		
+		else {
+			var frm = document.tenderFrm;
+			var url = "<%=request.getContextPath()%>/tender.action";
+	    	window.open("", "tender",
+	    			   "left=569px, top=885px, width=569px, height=885px status=1");
+			frm.method = "POST";
+			frm.action = url;
+			frm.target = "tender";
+			frm.submit();
+		}
+	}
+	
+	// 구매하기 버튼
+	function goPay() {
+		if (strNow == "경매종료" || actd_price == nowprice) {
+			alert("경매종료된 상품입니다.");
+			return false;
+		}
+		
+		var fk_usernum = "${acvo.fk_usernum}";
+		var usernum = "${sessionScope.loginuser.usernum}";
+		var nowprice = "${nowprice}";
+		var endprice = "${acvo.actd_price}";
+		console.log(fk_usernum+" "+usernum+" "+nowprice+" "+endprice);
+		if (strNow != "경매종료" && fk_usernum != usernum) {
+			if(confirm("상품즉시구매!! 결제창으로 이동하시겠습니까?")) {
+				// endprice와 usernum을 넘긴다.
+				location.href="";
+			}
+			else {
+				return false;
+			}
+		}
 	}
 </script>
 
@@ -25,8 +141,9 @@
   <div class="container">
     <ul class="breadcrumb">
         <li><a href="index.action">Home</a></li>
-        <li><a href="">Store</a></li>
-        <li class="active">Cool green dress with red bell</li>
+        <li>${cvo.cname}</li>
+        <li><a href="">${cvo.cdname}</a></li>
+        <li class="active">${acvo.actname}</li>
     </ul>
     <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="row margin-bottom-40">
@@ -101,8 +218,15 @@
         <div class="product-page">
           <div class="row">
             <div class="col-md-6 col-sm-6">
+              
+              <!-- 
+              		경매번호를 이용하여 이미지 얻어오기
+              		auction 테이블, auction_image 테이블 조인
+               -->
+              
+              
               <div class="product-main-image">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg">
+                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg" alt="${acvo.actname}" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg">
               </div>
               <div class="product-other-images">
                 <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg"></a>
@@ -111,43 +235,74 @@
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
-              <h1>Cool green dress with red bell</h1>
+              <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
-                <div class="price">
-                  <strong><span>$</span>47.00</strong>
-                  <em>$<span>62.00</span></em>
+                <div class="pull-left">                  
+	              <label class="control-label">현  재  가  : </label>
+	              <fmt:formatNumber value="${nowprice}" type="number"/>원
+              	  
+              	  <br/>
+              	  <label class="control-label">시  작  가  : </label>
+              	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
+              	  <br/>
+              	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
+              	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
                 </div>
-                <div class="availability">
-                  Availability: <strong>In Stock</strong>
-                </div>
+                <form name="tenderFrm">
+                	<input type="hidden" name="actnum" value="${acvo.actnum}"/>
+                	<input type="hidden" name="actdnum" value="${acvo.actdnum}"/>
+                	<input type="hidden" name="actname" value="${acvo.actname}"/>
+                	<input type="hidden" name="actd_endday" value="${acvo.actd_endday}"/>
+                	<input type="hidden" name="actd_qty" value="${acvo.actd_qty}"/>
+                	<input type="hidden" name="startprice" value="${acvo.startprice}"/>
+                	<input type="hidden" name="actd_price" value="${acvo.actd_price}"/>
+                	<input type="hidden" name="fk_usernum" value="${acvo.fk_usernum}"/>
+                	<input type="hidden" name="nowprice" value="${nowprice}"/>
+                </form>
+              	
               </div>
-              <div class="description">
-                <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat 
-				Nostrud duis molestie at dolore.</p>
-              </div>
+                            
               <div class="product-page-options">
                 <div class="pull-left">
-                  <label class="control-label">Size:</label>
-                  <select class="form-control input-sm">
-                    <option>L</option>
-                    <option>M</option>
-                    <option>XL</option>
-                  </select>
+                  <label class="control-label">입  찰  수 : </label>
+                  <input style="border:none;" type="text" value="${count}" readonly />
                 </div>
                 <div class="pull-left">
-                  <label class="control-label">Color:</label>
-                  <select class="form-control input-sm">
-                    <option>Red</option>
-                    <option>Blue</option>
-                    <option>Black</option>
-                  </select>
+                  <label class="control-label">남은시간 :  </label>
+                  <div id="clock" style="display:inline;"></div>
+                </div>
+                <div class="pull-left">
+                  <label class="control-label">(종료 :  </label>
+                  <div style="display:inline;">${acvo.actd_endday})</div>
                 </div>
               </div>
+              
               <div class="product-page-cart">
-                <div class="product-quantity">
-                    <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+              <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
+                <div class="pull-left">
+              	  <label class="control-label">수량 : </label>
+              	  <input type="text" value="${acvo.actd_qty}" />
                 </div>
-                <button class="btn btn-primary" type="submit">Add to cart</button>
+                <br/><br/><br/>
+                	<c:if test="${pr1 < pr2}">
+                	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+                	
+	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+	                
+		            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
+		                
+		            <button class="btn btn-default" type="submit">관심상품등록</button>
+	                </c:if>
+	                
+	                <c:if test="${pr1 >= pr2}">
+                	
+	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+	                
+		            <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+		                
+		            <button class="btn btn-default" type="submit">관심상품등록</button>
+	                </c:if>
+                </c:if>
               </div>
               <!-- <div class="review">
                 <input type="range" value="4" step="0.25" id="backing4">
@@ -162,8 +317,11 @@
                 <li><a class="evernote" data-original-title="evernote" href="javascript:;"></a></li>
                 <li><a class="tumblr" data-original-title="tumblr" href="javascript:;"></a></li>
               </ul>
+              
             </div>
 
+
+<%-- 규호 소개!!////////////////////////////////////////////////////////////////// --%>
             <div class="product-page-content">
               <ul id="myTab" class="nav nav-tabs">
                 <li><a href="#Description" data-toggle="tab">Description</a></li>
@@ -172,8 +330,9 @@
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade" id="Description">
-                  <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. </p>
+                  <p>${acvo.actd_content}</p>
                 </div>
+<%-- 규호 정보!!////////////////////////////////////////////////////////////////// --%>                
                 <div class="tab-pane fade" id="Information">
                   <table class="datasheet">
                     <tr>
@@ -201,6 +360,8 @@
                     </tr>
                   </table>
                 </div>
+                
+<%-- 규호 리뷰!!////////////////////////////////////////////////////////////////// --%>
                 <div class="tab-pane fade in active" id="Reviews">
                   <!--<p>There are no reviews for this product.</p>-->
                   <c:forEach var="hugiboardvo" items="${hugiBoardList}">
@@ -216,7 +377,7 @@
                     </div>
                   </c:forEach>
                   <!-- BEGIN FORM-->
-                  <form action="#" class="reviews-form" role="form" name="reviewFrm">
+                  <form class="reviews-form" name="reviewFrm">
                   	<input type="hidden" name="actdnum" value="${actdnum}"/>
                     <h2>Write a review</h2>
                     <div class="form-group">

@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Dashboard</h1>
+                        <h1>관리자</h1>
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li class="active">Dashboard</li>
+                            <li class="active">관리자</li>
                         </ol>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <div class="dropdown-menu-content">
-                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="<%=request.getContextPath()%>/adminMain.action">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>

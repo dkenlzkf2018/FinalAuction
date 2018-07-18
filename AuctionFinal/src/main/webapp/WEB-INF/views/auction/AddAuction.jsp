@@ -175,7 +175,7 @@
 				<select class="form-control" id="category" name="fk_cnum">
 					<option value="">:::선택하세요:::</option>
 					<c:forEach var="map" items="${categoryList}">
-						<option value="${map.cnum}" data-filter=".${map.cname}">${map.cname}</option>
+						<option value="${map.cnum}" data-filter="${map.cname}">${map.cname}</option>
 					</c:forEach>
 				</select>
 				</div>

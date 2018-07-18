@@ -32,10 +32,24 @@ where userid = 'leess';
 
 delete from tbl_member_detail
 where fk_userid = 'admin';
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+<<<<<<< HEAD
 
+<<<<<<< HEAD
+select *
+from tbl_member_detail;
+=======
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+=======
+
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+
+=======
 select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS address
 from tbl_zipcode
 where sido like '%' || '강원도' || '%';
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 select userid, passwd, email, username, email, hp1
      , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
@@ -248,6 +262,13 @@ where fk_userid = 'admion';
         PRIMARY KEY (
            cnum
         );
+ 
+ -- 카테고리 삭제       
+ alter table tbl_category
+ add categostau number(1) default 1 not null 
+
+select *
+ from tbl_category
   
   /* 카테고리 디테일 */
   CREATE TABLE tbl_category_detail (
@@ -275,6 +296,15 @@ where fk_userid = 'admion';
         PRIMARY KEY (
            cdnum
         );
+        
+-- 테스트 07-09
+/*  select usernum, userid, passwd, email, username, email, hp1
+       , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
+  from tbl_member A join tbl_member_detail B on A.userid = B.fk_userid;
+
+select cnum, cname, cdnum, fk_cnum, cdname
+from tbl_category A join tbl_category_detail B on A.cnum = b.fk_cnum;
+*/
   
   /* 게시판 */
   CREATE TABLE tbl_board (

@@ -205,7 +205,7 @@ public class AuctionController {
 			
 			// WAS의 webapp의 절대경로를 알아야 한다.
 			String root = session.getServletContext().getRealPath("/");
-			String path = root + "resources" + File.separator + "files";
+			String path = root + "resources" + File.separator + "actimages";
 			
 			System.out.println(">> 확인용 rood : "+ root);
 			String newFileName = "";

@@ -62,7 +62,7 @@
 	             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /></a>
 	           </td>
 	           <td class="goods-page-actname">
-	             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
+	             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
 	             <%--  --%>
 	             <%-- <a style="cursor:pointer;"><em>상세보기</em></a> --%>
 	           </td>
@@ -92,6 +92,9 @@
 	           </td>
 	           </c:if>         
 	         </tr>
+	         <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
+			 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
+			 <input type="hidden" name="actdnum" value="${map.ACTDNUM}" />  
 	        </c:forEach>
         </c:if>
                   
@@ -99,7 +102,8 @@
 		 <tr>
 		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		 </tr>
-	 	</c:if> 
+		 </c:if> 
+		 
       </table>
       
       </form>
