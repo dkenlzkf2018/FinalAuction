@@ -408,6 +408,17 @@ public class LoginController {
 	@RequestMapping(value="/myJoinList.action", method= {RequestMethod.GET})
 	public String myJoinList(HttpServletRequest req) {
 		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		session.setAttribute("loginuser", loginuser);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("usernum", loginuser.getUsernum());
+		
+		List<HashMap<String, String>> JoinList = service.JoinList(map);
+		
 		return "member/myJoinList.tiles";
 	
 	}
