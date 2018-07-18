@@ -14,11 +14,11 @@ public class AuctionDAO implements InterAuctionDAO {
 	private SqlSessionTemplate sqlsession;
 	
 	@Override
-	public int add_auction(HashMap<String, String> map) {
+	public int add_auction(AuctionVO auctionVO) {
 		int result = 0;
-		int m = sqlsession.insert("auction.add_auction", map);
+		int m = sqlsession.insert("auction.add_auction", auctionVO);
 		System.out.println(">> 확인용 dao-1.1 ");
-		int n = sqlsession.insert("auction.add_detail", map);
+		int n = sqlsession.insert("auction.add_detail", auctionVO);
 		
 		if (m + n >= 2) {
 			result = 1;
@@ -28,12 +28,12 @@ public class AuctionDAO implements InterAuctionDAO {
 	}
 
 	@Override
-	public int add_auctionWithFile(HashMap<String, String> map) {
+	public int add_auctionWithFile(AuctionVO auctionVO) {
 		int result = 0;
-		System.out.println(">> 확인용 dao-2 map.get : " + map.get("cdnum"));
-		int m = sqlsession.insert("auction.add_auctionWithFile", map);
+	//	System.out.println(">> 확인용 dao-2 map.get : " + map.get("cdnum"));
+		int m = sqlsession.insert("auction.add_auctionWithFile", auctionVO);
 		System.out.println(">> 확인용 dao-2.1 ");
-		int n = sqlsession.insert("auction.add_detail", map);
+		int n = sqlsession.insert("auction.add_detail", auctionVO);
 		
 		if (m + n >= 2) {
 			result = 1;
@@ -54,6 +54,7 @@ public class AuctionDAO implements InterAuctionDAO {
 		System.out.println(">> 확인용 fk_cdnum : " + fk_cdnum);
 		List<AuctionVO> auctionList = sqlsession.selectList("auction.getAuctionList", fk_cdnum);
 		
+		System.out.println(">> 확인용 auctionList의 Size : "+auctionList.size());
 		return auctionList;
 	}
 
