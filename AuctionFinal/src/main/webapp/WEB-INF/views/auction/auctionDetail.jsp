@@ -249,6 +249,8 @@
               <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
                 <div class="pull-left">                  
+	              <c:if test="${acvo.actd_status == '1'}">
+	              
 	              <label class="control-label">현  재  가  : </label>
 	              <fmt:formatNumber value="${nowprice}" type="number"/>원
               	  
@@ -260,6 +262,18 @@
               	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
               	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
               	  
+              	  </c:if>
+              	  <c:if test="${acvo.actd_status == '0'}">
+	              
+	              <span style="color:red;"><label class="control-label">낙  찰  가  : </label>
+	              <fmt:formatNumber value="${nowprice}" type="number"/>원</span>
+              	  
+              	  <br/>
+              	  <label class="control-label">시  작  가  : </label>
+              	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
+              	  <br/>
+              	  
+              	  </c:if>
                 </div>
                 <form name="tenderFrm">
                 	<input type="hidden" name="actnum" value="${acvo.actnum}"/>
