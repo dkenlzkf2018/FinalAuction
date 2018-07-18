@@ -14,7 +14,7 @@
 	function goMyInfo() {
 		
 		$("#myInfo").hide();
-		$("#MyJoinListFrm").hide();
+		$("#myjoinList").hide();
 		$("#myPageFrm").show();
 		
 	}

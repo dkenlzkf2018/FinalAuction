@@ -35,7 +35,7 @@
 <div class="row margin-bottom-40">
   <!-- BEGIN CONTENT -->
 <div class="col-md-12 col-sm-12">
-  <h1>낙찰 목록</h1>
+  <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 낙찰 목록</h1>
   <div class="goods-page">
     <div class="goods-data clearfix">
       <div class="table-wrapper-responsive">
@@ -51,8 +51,7 @@
         
         <c:if test="${JoinList != null}">
 	        <c:forEach var="map" items="${JoinList}">
-	         <tr class="ssi" style="margin-left:5%;">                  
-	           
+	         <tr class="ssi" style="margin-left:5%;">  
 	           <td class="goods-page-actnnum">
 	             ${map.ACTNUM}
 	           </td>
@@ -74,13 +73,14 @@
                   
         <c:if test="${JoinList == null}">
 		 <tr>
-		  	<td colspan="6">최근 입찰한 상품이 존재하지 않습니다.</td>
+		  	<td colspan="6"><span style="color: red;">입찰한 상품이 존재하지 않습니다.</span></td>
 		 </tr>
 		 </c:if> 
 		 
       </table>
       
       </form>
+      
       </div>
  
     </div>
@@ -94,6 +94,9 @@
 <!-- END PAGINATOR -->
 </div>
 <!-- END CONTENT -->
+<div align="center">
+	<button type="button" class="btn btn-default" id="goBack" onClick="location.href='<%=request.getContextPath()%>/myPage.action';">돌아가기</button>
+</div>
 </div>
 <!-- END SIDEBAR & CONTENT -->
 </div>

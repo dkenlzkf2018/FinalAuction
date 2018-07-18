@@ -76,10 +76,9 @@
 		select joinactnum, actnum, usernum, tenderday, tenderprice, actd_endday
 		from
 		(
-		select to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS fk_actnum, to_char(A.fk_usernum) AS usernum
+		select to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, to_char(A.fk_usernum) AS usernum
 			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
-			 , to_char(A.tenderprice, '999,999,999') AS tenderprice
-			 , to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday
+			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday
 		from tbl_joinaclist A join tbl_auction_detail B
 		on A.fk_actnum = B.actdnum
 		where A.fk_usernum = #{usernum}
