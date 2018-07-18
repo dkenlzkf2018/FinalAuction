@@ -260,10 +260,12 @@
 	              
 	              <span style="color:red;"><label class="control-label">낙  찰  가  : </label>
 	              <fmt:formatNumber value="${nowprice}" type="number"/>원</span>
-              	  
               	  <br/>
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
+              	  <br/>
+              	  <label class="control-label">수       량  : </label>
+              	  <span><fmt:formatNumber value="${acvo.actd_qty}" type="number"/>개</span>
               	  <br/>
               	  
               	  </c:if>
@@ -302,7 +304,7 @@
               	<c:if test="${pr1 < pr2}">
 	               <div class="pull-left">
 	             	  <label class="control-label">수량 : </label>
-	             	  <input type="text" value="${acvo.actd_qty}" />
+	             	  <input type="number" value="${acvo.actd_qty}" min="1" max="100"/>
 	               </div>
 	               <br/><br/><br/>
 	               	
