@@ -17,18 +17,8 @@
 	var actd_price = Number("${acvo.actd_price}");
 	var nowprice = Number("${nowprice}");
 	var actd_status = Number("${acvo.actd_status}");
+	
 	jQuery(document).ready(function () {
-		
-		/* if ((nowprice < actd_price) && actd_status == 1) {
-			loopshowNowTime();
-		} else if ((nowprice == actd_price) && actd_status == 1) {
-			var frm = document.tenderFrm;
-			frm.method = "POST";
-			frm.action = "inputAward.action";
-			frm.submit();
-		} else {
-			strNow = "경매종료";
-		} */
 		loopshowNowTime();
 	});
 	
@@ -38,7 +28,6 @@
 		var endTime = parseInt(end.getTime()/1000);
 		var now = new Date();
 		var nowTime = parseInt(now.getTime()/1000);
-		
 		
 		days = (end - now) / 1000 / 60 / 60 / 24;
 		daysRound = Math.floor(days); 
@@ -93,11 +82,15 @@
 
 	// 구매 후기(구매 게시판 후기)
 	function reviewRegist() {
+		var content = document.getElementById("ep_content").value;
+		var userid = "${sessionScope.loginuser.userid}";
+				
 		var frm = document.reviewFrm;
 		
 		frm.method = "get";
 		frm.action = "reviewRegistLGH.action";
 		frm.submit();
+		
 	}
 	
 	

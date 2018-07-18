@@ -197,23 +197,22 @@ public class BuyListController {
 	
 	@RequestMapping(value="/reviewRegistLGH.action", method={RequestMethod.GET})  
 	public String auctionLogin_reviewRegist(HttpServletRequest req, HttpServletResponse res) {
+				
 		String actdnum = req.getParameter("actdnum");
 		String fk_userid = req.getParameter("fk_userid");
 		String ep_content = req.getParameter("ep_content");
 		String ep_satisfaction = req.getParameter("ep_satisfaction");
 		String msg = "", loc = "";		
-		
+		int n = 0;
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("actdnum", actdnum);
-		map.put("fk_userid", fk_userid);
-		map.put("ep_content", ep_content);
-		map.put("ep_satisfaction", ep_satisfaction);
-		
-		
-		int n = serviceLGH.reviewRegist(map);
-		
+		if (fk_userid.trim() != "" || ep_content.trim() != "") { 
+			map.put("actdnum", actdnum);
+			map.put("fk_userid", fk_userid);
+			map.put("ep_content", ep_content);
+			map.put("ep_satisfaction", ep_satisfaction);
+			n = serviceLGH.reviewRegist(map);
+		}
 		List<HugiBoardVO> hugiBoardList = serviceLGH.getReviewByActdnum(actdnum);
-		
 		if(n == 1) {
 			msg = "댓글 등록 완료";
 			loc = "viewAuction.action?actdnum="+actdnum+"&hugiBoardList="+hugiBoardList;
