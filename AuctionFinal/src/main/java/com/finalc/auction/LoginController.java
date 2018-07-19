@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.service.InterLoginService;
+import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.model.ZipcodeVO;
 
@@ -404,4 +405,33 @@ public class LoginController {
 		return "myInfoEditEnd.notiles";
 	}
 	
+	@RequestMapping(value="/myJoinList.action", method= {RequestMethod.GET})
+	public String myJoinList(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		
+		session.setAttribute("loginuser", loginuser);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("usernum", loginuser.getUsernum());
+		map.put("coin", loginuser.getCoin());
+		
+		List<HashMap<String, String>> JoinList = new ArrayList<HashMap<String, String>>();
+		
+		JoinList = service.JoinList(map);
+		
+		req.setAttribute("JoinList", JoinList);
+		
+		return "member/myJoinList.tiles";
+	
+	}
+	
+	@RequestMapping(value="/plusCoin.action", method= {RequestMethod.POST})
+	public String myCoinPlus(HttpServletRequest req) {
+		
+		return "member/plusCoin.tiles";
+	}
+
 }
