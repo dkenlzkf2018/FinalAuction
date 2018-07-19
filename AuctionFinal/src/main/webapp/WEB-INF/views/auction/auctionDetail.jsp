@@ -143,6 +143,10 @@
 			}
 		}
 	}
+	
+	function menu(me) {
+		
+	}
 </script>
 
 <div class="main">
@@ -156,42 +160,25 @@
     <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="row margin-bottom-40">
       <!-- BEGIN SIDEBAR -->
-      
       <div class="sidebar col-md-3 col-sm-5">
-      
         <ul class="list-group margin-bottom-25 sidebar-menu">
-        <c:forEach var="categoryvo" items="${categoryList}">
-          <li class="list-group-item clearfix dropdown active">
-            <a href="shop-product-list.html" data-toggle="collapsed">
-              <i class="fa fa-angle-right"></i>${categoryvo.cname}
+        
+        <c:forEach var="categoryvo" items="${categoryList}" varStatus="status">
+          <li style="cursor:pointer;" class="list-group-item clearfix dropdown">
+            <a class="collapsed" data-target="menu${status.index}">
+              <i class="fa fa-angle-right"></i>
+              ${categoryvo.cname}
             </a>
             
-            <c:forEach var="categoryDetailvo" items="${categoryDetailList}">
-	              		
-            <ul class="dropdown-menu" style="display:block;">
-              <li class="list-group-item dropdown clearfix active">
+            
+            <ul class="dropdown-menu" style="display:none;" id="menu"${status.index}>
+            <c:forEach var="categoryDetailvo" items="${categoryDetailList}">              
               	<c:if test="${categoryvo.cnum eq categoryDetailvo.fk_cnum}">
-                <a href="/auction/AuctionShow.action?fk_cdnum=${categoryDetailvo.cdnum}" class="collapsed"><i class="fa fa-angle-right"></i> ${categoryDetailvo.cdname} </a>
-                  <ul class="dropdown-menu" style="display:block;">
-                    <li class="list-group-item dropdown clearfix">
-                      <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 1</a></li>
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 2</a></li>
-                      </ul>
-                    </li>
-                    <li class="list-group-item dropdown clearfix active">
-                      <a href="shop-product-list.html" class="collapsed"><i class="fa fa-angle-right"></i> Sport  </a>
-                      <ul class="dropdown-menu" style="display:block;">
-                        <li class="active"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 1</a></li>
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 2</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                  </c:if>
-              </li>           
+                	<li><a href="/auction/AuctionShow.action?fk_cdnum=${categoryDetailvo.cdnum}"><i class="fa fa-angle-right"></i> ${categoryDetailvo.cdname}</a></li>
+                </c:if>
+            </c:forEach>         
             </ul>
-            </c:forEach>
+            
           </li>
           </c:forEach>
         </ul>
