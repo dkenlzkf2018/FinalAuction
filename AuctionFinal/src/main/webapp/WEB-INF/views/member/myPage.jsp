@@ -47,8 +47,9 @@
 </script>
 
 <h1 align="center"><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 페이지</h1>
+<h4 align="center">판매등급 : ${sessionScope.loginuser.grade}</h4>
+<h4 align="center">보유코인 : <c:if test="${sessionScope.loginuser.coin == null && sessionScope.loginuser.coin == 0}">0</c:if>POINT</h4>
 <form name="myPageFrm" id="myPageFrm" method="post">
-	
 	<div class="main" align="center" style="margin-top: 50px;">
       <div class="container">
           <div>

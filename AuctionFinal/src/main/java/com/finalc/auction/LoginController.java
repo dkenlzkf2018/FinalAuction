@@ -416,6 +416,7 @@ public class LoginController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		map.put("usernum", loginuser.getUsernum());
+		map.put("coin", loginuser.getCoin());
 		
 		List<HashMap<String, String>> JoinList = new ArrayList<HashMap<String, String>>();
 		

@@ -953,7 +953,7 @@ commit;
 commit;
 
 
-select A.joinactnum, A.fk_actnum, C.actname, A.fk_usernum, A.tenderday, A.tenderprice, B.actd_endday
+select C.actimage, A.joinactnum, A.fk_actnum, C.actname, A.fk_usernum, A.tenderday, A.tenderprice, B.actd_endday
 from tbl_joinaclist A join tbl_auction_detail B
 on A.fk_actnum = B.actdnum
 join tbl_auction C
