@@ -427,5 +427,11 @@ public class LoginController {
 		return "member/myJoinList.tiles";
 	
 	}
+	
+	@RequestMapping(value="/plusCoin.action", method= {RequestMethod.POST})
+	public String myCoinPlus(HttpServletRequest req) {
+		
+		return "member/plusCoin.tiles";
+	}
 
 }

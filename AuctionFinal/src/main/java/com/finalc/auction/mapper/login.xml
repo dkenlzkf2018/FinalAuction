@@ -79,7 +79,7 @@
 		from
 		(
 		select C.actimage, to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, C.actname, to_char(A.fk_usernum) AS usernum
-			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday, B.coin
+			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
 			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday
 		from tbl_joinaclist A join tbl_auction_detail B
 		on A.fk_actnum = B.actdnum

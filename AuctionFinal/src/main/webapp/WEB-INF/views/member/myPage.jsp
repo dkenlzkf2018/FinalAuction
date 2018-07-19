@@ -9,12 +9,14 @@
 		
 		$("#myPageFrm").hide();
 		$("#MyJoinListFrm").hide();
+		$("#plusCoinFrm").hide();
 	});
 	
 	function goMyInfo() {
 		
 		$("#myInfo").hide();
 		$("#myjoinList").hide();
+		$("#plusCoinFrm").hide();
 		$("#myPageFrm").show();
 		
 	}
@@ -36,19 +38,37 @@
 				
 		$("#myInfo").hide();
 		$("#myPageFrm").hide();
+		$("#plusCoinFrm").hide();
 		$("#MyJoinListFrm").show();
+		
 		
 		frm.action="myJoinList.action"
 		frm.method="get";
 		frm.submit();
 		
 	}
+	
+	function goPlusCoin() {
+		
+		$("#myInfo").hide();
+		$("#myjoinList").hide();
+		$("#myPageFrm").hide();
+		$("#MyJoinListFrm").hide();
+		$("#plusCoinFrm").show();
+		
+		var frm = document.plusCoinFrm;
+		
+		frm.action="plusCoin.action";
+		frm.method="post";
+		frm.submit();
+	}
 
 </script>
 
 <h1 align="center"><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 페이지</h1>
 <h4 align="center">판매등급 : ${sessionScope.loginuser.grade}</h4>
-<h4 align="center">보유코인 : <c:if test="${sessionScope.loginuser.coin == null && sessionScope.loginuser.coin == 0}">0</c:if>POINT</h4>
+<h4 align="center">보유코인 : <span style="color: pink; font-weight: bold;">${sessionScope.loginuser.coin}</span> POINT</h4>
+
 <form name="myPageFrm" id="myPageFrm" method="post">
 	<div class="main" align="center" style="margin-top: 50px;">
       <div class="container">
@@ -85,10 +105,14 @@
 <form name="MyJoinListFrm" id="MyJoinListFrm">
 </form>
 
+<form name="plusCoinFrm" id="plusCoinFrm">
+</form>
+
 <form name="InfoFrm" method="post">
 	<div align="center" style="margin-bottom: 20px;">
 		<button type="button" class="btn btn-default" id="myInfo" onClick="goMyInfo();">내 정보 보기</button>
 		<button type="button" class="btn btn-default" id="myjoinList" onClick="goMyJoinList();">내 입찰목록</button>
+		<button type="button" class="btn btn-default" id="plusCoin" onClick="goPlusCoin();">코인 충전하기</button>
 	</div>
 </form>
 
