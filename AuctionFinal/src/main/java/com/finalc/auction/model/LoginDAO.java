@@ -63,6 +63,18 @@ public class LoginDAO implements InterLoginDAO {
 		return n;
 	}
 
+	@Override
+	public List<HashMap<String, String>> JoinList(HashMap<String, String> map) {
+		List<HashMap<String,String>> JoinList = sqlsession.selectList("login.JoinList", map);
+		return JoinList;
+	}
+
+	@Override
+	public int getTotalCount() {
+		int n = sqlsession.selectOne("login.getTotalCount");
+		return n;
+	}
+
 
 
 }

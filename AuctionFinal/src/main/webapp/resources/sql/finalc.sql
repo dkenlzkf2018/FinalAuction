@@ -15,12 +15,16 @@ select ep_boardno, fk_userid
     , ep_content, ep_writeday, ep_satisfaction, ep_boardstatus
 from tbl_hugiboard;
 
+select A.JOINACTNUM, A.FK_ACTNUM, A.FK_USERNUM, A.TENDERDAY, A.TENDERPRICE, B.ACTD_ENDDAY
+from tbl_joinaclist A join tbl_auction_detail B
+on A.fk_actnum = B.ACTDNUM
+where A.fk_usernum = (select usernum from TBL_MEMBER_DETAIL where usernum = 2);
 
 
-select count(*)
+select *
 		from tbl_member A join tbl_member_detail B
 		on A.userid = B.fk_userid
-    where userid = 'dkenlzkf';
+    where usernum = 2;
 
 select *
 delete from tbl_member;
@@ -32,24 +36,13 @@ where userid = 'leess';
 
 delete from tbl_member_detail
 where fk_userid = 'admin';
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 select *
 from tbl_member_detail;
-=======
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
-=======
 
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
-
-=======
 select ZIPCODE, SIDO||' '||SIGUNGU||' '||EUPMYUN||' '||DORO AS address
 from tbl_zipcode
 where sido like '%' || '강원도' || '%';
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 select userid, passwd, email, username, email, hp1
      , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
@@ -961,3 +954,15 @@ commit;
 
 commit;
 
+
+select C.actimage, A.joinactnum, A.fk_actnum, C.actname, A.fk_usernum, A.tenderday, A.tenderprice, B.actd_endday
+from tbl_joinaclist A join tbl_auction_detail B
+on A.fk_actnum = B.actdnum
+join tbl_auction C
+on A.fk_actnum = C.actnum
+where A.fk_usernum = (select usernum from tbl_member_detail where usernum = 2)
+
+
+select count(*)
+		from tbl_joinaclist
+		where fk_usernum = 2
