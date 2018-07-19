@@ -5,7 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <STYLE type="text/css">
-	
+	.auction {
+		margin:10px;
+	}
 </STYLE>
 
 <Script type="text/javascript">
@@ -30,34 +32,38 @@
 	</div>
 </div>
 <div class="row">
-
 <c:forEach var="auctionvo" items="${auctionList}">
-	<c:if test="${ auctionvo.fk_cdnum == fk_cdnum || fk_cdnum == null}" >
-		<form>
-		<div class="auction" onClick="goProductPage(${auctionvo.actnum})">
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="product-item">
-					<div class="pi-img-wrapper">
-						<img src="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" width="100%" class="img-responsi ve" alt="${auctionvo.orgFilename}" />
-						<div>
-							<a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
-							<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-						</div>
+	<c:if test="${auctionvo.fk_cdnum == fk_cdnum || fk_cdnum == null}" >
+		<form class="auction" onClick="goProductPage(${auctionvo.actnum})">
+			<div class="product-item col-md-3 col-sm-6 col-xs-12">
+				<div class="pi-img-wrapper" align="center">
+					<img src="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" 
+						 class="img-responsive" 
+						 alt="${auctionvo.orgFilename}" 
+						 style="width:auto; height:200px;"
+						/>
+					<div>
+						<a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
+						<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
 					</div>
-					<h3><a onClick="goProductPage(${auctionvo.actnum})">${auctionvo.actname}</a></h3>
-					<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
-					<div class="row"></div>
-					<div class="pi-price">즉시구매가 : ${auctionvo.actd_price} 원</div>
-					<div class="row"></div>
-					<div class="">${auctionvo.actd_endday} 까지</div>
-					<div class="row"></div>
-					<a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
 				</div>
+				<h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
+				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+				<div class="row"></div>
+				<div class="pi-price">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div class="row"></div>
+				<div class="">${auctionvo.actd_endday} 까지</div>
+				<div class="row"></div>
+				<a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
 			</div>
-		</div>
 		</form>
 	</c:if>
 </c:forEach>
+<c:if test="${empty auctionList}" >
+	<div >
+		<h2 align="center">해당 카테고리에는 상품이 없습니다....</h2>
+	</div>
+</c:if>
 </div>
 </div>
 <div class="row" style="margin-top:10pt; margin-bottom:10pt;"></div>

@@ -7,7 +7,7 @@
 <mapper namespace="login">
 	<select id="getLoginMember" parameterType="HashMap" resultType="com.finalc.auction.model.MemberVO">
 		select userid, passwd, email, username, email, usernum, hp1
-		     , hp2, hp3, addr1, addr2, user_status, gender, birth, grade
+		     , hp2, hp3, addr1, addr2, user_status, gender, birth, grade, coin
 		from
 		(
 		select *
@@ -75,7 +75,7 @@
 	</resultMap>
 	
 	<select id="JoinList" parameterType="HashMap" resultMap="getBuyListMap">
-		select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, actd_endday, coin
+		select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, actd_endday
 		from
 		(
 		select C.actimage, to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, C.actname, to_char(A.fk_usernum) AS usernum
