@@ -13,9 +13,13 @@
 
 <script type="text/javascript">
 	
+	// div태그에 보여질 시간, 경매종료, 텍스트
 	var strNow = "";
+	// tbl_auction_detail에서 상품의 즉시구매가를 가져온다.
 	var actd_price = Number("${acvo.actd_price}");
+	// 현재가를 얻어온다.
 	var nowprice = Number("${nowprice}");
+	// tbl_auction_detail에서 상품의 상태를 가져온다.(0이면 상품경매종료, 1이면 상품경매중)
 	var actd_status = Number("${acvo.actd_status}");
 	
 	jQuery(document).ready(function () {
@@ -82,11 +86,10 @@
 
 	// 구매 후기(구매 게시판 후기)
 	function reviewRegist() {
-		var content = document.getElementById("ep_content").value;
+		var content = document.getElementById("ep_content").value.trim();
 		var userid = "${sessionScope.loginuser.userid}";
-				
-		var frm = document.reviewFrm;
 		
+		var frm = document.reviewFrm;
 		frm.method = "get";
 		frm.action = "reviewRegistLGH.action";
 		frm.submit();
@@ -97,6 +100,7 @@
 	
 	// 입찰하기 버튼
 	function goTender() {
+				
 		if (strNow == "경매종료" || actd_price == nowprice) {
 			alert("경매종료된 상품입니다.");
 			return false;
@@ -146,24 +150,28 @@
     <ul class="breadcrumb">
         <li><a href="index.action">Home</a></li>
         <li>${cvo.cname}</li>
-        <li><a href="">${cvo.cdname}</a></li>
+        <li><a href="/auction/AuctionShow.action?fk_cdnum=${cvo.cdnum}">${cvo.cdname}</a></li>
         <li class="active">${acvo.actname}</li>
     </ul>
     <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="row margin-bottom-40">
       <!-- BEGIN SIDEBAR -->
+      
       <div class="sidebar col-md-3 col-sm-5">
+      
         <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
+        <c:forEach var="categoryvo" items="${categoryList}">
           <li class="list-group-item clearfix dropdown active">
-            <a href="shop-product-list.html" class="collapsed">
-              <i class="fa fa-angle-right"></i>
-              Mens
-              
+            <a href="shop-product-list.html" data-toggle="collapsed">
+              <i class="fa fa-angle-right"></i>${categoryvo.cname}
             </a>
+            
+            <c:forEach var="categoryDetailvo" items="${categoryDetailList}">
+	              		
             <ul class="dropdown-menu" style="display:block;">
               <li class="list-group-item dropdown clearfix active">
-                <a href="shop-product-list.html" class="collapsed"><i class="fa fa-angle-right"></i> Shoes </a>
+              	<c:if test="${categoryvo.cnum eq categoryDetailvo.fk_cnum}">
+                <a href="/auction/AuctionShow.action?fk_cdnum=${categoryDetailvo.cdnum}" class="collapsed"><i class="fa fa-angle-right"></i> ${categoryDetailvo.cdname} </a>
                   <ul class="dropdown-menu" style="display:block;">
                     <li class="list-group-item dropdown clearfix">
                       <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic </a>
@@ -180,21 +188,14 @@
                       </ul>
                     </li>
                   </ul>
-              </li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Trainers</a></li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Jeans</a></li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Chinos</a></li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> T-Shirts</a></li>
+                  </c:if>
+              </li>           
             </ul>
+            </c:forEach>
           </li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home &amp; Garden</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li>
+          </c:forEach>
         </ul>
+        
 
         <div class="sidebar-products clearfix">
           <h2>Bestsellers</h2>
@@ -213,8 +214,11 @@
             <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
             <div class="price">$86.00</div>
           </div>
+          
         </div>
+        
       </div>
+      
       <!-- END SIDEBAR -->
 
       <!-- BEGIN CONTENT -->
@@ -230,15 +234,16 @@
               
               
               <div class="product-main-image">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg" alt="${acvo.actname}" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/assets/pages/img/products/model7.jpg">
+                <img src="<%=request.getContextPath() %>/resources/actimages/${acvo.actimage}" alt="${acvo.actname}" class="img-responsive" data-BigImgsrc="<%=request.getContextPath() %>/resources/actimages/${acvo.actimage}">
               </div>
-              <div class="product-other-images">
+              <%-- 세부이미지 아직 상품등록에 없음..
+              	<div class="product-other-images">
                 <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg"></a>
                 <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model4.jpg"></a>
                 <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model5.jpg"></a>
-              </div>
+              </div> --%>
             </div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6 col-sm-12">
               <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
                 <div class="pull-left">                  
@@ -246,26 +251,30 @@
 	              
 	              <label class="control-label">현  재  가  : </label>
 	              <fmt:formatNumber value="${nowprice}" type="number"/>원
-              	  
-              	  <br/>
+              	  &nbsp;/&nbsp;
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
               	  <br/>
               	  
               	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
-              	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
+              	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price * acvo.actd_qty}" type="number"/>원</strong></span>
+              	  <br/>
+              	  
+              	  <%-- <label class="control-label">수       량  : </label>
+              	  <span><fmt:formatNumber value="${acvo.actd_qty}" type="number"/>개</span> --%>
+              	  <br/>
               	  
               	  </c:if>
               	  <c:if test="${acvo.actd_status == '0'}">
 	              
 	              <span style="color:red;"><label class="control-label">낙  찰  가  : </label>
-	              <fmt:formatNumber value="${nowprice}" type="number"/>원</span>
-              	  <br/>
+	              <fmt:formatNumber value="${nowprice * acvo.actd_qty}" type="number"/>원</span>
+              	  &nbsp;/&nbsp;
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
               	  <br/>
-              	  <label class="control-label">수       량  : </label>
-              	  <span><fmt:formatNumber value="${acvo.actd_qty}" type="number"/>개</span>
+              	  <%-- <label class="control-label">수       량  : </label>
+              	  <span><fmt:formatNumber value="${acvo.actd_qty}" type="number"/>개</span> --%>
               	  <br/>
               	  
               	  </c:if>
@@ -302,11 +311,11 @@
               <div class="product-page-cart">
               <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
               	<c:if test="${pr1 < pr2}">
-	               <div class="pull-left">
+	               <!-- <div class="pull-left">
 	             	  <label class="control-label">수량 : </label>
-	             	  <input type="number" value="${acvo.actd_qty}" min="1" max="100"/>
+	             	  <input id="qty" name="qty" type="number" value="1" min="1" max="100"/>
 	               </div>
-	               <br/><br/><br/>
+	               <br/><br/><br/> -->
 	               	
 	              	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
 	              	
@@ -351,7 +360,7 @@
             <div class="product-page-content">
               <ul id="myTab" class="nav nav-tabs">
                 <li><a href="#Description" data-toggle="tab">Description</a></li>
-                <li><a href="#Information" data-toggle="tab">Information</a></li>
+                <!-- <li><a href="#Information" data-toggle="tab">Information</a></li> -->
                 <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li>
               </ul>
               <div id="myTabContent" class="tab-content">
@@ -359,7 +368,7 @@
                   <p>${acvo.actd_content}</p>
                 </div>
 <%-- 규호 정보!!////////////////////////////////////////////////////////////////// --%>                
-                <div class="tab-pane fade" id="Information">
+                <!-- <div class="tab-pane fade" id="Information">
                   <table class="datasheet">
                     <tr>
                       <th colspan="2">Additional features</th>
@@ -385,7 +394,7 @@
                       <td>plastic</td>
                     </tr>
                   </table>
-                </div>
+                </div> -->
                 
 <%-- 규호 리뷰!!////////////////////////////////////////////////////////////////// --%>
                 <div class="tab-pane fade in active" id="Reviews">
@@ -437,7 +446,7 @@
     </div>
     <!-- END SIDEBAR & CONTENT -->
 
-    <!-- BEGIN SIMILAR PRODUCTS -->
+    <!-- BEGIN SIMILAR PRODUCTS --><%-- 
     <div class="row margin-bottom-40">
       <div class="col-md-12 col-sm-12">
         <h2>Most popular products</h2>
@@ -531,7 +540,7 @@
         </div>
       </div>
     </div>
-    <!-- END SIMILAR PRODUCTS -->
+    <!-- END SIMILAR PRODUCTS --> --%>
   </div>
 </div>
 

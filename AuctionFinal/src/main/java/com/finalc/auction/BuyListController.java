@@ -37,22 +37,16 @@ public class BuyListController {
 	
 	// #Buy 2. 구매 리스트 controller 단
 	@RequestMapping(value="/buyList.action", method={RequestMethod.GET})
-	public String buyList(HttpServletRequest req) {
+	public String auctionLogin_buyList(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		HashMap<String, String> map = new HashMap<String, String>();
 		
-		session.setAttribute("loginuser", loginuser);
-				
-		if (loginuser == null) {
-			req.setAttribute("msg", "로그인을 먼저 하십시오!");
-			req.setAttribute("loc", "login.action");
-			return "msg.notiles";
-		} 
-		
-		else {
-			System.out.println("1. 접속한 유저아이디 : " + loginuser.getUserid());
-			HashMap<String, String> map = new HashMap<String, String>();
+		if (loginuser != null) {
+			session.setAttribute("loginuser", loginuser);
 			map.put("usernum", loginuser.getUsernum());
+		
+		
 			// ===== #110. 페이징 처리 하기 =====
 			String str_currentShowPageNo = req.getParameter("currentShowPageNo"); 
 			
@@ -146,9 +140,9 @@ public class BuyListController {
 			req.setAttribute("startRno", startRno);
 			req.setAttribute("endRno", endRno);
 			req.setAttribute("currentShowPageNo", currentShowPageNo);
-			
-			return "buy/buyList.tiles";
-		}
+		}	
+		return "buy/buyList.tiles";
+		
 	}
 	
 	// #Auction 1. 사용자가 경매에 등록한 상품의 정보를 조회한다.
@@ -172,6 +166,8 @@ public class BuyListController {
 		//System.out.println("시작가격 : " + acvo.getStartprice() + "원");
 		// 입찰 수
 		int count = service.getTenderCount(acvo.getActnum());
+		
+		
 		if (tenderprice == null || count == 0) {
 			// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
 			nowprice = acvo.getStartprice();
@@ -180,6 +176,15 @@ public class BuyListController {
 			// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
 			nowprice = tenderprice;
 		}
+		
+		
+	    List<CategoryVO> categoryList = serviceLGH.getCategoryList();
+	      
+	    List<CategoryVO> categoryDetailList = serviceLGH.getCategoryDetailList();
+	      
+	    session.setAttribute("categoryList", categoryList);
+	    session.setAttribute("categoryDetailList", categoryDetailList);
+		
 		int pr1 = Integer.parseInt(nowprice);
 		int pr2 = Integer.parseInt(acvo.getActd_price());
 		req.setAttribute("hugiBoardList", hugiBoardList);
@@ -201,11 +206,12 @@ public class BuyListController {
 		String actdnum = req.getParameter("actdnum");
 		String fk_userid = req.getParameter("fk_userid");
 		String ep_content = req.getParameter("ep_content");
+		System.out.println("ep_content : " + ep_content);
 		String ep_satisfaction = req.getParameter("ep_satisfaction");
 		String msg = "", loc = "";		
 		int n = 0;
 		HashMap<String, String> map = new HashMap<String, String>();
-		if (fk_userid.trim() != "" || ep_content.trim() != "") { 
+		if (fk_userid.trim() != "" && !ep_content.trim().isEmpty()) { 
 			map.put("actdnum", actdnum);
 			map.put("fk_userid", fk_userid);
 			map.put("ep_content", ep_content);
@@ -233,6 +239,14 @@ public class BuyListController {
 		System.out.println("tender.action(입찰) 시작");
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		if (loginuser == null) {
+			String msg = "먼저 로그인 하십시오.";
+			String loc = "javascript:self.close();";
+			req.setAttribute("msg", msg);
+			req.setAttribute("loc", loc);
+			return "msg.notiles";
+		}
+		else {
 		String actnum = req.getParameter("actnum");
 		String actname = req.getParameter("actname");
 		String actd_endday = req.getParameter("actd_endday");
@@ -249,18 +263,12 @@ public class BuyListController {
 		map.put("startprice", startprice);
 		map.put("actd_price", actd_price);
 		
-		
-		
 		System.out.println("BuyListController.java 상품명 : " + actname);
-		if (loginuser == null) {
-			req.setAttribute("msg", "로그인을 먼저 하십시오!");
-			req.setAttribute("loc", "login.action");
-			return "msg.notiles";
-		}
-		else {
-			req.setAttribute("map", map);
-			req.setAttribute("nowprice", nowprice);
-			return "tender.notiles";
+		
+		req.setAttribute("map", map);
+		req.setAttribute("nowprice", nowprice);
+		
+		return "tender.notiles";
 		}
 	}
 	
@@ -280,7 +288,7 @@ public class BuyListController {
 			System.out.println("actnum : " + actnum);
 			String actd_price = req.getParameter("actd_price");
 			System.out.println("actd_price : " + actd_price);
-			// if (tenderprice == null) {
+			
 			
 			String actdnum = req.getParameter("actdnum");
 			HashMap<String, String> map = new HashMap<String, String>();
@@ -291,8 +299,10 @@ public class BuyListController {
 			// 경매 입찰
 			int result = service.inputTender(map);
 			if (result > 0) {
+				// 수량 업데이트
 				req.setAttribute("msg", "즉시 구매 성공!!");
 				req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);
+				// update
 				return "msg.notiles";
 			}
 			else {
@@ -368,6 +378,7 @@ public class BuyListController {
 			try {
 				award = service.inputAward_transaction(map);
 				if (award == 3) {
+					// 수량 업데이트
 					req.setAttribute("msg", "경매가 종료되었습니다.");
 					req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);									
 				}
