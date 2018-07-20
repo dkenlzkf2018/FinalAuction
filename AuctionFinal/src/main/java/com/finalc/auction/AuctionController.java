@@ -336,4 +336,11 @@ public class AuctionController {
 		return "auction/AuctionShow.tiles";
 	}
 	
+	// 날씨 정보 단
+//	@RequestMapping(value="/AuctionWeath.action", method={RequestMethod.GET})  
+//	public String WeathAuction(HttpServletRequest req, HttpServletResponse res) {
+	
+	//	String 
+		
+//	}
 }
