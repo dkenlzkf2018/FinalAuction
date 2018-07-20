@@ -43,6 +43,10 @@
 		secondsRound = Math.round(seconds);
 
 		if (nowTime < endTime) {
+			if (actd_status == 1) {
+				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
+			}
+			/* 
 			if (nowprice != actd_price && actd_status == 1) {
 				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
 			}
@@ -52,9 +56,9 @@
 				frm.method = "POST";
 				frm.action = "inputAward.action";
 				frm.submit();
-			}else {
+			} else {
 				strNow = "경매종료";
-			}
+			}*/
 		}
 		else if (nowTime == endTime && actd_status == 1){
 			strNow = "경매종료";

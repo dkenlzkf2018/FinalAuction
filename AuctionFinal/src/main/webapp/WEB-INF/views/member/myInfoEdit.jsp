@@ -39,7 +39,7 @@
           
           self.window.close();
           
-          javascript:history.go(-2);
+          javascript.history.go(-2);
           
           return;
       }

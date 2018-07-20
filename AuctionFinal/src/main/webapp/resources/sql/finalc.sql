@@ -29,6 +29,9 @@ select *
 select *
 delete from tbl_member;
 
+update tbl_member_detail set coin = 5000
+where fk_userid = 'dkenlzkf';
+
 
 select userid, passwd, email, username, hp1
 delete from tbl_member

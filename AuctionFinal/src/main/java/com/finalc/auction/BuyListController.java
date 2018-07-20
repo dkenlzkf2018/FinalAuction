@@ -159,6 +159,18 @@ public class BuyListController {
 		AuctionVO acvo = service.viewAuction(actdnum);
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
+		List<AuctionVO> actViewList = (List<AuctionVO>)session.getAttribute("actViewList");
+		
+		if(actViewList == null) actViewList = new ArrayList<AuctionVO>();
+
+		System.out.println("actViewList : " + actViewList);
+		
+		actViewList.add(acvo);
+		
+		System.out.println("actViewList : " + actViewList);
+		
+		session.setAttribute("actViewList", actViewList);
+		
 		String nowprice = "";
 		
 		// 입찰내역 중 최고 입찰금
