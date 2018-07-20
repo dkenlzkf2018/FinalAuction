@@ -47,7 +47,4 @@ public class AdminDAO implements InterAdminDAO {
 		return n;
 	}
 	
-	// 일반게시판 단
-	
-	
 }

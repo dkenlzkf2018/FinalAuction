@@ -337,10 +337,11 @@ public class AuctionController {
 	}
 	
 	// 날씨 정보 단
-//	@RequestMapping(value="/AuctionWeath.action", method={RequestMethod.GET})  
-//	public String WeathAuction(HttpServletRequest req, HttpServletResponse res) {
+/*	@RequestMapping(value="/AuctionWeath.action", method={RequestMethod.GET})  
+	public String WeathAuction(HttpServletRequest req, HttpServletResponse res) {
 	
-	//	String 
+		String Weather = req.getParameter(name);
 		
-//	}
+		
+	}*/
 }

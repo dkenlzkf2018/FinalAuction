@@ -18,13 +18,5 @@ public interface InterAdminDAO {
 	
 	// 카테고리 삭제 단
 	int delCategory(HashMap<String, String> map);
-	
-	// 게시판 관리 단
-	
-
-	
-
-	
-
-	
+		
 }

@@ -22,17 +22,4 @@ public interface InterAdminService {
 	// 게시판 페이지
 	List<BoardVO> getGenerBoard();
 
-	
-
-	
-
-	
-
-
-
-	
-	
-
-	
-	
 }
