@@ -159,6 +159,7 @@ public class BuyListController {
 		AuctionVO acvo = service.viewAuction(actdnum);
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
+		@SuppressWarnings("unchecked")
 		List<AuctionVO> actViewList = (List<AuctionVO>)session.getAttribute("actViewList");
 		
 		if(actViewList == null) actViewList = new ArrayList<AuctionVO>();
