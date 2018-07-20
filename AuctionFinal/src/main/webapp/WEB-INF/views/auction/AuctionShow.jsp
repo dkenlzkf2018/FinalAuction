@@ -18,6 +18,7 @@
 	
 </Script>
 
+<div class="container">
 <div class="slot">
 <div id="AuctionNav">
 	<h3>전체경매수 <span id="totalCnt" >${totalCnt}</span> 개</h3>
@@ -32,6 +33,7 @@
 	</div>
 </div>
 <div class="row">
+
 <c:forEach var="auctionvo" items="${auctionList}">
 	<c:if test="${auctionvo.fk_cdnum == fk_cdnum || fk_cdnum == null}" >
 		<form class="auction" onClick="goProductPage(${auctionvo.actnum})">
@@ -64,6 +66,7 @@
 		<h2 align="center">해당 카테고리에는 상품이 없습니다....</h2>
 	</div>
 </c:if>
+</div>
 </div>
 </div>
 <div class="row" style="margin-top:10pt; margin-bottom:10pt;"></div>
