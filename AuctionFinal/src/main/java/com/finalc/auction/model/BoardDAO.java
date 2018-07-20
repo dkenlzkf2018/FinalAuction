@@ -180,4 +180,5 @@ public class BoardDAO implements InterBoardDAO {
 	   return newAuctionList;
    }
 
+
 }
