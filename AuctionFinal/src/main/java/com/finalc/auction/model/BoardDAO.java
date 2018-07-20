@@ -171,7 +171,6 @@ public class BoardDAO implements InterBoardDAO {
       return n;
    }// 댓글쓰기 후 댓글갯수 1증가(07.07 11:59 끝)
 
-   
-   
+
 
 }

@@ -202,6 +202,7 @@ public class BoardServive implements InterBoardService {
       return result;
    } // 댓글 쓰기 (07.07 11:56 끝)
 
+
    
    
 

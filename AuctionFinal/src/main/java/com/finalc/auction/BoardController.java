@@ -255,6 +255,7 @@ public class BoardController {
          
          boardvo = service.getWriteView(boardno, userid);
          
+         
          session.removeAttribute("viewcountPermission");
       }
       else {
@@ -331,7 +332,7 @@ public class BoardController {
       // 삭제되어질 글은 자신이 작성한 글이어야만 가능하다.
       // 삭제되어질 글내용을 읽어오면 작성자를 알 수 있다.
       BoardVO boardvo = service.getNoviewCountWriteView(boardno);
-      
+           
       HttpSession session = req.getSession();
       MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
       
@@ -409,6 +410,7 @@ public class BoardController {
       return "writeCommentEndJSON.notiles";
    }// 댓글 쓰기 (07.07 11:52 끝)
    
+  
    // 첨부파일 다운로드 하기 (07.13 10:21 시작)
    @RequestMapping(value="/download.action", method={RequestMethod.GET})
    public void auctionLogin_download(HttpServletRequest req, HttpServletResponse res) {
@@ -584,4 +586,8 @@ public class BoardController {
       }
       
    }// end of void multiplePhotoUpload(HttpServletRequest req, HttpServletResponse res)---------------- 
+   
+   
+   
+   
 }

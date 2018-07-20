@@ -49,5 +49,6 @@ public interface InterBoardDAO {
 
 
 
+
 	
 }
