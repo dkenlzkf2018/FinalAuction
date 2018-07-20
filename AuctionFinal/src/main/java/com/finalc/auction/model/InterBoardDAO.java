@@ -46,6 +46,8 @@ public interface InterBoardDAO {
 
 	int updateCommentCount(String fk_boardno);
 
+	List<AuctionVO> getNewAuctionList();
+
 
 
 
