@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
 
 	jQuery(document).ready(function(){
@@ -17,6 +17,7 @@
 		$("#myInfo").hide();
 		$("#myjoinList").hide();
 		$("#plusCoinFrm").hide();
+		$("#plusCoin").hide();
 		$("#myPageFrm").show();
 		
 	}
@@ -67,7 +68,7 @@
 
 <h1 align="center"><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 페이지</h1>
 <h4 align="center">판매등급 : ${sessionScope.loginuser.grade}</h4>
-<h4 align="center">보유코인 : <span style="color: pink; font-weight: bold;">${sessionScope.loginuser.coin}</span> POINT</h4>
+<h4 align="center">보유코인 : <span style="color: pink; font-weight: bold;"><strong><fmt:formatNumber value="${sessionScope.loginuser.coin}" type="number"/></strong></span>&nbsp;POINT</h4>
 
 <form name="myPageFrm" id="myPageFrm" method="post">
 	<div class="main" align="center" style="margin-top: 50px;">

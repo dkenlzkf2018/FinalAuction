@@ -34,7 +34,21 @@
 </style>
 
 <script type="text/javascript">
-	
+
+var yn = confirm("댓글을 삭제 하시겠습니까?");
+
+if(yn==false) { // 취소를 선택한 경우
+	  return;
+}
+else { // 확인을 선택한 경우
+
+ var frm = document.orderFrm;
+
+
+     frm.method = "post";
+     frm.action = "commentdeleteEnd.action";
+     frm.submit();
+}
 <%-- 
 	function goWrite() {
 		var frm = document.addWriteFrm;
@@ -189,7 +203,10 @@
 						<td style="text-align: left; font-weight: bold;">${commentvo.fk_userid} : </td>
 						<td>${commentvo.cm_content}</td>
 						<td style="text-align: center;">${commentvo.cm_writeday}</td>
+						<td><a href="#">수정</a></td>
+						<td><a href="<%= request.getContextPath() %>/commentdeleteEnd.action">삭제</a></td>
 					</tr>
+					
 				</c:forEach>
 			</c:if> 
 		</table>

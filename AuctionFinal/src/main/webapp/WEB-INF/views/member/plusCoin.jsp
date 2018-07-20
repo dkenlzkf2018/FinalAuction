@@ -31,7 +31,7 @@
 
 
 <div class="col-md-12 col-sm-12">
-  <h1>코인 충전 하기</h1>  
+  <h1 align="center">코인 충전 하기</h1>  
 </div>
 
 <!-- BEGIN PAGINATOR -->
