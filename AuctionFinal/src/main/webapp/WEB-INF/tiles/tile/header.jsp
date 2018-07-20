@@ -37,7 +37,12 @@
                         		<li><a href="myPage.action">My Page</a></li>
                         	</c:if>
                         	<li><a href="AuctionUpload.action">경매 등록</a></li>
-                        	<li><a href="logout.action">Log Out</a></li>
+                        	<li class="dropdown">
+                        		<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="logout.action">Log Out</a>
+                        		<ul class="dropdown-menu">
+                        			<li><a href="#">개인정보</a></li>
+                        		</ul>
+                        	</li>
                         </c:if>
                     </ul>
                 </div>
@@ -138,10 +143,8 @@
             <c:forEach var="categoryvo" items="${categoryList}">
 	        	<li class="dropdown">
 	              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-	                ${categoryvo.cname} 
-	                
+	                ${categoryvo.cname}
 	              </a>
-	                
 	              <!-- BEGIN DROPDOWN MENU -->
 	              <ul class="dropdown-menu">
 	              	<c:forEach var="categoryDetailvo" items="${categoryDetailList}">
