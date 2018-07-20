@@ -10,7 +10,6 @@
 <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"><!-- for slider-range -->
 <link href="<%=request.getContextPath() %>/resources/assets/plugins/rateit/src/rateit.css" rel="stylesheet" type="text/css">
 <!-- Page level plugin styles END -->
-
 <script type="text/javascript">
 	
 	// div태그에 보여질 시간, 경매종료, 텍스트
@@ -23,6 +22,7 @@
 	var actd_status = Number("${acvo.actd_status}");
 	
 	jQuery(document).ready(function () {
+		
 		loopshowNowTime();
 	});
 	
@@ -143,10 +143,6 @@
 			}
 		}
 	}
-	
-	function menu(me) {
-		
-	}
 </script>
 
 <div class="main">
@@ -164,14 +160,14 @@
         <ul class="list-group margin-bottom-25 sidebar-menu">
         
         <c:forEach var="categoryvo" items="${categoryList}" varStatus="status">
-          <li style="cursor:pointer;" class="list-group-item clearfix dropdown">
-            <a class="collapsed" data-target="menu${status.index}">
+          <li class="list-group-item clearfix">
+            <a data-target="#menu${status.index}" data-toggle="dropdown-menu">
               <i class="fa fa-angle-right"></i>
               ${categoryvo.cname}
             </a>
             
             
-            <ul class="dropdown-menu" style="display:none;" id="menu"${status.index}>
+            <ul class="dropdown-menu" id="menu${status.index}" style="display:block;">
             <c:forEach var="categoryDetailvo" items="${categoryDetailList}">              
               	<c:if test="${categoryvo.cnum eq categoryDetailvo.fk_cnum}">
                 	<li><a href="/auction/AuctionShow.action?fk_cdnum=${categoryDetailvo.cdnum}"><i class="fa fa-angle-right"></i> ${categoryDetailvo.cdname}</a></li>
