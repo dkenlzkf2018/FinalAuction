@@ -203,8 +203,7 @@ public class BoardServive implements InterBoardService {
       return result;
    } // 댓글 쓰기 (07.07 11:56 끝)
 
-<<<<<<< HEAD
-=======
+
 @Override
 public List<AuctionVO> getNewAuctionList() {
 	
@@ -212,7 +211,7 @@ public List<AuctionVO> getNewAuctionList() {
 	
 	return newAuctionList;
 }
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+
 
    
    

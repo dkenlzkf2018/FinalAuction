@@ -43,12 +43,9 @@ public interface InterBoardService {
 
 	int writeComment(CommentVO commentvo) throws Throwable;
 
-<<<<<<< HEAD
 
-
-=======
 	List<AuctionVO> getNewAuctionList();
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
+
 
 	
 
