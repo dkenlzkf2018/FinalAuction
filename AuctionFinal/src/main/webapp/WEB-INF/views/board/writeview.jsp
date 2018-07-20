@@ -34,7 +34,8 @@
 </style>
 
 <script type="text/javascript">
-	
+
+
 <%-- 
 	function goWrite() {
 		var frm = document.addWriteFrm;
@@ -157,7 +158,7 @@
 		
 	<br/>
 
-	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/boardlist.action'">목록보기</button> 
+	<button type="button" onClick="javascript:history.back();">목록보기</button> 
 	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/writeedit.action?boardno=${boardvo.boardno}'">수정</button>
 	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/writedel.action?boardno=${boardvo.boardno}'">삭제</button>
 	
@@ -190,6 +191,7 @@
 						<td>${commentvo.cm_content}</td>
 						<td style="text-align: center;">${commentvo.cm_writeday}</td>
 					</tr>
+					
 				</c:forEach>
 			</c:if> 
 		</table>
