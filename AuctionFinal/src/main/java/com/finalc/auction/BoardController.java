@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.finalc.auction.service.InterBoardService;
 import com.finalc.auction.common.FileManager;
 import com.finalc.auction.common.MyUtil;
+import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
@@ -47,11 +48,12 @@ public class BoardController {
    public String index(HttpServletRequest req) {
       HttpSession session = req.getSession();
       List<CategoryVO> categoryList = service.getCategoryList();
-      
       List<CategoryVO> categoryDetailList = service.getCategoryDetailList();
+      List<AuctionVO> newAuctionList = service.getNewAuctionList();
       
       session.setAttribute("categoryList", categoryList);
       session.setAttribute("categoryDetailList", categoryDetailList);
+      session.setAttribute("newAuctionList", newAuctionList);
       
       return "main/index.tiles";
    }

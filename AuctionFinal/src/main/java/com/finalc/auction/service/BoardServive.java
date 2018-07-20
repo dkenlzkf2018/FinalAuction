@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.BoardVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.CommentVO;
@@ -201,6 +202,14 @@ public class BoardServive implements InterBoardService {
       
       return result;
    } // 댓글 쓰기 (07.07 11:56 끝)
+
+@Override
+public List<AuctionVO> getNewAuctionList() {
+	
+	List<AuctionVO> newAuctionList = dao.getNewAuctionList();
+	
+	return newAuctionList;
+}
 
    
    

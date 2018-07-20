@@ -63,7 +63,7 @@ $(document).ready(function() {
 		    self.close();
 			
         } else {
-            location.href="/semic1";
+            location.href="/auction";
             alert("결제에 실패하였습니다.");
        }
 
