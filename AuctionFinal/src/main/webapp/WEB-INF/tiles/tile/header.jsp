@@ -37,11 +37,8 @@
                         		<li><a href="myPage.action">My Page</a></li>
                         	</c:if>
                         	<li><a href="AuctionUpload.action">경매 등록</a></li>
-                        	<li class="dropdown">
-                        		<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="logout.action">Log Out</a>
-                        		<ul class="dropdown-menu">
-                        			<li><a href="#">개인정보</a></li>
-                        		</ul>
+                        	<li>
+                        		<a href="logout.action">Log Out</a>
                         	</li>
                         </c:if>
                     </ul>
