@@ -195,8 +195,6 @@
 	</update>
 <!-- 댓글쓰기 후 댓글갯수 1증가(07.07 12:11 끝) -->
 
-<<<<<<< HEAD
-=======
 <!-- 신상 경매 리스트 -->
 	<select id="newAuctionList" resultType="com.finalc.auction.model.AuctionVO">
 		select actnum, fk_cdnum, actname, actimage, orgfilename, filesize,
@@ -211,6 +209,5 @@
 		order by actd_startday desc
 	</select>
 <!-- 신상 경매 리스트 -->
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 
 </mapper>
