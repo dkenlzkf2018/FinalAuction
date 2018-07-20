@@ -81,7 +81,7 @@
 	                          </div>
 
                         </div>
-                        <form name="inputTenderFrm">
+                        <form name="inputTenderFrm" method="POST">
                         <div class="card-body">
                           <!-- Credit Card -->
                           <div id="pay-invoice">
@@ -97,11 +97,11 @@
                                       </div>
                                       <div class="form-group has-success">
                                           <label for="cc-name" class="control-label mb-1">입찰 수량</label>
-                                          <input id="inputqty" name="inputqty" type="text" class="form-control cc-name valid" value="${map.actd_qty}" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
+                                          <input id="inputqty" name="inputqty" type="text" class="form-control cc-name valid" value="${map.actd_qty}" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" readonly />
                                           <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                       </div>
                                       <div class="form-group">
-                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${nowprice + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
+                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice * map.actd_qty) + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
                                           <input id="tenderprice" name="tenderprice" type="text" class="form-control cc-name valid" data-val="true" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
                                           <!-- <input id="tenderprice" name="tenderprice" type="text" /> -->
                                                                                     원 (콤마','없이 1000원 단위로 입력하세요.)
@@ -114,6 +114,8 @@
                                       </button>
                                       <input type="hidden" name="actnum" value="${map.actnum}" />
                                       <input type="hidden" name="actdnum" value="${map.actdnum}" />
+                                      
+                                      
                                           <%-- <button type="button" onclick="goInput('#tenderprice')">입찰하기</button> --%>
                                       
                                   
@@ -151,7 +153,7 @@
 			var startprice = Number("${map.startprice}");	// 시작가격
 			var priceCtrl = jQuery("#tenderprice").val();	// 입찰가격 (입력값)
 			var endprice = Number("${map.actd_price}");		// 구매가격
-			var qtyCtrl = jQuery("#qty").val();				// 수량 입력값
+			var qtyCtrl = jQuery("#inputqty").val();		// 수량 입력값
 			var startQty = Number("${map.actd_qty}");		// 초기 수량 입력값
 			var nowprice = Number("${nowprice}");			// 현재가
 			var raw = 1000;									// 가격 정해야함
@@ -166,12 +168,19 @@
 				}
 			}
 			
+			for (var i=0; i<qtyCtrl.length; i++) {
+				if (qtyCtrl.charAt(i) != " " && regExp.test(qtyCtrl.charAt(i)) == false) {
+					alert("숫자만 입력하세요");
+					document.inputTenderFrm.inputqty.focus();
+					return false;
+				}
+			}
+			
 			// 입찰 값이 비었을 경우
 			if (priceCtrl.trim() == "") {
 				alert("입찰금액을 입력해주십시오");
 				return false;
 			}
-			
 			
 			var price = 0;
 			// 입찰값이 있다면 price에 집어넣고
@@ -184,25 +193,12 @@
 			}
 			price = Number(price);
 			
-			
-			/* // 수량
-			var qty = 0;
-			if (priceCtrl) {
-				qty = priceCtrl.value;
-			}
-			else {
-				qty = startQty;
-			}
-			qty = Covert.stringToNumber(qty); */
-			
-			
-			
 			// 시작가격보다 입찰가격이 낮은 경우
 			if (price < startprice) {
 				alert("입찰 금액은 시작가격(1000원) 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
-			if (price < nowprice) {
+			if (price <= nowprice) {
 				alert("입찰 금액은 현재가 + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
@@ -228,19 +224,6 @@
 			if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
-			}
-			
-			if (price == endprice) {
-				if(confirm("즉시구매가로 낙찰받으시겠습니까?")) {
-					var frm = document.inputTenderFrm;
-					var url = "<%=request.getContextPath()%>/inputTender.action";
-					frm.method = "POST";
-					frm.action = url;
-					frm.submit();
-				}
-				else {
-					return false;
-				}
 			}
 			
 			else {
