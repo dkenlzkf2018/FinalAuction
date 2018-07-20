@@ -414,6 +414,7 @@ public class BuyListController {
 			return "msg.notiles";
 		}
 		else {
+			//service.update
 			req.setAttribute("msg", "입찰 없이 경매가 종료되었습니다.");
 			req.setAttribute("loc", "index.action");
 			
