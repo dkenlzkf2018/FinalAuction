@@ -488,6 +488,7 @@
 	    	    
 		</div>
       </div>
+      </div>
       <!-- end of weather widget -->      	
         <%-- <div class="content-slider">
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -510,7 +511,7 @@
             </div>
           </div>
         </div> --%>
-      </div>
+      
       <!-- END PROMO -->
     </div>        
     <!-- END TWO PRODUCTS & PROMO -->
