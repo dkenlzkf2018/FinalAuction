@@ -104,10 +104,35 @@
         	return;
         }
 		
-		content.value = content.value.replace(/<p><br><\/p>/gi, "<br>"); //<p><br></p> -> <br>로 변환
-		content.value = content.value.replace(/<\/p><p>/gi, "<br>"); //</p><p> -> <br>로 변환
-		content.value = content.value.replace(/(<\/p><br>|<p><br>)/gi, "<br><br>"); //</p><br>, <p><br> -> <br><br>로 변환
-		content.value = content.value.replace(/(<p>|<\/p>)/gi, ""); //<p> 또는 </p> 모두 제거시
+        // 시간을 구한다!
+        var now = new Date();
+    	
+		var strNow = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+		
+		var hour = "";
+		hour = now.getHours()
+		
+		var minute = "";
+		if(now.getMinutes() < 10) {
+			minute = "0"+now.getMinutes();
+		} else {
+			minute = ""+now.getMinutes();
+		}
+		
+		var starttime = strNow + "T" + hour + ":" + minute;
+        // 현재 시간을 구한다!!
+		
+		console.log("starttime : " + starttime);
+		var actd_endday = document.getElementById("actd_endday").value.trim();
+		console.log("actd_endday : " + actd_endday);
+		if(actd_endday == "") {
+			alert("종료시간을 입력하십시오...");
+			return;
+		}
+		if((actd_endday - starttime) <= 0) {
+			alert("종료시간을 정확히 입력해 주십시오...");
+			return;
+		}
 		
 		var startprice = document.getElementById("startprice").value.trim();
 		if(startprice == "") {
@@ -124,12 +149,6 @@
 		var actd_lowertenderprice = document.getElementById("actd_lowertenderprice").value.trim();
 		if(actd_lowertenderprice == "") {
 			alert("즉시입찰 가격을 입력하십시오...");
-			return;
-		}
-		
-		var actd_endday = document.getElementById("actd_endday").value.trim();
-		if(actd_endday == "") {
-			alert("종료시간을 입력하십시오...");
 			return;
 		}
 		
@@ -157,7 +176,8 @@
 			<th class="names">게시자 아이디</th>
 			<td>
 				<input type="hidden" value="${sessionScope.loginuser.usernum}" name="fk_usernum"/>
-				<input type="text" value="${sessionScope.loginuser.userid}" readonly/>
+				<span>${sessionScope.loginuser.userid}</span>
+				<%-- <input type="text" value="${sessionScope.loginuser.userid}" readonly/> --%>
 			</td>
 		</tr>
 		<TR>

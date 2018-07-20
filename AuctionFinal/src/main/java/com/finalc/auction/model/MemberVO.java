@@ -17,12 +17,13 @@ public class MemberVO {
 	private String hp1;
 	private String hp2;
 	private String hp3;
+	private String coin;
 	
 	public MemberVO() {}
 	
 	public MemberVO(String userid, String passwd, String user_status, String usernum, String username, String birth,
 			String gender, String email, String zipcode, String addr1, String addr2, String grade, String hp1,
-			String hp2, String hp3) {
+			String hp2, String hp3, String coin) {
 		this.userid = userid;
 		this.passwd = passwd;
 		this.user_status = user_status;
@@ -38,6 +39,15 @@ public class MemberVO {
 		this.hp1 = hp1;
 		this.hp2 = hp2;
 		this.hp3 = hp3;
+		this.coin = coin;
+	}
+
+	public String getCoin() {
+		return coin;
+	}
+
+	public void setCoin(String coin) {
+		this.coin = coin;
 	}
 
 	public String getUserid() {
