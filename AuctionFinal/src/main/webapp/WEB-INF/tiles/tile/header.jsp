@@ -62,75 +62,33 @@
         <!-- BEGIN CART -->
         <div class="top-cart-block">
           <div class="top-cart-info">
-            <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-            <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
+          	<c:if test="${empty sessionScope.actViewList}">
+          		<a href="javascript:void(0);" class="top-cart-info-count">0 items</a>
+          	</c:if>
+          	<c:if test="${!empty sessionScope.actViewList}">
+            	<a href="javascript:void(0);" class="top-cart-info-count">${sessionScope.actViewList.size()} items</a>
+            </c:if>
           </div>
           <i class="fa fa-shopping-cart"></i>
-                        
           <div class="top-cart-content-wrapper">
             <div class="top-cart-content">
               <ul class="scroller" style="height: 250px;">
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
-                <li>
-                  <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                  <span class="cart-content-count">x 1</span>
-                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                  <em>$1230</em>
-                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                </li>
+                  <c:if test="${empty sessionScope.actViewList}">
+                  	<li>
+                  	<a>조회하신 경매 상품이 없습니다.</a>
+                  	</li>
+                  </c:if>
+                  <c:if test="${!empty sessionScope.actViewList}">
+                  <c:forEach var="ActViewVO" items="${sessionScope.actViewList}">
+                  	  <li>
+	                  <a href="viewAuction.action?actdnum=${ActViewVO.actdnum}"><img src="<%=request.getContextPath() %>/resources/actimages/${ActViewVO.actimage}" alt="Rolex Classic Watch" width="37" height="34"></a>
+	                  <strong><a href="viewAuction.action?actdnum=${ActViewVO.actdnum}">${ActViewVO.actname}</a></strong>
+	                  <em>${ActViewVO.actd_price}원</em>
+                  	  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                  	  </li>
+                  </c:forEach>
+                  </c:if>
               </ul>
-              <div class="text-right">
-                <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-                <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
-              </div>
             </div>
           </div>            
         </div>
