@@ -94,6 +94,9 @@ public class AuctionController {
 		}
 		//______________________________________첨부파일이 있는경우 파일업로드 하기 끝_______________________________________//
 		
+		String content = auctionVO.getActd_content().replaceAll("\r\n", "<br/>");
+	    auctionVO.setActd_content(content);
+		
 		int n = 0;
 		System.out.println(">> 확인용 n1 : "+n);
 		if(auctionVO.getAttach().isEmpty()) {
