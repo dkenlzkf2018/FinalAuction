@@ -18,42 +18,39 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		
+		$("#btnFind").click(function(){
+			$("#pwdFindFrm").hide();
+		});
 	});
 	
 	function goSerch(){
+		
 		
 		var frm = document.pwdFindFrm;
 		frm.method = "post";
 		frm.action = "pwdFind.action";
 		frm.submit();
 		
-		
 		var method = requestScope.method;
 		var userid = requestScope.userid;
 		var email = requestScope.email;
 		var n = requestScope.n;
 		
-		if(method=="POST" && userid != "" && email != "") {
-			$("#userid").val(userid);
-			$("#email").val(email);
-			$("#n").val(n);
-		}
-		
 		if(method=="POST" && n==1) {
-			$("#div_btnFind").addClass("hidden");
-			$("#div_userid").addClass("hidden");
-			$("#div_email").addClass("hidden");
+			$("#pwdFindFrm").hide();
 		}
 		else if(method=="POST" && (n == -1 || n == 0)) {
-			$("#div_btnFind").removeClass("hidden");
-			$("#div_userid").removeClass("hidden");
-			$("#div_email").removeClass("hidden");
+			$("#pwdFindFrm").hide();
 		}		
 				
 	}
 	
 	function goConfirm(){
+		
+		$("#pwdFindFrm").hide();
+		$("#div_userid").hide();
+		$("#div_email").hide();
+		$("#div_btnFind").hide();
 		
 		if( $("#input_confirmCode").val() == "${certificationCode}") {
 			alert("인증성공 되었습니다.");
@@ -73,19 +70,24 @@
 </script>
 
 
-<form name="pwdFindFrm">
+<form name="pwdFindFrm" id="pwdFindFrm">
    <div id="div_userid" align="center">
       <span style="color: blue; font-size: 12pt;">아이디</span><br/> 
-      <input type="text" name="userid" id="userid" size="15" value="${userid}" placeholder="ID" required />
+      <input type="text" name="userid" id="userid" size="15"placeholder="ID" required />
    </div>
-   
    <div id="div_email" align="center">
    	  <span style="color: blue; font-size: 12pt;">이메일</span><br/>
-      <input type="text" name="email" id="email" value="${email}" size="15" placeholder="abd@def.com" required />
+      <input type="text" name="email" id="email" size="15" placeholder="abd@def.com" required />
    </div>
    <input type="hidden" name="n" id="n" value="${n}"/>
    
+   <div id="div_btnFind" align="center">
+		<br/><button type="button" id="btnFind" onClick="goSerch();">찾기</button>
+	</div>
 </form>
+
+
+<form name="findResultFrm" id="findResultFrm">
 <div id="div_findResult" align="center">
    <c:if test="${n == 1}">
       <div id="pwdConfirmCodeDiv">
@@ -95,10 +97,6 @@
       	 <br/><br/>
       	 <button type="button" id="btnConfirmCode" onClick="goConfirm();">인증하기</button>    
       </div>
-   </c:if>
-   
+   </c:if>   
 </div>
-
-<div id="div_btnFind" align="center">
-		<br/><button type="button" id="btnFind" onClick="goSerch();">찾기</button>
-</div>
+</form>
