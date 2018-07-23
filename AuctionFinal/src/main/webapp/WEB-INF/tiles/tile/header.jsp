@@ -23,21 +23,20 @@
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="shop-account.html">My Account</a></li>
                         <li><a href="buyList.action">낙찰 목록</a></li>
                         <li><a href="boardlist.action">자유게시판</a></li>
                         <c:if test="${sessionScope.loginuser == null}">
                         	<li><a href="login.action">Log In</a></li>
                         </c:if>
                         <c:if test="${sessionScope.loginuser != null}">
+                        	<li><a href="AuctionUpload.action">경매 등록</a></li>
                         	<c:if test="${sessionScope.loginuser.userid eq 'admin'}">
                         		<li><a href="adminMain.action">Admin Page</a></li>
                         	</c:if>
                         	<c:if test="${!(sessionScope.loginuser.userid eq 'admin')}">
                         		<li><a href="myPage.action">My Page</a></li>
                         	</c:if>
-                        	<li><a href="AuctionUpload.action">경매 등록</a></li>
-                        	<li>
+                        	<li class="menubar dropdown">
                         		<a href="logout.action">Log Out</a>
                         	</li>
                         </c:if>
@@ -85,7 +84,7 @@
                   	  </li>
                   </c:forEach>
                   </c:if>
-              </ul>
+              </ul> 
             </div>
           </div>            
         </div>
