@@ -101,7 +101,7 @@
                                           <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                       </div>
                                       <div class="form-group">
-                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice * map.actd_qty) + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
+                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice) + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
                                           <input id="tenderprice" name="tenderprice" type="text" class="form-control cc-name valid" data-val="true" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
                                           <!-- <input id="tenderprice" name="tenderprice" type="text" /> -->
                                                                                     원 (콤마','없이 1000원 단위로 입력하세요.)

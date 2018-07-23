@@ -38,13 +38,7 @@
 	
 	<form name="delFrm">
 		<table id="table">
-			<tr>
-				
-				<td>
-					<input type="hidden" name="boardno" value="${boardno}" />
-					
-				</td>
-			</tr>
+			
 		</table>
 		<br/>
 		<button type="button" onClick="goDelete();">삭제</button>
