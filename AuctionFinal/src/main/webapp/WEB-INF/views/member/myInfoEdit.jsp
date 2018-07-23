@@ -31,6 +31,7 @@
          return;
       }      
       else {
+    	 
          var frm = document.RegistFrm;
           
           frm.action="myInfoEditEnd.action";
@@ -38,13 +39,10 @@
           frm.submit();
           
           self.window.close();
+        
+          history.back();
           
-          javascript.history.go(-2);
-          
-          return;
       }
-      
-      location.reload();
       
     }
     
