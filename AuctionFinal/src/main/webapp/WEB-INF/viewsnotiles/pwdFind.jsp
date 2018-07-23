@@ -18,54 +18,18 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		$("#btnFind").click(function(){
-			$("#pwdFindFrm").hide();
-		});
+		
 	});
 	
 	function goSerch(){
 		
-		
 		var frm = document.pwdFindFrm;
 		frm.method = "post";
-		frm.action = "pwdFind.action";
+		frm.action = "pwdFindEnd.action";
 		frm.submit();
 		
-		var method = requestScope.method;
-		var userid = requestScope.userid;
-		var email = requestScope.email;
-		var n = requestScope.n;
-		
-		if(method=="POST" && n==1) {
-			$("#pwdFindFrm").hide();
-		}
-		else if(method=="POST" && (n == -1 || n == 0)) {
-			$("#pwdFindFrm").hide();
-		}		
-				
 	}
 	
-	function goConfirm(){
-		
-		$("#pwdFindFrm").hide();
-		$("#div_userid").hide();
-		$("#div_email").hide();
-		$("#div_btnFind").hide();
-		
-		if( $("#input_confirmCode").val() == "${certificationCode}") {
-			alert("인증성공 되었습니다.");
-			alert($("#userid").val());
-			var frm = document.pwdFindFrm;
-			frm.method = "get"; // 새암호와 새암호확인을 입력받기 위한 폼만을 띄워주기 때문에 get 방식으로 한다.
-			frm.action = "pwdConfirm.action";
-			frm.submit();
-		}
-		else {
-			alert("인증코드를 다시 입력하세요!!");
-			$("#input_confirmCode").val("");
-			$("#input_confirmCode").focus();
-		}
-	}
 	
 </script>
 
@@ -84,19 +48,4 @@
    <div id="div_btnFind" align="center">
 		<br/><button type="button" id="btnFind" onClick="goSerch();">찾기</button>
 	</div>
-</form>
-
-
-<form name="findResultFrm" id="findResultFrm">
-<div id="div_findResult" align="center">
-   <c:if test="${n == 1}">
-      <div id="pwdConfirmCodeDiv">
-      	  인증코드가 ${email}로 발송되었습니다.<br/>
-      	  인증코드를 입력해주세요<br/>
-      	 <input type="text" name="input_confirmCode" id="input_confirmCode" required />
-      	 <br/><br/>
-      	 <button type="button" id="btnConfirmCode" onClick="goConfirm();">인증하기</button>    
-      </div>
-   </c:if>   
-</div>
 </form>
