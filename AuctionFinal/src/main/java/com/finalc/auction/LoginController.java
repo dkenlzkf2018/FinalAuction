@@ -269,7 +269,7 @@ public class LoginController {
 			
 			map.put("userid", userid);
 			map.put("email", email);
-			
+			 
 			n = service.isUserExists(map); 
 			
 			if(n==1) {
