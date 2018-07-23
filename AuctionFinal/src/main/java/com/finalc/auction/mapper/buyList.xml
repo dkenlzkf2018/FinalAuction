@@ -162,7 +162,7 @@
 		where fk_actnum = #{actnum}
 	</update>
 	
-	<insert id="inputDeliver" parameterType="HashMap">
+	<!-- <insert id="inputDeliver" parameterType="HashMap">
 		insert into tbl_deliver(deliverno, fk_usernum, fk_awardnum, deliverstatus, invoiceno, deliverlocation)
 		values(seq_deliver.nextval, #{fk_usernum}, #{AWARDNUM}, default, 's' || to_char(sysdate, 'yyyymmdd') || '-' || seq_deliver.nextval, #{ADDR})
 	</insert>
@@ -177,5 +177,5 @@
 		from tbl_award A join tbl_member_detail B
 		on A.fk_usernum = B.usernum
 		where A.fk_usernum = #{fk_usernum} and A.fk_actdnum = #{actdnum}
-	</select>
+	</select> -->
 </mapper>

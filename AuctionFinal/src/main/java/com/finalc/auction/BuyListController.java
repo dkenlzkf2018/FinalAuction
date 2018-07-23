@@ -398,12 +398,12 @@ public class BuyListController {
 			int award = 0;
 			try {
 				award = service.inputAward_transaction(map);
-				if (award == 3) {
+				if (award == 2) {
 					// 수량 업데이트
 					req.setAttribute("msg", "경매가 종료되었습니다.");
 					req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);									
 				}
-				else if (award != 3){
+				else if (award != 2){
 					req.setAttribute("msg", "낙찰 실패!! 또는 경매가 이미 종료되었습니다.");
 					req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);									
 				}
@@ -414,9 +414,11 @@ public class BuyListController {
 			return "msg.notiles";
 		}
 		else {
-			//service.update
-			req.setAttribute("msg", "입찰 없이 경매가 종료되었습니다.");
-			req.setAttribute("loc", "index.action");
+			int n = service.updateAuctionStatus(map);
+			if (n > 0) {
+				req.setAttribute("msg", "입찰 없이 경매가 종료되었습니다.");
+				req.setAttribute("loc", "index.action");
+			}
 			
 			return "msg.notiles";
 		}
