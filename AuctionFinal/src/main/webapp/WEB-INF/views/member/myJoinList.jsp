@@ -61,7 +61,7 @@
           <th class="goods-page-actimage">상품 이미지</th>
           <th class="goods-page-actnum">상품번호</th>
           <th class="goods-page-actname">상품이름</th>
-          <th class="goods-page-awardnum">낙찰번호</th>          
+          <th class="goods-page-awardnum">입찰번호</th>          
           <th class="goods-page-awardday">구매일자</th>
           <th class="goods-page-awardprice">입찰가</th>
           <th class="goods-page-endday">종료일</th>
@@ -95,7 +95,7 @@
 	        </c:forEach>
         </c:if>
                   
-        <c:if test="${JoinList == null}">
+        <c:if test="${JoinList == null || JoinList == ''}">
 		 <tr>
 		  	<td colspan="7"><span style="color: red;">입찰한 상품이 존재하지 않습니다.</span></td>
 		 </tr>
