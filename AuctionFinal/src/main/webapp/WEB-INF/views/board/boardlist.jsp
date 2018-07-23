@@ -80,7 +80,9 @@
 </script>
 
 <div style="padding-left: 10%;">
-	<h3 style="margin-bottom: 30px;">게시글 목록</h3>
+	<h3 style="margin-bottom: 30px;">자유게시판<br/><span style="font-size: 9pt;">욕설 및 비방글은 형사처벌의 대상이 될 수 있습니다.</span></h3>
+	
+		
 	
 	<table id="table">
 		<thead>
