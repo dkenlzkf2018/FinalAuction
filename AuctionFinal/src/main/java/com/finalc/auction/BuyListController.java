@@ -160,16 +160,24 @@ public class BuyListController {
 		CategoryVO cvo = service.getCategoryName(acvo.getActnum());
 		
 		@SuppressWarnings("unchecked")
-		List<AuctionVO> actViewList = (List<AuctionVO>)session.getAttribute("actViewList");
+		List<AuctionVO> actViewList2 = (List<AuctionVO>)session.getAttribute("actViewList");
+		List<AuctionVO> actViewList = new ArrayList<AuctionVO>();
 		
-		if(actViewList == null) actViewList = new ArrayList<AuctionVO>();
-
-		System.out.println("actViewList : " + actViewList);
+		if(actViewList2 != null) {
+			for(int i=0; i<actViewList2.size(); i++) {
+				if(actViewList2.get(i).getActnum().equals(acvo.getActnum())) {
+					actViewList2.remove(i);
+					break;
+				}
+			}
+		}
 		
 		actViewList.add(acvo);
-		
-		System.out.println("actViewList : " + actViewList);
-		
+		if(actViewList2 != null) {
+			actViewList.addAll(actViewList2);
+		}
+			
+		session.removeAttribute("actViewList");
 		session.setAttribute("actViewList", actViewList);
 		
 		String nowprice = "";
