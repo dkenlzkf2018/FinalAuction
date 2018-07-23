@@ -196,12 +196,14 @@ public class AuctionController {
 		return "auction/AuctionShow.tiles";
 	}
 	
-/*	// 날씨 정보 단
+	// 날씨 정보 단
 	@RequestMapping(value="/AuctionWeather.action", method={RequestMethod.GET})  
 	public String WeatherAuction(HttpServletRequest req, HttpServletResponse res) {
 	
 		String Weather = req.getParameter("weather");
 		String date = req.getParameter("date");
 		
-	}*/
+		return "";
+		
+	}
 }
