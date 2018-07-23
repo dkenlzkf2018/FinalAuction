@@ -39,8 +39,8 @@
       	 <br/><br/>
       	 <button type="button" id="btnConfirmCode" onClick="goConfirm();">인증하기</button>    
       </div>
-      <input type="text" id="userid" name="userid" value="${userid}" />
-      <input type="text" id="email" name="email" value="${email}" />
+      <input type="hidden" id="userid" name="userid" value="${userid}" />
+      <input type="hidden" id="email" name="email" value="${email}" />
    </c:if>   
 </div>
 </form>
