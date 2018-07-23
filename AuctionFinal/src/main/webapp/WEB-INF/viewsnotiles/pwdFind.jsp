@@ -71,8 +71,6 @@
 	}
 	
 </script>
-
-
 <form name="pwdFindFrm">
    <div id="div_userid" align="center">
       <span style="color: blue; font-size: 12pt;">아이디</span><br/> 
