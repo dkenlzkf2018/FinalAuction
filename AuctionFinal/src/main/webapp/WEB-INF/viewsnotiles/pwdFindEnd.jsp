@@ -34,7 +34,7 @@
    <c:if test="${n == 1}">
       <div id="pwdConfirmCodeDiv">
       	  인증코드가 ${email}로 발송되었습니다.<br/>
-      	  인증코드를 입력해주세요<br/>
+      	  인증코드를 입력해주세요<br/> 
       	 <input type="text" name="input_confirmCode" id="input_confirmCode" required />
       	 <br/><br/>
       	 <button type="button" id="btnConfirmCode" onClick="goConfirm();">인증하기</button>    
