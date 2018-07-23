@@ -11,26 +11,26 @@
 <title>비밀번호 찾기</title>
 </head>
 <style type="text/css">
-	.hidden{
-		display: none;
-	}
+   .hidden{
+      display: none;
+   }
 </style>
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		
-	});
-	
-	function goSerch(){
-		
-		var frm = document.pwdFindFrm;
-		frm.method = "post";
-		frm.action = "pwdFindEnd.action";
-		frm.submit();
-		
-	}
-	
-	
+   $(document).ready(function(){
+      
+   });
+   
+   function goSerch(){
+      
+      var frm = document.pwdFindFrm;
+      frm.method = "post";
+      frm.action = "pwdFindEnd.action";
+      frm.submit();
+      
+   }
+   
+   
 </script>
 
 
@@ -40,12 +40,12 @@
       <input type="text" name="userid" id="userid" size="15"placeholder="ID" required />
    </div>
    <div id="div_email" align="center">
-   	  <span style="color: blue; font-size: 12pt;">이메일</span><br/>
+        <span style="color: blue; font-size: 12pt;">이메일</span><br/>
       <input type="text" name="email" id="email" size="15" placeholder="abd@def.com" required />
    </div>
    <input type="hidden" name="n" id="n" value="${n}"/>
    
    <div id="div_btnFind" align="center">
-		<br/><button type="button" id="btnFind" onClick="goSerch();">찾기</button>
-	</div>
+      <br/><button type="button" id="btnFind" onClick="goSerch();">찾기</button>
+   </div>
 </form>
