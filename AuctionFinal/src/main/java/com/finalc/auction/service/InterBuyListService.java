@@ -32,12 +32,13 @@ public interface InterBuyListService {
 
 	
 
-	// #Buy 18. #Buy 17. 의 경매 status 0으로(경매종료를 알리는 스테이터스) 변경되었으므로
+	/*// #Buy 18. #Buy 17. 의 경매 status 0으로(경매종료를 알리는 스테이터스) 변경되었으므로
 	// 배송테이블에 기본값 주문완료를 입력시킨다.
-	int inputDeliver(HashMap<String, String> map);
-
-	/*HashMap<String, String> getDeliverData(HashMap<String, String> map);*/
+	int inputDeliver(HashMap<String, String> map);*/
 
 	// #Buy 16. 낙찰 테이블에 #Buy 15. 을 입력시킨다.
 	int inputAward_transaction(HashMap<String, String> map);
+
+	// 입찰 없이 경매가 종료 되었을 경우에도 경매status를 0으로 바꿔준다.
+	int updateAuctionStatus(HashMap<String, String> map);
 }

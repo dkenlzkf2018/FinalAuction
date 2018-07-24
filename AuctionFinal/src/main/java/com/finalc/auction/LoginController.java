@@ -249,6 +249,12 @@ public class LoginController {
 	@RequestMapping(value="/pwdFind.action", method= {RequestMethod.POST})
 	public String pwdFind(HttpServletRequest req) {
 		
+		return "pwdFind.notiles";
+	}
+	
+	@RequestMapping(value="/pwdFindEnd.action", method= {RequestMethod.POST})
+	public String pwdFindEnd(HttpServletRequest req) {
+		
 		String method = req.getMethod();
 		String userid = "", email = "";
 		int n = 0;
@@ -263,7 +269,7 @@ public class LoginController {
 			
 			map.put("userid", userid);
 			map.put("email", email);
-			
+			 
 			n = service.isUserExists(map); 
 			
 			if(n==1) {
@@ -311,7 +317,7 @@ public class LoginController {
 		req.setAttribute("userid", userid);
 		req.setAttribute("email", email);
 		
-		return "pwdFind.notiles";
+		return "pwdFindEnd.notiles";
 	}
 	
 	@RequestMapping(value="/pwdConfirm.action", method= {RequestMethod.GET})
@@ -427,6 +433,9 @@ public class LoginController {
 		return "member/myJoinList.tiles";
 	
 	}
+	
+	
+
 	
 	@RequestMapping(value="/plusCoin.action", method= {RequestMethod.POST})
 	public String myCoinPlus(HttpServletRequest req) {

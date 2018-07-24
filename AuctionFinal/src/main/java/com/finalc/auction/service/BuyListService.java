@@ -78,11 +78,11 @@ public class BuyListService implements InterBuyListService {
 	}
 
 
-	@Override
+	/*@Override
 	public int inputDeliver(HashMap<String, String> map) {
 		int deliver = dao.inputDeliver(map);
 		return deliver;
-	}
+	}*/
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
@@ -93,6 +93,7 @@ public class BuyListService implements InterBuyListService {
 		// #Buy 17. #Buy 16. 의 낙찰이 되어 경매가 종료되었으므로
 		// 경매 status를 0으로 변경한다.
 		int award2 = dao.updateAD(map);
+		/*
 		int deliver = 0;
 		
 		if (award1+award2 == 2) {			
@@ -103,8 +104,15 @@ public class BuyListService implements InterBuyListService {
 			deliver = dao.inputDeliver(map);
 			
 			
-		}
-		return (award1+award2+deliver);
+		}*/
+		return (award1+award2);
+	}
+
+
+	@Override
+	public int updateAuctionStatus(HashMap<String, String> map) {
+		int n = dao.updateAD(map);
+		return n;
 	}
 
 }

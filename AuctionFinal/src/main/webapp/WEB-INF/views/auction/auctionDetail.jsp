@@ -164,14 +164,14 @@
         <ul class="list-group margin-bottom-25 sidebar-menu">
         
         <c:forEach var="categoryvo" items="${categoryList}" varStatus="status">
-          <li class="list-group-item clearfix">
-            <a data-target="#menu${status.index}" data-toggle="dropdown-menu">
+          <li class="list-group-item clearfix dropdown">
+            <a class="collapsed">
               <i class="fa fa-angle-right"></i>
               ${categoryvo.cname}
             </a>
             
             
-            <ul class="dropdown-menu" id="menu${status.index}" style="display:block;">
+            <ul class="dropdown-menu" style="display:block;">
             <c:forEach var="categoryDetailvo" items="${categoryDetailList}">              
               	<c:if test="${categoryvo.cnum eq categoryDetailvo.fk_cnum}">
                 	<li><a href="/auction/AuctionShow.action?fk_cdnum=${categoryDetailvo.cdnum}"><i class="fa fa-angle-right"></i> ${categoryDetailvo.cdname}</a></li>
