@@ -6,10 +6,11 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		
+		$("#btnConfirmCode").click(function(){
+			goConfirm();
+		});
 	});
 	
-
 	function goConfirm(){
 		
 		if( $("#input_confirmCode").val() == "${certificationCode}") {
