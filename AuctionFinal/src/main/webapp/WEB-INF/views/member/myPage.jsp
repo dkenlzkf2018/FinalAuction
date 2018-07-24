@@ -49,21 +49,33 @@
 		
 	}
 	
-	function goPlusCoin() {
+	function goPlusCoin(usernum) {
+		// 팝업창 띄우기
+		var url="coinPurchaseTypeChoice.action?usernum="+usernum;
 		
-		$("#myInfo").hide();
-		$("#myjoinList").hide();
-		$("#myPageFrm").hide();
-		$("#MyJoinListFrm").hide();
-		$("#plusCoinFrm").show();
+		window.open(url, "coinPurchaseTypeChoice",
+				    "left=350px, top=100px, width=650px, height=570px");
+	}
+	
+	function goCoinPurchaseEnd(usernum, coinmoney) {	
+		// 팝업창 띄우기
+		var url="coinPurchase.action?usernum="+usernum+"&coinmoney="+coinmoney;
 		
-		var frm = document.plusCoinFrm;
+		window.open(url, "coinPurchase",
+				    "left=350px, top=100px, width=820px, height=600px");
+	}// end of goCoinPurchase()---------------------
+
+	function goCoinUpdate(usernum, coinmoney) {
+		var frm = document.coinUpdateForm;
+		frm.usernum.value = usernum;
+	//	frm.coinmoney.value = coinmoney;
 		
-		frm.action="plusCoin.action";
-		frm.method="post";
+		frm.method = "POST";
+		frm.action = "auctionPay.action";
 		frm.submit();
 	}
-
+	// === Payment Gateway(결제) 관련 끝 === //
+	
 </script>
 
 <h1 align="center"><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 페이지</h1>
@@ -113,10 +125,14 @@
 	<div align="center" style="margin-bottom: 20px;">
 		<button type="button" class="btn btn-default" id="myInfo" onClick="goMyInfo();">내 정보 보기</button>
 		<button type="button" class="btn btn-default" id="myjoinList" onClick="goMyJoinList();">내 입찰목록</button>
-		<button type="button" class="btn btn-default" id="plusCoin" onClick="goPlusCoin();">코인 충전하기</button>
+		<button type="button" class="btn btn-default" id="plusCoin" onClick="goPlusCoin(${sessionScope.loginuser.usernum});">코인 충전하기</button>
 	</div>
 </form>
 
+<form name="coinUpdateForm">
+   <input type="hidden" name="usernum" >
+   <!-- <input type="hidden" name="coinmoney" > -->
+</form>
 
 
 	
