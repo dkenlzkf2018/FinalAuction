@@ -52,8 +52,8 @@
 		select 	actnum, fk_cdnum, actname, actimage, orgfilename, filesize,
 				filename, actdnum, fk_actnum, fk_usernum, actd_price,
 				actd_qty, actd_status, actd_content, actd_lowertenderprice,
-			 	to_char(actd_startday, 'yyyy-mm-dd hh24:mi:ss') as actd_startday, 
-			 	to_char(actd_endday, 'yyyy-mm-dd hh24:mi:ss') as actd_endday, startprice
+			 	to_char(actd_startday, 'yyyy-mm-dd hh24:mi:ss') as actd_startday,
+			 	to_char(actd_endday, 'yyyy-mm-dd hh24:mi') as actd_endday, startprice
 		from tbl_auction A join tbl_auction_detail B
 		on A.actnum = B.fk_actnum
 		where actd_status = 1
@@ -65,4 +65,11 @@
 	</select>
 	<!-- 경매목록에 띄워줄 상품리스트 sql문 -->	
 	
+	<!-- 결제완료! 적립금 입금하기 -->
+	<update id="auctionPay" parameterType="HashMap">
+		update tbl_member_detail 
+		set coin = coin + #{coinmoney} 
+		where usernum = #{usernum} 
+	</update>
+	<!-- 결제완료! 적립금 입금하기 -->
 </mapper>
