@@ -15,7 +15,7 @@
 		
 		if( $("#input_confirmCode").val() == "${certificationCode}") {
 			alert("인증성공 되었습니다.");
-			alert($("#userid").val());
+			
 			var frm = document.findResultFrm;
 			frm.method = "get"; // 새암호와 새암호확인을 입력받기 위한 폼만을 띄워주기 때문에 get 방식으로 한다.
 			frm.action = "pwdConfirm.action";
@@ -45,3 +45,4 @@
    </c:if>   
 </div>
 </form>
+

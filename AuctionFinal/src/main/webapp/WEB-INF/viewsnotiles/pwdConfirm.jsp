@@ -43,7 +43,7 @@
 				var frm = document.pwdConfirmFrm;
 				frm.method = "get";
 				frm.action = "pwdConfirm.action";
-				frm.submit();	
+				frm.submit();
 			}
 		});
 				
