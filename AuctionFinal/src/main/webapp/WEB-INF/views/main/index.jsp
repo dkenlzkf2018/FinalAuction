@@ -124,7 +124,7 @@
               <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
 				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
 				<div class="row"></div>
-				<div class="pi-price">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div align="right" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
 				<div class="row"></div>
 				<div class="">${auctionvo.actd_endday} 까지</div>
 				<div class="row"></div>
