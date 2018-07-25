@@ -335,7 +335,7 @@ public class LoginController {
 	    
 	    if("GET".equalsIgnoreCase(method)) {	    	
 	    	String pwd = req.getParameter("pwd");
-	    	req.setAttribute("pwd", pwd);
+	    	req.setAttribute("pwd", pwd); 
 	    	
 	 	    map.put("pwd", pwd);
 	 	    map.put("userid", userid);
