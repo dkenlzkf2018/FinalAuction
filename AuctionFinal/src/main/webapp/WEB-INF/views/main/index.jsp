@@ -479,7 +479,7 @@
 	      </div>
       </div>
       <!-- end of weather widget -->      	
-        <%-- <div class="content-slider">
+<%-- <div class="content-slider">
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -499,7 +499,7 @@
               </div>
             </div>
           </div>
-        </div> --%>
+        </div> --%> 
       
       <!-- END PROMO -->
     </div>        
