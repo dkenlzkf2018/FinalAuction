@@ -957,14 +957,46 @@ commit;
 
 commit;
 
+select *
+from tbl_auction_detail;
 
-select C.actimage, A.joinactnum, A.fk_actnum, C.actname, A.fk_usernum, A.tenderday, A.tenderprice, B.actd_endday
+select *
 from tbl_joinaclist A join tbl_auction_detail B
-on A.fk_actnum = B.actdnum
+on A.fk_actnum = B.fk_actnum
 join tbl_auction C
 on A.fk_actnum = C.actnum
-where A.fk_usernum = (select usernum from tbl_member_detail where usernum = 2)
+where A.fk_usernum = (select usernum from tbl_member_detail where usernum = 8)
 
+
+select *
+from tbl_auction_detail
+where actdnum = 22
+and fk_actnum = (select fk_actnum
+                 from tbl_joinaclist
+                 where fk_usernum = 8)
+
+select *
+from (select *
+      from tbl_joinaclist
+      where fk_usernum = 8) A
+      join tbl_auction_detail B
+on A.fk_actnum = B.fk_actnum
+where actdnum = 22
+
+
+select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, actd_endday, actdnum
+		from
+		(
+		select C.actimage, to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, C.actname, to_char(A.fk_usernum) AS usernum
+			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
+			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday, B.actdnum
+		from tbl_joinaclist A join tbl_auction_detail B
+		on A.fk_actnum = B.fk_actnum
+		join tbl_auction C
+		on A.fk_actnum = C.actnum
+		where A.fk_usernum = 8
+		)V
+group by actnum
 
 select count(*)
 		from tbl_joinaclist

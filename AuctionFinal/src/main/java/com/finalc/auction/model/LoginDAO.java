@@ -70,8 +70,8 @@ public class LoginDAO implements InterLoginDAO {
 	}
 
 	@Override
-	public int getTotalCount() {
-		int n = sqlsession.selectOne("login.getTotalCount");
+	public int getTotalCount(int usernum) {
+		int n = sqlsession.selectOne("login.getTotalCount", usernum);
 		return n;
 	}
 

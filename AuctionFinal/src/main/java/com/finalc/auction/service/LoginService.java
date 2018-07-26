@@ -66,8 +66,8 @@ public class LoginService implements InterLoginService {
 	}
 
 	@Override
-	public int getTotalCount() {
-		int n = dao.getTotalCount();
+	public int getTotalCount(int usernum) {
+		int n = dao.getTotalCount(usernum);
 		return n;
 	}
 

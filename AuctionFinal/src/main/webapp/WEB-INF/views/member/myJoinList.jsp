@@ -48,7 +48,7 @@
 <div class="row margin-bottom-40">
   <!-- BEGIN CONTENT -->
 <div class="col-md-12 col-sm-12">
-  <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 낙찰 목록</h1>
+  <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 입찰 목록</h1>
   <div class="goods-page">
     <div class="goods-data clearfix">
       <div class="table-wrapper-responsive">
@@ -59,9 +59,9 @@
           <th class="goods-page-actnum">상품번호</th>
           <th class="goods-page-actname">상품이름</th>
           <th class="goods-page-awardnum">입찰번호</th>          
-          <th class="goods-page-awardday">구매일자</th>
+          <th class="goods-page-awardday">입찰일자</th>
           <th class="goods-page-awardprice">입찰가</th>
-          <th class="goods-page-endday">종료일</th>
+          <th class="goods-page-endday">경매 종료일</th>
         </tr>
         
         <c:if test="${JoinList != null}">
@@ -99,19 +99,19 @@
 		 </c:if> 
 		 
       </table>
-      
+	      
       </form>
-      
+      	
       </div>
  
     </div>
- 
+ 	
   </div>
   
 </div>
 
 <!-- BEGIN PAGINATOR -->
-    
+    <div align="center">${pagebar}</div>
 <!-- END PAGINATOR -->
 </div>
 <!-- END CONTENT -->
@@ -133,6 +133,7 @@
 <script src="<%=request.getContextPath() %>/resources/assets/plugins/rateit/src/jquery.rateit.js" type="text/javascript"></script>
 
 <script src="<%=request.getContextPath() %>/resources/assets/corporate/scripts/layout.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();    
