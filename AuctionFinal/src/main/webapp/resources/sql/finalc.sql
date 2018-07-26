@@ -996,8 +996,24 @@ select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, a
 		on A.fk_actnum = C.actnum
 		where A.fk_usernum = 8
 		)V
-group by actnum
+group by actnum 
 
 select count(*)
 		from tbl_joinaclist
-		where fk_usernum = 2
+		where fk_usernum = 8
+    
+    
+select count(*)
+		from
+		(
+		select C.actimage, to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, C.actname, to_char(A.fk_usernum) AS usernum
+			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
+			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday, B.actdnum
+		from tbl_joinaclist A join tbl_auction_detail B
+		on A.fk_actnum = B.fk_actnum
+		join tbl_auction C
+		on A.fk_actnum = C.actnum
+		where A.fk_usernum = 8
+		)V    
+    
+    
