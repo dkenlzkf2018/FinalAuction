@@ -63,10 +63,7 @@
 		</if>
 		order by actd_startday desc
 	</select>
-<<<<<<< HEAD
 	<!-- 경매목록에 띄워줄 상품리스트 sql문 -->
-=======
-	<!-- 경매목록에 띄워줄 상품리스트 sql문 -->	
 	
 	<!-- 결제완료! 적립금 입금하기 -->
 	<update id="auctionPay" parameterType="HashMap">
@@ -75,5 +72,4 @@
 		where usernum = #{usernum} 
 	</update>
 	<!-- 결제완료! 적립금 입금하기 -->
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 </mapper>
