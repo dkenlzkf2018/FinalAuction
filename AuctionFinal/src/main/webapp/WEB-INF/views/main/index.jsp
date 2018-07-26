@@ -379,21 +379,18 @@
       </div>
       <!-- END TWO PRODUCTS -->
       <!-- BEGIN PROMO -->
-      <div class="content mt-4">
-	      <div class="animated fadeIn">
+		<location >
 	      <!-- start of weather widget -->
 	      <div class="row"> <!-- col-md-6 col-sm-6 col-xs-12 -->
 		      <div class="col-md-6">
 		        <div class="card">
 		          <div class="card-header">
 		            <h2>Daily active users <small>Sessions</small></h2>
-<!-- 		            <ul class="nav navbar-right panel_toolbox">
-		            </ul> -->
 		            <div class="clearfix"></div>
 		          </div>
 		          <div class="x_content">
 		            <div class="row">
-		              <div class="col-sm-12">
+		              <div class="col-sm-6">
 		                <div class="temperature"><b>Monday</b>, 07:30 AM
 		                  <span>F</span>
 		                  <span><b>C</b></span>
@@ -412,7 +409,7 @@
 		                </div>
 		              </div>
 		            </div>
-		            <div class="col-sm-12">
+		            <div class="col-sm-8">
 		              <div class="weather-text pull-right">
 		                <h3 class="degrees">23</h3>
 		              </div>
@@ -420,9 +417,9 @@
 		
 		            <div class="clearfix"></div>
 		
-		            <div class="row weather-days">
+		            <%-- <div class="row weather-days">
 		              <div class="col-sm-2">
-		                <div class="daily-weather">
+		                <div class="daily-weather">	
 		                  <h2 class="day">Mon</h2>
 		                  <h3 class="degrees">25</h3>
 		                  <canvas id="clear-day" width="32" height="32"></canvas>
@@ -470,14 +467,12 @@
 		                </div>
 		              </div>
 		              <div class="clearfix"></div>
-		            </div>
+		            </div> --%>
 		          </div>
 		        </div>
 		    	    
 			</div>
 	      </div>
-	      </div>
-      </div>
       <!-- end of weather widget -->      	
 <%-- <div class="content-slider">
           <div id="myCarousel" class="carousel slide" data-ride="carousel">

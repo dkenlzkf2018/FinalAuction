@@ -201,7 +201,7 @@ public class AuctionController {
 	public String WeatherAuction(HttpServletRequest req, HttpServletResponse res) {
 	
 		String Weather = req.getParameter("weather");
-		String date = req.getParameter("date");
+	//	String date = req.getParameter("date");
 		
 		return "";
 		

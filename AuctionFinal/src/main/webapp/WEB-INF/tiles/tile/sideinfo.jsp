@@ -58,11 +58,40 @@
 					}, timejugi);
 		
 	}// end of loopshowNowTime() --------------------------
+	
+	
+	// 날씨 정보 띄우기 단
+	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"c2086d467918ca3a0300f821d4e8f86f";
+	        $.ajax({
+	            url: apiURI,
+	            dataType: "json",
+	            type: "GET",
+	            async: "false",
+	            success: function(resp) {
+	                console.log(resp);
+	                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+	                console.log("현재습도 : "+ resp.main.humidity);
+	                console.log("날씨 : "+ resp.weather[0].main );
+	                console.log("상세날씨설명 : "+ resp.weather[0].description );
+	                console.log("날씨 이미지 : "+ resp.weather[0].icon );
+	                console.log("바람   : "+ resp.wind.speed );
+	                console.log("나라   : "+ resp.sys.country );
+	                console.log("도시이름  : "+ resp.name );
+	                console.log("구름  : "+ (resp.clouds.all) +"%" );                 
+	            }
+	        });	
 </script>
-
 
 <div style="margin: 0 auto;" align="center">
 	현재시각 :&nbsp; 
+	<!-- <div id="sun" class="climacon climacon_sun" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sun</div>
+	<div id="sunFill" class="climacon climacon_sunFill" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sunFill</div>
+	<div id="moon" class="climacon climacon_moon" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">moon</div>
+	<div id="moonFill" class="climacon climacon_moonFill" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">moonFill</div>
+	<div id="sunsetAlt" class="climacon climacon_snowflake" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sunsetAlt</div>
+	<div id="snowflakeFill" class="climacon climacon_snowflakeFill" style="min-width: 90%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">snowflakeFill</div>
+	<div id="wind" class="climacon climacon_wind" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sun</div> -->
+	
 	<div id="clock" style="display:inline;"></div>
 	<div id="displayWeather" style="min-width: 90%; margin-top: 20px; padding-left: 10px; padding-right: 10px;"></div>
 </div>
