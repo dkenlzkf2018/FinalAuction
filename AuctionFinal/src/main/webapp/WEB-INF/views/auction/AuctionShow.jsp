@@ -46,7 +46,7 @@
 						/>
 					<div>
 						<a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
-						<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+						<a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
 					</div>
 				</div>
 				<h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
