@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<script src="<%= request.getContextPath() %>/resources/jquery-ui-1.11.4.custom/jquery-ui.js" type="text/javascript"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery-1.12.4.min.js" type="text/javascript"></script>
-<script type="text/javascript">
+<script src="<%= request.getContextPath() %>/resources/jquery-ui-1.11.4.custom/jquery-ui.css" type="text/javascript"></script>
+
+<script src="<%= request.getContextPath() %>/resources/jquery-ui-1.11.4.custom/jquery-ui.js" type="text/javascript">
    
 	jQuery(document).ready(function(){
 	  
