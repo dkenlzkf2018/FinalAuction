@@ -4,13 +4,33 @@
 <%-- ===== #38.  tiles 중 sideinfo 페이지 만들기 ===== --%>
 
 <script type="text/javascript">
+
+	var weatherTimejugi = 0;
+
 	$(document).ready(function() {
 		loopshowNowTime();
-		// 시간이 매 30분이 되면 기상청 날씨정보를 자동 갱신해서 가져오려고 함.
-		// (정시마다 변경되어지는 날씨정보는 정시에 보내주지 않고 대략 20~30분이 지난 다음에 보내주므로)
 		
+		// 시간이 30분 00초가 되면 기상청 날씨정보를 업데이트 한다,.
+		// (정시마다 변경되는 정보는 정시에 오지 않고, 20~30 분 정도 후에 전송되기 때문이다.
+		var now = new Date();
+		var minute = now.getMinutes();
+		
+		if(minute < 30) {
+			weatherTimejugi = (30-minute)*60*1000; // 매번 12분뒤에 함
+		}
+		else if (minute == 30) {
+			weatherTimejugi  = 1000;
+		}
+		else { // 30분 이후
+			weatherTimejugi = (60-minutes+30)*60*1000;
+		}
+		
+	//	showWeather();	// 기상청 날씨정보 공공API XML 데이터호출하기
+		loopshowWeather(); // 기상청 날씨정보 공공API XML 데이터호출하기
+	
 	}); // end of ready(); ---------------------------------
 
+	
 	function showNowTime() {
 		
 		var now = new Date();
@@ -48,6 +68,7 @@
 
 
 	function loopshowNowTime() {
+		
 		showNowTime();
 		
 		var timejugi = 1000;   // 시간을 1초 마다 자동 갱신하려고.
@@ -58,10 +79,11 @@
 					}, timejugi);
 		
 	}// end of loopshowNowTime() --------------------------
-	
-	
-	// 날씨 정보 띄우기 단
-	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"c2086d467918ca3a0300f821d4e8f86f";
+
+	function showWeather() {
+		
+		// 날씨 정보 띄우기 단
+/* 		var apiURI = "http://api.openweathermap.org/data/2.5/weather?id="+{citynum};
 	        $.ajax({
 	            url: apiURI,
 	            dataType: "json",
@@ -77,28 +99,84 @@
 	                console.log("바람   : "+ resp.wind.speed );
 	                console.log("나라   : "+ resp.sys.country );
 	                console.log("도시이름  : "+ resp.name );
-	                console.log("구름  : "+ (resp.clouds.all) +"%" );                 
+	                console.log("구름  : "+ (resp.clouds.all) +"%" );
 	            }
-	        });	
+	        }); */
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/weatherXML.action",
+		//	url: "http://www.kma.go.kr/XML/weather/sfc_web_map.xml", // 안됨. 데이터를 불러올 수 없다.
+			type: "GET",
+			dataType: "XML",
+			success: function(xml) {
+				var rootElement = $(xml).find(":root");
+			//	console.log($(rootElement).prop("tagName")); ==> current
+				var weather = $(rootElement).find("weather");
+			//	console.log($(weather).attr("year")+"년 "+$(weather).attr("month")+"월 "+$(weather).attr("day")+"일 "+$(weather).attr("hour")+"시"); ==> 2018년 06월 28일 16시
+				var updateTime = $(weather).attr("year")+"년 "+$(weather).attr("month")+"월 "+$(weather).attr("day")+"일 "+$(weather).attr("hour")+"시";
+				
+				var localArr = $(rootElement).find("local");
+			//	console.log(localArr.length); ==> 95
+				var html = "업데이트 시각 : <span style='font-weight: bold;'>"+updateTime+"</span><br/>";
+				html += "<table class='table table-hover' align='center'>";
+				html += "<tr>";
+				html += "<th>지역</th>";
+				html += "<th>날씨</th>";
+				html += "<th>기온</th>";
+				html += "</tr>";
+				
+				for(var i=0; i<localArr.length; i++) {
+					var local = $(localArr).eq(i);
+					/* 
+						.eq(index)는 선택된 요소들을 인덱스 번호로 찾을 수 있는 선택자이다.
+						마치 배열의 인덱스(index)로 값(value)을 찾는것과 같은 효과를 낸다. 
+					*/
+				//	console.log($(local).text() + ", desc:" + $(local).attr("desc") + ", ta : " + $(local).attr("ta"));
+					/* 
+						속초, desc:-, ta:27.3
+						북춘천, desc:천둥번개, ta:20.6
+						철원, desc:-, ta:19.8
+						동두천, desc:-, ta:18.1
+						파주, desc:-, ta:17.0
+						대관령, desc:-, ta:21.6
+						춘천, desc:-, ta:22.4
+					*/
+					html += "<tr>";
+					html += "<td>"+$(local).text()+"</td>";
+					html += "<td>"+$(local).attr("desc")+"</td>";
+					html += "<td>"+$(local).attr("ta")+"</td>";
+					html += "</tr>";
+				}
+				
+				html += "</table>";
+				
+				$("#displayWeather").html(html);
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error : "+ error);
+			}
+		});
+	}
+	
+	
+	function loopshowWeather() {
+		
+		showWeather();
+		
+		setTimeOut(function() {
+			loopShowWeather();
+		}, weatherTimejugi);
+		
+		setTimeOut(function() {
+			loopShowWeather();
+		}, (60*60*1000) ); // 60*60*1000 은 1시간 / 이게 아닌가봐 <- weatherTimejugi + (60*60*1000) );
+	}	
+	
 </script>
+
 
 <div style="margin: 0 auto;" align="center">
 	현재시각 :&nbsp; 
-	<!-- <div id="sun" class="climacon climacon_sun" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sun</div>
-	<div id="sunFill" class="climacon climacon_sunFill" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sunFill</div>
-	<div id="moon" class="climacon climacon_moon" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">moon</div>
-	<div id="moonFill" class="climacon climacon_moonFill" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">moonFill</div>
-	<div id="sunsetAlt" class="climacon climacon_snowflake" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sunsetAlt</div>
-	<div id="snowflakeFill" class="climacon climacon_snowflakeFill" style="min-width: 90%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">snowflakeFill</div>
-	<div id="wind" class="climacon climacon_wind" style="min-width: 10%; margin-top: 20px; padding-left: 10px; padding-right: 10px;">sun</div> -->
-	
 	<div id="clock" style="display:inline;"></div>
-	<div id="displayWeather" style="min-width: 90%; margin-top: 20px; padding-left: 10px; padding-right: 10px;"></div>
+	<div id="displayWeather" style="min-width: 90%; margin-top: 10px;"></div>
 </div>
-
-	
-	
-	
-	
-	
-	

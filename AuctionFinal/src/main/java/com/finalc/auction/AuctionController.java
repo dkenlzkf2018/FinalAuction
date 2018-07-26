@@ -198,12 +198,9 @@ public class AuctionController {
 	
 	// 날씨 정보 단
 	@RequestMapping(value="/AuctionWeather.action", method={RequestMethod.GET})  
-	public String WeatherAuction(HttpServletRequest req, HttpServletResponse res) {
-	
-		String Weather = req.getParameter("weather");
-	//	String date = req.getParameter("date");
+	public String WeatherAuction() {
 		
-		return "";
+		return "xml/weatherXML";
 		
 	}
 }
