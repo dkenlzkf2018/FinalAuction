@@ -52,9 +52,11 @@ public class BuyListService implements InterBuyListService {
 
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
 	public int inputTender(HashMap<String, String> map) {
 		int result = dao.inputTender(map);
-		return result;
+		int result2 = dao.updateDeposit(map);
+		return (result+result2);
 	}
 
 
@@ -70,7 +72,7 @@ public class BuyListService implements InterBuyListService {
 		return count;
 	}
 
-
+	// 
 	@Override
 	public JoinaclistVO searchTender(HashMap<String, String> map) {
 		JoinaclistVO jvo = dao.searchTender(map);
@@ -84,16 +86,17 @@ public class BuyListService implements InterBuyListService {
 		return deliver;
 	}*/
 
-	@Override
+	/*@Override
 	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
 	public int inputAward_transaction(HashMap<String, String> map) 
 		throws TooManyResultsException {
+		// 낙찰
 		int award1 = dao.inputAward(map);
 		
 		// #Buy 17. #Buy 16. 의 낙찰이 되어 경매가 종료되었으므로
 		// 경매 status를 0으로 변경한다.
 		int award2 = dao.updateAD(map);
-		/*
+		
 		int deliver = 0;
 		
 		if (award1+award2 == 2) {			
@@ -104,15 +107,60 @@ public class BuyListService implements InterBuyListService {
 			deliver = dao.inputDeliver(map);
 			
 			
-		}*/
+		}
 		return (award1+award2);
-	}
+	}*/
 
 
-	@Override
+	/*@Override
 	public int updateAuctionStatus(HashMap<String, String> map) {
 		int n = dao.updateAD(map);
 		return n;
+	}*/
+
+	// 
+	@Override
+	public JoinaclistVO getMemberDeposit(String actnum) {
+		JoinaclistVO jvo = dao.getMemberDeposit(actnum);
+		return jvo;
+	}
+
+	// 보증금 반환
+	@Override
+	public int rollbackDeposit(HashMap<String, String> map) {
+		int result0 = dao.rollbackDeposit(map);
+		return result0;
+	}
+
+	// 낙찰 취소
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
+	public int awardCancel(HashMap<String, String> map) {
+		int cancel0 = dao.updateAwardCancel(map);
+		int cancel = dao.awardCancel(map);
+		
+		return (cancel0+cancel);
+	}
+
+	// 즉시구매
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
+	public int quickTender(HashMap<String, String> map) {
+		int tender = dao.inputTender(map);	// 입찰 리스트 입력
+		int award0 = dao.inputAward(map);	// 낙찰 리스트 입력
+		int award = dao.updateAD(map);		// 옥션 디테일 status = 0
+		int pay = dao.paymember(map);		// 회원 coin - 즉구가
+		int quick = dao.quickGumae(map);	// 판매자 coin + 즉구가
+		int pay_status = dao.paystatus(map);// 낙찰된 회원의 상태를 결제상태로 바꿔줌 (1)
+		int deliver = 0;
+		if (tender+award0+award+pay+quick+pay_status == 6) {			
+			
+			HashMap<String, String> deliverMap = dao.getDeliverData(map);
+			map.put("AWARDNUM", deliverMap.get("awardnum"));
+			map.put("ADDR", deliverMap.get("addr"));
+			deliver = dao.inputDeliver(map);
+		}
+		return tender+award0+award+pay+quick+pay_status;
 	}
 
 }

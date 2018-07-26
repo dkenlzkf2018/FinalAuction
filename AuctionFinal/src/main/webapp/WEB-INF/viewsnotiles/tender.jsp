@@ -104,7 +104,8 @@
                                           <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice) + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
                                           <input id="tenderprice" name="tenderprice" type="text" class="form-control cc-name valid" data-val="true" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
                                           <!-- <input id="tenderprice" name="tenderprice" type="text" /> -->
-                                                                                    원 (콤마','없이 1000원 단위로 입력하세요.)
+                                                                                    원 (콤마','없이 1000원 단위로 입력하세요.)  첫 입찰 시의 보증금은 입찰금의 10% 원을 본인의 coin에서 차감됩니다.
+                                                                                    
                                           <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                       </div>
                                       <button id="payment-button" type="button" class="btn btn-lg btn-info btn-block" >
@@ -114,7 +115,8 @@
                                       </button>
                                       <input type="hidden" name="actnum" value="${map.actnum}" />
                                       <input type="hidden" name="actdnum" value="${map.actdnum}" />
-                                      
+                                      <input type="hidden" name="coin" value="${coin}" />
+                                      <input type="hidden" name="deposit" />
                                       
                                           <%-- <button type="button" onclick="goInput('#tenderprice')">입찰하기</button> --%>
                                       
@@ -156,7 +158,7 @@
 			var qtyCtrl = jQuery("#inputqty").val();		// 수량 입력값
 			var startQty = Number("${map.actd_qty}");		// 초기 수량 입력값
 			var nowprice = Number("${nowprice}");			// 현재가
-			var raw = 1000;									// 가격 정해야함
+			var coin = Number("${coin}");
 			
 			// 숫자외에 다른 문자를 입력하였을 경우
 			var regExp = /^[0-9]+$/;
@@ -195,10 +197,10 @@
 			
 			// 시작가격보다 입찰가격이 낮은 경우
 			if (price < startprice) {
-				alert("입찰 금액은 시작가격(1000원) 이상이어야 합니다. 다시 입력하여 주십시오.");
+				alert("입찰 금액은 시작가격 "+startprice+" + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
-			if (price <= nowprice) {
+			if (price <= nowprice+999) {
 				alert("입찰 금액은 현재가 + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
@@ -215,26 +217,31 @@
 				return false;
 			}
 			
-			// 100원 단위로는 입력할 수 없음
-			if (price > raw * parseInt(price / raw)){
-				alert("100원단위로 입찰하실 수 없습니다.");
-				return false;
-			}
-			
 			if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
 			}
-			
-			else {
-				var frm = document.inputTenderFrm;
-				var url = "<%=request.getContextPath()%>/inputTender.action";
-				frm.method = "POST";
-				frm.action = url;
-				frm.submit();
+			if (coin < price) {
+				if(confirm("보유하신 코인 금액이 " + (price - coin) +"원 부족합니다. 마이페이지에서 코인을 충전하시겠습니까?")) {
+					location.href="myPage.action";
+				}
+				else {
+					return false;	
+				}				
 			}
-			
-			
+			else {
+				if(confirm("입찰 보증금은 "+(price / 10)+"원 입니다. 입찰하시겠습니까?")) {
+					var frm = document.inputTenderFrm;
+					var url = "<%=request.getContextPath()%>/inputTender.action";
+					frm.deposit.value = price / 10;
+					frm.method = "POST";
+					frm.action = url;
+					frm.submit();
+				}
+				else {
+					return false;
+				}
+			}	
 		});
 		
 	});

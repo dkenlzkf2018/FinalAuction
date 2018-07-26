@@ -37,8 +37,16 @@ public interface InterBuyListService {
 	int inputDeliver(HashMap<String, String> map);*/
 
 	// #Buy 16. 낙찰 테이블에 #Buy 15. 을 입력시킨다.
-	int inputAward_transaction(HashMap<String, String> map);
+	/*int inputAward_transaction(HashMap<String, String> map);*/
 
 	// 입찰 없이 경매가 종료 되었을 경우에도 경매status를 0으로 바꿔준다.
-	int updateAuctionStatus(HashMap<String, String> map);
+	/*int updateAuctionStatus(HashMap<String, String> map);*/
+
+	JoinaclistVO getMemberDeposit(String actnum);
+
+	int rollbackDeposit(HashMap<String, String> map);
+
+	int awardCancel(HashMap<String, String> map);
+
+	int quickTender(HashMap<String, String> map);
 }

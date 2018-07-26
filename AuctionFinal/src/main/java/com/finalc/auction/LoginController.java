@@ -305,9 +305,7 @@ public class LoginController {
 					req.setAttribute("sendFailmsg", "메일발송에 실패했습니다.");
 					n = -1;
 				}
-				
 			}
-			
 		}
 		req.setAttribute("n", n);  
 		// n이 0이면 존재하지 않은 userid 또는 email 인 경우

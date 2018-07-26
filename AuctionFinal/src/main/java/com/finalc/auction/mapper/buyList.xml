@@ -21,6 +21,9 @@
 		<result property="ACTNUM" column="actnum" javaType="String" />
 		<result property="ACTDNUM" column="actdnum" javaType="String" />
 		<result property="ACTIMAGE" column="actimage" javaType="String" />
+		<result property="PANMAEUSERNUM" column="panmaeusernum" javaType="String" />
+		<result property="AWARD_STATUS" column="award_status" javaType="String" />
+		
 		
 	</resultMap>
 	
@@ -42,7 +45,9 @@
 		       , awardprice
 		       , cname, cdname, actname, panmaeja
 		       , deliverstatus, cnum, cdnum, actnum, actdnum
+		       , panmaeusernum
 		       , actimage
+		       , award_status
 		  from 
 		  (
 		  select rownum AS RNO, awardnum
@@ -50,14 +55,17 @@
 		     , awardprice
 		       , cname, cdname, actname, panmaeja
 		       , deliverstatus, cnum, cdnum, actnum, actdnum
+		       , panmaeusernum
 		       , actimage
+		       , award_status
 		  from 
 		  (select cnum, cname, cdnum, cdname
 		       , actnum, actname, actimage
 		       , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
 		       , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday
 		       , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
-		       , E.fk_userid AS panmaeja
+		       , D.fk_usernum AS panmaeusernum
+		       , E.fk_userid AS panmaeja     
 		  from tbl_category A join tbl_category_detail B
 		  on A.cnum = B.fk_cnum
 		  join tbl_auction C
@@ -153,8 +161,8 @@
 	</select>
 	
 	<insert id="inputAward" parameterType="HashMap">
-		insert into tbl_award(AWARDNUM, FK_USERNUM, FK_ACTDNUM, AWARDDAY, AWARDPRICE)
-		values(seq_award.nextval, #{fk_usernum}, #{actdnum}, sysdate, #{nowprice})
+		insert into tbl_award(AWARDNUM, FK_USERNUM, FK_ACTDNUM, AWARDDAY, AWARDPRICE, award_status)
+		values(seq_award.nextval, #{usernum}, #{actdnum}, sysdate, #{actd_price}, default)
 	</insert>
 	
 	<update id="updateAward" parameterType="HashMap">
@@ -162,9 +170,57 @@
 		where fk_actnum = #{actnum}
 	</update>
 	
-	<!-- <insert id="inputDeliver" parameterType="HashMap">
+	<update id="rollbackDeposit" parameterType="HashMap">
+		update tbl_member_detail set coin = coin + (to_number(#{tenderpriceold}) / 10)
+		where usernum = #{usernumfail}
+	</update>
+	
+	<update id="updateDeposit" parameterType="HashMap">
+		update tbl_member_detail set coin = coin - to_number(#{deposit})
+		where usernum = #{usernum}
+	</update>
+	
+	<select id="getMemberDeposit" parameterType="String" resultType="com.finalc.auction.model.JoinaclistVO">
+		select max(tenderprice) as tenderprice, fk_usernum
+		from tbl_joinaclist
+		where fk_actnum = #{actnum}
+		  and tenderprice = (select max(tenderprice)
+                           from tbl_joinaclist 
+                           where fk_actnum = #{actnum})
+		group by fk_usernum
+	</select>
+	
+	<update id="awardCancel">
+		update tbl_award set award_status = 2
+		where fk_usernum = #{usernum} and fk_actdnum = #{actdnum}
+	</update>
+	
+	<update id="memberCancel">
+		update tbl_member_detail set coin = coin + (to_number(#{awardprice})/10)
+		where usernum = #{panmaeusernum}
+	</update>
+	
+	<!-- 즉시구매 시 회원의 코인이 차감 -->
+	<update id="paymember" parameterType="HashMap">
+		update tbl_member_detail set coin = coin - #{actd_price}
+		where usernum = #{usernum}
+	</update>
+	
+	<!-- 즉시구매 시 판매자의 코인 + 구매가 -->
+	<update id="quickGumae" parameterType="HashMap">
+		update tbl_member_detail set coin = coin + #{actd_price}
+		where usernum = #{fk_usernum}
+	</update>
+	
+	<update id="paystatus">
+		update tbl_award set award_status = 1
+		where fk_usernum = #{usernum} and fk_actdnum = #{actdnum}
+		  and award_status = 0
+	</update>
+	
+	<insert id="inputDeliver" parameterType="HashMap">
 		insert into tbl_deliver(deliverno, fk_usernum, fk_awardnum, deliverstatus, invoiceno, deliverlocation)
-		values(seq_deliver.nextval, #{fk_usernum}, #{AWARDNUM}, default, 's' || to_char(sysdate, 'yyyymmdd') || '-' || seq_deliver.nextval, #{ADDR})
+		values(seq_deliver.nextval, #{usernum}, #{AWARDNUM}, default, 's' || to_char(sysdate, 'yyyymmdd') || '-' || seq_deliver.nextval, #{ADDR})
 	</insert>
 	
 	<resultMap type="HashMap" id="deliverMap">
@@ -176,6 +232,6 @@
 		select awardnum, addr1 || ' ' || addr2 AS addr
 		from tbl_award A join tbl_member_detail B
 		on A.fk_usernum = B.usernum
-		where A.fk_usernum = #{fk_usernum} and A.fk_actdnum = #{actdnum}
-	</select> -->
+		where A.fk_usernum = #{usernum} and A.fk_actdnum = #{actdnum}
+	</select>
 </mapper>
