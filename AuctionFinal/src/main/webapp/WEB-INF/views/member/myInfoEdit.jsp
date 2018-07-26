@@ -40,7 +40,7 @@
           
           self.window.close();
         
-          history.back();
+          history.go(-1);
           
       }
       

@@ -29,7 +29,6 @@
 	$(document).ready(function(){
 		$("#actname")click(function(){
 			
-			goAuction();
 		});
 	});
 	
@@ -77,7 +76,7 @@
 	             <span id="actnum" name="actnum">${map.ACTNUM}</span>
 	           </td>
 	           <td class="goods-page-actname">
-	             <span id="actname" name="actname">${map.ACTNAME}</span>
+	             <a href="AuctionShow.action?actnum=${map.ACTNUM}">${map.ACTNAME}</a>
 	           </td>
 	           <td class="goods-page-awardnum">
 	             ${map.JOINACTNUM}
