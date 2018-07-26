@@ -60,6 +60,7 @@
 				                <th>상품명</th>
 				                <th>낙찰일</th>
 				                <th>낙찰가</th>
+				                <th>결제상태</th>
 				                <th>배송</th>
 				              </tr>
 				            </thead>
