@@ -33,6 +33,8 @@
 		var endTime = parseInt(end.getTime()/1000);
 		var now = new Date();
 		var nowTime = parseInt(now.getTime()/1000);
+		console.log(endTime);
+		console.log(nowTime);
 		
 		days = (end - now) / 1000 / 60 / 60 / 24;
 		daysRound = Math.floor(days); 
@@ -44,21 +46,13 @@
 		secondsRound = Math.round(seconds);
 
 		if (nowTime < endTime) {
-			if (actd_status == 1) {
-				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
-			}
-			else if (actd_status == 0 && actd_price == nowprice) {
-				strNow = "경매종료";
-			}
+			strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
 		}
-		else if (nowTime == endTime && actd_status == 1){
-			strNow = "경매종료";
-		}
-		else if (nowTime > endTime){
+		else if (nowTime >= endTime){
 			strNow = "경매종료";
 		}
 		
-		//console.log(strNow);
+		console.log(strNow);
 		$("#clock").html("<span>"+strNow+"</span>");
 	
 	}// end of function showNowTime() -----------------------------
