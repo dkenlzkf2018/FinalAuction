@@ -118,7 +118,7 @@
                 	 style="width:auto; height:100px;">
                 <div>
                   <a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
               <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
@@ -199,7 +199,7 @@
                 <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
                   <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
               <h3><a href="shop-item.html">Berry Lace Dress</a></h3>

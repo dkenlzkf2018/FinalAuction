@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%-- ===== #39.  tiles 중 footer 페이지 만들기  ===== --%>
 <!-- BEGIN FOOTER -->
 <div class="footer">
@@ -33,34 +35,42 @@
 <!-- END FOOTER -->
 
 <!-- BEGIN fast view of a product -->
-<div id="product-pop-up" style="display: none; width: 700px;">
+<c:forEach var="auctionvo" items="${auctionList}">
+<div id="product-pop-up${auctionvo.actdnum}" style="display: none; width: 700px;">
    <div class="product-page product-pop-up">
      <div class="row">
        <div class="col-md-6 col-sm-6 col-xs-3">
          <div class="product-main-image">
-           <img src="<%=request.getContextPath()%>/resources/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive">
+           <img src="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" alt="${auctionvo.orgFilename}" class="img-responsive">
          </div>
          <div class="product-other-images">
-           <a href="javascript:;" class="active"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg"></a>
+           <%-- <a href="javascript:;" class="active"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model3.jpg"></a>
            <a href="javascript:;"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model4.jpg"></a>
-           <a href="javascript:;"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model5.jpg"></a>
+           <a href="javascript:;"><img alt="Berry Lace Dress" src="<%=request.getContextPath() %>/resources/assets/pages/img/products/model5.jpg"></a> --%>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-9">
-          <h2>Cool green dress with red bell</h2>
+          <h2>${auctionvo.actname}</h2>
           <div class="price-availability-block clearfix">
             <div class="price">
-              <strong><span>$</span>47.00</strong>
-              <em>$<span>62.00</span></em>
+              <strong><span>현재경매가</span> ${auctionvo.startprice}<span> 원</span></strong>
+              <br/><span>즉시구매가</span> ${auctionvo.actd_price}<span> 원</span>
             </div>
             <div class="availability">
-              Availability: <strong>In Stock</strong>
+				경매 상태: <strong>
+				<c:if test="${auctionvo.actd_status == '1'}">
+				경매 중!
+				</c:if>
+				<c:if test="${auctionvo.actd_status == '0'}">
+				경매 종료!
+				</c:if>
+				</strong>
             </div>
           </div>
           <div class="description">
-            <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat Nostrud duis molestie at dolore.</p>
+            <p>${auctionvo.actd_content}</p>
           </div>
-          <div class="product-page-options">
+          <%-- <div class="product-page-options">
             <div class="pull-left">
               <label class="control-label">Size:</label>
               <select class="form-control input-sm">
@@ -77,18 +87,18 @@
                 <option>Black</option>
               </select>
             </div>
-          </div>
+          </div> --%>
           <div class="product-page-cart">
-            <div class="product-quantity">
-                <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
-            </div>
-            <button class="btn btn-primary" type="submit">Add to cart</button>
-            <a href="shop-item.html" class="btn btn-default">More details</a>
+            <button class="btn btn-primary" type="submit">입찰하기</button>
+            <button class="btn btn-warning" type="submit">즉시구매</button>
+            <a href="shop-item.html" class="btn btn-default">상세보기</a>
           </div>
+          
         </div>
-
+		
         <div class="sticker sticker-sale"></div>
       </div>
     </div>
 </div>
+</c:forEach>
 <!-- END fast view of a product -->
