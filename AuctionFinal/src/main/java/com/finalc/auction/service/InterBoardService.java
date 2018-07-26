@@ -46,7 +46,7 @@ public interface InterBoardService {
 
 	List<AuctionVO> getNewAuctionList();
 
-
+	List<AuctionVO> getAuctionList();
 	
 
 
