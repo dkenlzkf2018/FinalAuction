@@ -72,15 +72,16 @@
 		<result property="TENDERDAY" column="tenderday" javaType="String" />
 		<result property="TENDERPRICE" column="tenderprice" javaType="String" />
 		<result property="ACTD_ENDDAY" column="actd_endday" javaType="String" />
+		<result property="ACTDNUM" column="actdnum" javaType="String" />
 	</resultMap>
 	
 	<select id="JoinList" parameterType="HashMap" resultMap="getBuyListMap">
-		select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, actd_endday
+		select actimage, joinactnum, actnum, actname, usernum, tenderday, tenderprice, actd_endday, actdnum
 		from
 		(
 		select C.actimage, to_char(A.joinactnum) AS joinactnum, to_char(A.fk_actnum) AS actnum, C.actname, to_char(A.fk_usernum) AS usernum
 			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
-			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday
+			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday, B.actdnum
 		from tbl_joinaclist A join tbl_auction_detail B
 		on A.fk_actnum = B.actdnum
 		join tbl_auction C

@@ -48,7 +48,7 @@ public interface InterBoardDAO {
 
 	List<AuctionVO> getNewAuctionList();
 
-
+	List<AuctionVO> getAuctionList();
 
 
 

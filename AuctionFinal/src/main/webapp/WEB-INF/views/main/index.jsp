@@ -118,7 +118,7 @@
                 	 style="width:auto; height:100px;">
                 <div>
                   <a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
               <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
@@ -144,49 +144,17 @@
     <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="row margin-bottom-40 ">
       <!-- BEGIN SIDEBAR -->
+     <div> <span style="font-weight: bold; font-size: 13pt;">Super Auction 파트너스</span></div>
+     <br/>
       <div class="sidebar col-md-3 col-sm-4">
-        <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
-          <li class="list-group-item clearfix dropdown">
-            <a href="shop-product-list.html">
-              <i class="fa fa-angle-right"></i>
-              Mens
-              
-            </a>
-            <ul class="dropdown-menu">
-              <li class="list-group-item dropdown clearfix">
-                <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Shoes </a>
-                  <ul class="dropdown-menu">
-                    <li class="list-group-item dropdown clearfix">
-                      <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 1</a></li>
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 2</a></li>
-                      </ul>
-                    </li>
-                    <li class="list-group-item dropdown clearfix">
-                      <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport  </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 1</a></li>
-                        <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 2</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-              </li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Trainers</a></li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Jeans</a></li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Chinos</a></li>
-              <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> T-Shirts</a></li>
-            </ul>
-          </li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home & Garden</a></li>
-          <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li>
-        </ul>
+          <a href="http://corners.auction.co.kr/corner/UsedMarket.aspx"> <img src="<%=request.getContextPath() %>/resources/images/logo_umarket.png"></a>
+          <br/><br/>
+          <a href="http://ebay.auction.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/m_logo_auct_ebsh.png"></a>
+          <br/><br/>
+          <a href="http://www.bidbuy.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/blogo.png"></a>  
+          <br/><br/>
+          <a href="https://auctions.yahoo.co.jp/"><img src="<%=request.getContextPath() %>/resources/images/logo_yahuoku_01.png"></a>
+          <!-- <i class="fa fa-angle-right"></i> -->
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN CONTENT -->
@@ -199,7 +167,7 @@
                 <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
                   <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
               <h3><a href="shop-item.html">Berry Lace Dress</a></h3>

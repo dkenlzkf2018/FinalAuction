@@ -100,18 +100,7 @@
 				<tr>
 					<td align="center">${boardvo.boardno}</td>
 					<td>
-					    <%-- <span class="subject" onClick="goView('${boardvo.seq}');">${boardvo.subject}</span> --%>
-					    <%-- ==== #104. 글제목에 댓글의 갯수를 붙이도록 한다. 
-					    <c:if test="${boardvo.commentCount > 0}">
-					        <span class="subject" onClick="goView('${boardvo.seq}');">${boardvo.subject}<span style="color: red; font-weight: bold; font-style: italic; font-size: smaller; vertical-align: super;">[${boardvo.commentCount}]</span></span> 
-					    </c:if>
-					    <c:if test="${boardvo.commentCount == 0}">
-					        <span class="subject" onClick="goView('${boardvo.seq}');">${boardvo.subject}</span>
-					    </c:if>
-					    --%>
-					    
-					    <%-- ==== #128. 글제목에 댓글의 갯수를 붙이도록 한다.
-					                                     답변글인 경우 제목앞에 공백(여백)과 함께 Re 라는 글자를 붙이도록 한다.--%>
+				
 					    <!-- 답변글이 아닌 원글인 경우 -->
 					    <c:if test="${boardvo.fk_boardno == 0}">
 						    <c:if test="${boardvo.commentcount > 0}">
