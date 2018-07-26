@@ -212,6 +212,14 @@ public List<AuctionVO> getNewAuctionList() {
 	return newAuctionList;
 }
 
+@Override
+public List<AuctionVO> getAuctionList() {
+	
+	List<AuctionVO> auctionList = dao.getAuctionList();
+	
+	return auctionList;
+}
+
 
    
    

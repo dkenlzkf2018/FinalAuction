@@ -13,7 +13,6 @@
             <a class="navbar-brand" href="<%=request.getContextPath() %>/adminMain.action"><img src="<%=request.getContextPath() %>/resources/images/logo-admin.png" alt="Logo"></a>
             <a class="navbar-brand hidden" href="<%=request.getContextPath() %>/adminMain.action"><img src="<%=request.getContextPath() %>/resources/images/logo2-admin.png" alt="Logo"></a>
         </div>
-
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
@@ -48,5 +47,4 @@
         </div><!-- /.navbar-collapse -->
     </nav>
 </aside><!-- /#left-panel -->
-
 <!-- Left Panel -->

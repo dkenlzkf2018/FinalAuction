@@ -4,6 +4,8 @@ from tbl_member;
 update tbl_member set passwd = 'qwer1234#'
 where userid = 'dkenlzkf';
 
+select *
+from tbl_auction_detail;
 
 select *
 from tbl_member;

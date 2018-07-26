@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.finalc.auction.service.InterBoardService;
+import com.finalc.auction.service.InterBuyListService;
 import com.finalc.auction.common.FileManager;
 import com.finalc.auction.common.MyUtil;
 import com.finalc.auction.model.AuctionVO;
@@ -40,6 +41,9 @@ public class BoardController {
    @Autowired
    private InterBoardService service;
    
+   @Autowired
+   private InterBuyListService service1;
+   
    @Autowired 
    private FileManager fileManager;
    
@@ -50,10 +54,55 @@ public class BoardController {
       List<CategoryVO> categoryList = service.getCategoryList();
       List<CategoryVO> categoryDetailList = service.getCategoryDetailList();
       List<AuctionVO> newAuctionList = service.getNewAuctionList();
+      List<AuctionVO> auctionList = service.getAuctionList();
+      
+      String nowprice = "";
+      String thisprice = "";
+      for (AuctionVO auctionvo:auctionList) {
+    	  	
+			// 입찰내역 중 최고 입찰금
+			String tenderprice = service1.getTender(auctionvo.getActnum());
+			//System.out.println("시작가격 : " + acvo.getStartprice() + "원");
+			// 입찰 수
+			int count = service1.getTenderCount(auctionvo.getActnum());
+			
+			
+			if (tenderprice == null || count == 0) {
+				// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
+				nowprice = auctionvo.getStartprice();
+			}
+			else {
+				// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
+				nowprice = tenderprice;
+			}
+			
+			auctionvo.setStartprice(nowprice);
+      }
+      for (AuctionVO auctionvo:newAuctionList) {
+  	  	
+			// 입찰내역 중 최고 입찰금
+			String tenderprice = service1.getTender(auctionvo.getActnum());
+			//System.out.println("시작가격 : " + acvo.getStartprice() + "원");
+			// 입찰 수
+			int count = service1.getTenderCount(auctionvo.getActnum());
+			
+			
+			if (tenderprice == null || count == 0) {
+				// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
+				thisprice = auctionvo.getStartprice();
+			}
+			else {
+				// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
+				thisprice = tenderprice;
+			}
+			
+			auctionvo.setStartprice(thisprice);
+      }
       
       session.setAttribute("categoryList", categoryList);
       session.setAttribute("categoryDetailList", categoryDetailList);
       session.setAttribute("newAuctionList", newAuctionList);
+      session.setAttribute("auctionList", auctionList);
       
       return "main/index.tiles";
    }

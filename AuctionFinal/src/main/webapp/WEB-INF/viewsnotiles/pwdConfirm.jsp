@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<%
-	String ctxname = request.getContextPath();
-%>
-
+ 
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.0.0.js"></script>
 <script type="text/javascript">
 	
@@ -43,7 +39,7 @@
 				var frm = document.pwdConfirmFrm;
 				frm.method = "get";
 				frm.action = "pwdConfirm.action";
-				frm.submit();	
+				frm.submit();
 			}
 		});
 				

@@ -289,7 +289,7 @@
                 	 style="width:auto; height:100px;">
                 <div>
                   <a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
               <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
@@ -318,13 +318,14 @@
      <div> <span style="font-weight: bold; font-size: 13pt;">Super Auction 파트너스</span></div>
      <br/>
       <div class="sidebar col-md-3 col-sm-4">
-          <a href="http://corners.auction.co.kr/corner/UsedMarket.aspx"><i class="fa fa-angle-right"></i> <img src="<%=request.getContextPath() %>/resources/images/logo_umarket.png"></a>
+          <a href="http://corners.auction.co.kr/corner/UsedMarket.aspx"> <img src="<%=request.getContextPath() %>/resources/images/logo_umarket.png"></a>
           <br/><br/>
-          <a href="http://ebay.auction.co.kr/"> <i class="fa fa-angle-right"></i><img src="<%=request.getContextPath() %>/resources/images/m_logo_auct_ebsh.png"></a>
+          <a href="http://ebay.auction.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/m_logo_auct_ebsh.png"></a>
           <br/><br/>
-          <a href="http://www.bidbuy.co.kr/"> <i class="fa fa-angle-right"></i><img src="<%=request.getContextPath() %>/resources/images/blogo.png"></a>  
+          <a href="http://www.bidbuy.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/blogo.png"></a>  
           <br/><br/>
-          <a href="https://auctions.yahoo.co.jp/"> <i class="fa fa-angle-right"></i><img src="<%=request.getContextPath() %>/resources/images/logo_yahuoku_01.png"></a>
+          <a href="https://auctions.yahoo.co.jp/"><img src="<%=request.getContextPath() %>/resources/images/logo_yahuoku_01.png"></a>
+          <!-- <i class="fa fa-angle-right"></i> -->
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN CONTENT -->
@@ -337,7 +338,7 @@
                 <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
                   <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
               <h3><a href="shop-item.html">Berry Lace Dress</a></h3>

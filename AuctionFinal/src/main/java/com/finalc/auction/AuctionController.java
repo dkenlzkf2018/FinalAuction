@@ -22,6 +22,7 @@ import com.finalc.auction.model.AuctionVO;
 import com.finalc.auction.model.CategoryVO;
 import com.finalc.auction.model.HugiBoardVO;
 import com.finalc.auction.service.InterBoardService;
+import com.finalc.auction.service.InterBuyListService;
 import com.finalc.auction.service.InterAuctionService;
 
 @Controller
@@ -34,6 +35,9 @@ public class AuctionController {
 	// 경매 컨트롤러 (InterAuctionService)
 	@Autowired
 	private InterAuctionService serviceA;
+	
+	@Autowired
+	private InterBuyListService service1;
 	
 	@Autowired 
 	private FileManager fileManager;
@@ -187,6 +191,28 @@ public class AuctionController {
 		int totalCnt = serviceA.ShowAuction(map);
 		
 		List<AuctionVO> auctionList = serviceA.getAuctionList(fk_cdnum);
+		
+		String nowprice = "";
+		for (AuctionVO auctionvo:auctionList) {
+			  	
+			// 입찰내역 중 최고 입찰금
+			String tenderprice = service1.getTender(auctionvo.getActnum());
+			//System.out.println("시작가격 : " + acvo.getStartprice() + "원");
+			// 입찰 수
+			int count = service1.getTenderCount(auctionvo.getActnum());
+			
+			
+			if (tenderprice == null || count == 0) {
+				// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
+				nowprice = auctionvo.getStartprice();
+			}
+			else {
+				// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
+						nowprice = tenderprice;
+			}
+					
+			auctionvo.setStartprice(nowprice);
+		}
 		
 		req.setAttribute("totalCnt", totalCnt);
 		req.setAttribute("fk_cdnum", fk_cdnum);
