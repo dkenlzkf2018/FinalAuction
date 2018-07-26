@@ -27,12 +27,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#actname")click(function(){
-			
-		});
+		
 	});
 	
-	function goAuction(){
+	/* function goAuction(){
 		
 		var frm = document.JoinListFrm;
 		
@@ -40,7 +38,7 @@
 		frm.method = "get";
 		frm.submit();
 		
-	}
+	} */
 	
 </script>
 
@@ -76,7 +74,7 @@
 	             <span id="actnum" name="actnum">${map.ACTNUM}</span>
 	           </td>
 	           <td class="goods-page-actname">
-	             <a href="AuctionShow.action?actnum=${map.ACTNUM}">${map.ACTNAME}</a>
+	             <a href="viewAuction.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a>
 	           </td>
 	           <td class="goods-page-awardnum">
 	             ${map.JOINACTNUM}
