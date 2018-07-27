@@ -5,7 +5,40 @@
 
 <script type="text/javascript">
 
-	var weatherTimejugi = 0;
+	function showWeather() {
+
+	// 날씨 정보 띄우기 단
+		var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"c2086d467918ca3a0300f821d4e8f86f";
+        $.ajax({
+            url: apiURI,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function(resp) {
+                console.log(resp);
+                console.log("도시ID : "+ resp.id );
+                console.log("도시이름  : "+ resp.name );
+                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+                console.log("현재습도 : "+ resp.main.humidity);
+                console.log("날씨 : "+ resp.weather[0].main );
+                console.log("날씨 이미지 : "+ resp.weather[0].icon );
+            }
+        });
+        
+    	function loopshowWeather() {
+    		
+    		showWeather();
+    		
+    		setTimeOut(function() {
+    			loopShowWeather();
+    		}, weatherTimejugi);
+    		
+    		setTimeOut(function() {
+    			loopShowWeather();
+    		}, (60*60*1000) ); // 60*60*1000 은 1시간
+    	}        
+
+<%-- 	var weatherTimejugi = 0;
 
 	$(document).ready(function() {
 		loopshowNowTime();
@@ -82,27 +115,6 @@
 
 	function showWeather() {
 		
-		// 날씨 정보 띄우기 단
-/* 		var apiURI = "http://api.openweathermap.org/data/2.5/weather?id="+{citynum};
-	        $.ajax({
-	            url: apiURI,
-	            dataType: "json",
-	            type: "GET",
-	            async: "false",
-	            success: function(resp) {
-	                console.log(resp);
-	                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-	                console.log("현재습도 : "+ resp.main.humidity);
-	                console.log("날씨 : "+ resp.weather[0].main );
-	                console.log("상세날씨설명 : "+ resp.weather[0].description );
-	                console.log("날씨 이미지 : "+ resp.weather[0].icon );
-	                console.log("바람   : "+ resp.wind.speed );
-	                console.log("나라   : "+ resp.sys.country );
-	                console.log("도시이름  : "+ resp.name );
-	                console.log("구름  : "+ (resp.clouds.all) +"%" );
-	            }
-	        }); */
-		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/weatherXML.action",
 		//	url: "http://www.kma.go.kr/XML/weather/sfc_web_map.xml", // 안됨. 데이터를 불러올 수 없다.
@@ -169,8 +181,8 @@
 		
 		setTimeOut(function() {
 			loopShowWeather();
-		}, (60*60*1000) ); // 60*60*1000 은 1시간 / 이게 아닌가봐 <- weatherTimejugi + (60*60*1000) );
-	}	
+		}, (60*60*1000) ); // 60*60*1000 은 1시간
+	} --%>	
 	
 </script>
 

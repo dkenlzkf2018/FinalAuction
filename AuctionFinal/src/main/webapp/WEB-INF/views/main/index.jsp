@@ -5,180 +5,8 @@
 
 <!-- BEGIN SLIDER -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date" />
 
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-
-<script type="text/javascript">
-
-	var weatherTimejugi = 0;
-
-	$(document).ready(function() {
-		loopshowNowTime();
-		
-		// 시간이 30분 00초가 되면 기상청 날씨정보를 업데이트 한다,.
-		// (정시마다 변경되는 정보는 정시에 오지 않고, 20~30 분 정도 후에 전송되기 때문이다.
-		var now = new Date();
-		var minute = now.getMinutes();
-		
-		if(minute < 30) {
-			weatherTimejugi = (30-minute)*60*1000; // 매번 12분뒤에 함
-		}
-		else if (minute == 30) {
-			weatherTimejugi  = 1000;
-		}
-		else { // 30분 이후
-			weatherTimejugi = (60-minutes+30)*60*1000;
-		}
-		
-	//	showWeather();	// 기상청 날씨정보 공공API XML 데이터호출하기
-		loopshowWeather(); // 기상청 날씨정보 공공API XML 데이터호출하기
-	
-	}); // end of ready(); ---------------------------------
-
-	
-	function showNowTime() {
-		
-		var now = new Date();
-	
-		var strNow = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-		
-		var hour = "";
-		if(now.getHours() > 12) {
-			hour = " 오후 " + (now.getHours() - 12);
-		} else if(now.getHours() < 12) {
-			hour = " 오전 " + now.getHours();
-		} else {
-			hour = " 정오 " + now.getHours();
-		}
-		
-		var minute = "";
-		if(now.getMinutes() < 10) {
-			minute = "0"+now.getMinutes();
-		} else {
-			minute = ""+now.getMinutes();
-		}
-		
-		var second = "";
-		if(now.getSeconds() < 10) {
-			second = "0"+now.getSeconds();
-		} else {
-			second = ""+now.getSeconds();
-		}
-		
-		strNow += hour + ":" + minute + ":" + second;
-		
-		$("#clock").html("<span style='color:green; font-weight:bold;'>"+strNow+"</span>");
-	
-	}// end of function showNowTime() -----------------------------
-
-
-	function loopshowNowTime() {
-		
-		showNowTime();
-		
-		var timejugi = 1000;   // 시간을 1초 마다 자동 갱신하려고.
-		
-		setTimeout(function() {
-						loopshowNowTime();	
-					//	showWeather();
-					}, timejugi);
-		
-	}// end of loopshowNowTime() --------------------------
-
-	function showWeather() {
-
-		// 날씨 정보 띄우기 단
-/* 		var apiURI = "http://api.openweathermap.org/data/2.5/weather?id="+{citynum};
-	        $.ajax({
-	            url: apiURI,
-	            dataType: "json",
-	            type: "GET",
-	            async: "false",
-	            success: function(resp) {
-	                console.log(resp);
-	                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-	                console.log("현재습도 : "+ resp.main.humidity);
-	                console.log("날씨 : "+ resp.weather[0].main );
-	                console.log("상세날씨설명 : "+ resp.weather[0].description );
-	                console.log("날씨 이미지 : "+ resp.weather[0].icon );
-	                console.log("바람   : "+ resp.wind.speed );
-	                console.log("나라   : "+ resp.sys.country );
-	                console.log("도시이름  : "+ resp.name );
-	                console.log("구름  : "+ (resp.clouds.all) +"%" );
-	            }
-	        });	*/	
-		
-		$.ajax({
-			url: "<%=request.getContextPath()%>/weatherXML.action",
-		//	url: "http://www.kma.go.kr/XML/weather/sfc_web_map.xml", // 안됨. 데이터를 불러올 수 없다.
-			type: "GET",
-			dataType: "XML",
-			success: function(xml) {
-				var rootElement = $(xml).find(":root");
-			//	console.log($(rootElement).prop("tagName")); ==> current
-				var weather = $(rootElement).find("weather");
-			//	console.log($(weather).attr("year")+"년 "+$(weather).attr("month")+"월 "+$(weather).attr("day")+"일 "+$(weather).attr("hour")+"시"); ==> 2018년 06월 28일 16시
-				var updateTime = $(weather).attr("year")+"년 "+$(weather).attr("month")+"월 "+$(weather).attr("day")+"일 "+$(weather).attr("hour")+"시";
-				
-				var localArr = $(rootElement).find("local");
-			//	console.log(localArr.length); ==> 95
-				var html = "업데이트 시각 : <span style='font-weight: bold;'>"+updateTime+"</span><br/>";
-				html += "<table class='table table-hover' align='center'>";
-				html += "<tr>";
-				html += "<th>지역</th>";
-				html += "<th>날씨</th>";
-				html += "<th>기온</th>";
-				html += "</tr>";
-				
-				for(var i=0; i<localArr.length; i++) {
-					var local = $(localArr).eq(i);
-					/* 
-						.eq(index)는 선택된 요소들을 인덱스 번호로 찾을 수 있는 선택자이다.
-						마치 배열의 인덱스(index)로 값(value)을 찾는것과 같은 효과를 낸다. 
-					*/
-				//	console.log($(local).text() + ", desc:" + $(local).attr("desc") + ", ta : " + $(local).attr("ta"));
-					/* 
-						속초, desc:-, ta:27.3
-						북춘천, desc:천둥번개, ta:20.6
-						철원, desc:-, ta:19.8
-						동두천, desc:-, ta:18.1
-						파주, desc:-, ta:17.0
-						대관령, desc:-, ta:21.6
-						춘천, desc:-, ta:22.4
-					*/
-					html += "<tr>";
-					html += "<td>"+$(local).text()+"</td>";
-					html += "<td>"+$(local).attr("desc")+"</td>";
-					html += "<td>"+$(local).attr("ta")+"</td>";
-					html += "</tr>";
-				}
-				
-				html += "</table>";
-				
-				$("#displayWeather").html(html);
-			},
-			error: function(request, status, error){
-				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error : "+ error);
-			}
-		});
-	}
-	
-	
-	function loopshowWeather() {
-		
-		showWeather();
-		
-		setTimeOut(function() {
-			loopShowWeather();
-		}, weatherTimejugi);
-		
-		setTimeOut(function() {
-			loopShowWeather();
-		}, (60*60*1000) ); // 60*60*1000 은 1시간 / 이게 아닌가봐 <- weatherTimejugi + (60*60*1000) );
-	}	
-	
-</script>
 
 <div class="page-slider margin-bottom-35">
     <div id="carousel-example-generic" class="carousel slide carousel-slider">
@@ -518,15 +346,9 @@
       </div>
       <!-- END TWO PRODUCTS -->
       <!-- BEGIN PROMO -->
-<div style="margin: 0 auto;" align="center">
-	현재시각 :&nbsp; 
-	<div id="clock" style="display:inline;"></div>
-	<div id="displayWeather" style="min-width: 90%; margin-top: 10px;"></div>
-</div>
+
 	      <!-- start of weather widget -->
-	       <!-- col-md-6 col-sm-6 col-xs-12 -->
  		      <div class="product-item col-md-6 col-sm-6 col-xs-12">
-		        <div class="card">
 		          <div class="card-header">
 		            <h2>Daily active Weather <small>Sessions</small></h2>
 		            <div class="clearfix"></div>
@@ -560,7 +382,7 @@
 		
 		            <div class="clearfix"></div>
 		
-		            <div class="row weather-days">
+<%-- 		            <div class="row weather-days">
 		              <div class="col-sm-2">
 		                <div class="daily-weather">	
 		                  <h2 class="day">Mon</h2>
@@ -610,9 +432,8 @@
 		                </div>
 		              </div>
 		              <div class="clearfix"></div>
-		            </div>
+		            </div> --%>
 		          </div>
-		        </div>
 			</div>
       <!-- end of weather widget -->      	
 <%-- <div class="content-slider">

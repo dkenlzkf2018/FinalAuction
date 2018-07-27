@@ -224,9 +224,9 @@ public class AuctionController {
 	
 	// 날씨 정보 단
 	@RequestMapping(value="/AuctionWeather.action", method={RequestMethod.GET})  
-	public String WeatherAuction() {
+	public String AuctionWeather() {
 		
-		return "xml/weatherXML";
+		return "/tiles/tile/sideinfo.tiles";
 		
 	}
 }
