@@ -425,10 +425,7 @@ public class BoardController {
       
       
       int n = service.writedel(map);
-      // 넘겨받은 값이 1(원게시글 및 딸린 댓글까지 삭제 성공)이면 글삭제 성공,
-      // 넘겨받은 값이 2(딸린 댓글없는 경우 원게시글만 삭제 성공)이면 글삭제 성공,
-      // 넘겨받은 값이 0이면 글삭제 실패(암호가 틀리므로)
-      
+          
       req.setAttribute("n", n);
       
       return "board/writedelEnd.tiles";
