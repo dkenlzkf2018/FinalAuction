@@ -38,7 +38,7 @@
 <div class="row margin-bottom-40">
   <!-- BEGIN CONTENT -->
 <div class="col-md-12 col-sm-12">
-  <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 입찰 목록</h1>
+  <h1><span style="color: blue; font-weight: bold;">${sessionScope.loginuser.username}</span>님의 상품 등록 목록</h1>
   <div class="goods-page">
     <div class="goods-data clearfix">
       <div class="table-wrapper-responsive">
@@ -48,32 +48,24 @@
           <th class="goods-page-actimage">상품 이미지</th>
           <th class="goods-page-actnum">상품번호</th>
           <th class="goods-page-actname">상품이름</th>
-          <th class="goods-page-awardnum">입찰번호</th>          
-          <th class="goods-page-awardday">입찰일자</th>
-          <th class="goods-page-awardprice">입찰가</th>
+          <th class="goods-page-startday">경매 시작일</th>
           <th class="goods-page-endday">경매 종료일</th>
         </tr>
         
-        <c:if test="${JoinList != null}">
-	        <c:forEach var="map" items="${JoinList}">
+        <c:if test="${AuctionList != null}">
+	        <c:forEach var="map" items="${AuctionList}">
 	         <tr class="ssi" style="margin-left:5%;">  
 	           <td class="goods-page-actimage">
 	             <img src="<%= request.getContextPath() %>/resources/actimages/${map.ACTIMAGE}" width="80px"/>
 	           </td>
-	           <td class="goods-page-actnnum">
+	           <td class="goods-page-actnum">
 	             <span id="actnum" name="actnum">${map.ACTNUM}</span>
 	           </td>
 	           <td class="goods-page-actname">
 	             <a href="viewAuction.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a>
 	           </td>
-	           <td class="goods-page-awardnum">
-	             ${map.JOINACTNUM}
-	           </td>
-	           <td class="goods-page-awardday">
-	             ${map.TENDERDAY}
-	           </td>
-	           <td class="goods-page-awardprice">
-	             <strong><fmt:formatNumber value="${map.TENDERPRICE}" type="number"/></strong><span>원</span>
+	           <td class="goods-page-startday">
+	             ${map.ACTD_STARTDAY}
 	           </td>
 	           <td class="goods-page-endday">
 	             ${map.ACTD_ENDDAY}
@@ -82,9 +74,9 @@
 	        </c:forEach>
         </c:if>
                   
-        <c:if test="${JoinList == null || empty JoinList}">
+        <c:if test="${AuctionList == null || empty AuctionList}">
 		 <tr>
-		  	<td colspan="7"><span style="color: red;">입찰한 상품이 존재하지 않습니다.</span></td>
+		  	<td colspan="5"><span style="color: red;">등록한 상품이 존재하지 않습니다.</span></td>
 		 </tr>
 		 </c:if> 
 		 
@@ -135,5 +127,3 @@
     });
 </script>
 <!-- END PAGE LEVEL JAVASCRIPTS -->
- 
-  

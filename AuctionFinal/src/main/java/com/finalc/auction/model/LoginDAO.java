@@ -70,9 +70,15 @@ public class LoginDAO implements InterLoginDAO {
 	}
 
 	@Override
-	public int getTotalCount() {
-		int n = sqlsession.selectOne("login.getTotalCount");
+	public int getTotalCount(int usernum) {
+		int n = sqlsession.selectOne("login.getTotalCount", usernum);
 		return n;
+	}
+
+	@Override
+	public List<HashMap<String, String>> AuctionList(HashMap<String, String> map) {
+		List<HashMap<String, String>> AuctionList = sqlsession.selectList("login.AuctionList",map);
+		return AuctionList;
 	}
 
 

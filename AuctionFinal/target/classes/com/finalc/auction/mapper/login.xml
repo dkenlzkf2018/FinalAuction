@@ -83,10 +83,37 @@
 			 , to_char(A.tenderday, 'yyyy-mm-dd') AS tenderday
 			 , A.tenderprice, to_char(B.actd_endday, 'yyyy-mm-dd') AS actd_endday, B.actdnum
 		from tbl_joinaclist A join tbl_auction_detail B
-		on A.fk_actnum = B.actdnum
+		on A.fk_actnum = B.fk_actnum
 		join tbl_auction C
 		on A.fk_actnum = C.actnum
 		where A.fk_usernum = #{usernum}
+		)V
+		
+	</select>
+	
+	<select id="getTotalCount" resultType="Integer">
+		select count(*)
+		from tbl_joinaclist
+		where fk_usernum = #{usernum}
+	</select>
+	
+	<resultMap type="HashMap" id="getAuctionListMap">
+		<result property="ACTIMAGE" column="actimage" javaType="String" />
+		<result property="ACTNUM" column="actnum" javaType="String" />
+		<result property="ACTDNUM" column="actdnum" javaType="String" />
+		<result property="ACTNAME" column="actname" javaType="String" />
+		<result property="ACTD_STARTDAY" column="actd_startday" javaType="String" />
+		<result property="ACTD_ENDDAY" column="actd_endday" javaType="String" />
+	</resultMap>
+	
+	<select id="AuctionList" parameterType="HashMap" resultMap="getAuctionListMap">
+		select actnum, actimage, actname, actd_startday, actd_endday, actdnum
+		from
+		(
+		select A.actnum, A.actimage, A.actname, B.actd_startday, B.actd_endday, B.actdnum
+		from tbl_auction A join tbl_auction_detail B
+		on A.actnum = B.fk_actnum
+		where B.fk_usernum = #{usernum}
 		)V
 		
 	</select>

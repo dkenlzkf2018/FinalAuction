@@ -56,7 +56,9 @@
 				<div class="row"></div>
 				<div class="">${auctionvo.actd_endday} 까지</div>
 				<div class="row"></div>
-				<a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+				<div align="right">
+				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
+				</div>
 			</div>
 		</form>
 	</c:if>

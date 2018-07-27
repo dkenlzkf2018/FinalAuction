@@ -122,7 +122,7 @@ public class PaymentController {
 			
 			req.setAttribute("msg", msg);
 			
-			return "member/coinAddUpdateLoginuser.tiles";
+			return "coinAddUpdateLoginuser.tiles";
 			
 		}
 		else {
@@ -130,7 +130,7 @@ public class PaymentController {
 			
 			req.setAttribute("msg", msg);
 			
-			return "member/coinAddUpdateLoginuser.tiles";
+			return "coinAddUpdateLoginuser.tiles";
 		}
 	}
 	// 결제 진행 후 결과 출력

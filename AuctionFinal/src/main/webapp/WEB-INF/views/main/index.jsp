@@ -127,7 +127,9 @@
 				<div class="row"></div>
 				<div class="">${auctionvo.actd_endday} 까지</div>
 				<div class="row"></div>
-				<a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+				<div align="right">
+				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
+				</div>
 				<c:if test="${auctionvo.actd_startday == today}">
               		<div class="sticker sticker-new"></div>
 				</c:if>
@@ -141,11 +143,12 @@
     <!-- END SALE PRODUCT & NEW ARRIVALS -->
 
     <!-- BEGIN SIDEBAR & CONTENT -->
-    <div class="row margin-bottom-40 ">
+    <div class="row margin-bottom-40">
       <!-- BEGIN SIDEBAR -->
-     <div> <span style="font-weight: bold; font-size: 13pt;">Super Auction 파트너스</span></div>
+     
      <br/>
       <div class="sidebar col-md-3 col-sm-4">
+		<div> <span style="font-weight: bold; font-size: 13pt;">Super Auction 파트너스</span></div>
           <a href="http://corners.auction.co.kr/corner/UsedMarket.aspx"> <img src="<%=request.getContextPath() %>/resources/images/logo_umarket.png"></a>
           <br/><br/>
           <a href="http://ebay.auction.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/m_logo_auct_ebsh.png"></a>
@@ -156,193 +159,83 @@
           <!-- <i class="fa fa-angle-right"></i> -->
       </div>
       <!-- END SIDEBAR -->
-      <!-- BEGIN CONTENT -->
+      
+      
+      <!-- 중간 까로세ㅇ에ㅔ에에에ㅔ에에에에에에루 -->
       <div class="col-md-9 col-sm-8">
-        <h2>Three items</h2>
+        <h2>베스트 경매!</h2>
         <div class="owl-carousel owl-carousel3">
-          <div>
+            <c:forEach var="auctionvo" items="${bestAuctionList}">
+            <div>
             <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+              <div class="pi-img-wrapper" align="center">
+				<img src="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" 
+                	 class="img-responsive"
+                	 alt="${auctionvo.orgFilename}"
+                	 style="width:auto; height:100px;">
                 <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-new"></div>
+              <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
+				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+				<div class="row"></div>
+				<div align="right" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div class="row"></div>
+				<div class="">${auctionvo.actd_endday} 까지</div>
+				<div class="row"></div>
+				<div align="right">
+				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
+				</div>
+				<c:if test="${auctionvo.actd_startday == today}">
+              		<div class="sticker sticker-new"></div>
+				</c:if>
             </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-sale"></div>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-        </div>
+            </c:forEach>
+      	</div>
       </div>
-      <!-- END CONTENT -->
+      <!-- 중간 까로세ㅇ에ㅔ에에에ㅔ에에에에에에루 -->
     </div>
     <!-- END SIDEBAR & CONTENT -->
 
-    <!-- BEGIN TWO PRODUCTS & PROMO -->
+    <!-- BEGIN 안팔리는 까로세에에에ㅔ에에에레ㅔ레레레레ㅔ에레ㅔㅇ레에레ㅔㄹ -->
     <div class="row margin-bottom-35 ">
       <!-- BEGIN TWO PRODUCTS -->
       <div class="col-md-6 two-items-bottom-items">
-        <h2>Two items</h2>
+        <h2>추천 경매품</h2>
         <div class="owl-carousel owl-carousel2">
-          <div>
+            <c:forEach var="auctionvo" items="${worstAuctionList}">
+            <div>
             <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+              <div class="pi-img-wrapper" align="center">
+				<img src="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" 
+                	 class="img-responsive"
+                	 alt="${auctionvo.orgFilename}"
+                	 style="width:auto; height:100px;">
                 <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="<%=request.getContextPath() %>/resources/actimages/${auctionvo.actimage}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
+				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+				<div class="row"></div>
+				<div align="right" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div class="row"></div>
+				<div class="">${auctionvo.actd_endday} 까지</div>
+				<div class="row"></div>
+				<div align="right">
+				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
+				</div>
+				<c:if test="${auctionvo.actd_startday == today}">
+              		<div class="sticker sticker-new"></div>
+				</c:if>
             </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-        </div>
+            </c:forEach>
+      	</div>
       </div>
       <!-- END TWO PRODUCTS -->
       <!-- BEGIN PROMO -->

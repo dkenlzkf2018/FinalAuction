@@ -24,9 +24,11 @@ public interface InterLoginService {
 
 	int memberEdit(HashMap<String, String> map);
 
-	int getTotalCount();
+	int getTotalCount(int usernum);
 
 	List<HashMap<String, String>> JoinList(HashMap<String, String> map);
+
+	List<HashMap<String, String>> AuctionList(HashMap<String, String> map);
 
 
 }
