@@ -55,6 +55,8 @@ public class BoardController {
       List<CategoryVO> categoryDetailList = service.getCategoryDetailList();
       List<AuctionVO> newAuctionList = service.getNewAuctionList();
       List<AuctionVO> auctionList = service.getAuctionList();
+      List<AuctionVO> bestAuctionList = service.getBestAuctionList();
+      List<AuctionVO> worstAuctionList = service.getWorstAuctionList();
       
       String nowprice = "";
       String thisprice = "";
@@ -102,7 +104,9 @@ public class BoardController {
       session.setAttribute("categoryList", categoryList);
       session.setAttribute("categoryDetailList", categoryDetailList);
       session.setAttribute("newAuctionList", newAuctionList);
+      session.setAttribute("bestAuctionList", bestAuctionList);
       session.setAttribute("auctionList", auctionList);
+      session.setAttribute("worstAuctionList", worstAuctionList);
       
       return "main/index.tiles";
    }

@@ -220,6 +220,22 @@ public List<AuctionVO> getAuctionList() {
 	return auctionList;
 }
 
+@Override
+public List<AuctionVO> getBestAuctionList() {
+	
+	List<AuctionVO> bestAuctionList = dao.getBestAuctionList();
+	
+	return bestAuctionList;
+}
+
+@Override
+public List<AuctionVO> getWorstAuctionList() {
+	
+	List<AuctionVO> worstAuctionList = dao.getWorstAuctionList();
+	
+	return null;
+}
+
 
    
    

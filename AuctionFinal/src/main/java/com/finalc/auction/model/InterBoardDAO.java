@@ -50,7 +50,9 @@ public interface InterBoardDAO {
 
 	List<AuctionVO> getAuctionList();
 
-
+	List<AuctionVO> getBestAuctionList();
+    
+	List<AuctionVO> getWorstAuctionList();
 
 	
 }

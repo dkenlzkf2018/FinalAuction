@@ -224,4 +224,16 @@
 	</select>
 <!-- 일반 경매 리스트 -->
 
+	<!-- 베스트 경매 리스트 -->
+	<select id="bestAuctionList" resultType="com.finalc.auction.model.AuctionVO">
+	
+	</select>
+	<!-- 베스트 경매 리스트 -->
+	
+	<!-- 안팔리는 경매리스트 -->
+	<select id="worstAuctionList" resultType="com.finalc.auction.model.AuctionVO">
+	
+	</select>
+	<!-- 안팔리는 경매리스트 -->
+
 </mapper>

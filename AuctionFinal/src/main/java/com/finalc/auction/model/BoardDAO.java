@@ -188,5 +188,21 @@ public class BoardDAO implements InterBoardDAO {
 		return auctionList;
 	}
 
+	@Override
+	public List<AuctionVO> getBestAuctionList() {
+		
+		List<AuctionVO> bestAuctionList = sqlsession.selectList("board.bestAuctionList");
+		
+		return bestAuctionList;
+	}
+
+	@Override
+	public List<AuctionVO> getWorstAuctionList() {
+		
+		List<AuctionVO> worstAuctionList = sqlsession.selectList("board.worstAuctionList");
+		
+		return worstAuctionList;
+	}
+
 
 }
