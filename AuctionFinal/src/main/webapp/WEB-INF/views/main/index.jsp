@@ -8,6 +8,12 @@
 
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 
+<style type="text/css" >
+svg, img, canvas {
+  display: block;
+}
+</style>
+
 <div class="page-slider margin-bottom-35">
     <div id="carousel-example-generic" class="carousel slide carousel-slider">
         <!-- Indicators -->
@@ -258,12 +264,17 @@
 		            <div class="row">
 		              <div class="col-sm-4">
 		                <div class="weather-icon">
+		                	<svg height="40">
+							  <rect width="80" height="80" />
+							  <image xlink:href="<%=request.getContextPath()%>/resources/assets/pages/img/svg?="+{city} height="20px" width="20px" x="10" y="10"></image>
+							</svg>
+							<hr/><br/>
 		                  <%-- <canvas height="84" width="84" id=""></canvas> --%>
 		                </div>
 		              </div>
 		              <div class="col-sm-8">
 		                <div class="weather-text">
-		                  <h2>Texas <br><i>Partly Cloudy Day</i></h2>
+		                  <h2 class="">Texas <br><i>Partly Cloudy Day</i></h2>
 		                </div>
 		              </div>
 		            </div>
@@ -290,38 +301,6 @@
 		                  <h3 class="degrees">25</h3>
 		                  <canvas height="32" width="32" id="rain"></canvas>
 		                  <h5>12 <i>km/h</i></h5>
-		                </div>
-		              </div>
-		              <div class="col-sm-2">
-		                <div class="daily-weather">
-		                  <h2 class="day">Wed</h2>
-		                  <h3 class="degrees">27</h3>
-		                  <canvas height="32" width="32" id="snow"></canvas>
-		                  <h5>14 <i>km/h</i></h5>
-		                </div>
-		              </div>
-		              <div class="col-sm-2">
-		                <div class="daily-weather">
-		                  <h2 class="day">Thu</h2>
-		                  <h3 class="degrees">28</h3>
-		                  <canvas height="32" width="32" id="sleet"></canvas>
-		                  <h5>15 <i>km/h</i></h5>
-		                </div>
-		              </div>
-		              <div class="col-sm-2">
-		                <div class="daily-weather">
-		                  <h2 class="day">Fri</h2>
-		                  <h3 class="degrees">28</h3>
-		                  <canvas height="32" width="32" id="wind"></canvas>
-		                  <h5>11 <i>km/h</i></h5>
-		                </div>
-		              </div>
-		              <div class="col-sm-2">
-		                <div class="daily-weather">
-		                  <h2 class="day">Sat</h2>
-		                  <h3 class="degrees">26</h3>
-		                  <canvas height="32" width="32" id="cloudy"></canvas>
-		                  <h5>10 <i>km/h</i></h5>
 		                </div>
 		              </div>
 		              <div class="clearfix"></div>

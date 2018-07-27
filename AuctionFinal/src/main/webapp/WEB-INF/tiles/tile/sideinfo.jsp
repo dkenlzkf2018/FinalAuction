@@ -5,8 +5,14 @@
 
 <script type="text/javascript">
 
+<i id="icon"></i>
+<span id="cloud" class="font-bold"></span>
+
 	function showWeather() {
 
+	$('#icon').html(response.weather[0].icon);
+	$('#cloud').text(response.clouds.all);
+		
 	// 날씨 정보 띄우기 단
 		var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"c2086d467918ca3a0300f821d4e8f86f";
         $.ajax({
@@ -25,6 +31,36 @@
             }
         });
         
+        // svg 띄우기
+        function drawInlineSVG(svg, img, canvas) {
+
+        	var svg = document.querySelector('svg');
+        	var img = document.querySelector('img');
+        	var canvas = document.querySelector('canvas');
+
+        	// get svg data
+        	var xml = new XMLSerializer().serializeToString(svg);
+
+        	// make it base64
+        	var svg64 = btoa(xml);
+        	var b64Start = 'data:image/svg+xml;base64,';
+
+        	// prepend a "header"
+        	var image64 = b64Start + svg64;
+
+        	// set it as the source of the img element
+        	img.src = image64;
+
+        	// draw the image onto the canvas
+        	canvas.getContext('2d').drawImage(img, 0, 0);
+        	
+    	}
+        
+    	// usage:
+    	/* drawInlineSVG(svg, img, canvas {
+    	    console.log(svg.toDataURL());  // -> PNG data-uri
+    	}); */
+        
     	/* function loopshowWeather() {
     		
     		showWeather();
@@ -37,8 +73,10 @@
     			loopShowWeather();
     		}, (60*60*1000) ); // 60*60*1000 은 1시간
     	} */
+
     	
-    	function drawInlineSVG(ctx, rawSVG, callback) {
+    	
+/*     	function drawInlineSVG(ctx, rawSVG, callback) {
 
     	    var svg = new Blob([rawSVG], {type:"/resources/assets/pages/img/svg; charset=utf-8"}),
     	        domURL = self.URL || self.webkitURL || self,
@@ -51,13 +89,13 @@
     	        callback(this);
     	    };
 
-    	    img.src = url;
+    	    img.src = url;0
     	}
 
     	// usage:
     	drawInlineSVG(ctxt, svgText, function() {
     	    console.log(canvas.toDataURL());  // -> PNG data-uri
-    	});
+    	}); */
 
 <%-- 	var weatherTimejugi = 0;
 
