@@ -232,7 +232,7 @@
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
               	  <br/>
-              	  <label class="control-label">입찰단위  : </label>
+              	  <label class="control-label">입찰 단위  : </label>
               	  <span><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/>원</span>
               	  <br/>
               	  
