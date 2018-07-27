@@ -417,7 +417,7 @@ public class BoardController {
       return "board/writeeditEnd.tiles";
    }// 게시글 수정페이지 완료 (07.06 12:26 끝)
    
-   // 게시글 삭제 (07.06 17:20 시작)
+   // 게시글 삭제 (07.06 17:20 시작.)
    @RequestMapping(value="/writedel.action", method={RequestMethod.GET})
    public String auctionLogin_del(HttpServletRequest req, HttpServletResponse res) {
       
