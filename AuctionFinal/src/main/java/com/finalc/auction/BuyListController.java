@@ -291,9 +291,6 @@ public class BuyListController {
 		
 		System.out.println("BuyListController.java 상품명 : " + actname);
 		
-		
-		
-		
 		req.setAttribute("map", map);
 		req.setAttribute("nowprice", nowprice);
 		req.setAttribute("coin", loginuser.getCoin());
@@ -302,7 +299,7 @@ public class BuyListController {
 		}
 	}
 	
-	// 구매하기 시작
+	// 즉시구매 시작
 	@RequestMapping(value="/quickgumae.action", method={RequestMethod.POST}) 
 	public String quickgumae(HttpServletRequest req) {	
 		System.out.println("quickgumae.action(즉시구매) 시작");
@@ -333,11 +330,11 @@ public class BuyListController {
 			map.put("actnum", actnum);
 			map.put("actdnum", actdnum);
 			map.put("actd_price", actd_price);
-			map.put("fk_usernum", fk_usernum);	
+			map.put("fk_usernum", fk_usernum);
 			map.put("tenderprice", actd_price);
 			
 			JoinaclistVO jvo = service.getMemberDeposit(actnum);
-			
+			int price = Integer.parseInt(actd_price);
 			if (jvo != null) {	// 상품에 대한 입찰 내역이 있는 경우
 				map.put("tenderpriceold", jvo.getTenderprice());
 				//System.out.println("tenderpriceold : " + jvo.getTenderprice());
@@ -349,7 +346,7 @@ public class BuyListController {
 				// 즉시구매
 				int result = service.quickTender(map);
 				if (result0+result == 7) {
-					
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) - price));
 					req.setAttribute("msg", "즉시 구매 성공!!");
 					req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);
 					return "msg.notiles";
@@ -361,10 +358,10 @@ public class BuyListController {
 				}
 			}
 			else {	// 상품에 대한 입찰 내역이 없는 경우
-				// 경매 입찰
-				int result = service.inputTender(map);
+				
+				int result = service.quickTender(map);
 				if (result == 6) {
-					
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) - price));
 					req.setAttribute("msg", "즉시 구매 성공!!");
 					req.setAttribute("loc", "viewAuction.action?actdnum="+actdnum);
 					return "msg.notiles";
@@ -396,9 +393,9 @@ public class BuyListController {
 			System.out.println("tenderprice : " + tenderprice);
 			// if (tenderprice == null) {
 			String deposit = req.getParameter("deposit");
-			System.out.println("deposit : " + deposit);
+			System.out.println("inputTender.action(deposit) : " + deposit);
 			
-			// 상품에 대한 입찰 내역 조회
+			// 상품에 대한 전 입찰 내역 조회
 			JoinaclistVO jvo = service.getMemberDeposit(actnum);
 			
 			/*if (tenderpriceold == null) {
@@ -423,10 +420,11 @@ public class BuyListController {
 				// 제일 마지막에 입찰 성공시킨회원(제일 입찰금이 높은회원)의 보증금을 돌려주고자 한다.
 				int result0 = service.rollbackDeposit(map);
 				
+				
 				// 경매 입찰
 				int result = service.inputTender(map);
 				if (result0+result == 3) {
-					
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) - Integer.parseInt(deposit)));
 					req.setAttribute("msg", "경매 입찰 성공!!");
 					req.setAttribute("loc", "javascript:opener.location.reload(); self.close();");
 					return "msg.notiles";
@@ -441,7 +439,7 @@ public class BuyListController {
 				// 경매 입찰
 				int result = service.inputTender(map);
 				if (result == 2) {
-					
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) - Integer.parseInt(deposit)));
 					req.setAttribute("msg", "경매 입찰 성공!!");
 					req.setAttribute("loc", "javascript:opener.location.reload(); self.close();");
 					return "msg.notiles";
@@ -466,13 +464,11 @@ public class BuyListController {
 		HttpSession session = req.getSession();
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		
-		String panmaeuserid = req.getParameter("panmaeuserid");
 		String panmaeusernum = req.getParameter("panmaeusernum");
 		String awardprice = req.getParameter("awardprice");
 		String actdnum = req.getParameter("actdnum");
 		
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("panmaeuserid", panmaeuserid);
 		map.put("panmaeusernum", panmaeusernum);
 		map.put("awardprice", awardprice);
 		map.put("usernum", loginuser.getUsernum());
@@ -480,7 +476,7 @@ public class BuyListController {
 		
 		int cancel = service.awardCancel(map);
 		
-		int sample = Integer.parseInt(map.get("awardprice"));
+		int sample = Integer.parseInt(awardprice);
 		
 		if (cancel == 2) {
 			req.setAttribute("msg", "낙찰이 취소되었습니다. 보증금이 판매자에게 "+(sample/10)+"원 입금됩니다.");
@@ -497,8 +493,38 @@ public class BuyListController {
 	@RequestMapping(value="/pay.action", method={RequestMethod.POST}) 
 	public String pay(HttpServletRequest req) throws Throwable {
 		System.out.println("pay.action(결제) 시작");
+		HttpSession session = req.getSession();
+		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
+		// 결제를 하기 위한 조건은
+		// 1. 낙찰가
+		// 2. 회원본인의 회원번호 세션으로 받아올 것이기 때문에 생략
+		// 3. 판매자의 회원번호
+		// 4. 상품번호
+		// 5. 등등
+		// 하고 나서
+		// 6. 배송테이블 입력
+		String awardprice = req.getParameter("awardprice");
+		String panmaeusernum = req.getParameter("panmaeusernum");
+		String actdnum = req.getParameter("actdnum");
+		String actnum = req.getParameter("actnum");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("tenderpriceold", awardprice);
+		map.put("actd_price", awardprice);
+		map.put("usernumfail", loginuser.getUsernum());
+		map.put("fk_usernum", panmaeusernum);
+		map.put("usernum", loginuser.getUsernum());
+		map.put("actdnum", actdnum);
 		
+		int result = service.productPay(map);
 		
+		if (result == 4) {
+			req.setAttribute("msg", ""+awardprice+"원 결제가 완료되었습니다.");
+			req.setAttribute("loc", "buyList.action");
+		}
+		else if (result != 4){
+			req.setAttribute("msg", ""+awardprice+"원 결제를 실패하였습니다.");
+			req.setAttribute("loc", "javascript:history.back();");
+		}
 		
 		return "msg.notiles";
 	}

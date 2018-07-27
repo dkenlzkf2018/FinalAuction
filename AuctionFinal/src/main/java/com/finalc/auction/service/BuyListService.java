@@ -163,4 +163,23 @@ public class BuyListService implements InterBuyListService {
 		return tender+award0+award+pay+quick+pay_status;
 	}
 
+
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, isolation=Isolation.READ_COMMITTED, rollbackFor={Throwable.class})
+	public int productPay(HashMap<String, String> map) {
+		int result0 = dao.rollbackDeposit(map);	// 보증금 반환
+		int pay = dao.paymember(map);			// 회원 coin - 즉구가
+		int quick = dao.quickGumae(map);		// 판매자 coin + 즉구가
+		int pay_status = dao.paystatus(map);// 낙찰된 회원의 상태를 결제상태로 바꿔줌 (1)
+		int deliver = 0;
+		if (result0+pay+quick+pay_status == 4) {			
+			
+			HashMap<String, String> deliverMap = dao.getDeliverData(map);
+			map.put("AWARDNUM", deliverMap.get("awardnum"));
+			map.put("ADDR", deliverMap.get("addr"));
+			deliver = dao.inputDeliver(map);
+		}
+		return result0+pay+quick+pay_status;
+	}
+
 }

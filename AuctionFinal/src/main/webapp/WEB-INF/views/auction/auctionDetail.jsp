@@ -23,7 +23,6 @@
 	var coin = Number("${sessionScope.loginuser.coin}");
 	
 	jQuery(document).ready(function () {
-		
 		loopshowNowTime();
 	});
 	
@@ -33,8 +32,6 @@
 		var endTime = parseInt(end.getTime()/1000);
 		var now = new Date();
 		var nowTime = parseInt(now.getTime()/1000);
-		console.log(endTime);
-		console.log(nowTime);
 		
 		days = (end - now) / 1000 / 60 / 60 / 24;
 		daysRound = Math.floor(days); 
@@ -52,7 +49,7 @@
 			strNow = "경매종료";
 		}
 		
-		console.log(strNow);
+		//console.log(strNow);
 		$("#clock").html("<span>"+strNow+"</span>");
 	
 	}// end of function showNowTime() -----------------------------
@@ -139,10 +136,6 @@
 				}
 			}
 		}
-		
-		
-		
-		
 	}
 </script>
 
@@ -304,21 +297,16 @@
 		               <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
 		               
 			            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
-			                
-			            <button class="btn btn-default" type="submit">관심상품등록</button>
 	                </c:if>
 		                
 		            <c:if test="${pr1 >= pr2}">
 	                	<div class="pull-left">
-		             	  
+		             		상품판매가 종료되었습니다.  
 		            	</div>
-		                <br/><br/><br/>
-		                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 비활성화시킨다. -->
-		                
-			            <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
-			                
-			            <button class="btn btn-default" type="submit">관심상품등록</button>
 		            </c:if>
+	              </c:if>
+	              <c:if test="${sessionScope.loginuser.usernum == acvo.fk_usernum}">
+	              	상품을 등록하신 회원께서는 입찰 및 즉시구매를 할 수 없습니다.
 	              </c:if>
               </div>
               <!-- <div class="review">

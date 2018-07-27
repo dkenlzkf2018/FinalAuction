@@ -49,4 +49,6 @@ public interface InterBuyListService {
 	int awardCancel(HashMap<String, String> map);
 
 	int quickTender(HashMap<String, String> map);
+
+	int productPay(HashMap<String, String> map);
 }
