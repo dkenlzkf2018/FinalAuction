@@ -24,6 +24,7 @@
 		<result property="AWARD_STATUS" column="award_status" javaType="String" />
 		<result property="DELIVERSTATUS" column="deliverstatus" javaType="String" />
 		<result property="INVOICENO" column="invoiceno" javaType="String" />
+		<result property="ACTD_LOWERTENDERPRICE" column="actd_lowertenderprice" javaType="String" />
 		
 	</resultMap>
 	
@@ -48,6 +49,7 @@
 		       , panmaeusernum
 		       , actimage
 		       , award_status
+		       , actd_lowertenderprice
 		       , (select deliverstatus from tbl_deliver where fk_awardnum = awardnum) as deliverstatus
 		       , (select invoiceno from tbl_deliver where fk_awardnum = awardnum) as invoiceno
 		  from 
@@ -59,6 +61,7 @@
 		       , cnum, cdnum, actnum, actdnum
 		       , panmaeusernum
 		       , actimage
+		       , actd_lowertenderprice
 		       , award_status
 		  from 
 		  (select cnum, cname, cdnum, cdname
@@ -67,7 +70,7 @@
 		       , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday
 		       , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
 		       , D.fk_usernum AS panmaeusernum
-		       , E.fk_userid AS panmaeja     
+		       , E.fk_userid AS panmaeja
 		  from tbl_category A join tbl_category_detail B
 		  on A.cnum = B.fk_cnum
 		  join tbl_auction C

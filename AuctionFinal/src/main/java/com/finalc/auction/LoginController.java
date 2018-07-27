@@ -520,8 +520,7 @@ public class LoginController {
 		return "member/myJoinList.tiles";
 	
 	}
-	
-	
+
 	@RequestMapping(value="/auctionList.action", method= {RequestMethod.GET})
 	public String auctionList(HttpServletRequest req) {
 		
@@ -633,7 +632,6 @@ public class LoginController {
 	
 	}
 
-	
 	@RequestMapping(value="/plusCoin.action", method= {RequestMethod.POST})
 	public String myCoinPlus(HttpServletRequest req) {
 		

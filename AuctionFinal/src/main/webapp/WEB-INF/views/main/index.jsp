@@ -126,14 +126,14 @@ svg, img, canvas {
                   <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
-				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+              <h3 align="center"><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
+				<div align="center" style="color:pink; font-size:14pt;">현재경매가 : ${auctionvo.startprice} 원</div>
 				<div class="row"></div>
-				<div align="right" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div align="center" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
 				<div class="row"></div>
-				<div class="">${auctionvo.actd_endday} 까지</div>
+				<div align="center"class="">${auctionvo.actd_endday} 까지</div>
 				<div class="row"></div>
-				<div align="right">
+				<div align="center">
 				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
 				</div>
 				<c:if test="${auctionvo.actd_startday == today}">
@@ -184,14 +184,16 @@ svg, img, canvas {
                   <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
-				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+              <h3 align="center">
+              	<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a>
+              	</h3>
+				<div align="center" style="color:pink; font-size:14pt;">현재경매가 : ${auctionvo.startprice} 원</div>
 				<div class="row"></div>
-				<div align="right" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div align="center" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
 				<div class="row"></div>
-				<div class="">${auctionvo.actd_endday} 까지</div>
+				<div align="center" class="">${auctionvo.actd_endday} 까지</div>
 				<div class="row"></div>
-				<div align="right">
+				<div align="center">
 				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
 				</div>
 				<c:if test="${auctionvo.actd_startday == today}">
@@ -225,14 +227,14 @@ svg, img, canvas {
                   <a href="#product-pop-up${auctionvo.actdnum}" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
-				<div class="pi-price">현재경매가 : ${auctionvo.startprice} 원</div>
+              <h3 align="center"><a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}">${auctionvo.actname}</a></h3>
+				<div align="center" style="color:pink; font-size:14pt;">현재경매가 : ${auctionvo.startprice} 원</div>
 				<div class="row"></div>
-				<div align="right" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
+				<div align="center" class="">즉시구매가 : ${auctionvo.actd_price} 원</div>
 				<div class="row"></div>
-				<div class="">${auctionvo.actd_endday} 까지</div>
+				<div align="center" class="">${auctionvo.actd_endday} 까지</div>
 				<div class="row"></div>
-				<div align="right">
+				<div align="center">
 				<a href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${auctionvo.actdnum}" class="btn btn-default" style="width:100px">상세보기</a>
 				</div>
 				<c:if test="${auctionvo.actd_startday == today}">

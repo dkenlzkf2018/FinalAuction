@@ -213,6 +213,8 @@ public class BuyListController {
 		
 		int pr1 = Integer.parseInt(nowprice);
 		int pr2 = Integer.parseInt(acvo.getActd_price());
+		int hugisize = hugiBoardList.size();
+		
 		req.setAttribute("hugiBoardList", hugiBoardList);
 		req.setAttribute("acvo", acvo);
 		req.setAttribute("cvo", cvo);
@@ -222,6 +224,7 @@ public class BuyListController {
 		req.setAttribute("pr1", pr1);
 		req.setAttribute("pr2", pr2);
 		req.setAttribute("actdnum", actdnum);
+		req.setAttribute("hugisize", hugisize);
 		
 		return "auction/auctionDetail.tiles";
 	}
@@ -280,6 +283,7 @@ public class BuyListController {
 		String startprice = req.getParameter("startprice");
 		String actd_price = req.getParameter("actd_price");
 		String nowprice = req.getParameter("nowprice");
+		String actd_lowertenderprice = req.getParameter("actd_lowertenderprice");
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("actnum", actnum);
@@ -289,6 +293,7 @@ public class BuyListController {
 		map.put("startprice", startprice);
 		map.put("actd_price", actd_price);
 		map.put("usernum", loginuser.getUsernum());
+		map.put("actd_lowertenderprice", actd_lowertenderprice);
 		
 		System.out.println("BuyListController.java 상품명 : " + actname);
 		
@@ -417,9 +422,12 @@ public class BuyListController {
 				map.put("tenderpriceold", jvo.getTenderprice());
 				//System.out.println("tenderpriceold : " + jvo.getTenderprice());
 				map.put("usernumfail", jvo.getFk_usernum());
-				
+				if (loginuser.getUsernum().equals(jvo.getFk_usernum())) {
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) + Integer.parseInt(deposit)));
+				}
 				// 제일 마지막에 입찰 성공시킨회원(제일 입찰금이 높은회원)의 보증금을 돌려주고자 한다.
 				int result0 = service.rollbackDeposit(map);
+				
 				
 				
 				// 경매 입찰
@@ -520,6 +528,7 @@ public class BuyListController {
 		int result = service.productPay(map);
 		
 		if (result == 4) {
+			loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) - Integer.parseInt(awardprice)));
 			req.setAttribute("msg", ""+awardprice+"원 결제가 완료되었습니다.");
 			req.setAttribute("loc", "buyList.action");
 		}
