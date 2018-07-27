@@ -10,6 +10,7 @@
 		$("#myPageFrm").hide();
 		$("#MyJoinListFrm").hide();
 		$("#plusCoinFrm").hide();
+		$("#MyAuctionListFrm").hide();
 	});
 	
 	function goMyInfo() {
@@ -40,6 +41,7 @@
 		$("#myInfo").hide();
 		$("#myPageFrm").hide();
 		$("#plusCoinFrm").hide();
+		$("#plusCoin").hide();
 		$("#MyJoinListFrm").show();
 		
 		
@@ -75,6 +77,22 @@
 		frm.submit();
 	}
 	// === Payment Gateway(결제) 관련 끝 === //
+	
+	function goMyauctionList(){
+		
+		$("#myInfo").hide();
+		$("#myPageFrm").hide();
+		$("#plusCoinFrm").hide();
+		$("#plusCoin").hide();
+		$("#MyJoinListFrm").hide();
+		
+		var frm = document.MyAuctionListFrm;
+		
+		frm.method = "get";
+		frm.action = "auctionList.action";
+		frm.submit();
+		
+	}
 	
 </script>
 
@@ -118,6 +136,9 @@
 <form name="MyJoinListFrm" id="MyJoinListFrm">
 </form>
 
+<form name="MyAuctionListFrm" id="MyAuctionListFrm">
+</form>
+
 <form name="plusCoinFrm" id="plusCoinFrm">
 </form>
 
@@ -125,6 +146,7 @@
 	<div align="center" style="margin-bottom: 20px;">
 		<button type="button" class="btn btn-default" id="myInfo" onClick="goMyInfo();">내 정보 보기</button>
 		<button type="button" class="btn btn-default" id="myjoinList" onClick="goMyJoinList();">내 입찰목록</button>
+		<button type="button" class="btn btn-default" id="myauctionList" onClick="goMyauctionList();">내 경매 등록 목록</button>
 		<button type="button" class="btn btn-default" id="plusCoin" onClick="goPlusCoin(${sessionScope.loginuser.usernum});">코인 충전하기</button>
 	</div>
 </form>

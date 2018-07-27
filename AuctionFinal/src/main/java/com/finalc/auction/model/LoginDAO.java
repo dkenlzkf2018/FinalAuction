@@ -75,6 +75,12 @@ public class LoginDAO implements InterLoginDAO {
 		return n;
 	}
 
+	@Override
+	public List<HashMap<String, String>> AuctionList(HashMap<String, String> map) {
+		List<HashMap<String, String>> AuctionList = sqlsession.selectList("login.AuctionList",map);
+		return AuctionList;
+	}
+
 
 
 }

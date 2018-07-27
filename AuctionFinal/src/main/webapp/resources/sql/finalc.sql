@@ -4,11 +4,17 @@ from tbl_member;
 update tbl_member set passwd = 'qwer1234#'
 where userid = 'dkenlzkf';
 
-select *
+select actdnum
 from tbl_auction_detail;
 
 select *
-from tbl_member;
+from tbl_auction;
+
+select A.actdnum, B.actimage, B.actname, A.actd_startday, A.actd_endday
+from tbl_auction A join tbl_auction_detail B
+on A.actnum = B.actdnum
+where fk_usernum = 8
+		
 
 select ep_boardno, fk_userid
     , (select actname 

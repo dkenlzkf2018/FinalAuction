@@ -28,5 +28,7 @@ public interface InterLoginService {
 
 	List<HashMap<String, String>> JoinList(HashMap<String, String> map);
 
+	List<HashMap<String, String>> AuctionList(HashMap<String, String> map);
+
 
 }

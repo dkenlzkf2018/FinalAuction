@@ -77,6 +77,12 @@ public class LoginService implements InterLoginService {
 		return JoinList;
 	}
 
+	@Override
+	public List<HashMap<String, String>> AuctionList(HashMap<String, String> map) {
+		List<HashMap<String, String>> AuctionList = dao.AuctionList(map);
+		return AuctionList;
+	}
+
 
 	
 	

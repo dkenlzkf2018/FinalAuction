@@ -25,6 +25,8 @@ public interface InterLoginDAO {
 
 	int getTotalCount(int usernum);
 
+	List<HashMap<String, String>> AuctionList(HashMap<String, String> map);
+
 
 
 }
