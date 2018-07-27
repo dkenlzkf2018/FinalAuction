@@ -25,7 +25,7 @@
             }
         });
         
-    	function loopshowWeather() {
+    	/* function loopshowWeather() {
     		
     		showWeather();
     		
@@ -36,7 +36,28 @@
     		setTimeOut(function() {
     			loopShowWeather();
     		}, (60*60*1000) ); // 60*60*1000 은 1시간
-    	}        
+    	} */
+    	
+    	function drawInlineSVG(ctx, rawSVG, callback) {
+
+    	    var svg = new Blob([rawSVG], {type:"/resources/assets/pages/img/svg; charset=utf-8"}),
+    	        domURL = self.URL || self.webkitURL || self,
+    	        url = domURL.createObjectURL(svg),
+    	        img = new Image;
+
+    	    img.onload = function () {
+    	        ctx.drawImage(this, 0, 0);     
+    	        domURL.revokeObjectURL(url);
+    	        callback(this);
+    	    };
+
+    	    img.src = url;
+    	}
+
+    	// usage:
+    	drawInlineSVG(ctxt, svgText, function() {
+    	    console.log(canvas.toDataURL());  // -> PNG data-uri
+    	});
 
 <%-- 	var weatherTimejugi = 0;
 
@@ -188,7 +209,11 @@
 
 
 <div style="margin: 0 auto;" align="center">
-	현재시각 :&nbsp; 
+<p>var imgURL = "http://openweathermap.org/img/w/" + resp.weather[0].icon + ".png";
+							 $("html컴포넌트").attr("src", imgURL);
+							</p>
+
+<!-- 	현재시각 :&nbsp; 
 	<div id="clock" style="display:inline;"></div>
-	<div id="displayWeather" style="min-width: 90%; margin-top: 10px;"></div>
+	<div id="displayWeather" style="min-width: 90%; margin-top: 10px;"></div> -->
 </div>
