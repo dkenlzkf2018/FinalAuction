@@ -174,23 +174,18 @@
         </ul>
         
 
-        <div class="sidebar-products clearfix">
-          <h2>Bestsellers</h2>
-          <div class="item">
-            <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$31.00</div>
-          </div>
-          <div class="item">
-            <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$23.00</div>
-          </div>
-          <div class="item">
-            <a href="shop-item.html"><img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$86.00</div>
-          </div>
+        
+          <span style="font-weight: bold; font-size: 13pt;">Super Auction 파트너스</span>
+          <br/>
+         <div class="sidebar col-md-3 col-sm-5"> 
+	          <a href="http://corners.auction.co.kr/corner/UsedMarket.aspx"> <img src="<%=request.getContextPath() %>/resources/images/logo_umarket.png"></a>
+	          <br/><br/>
+	          <a href="http://ebay.auction.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/m_logo_auct_ebsh.png"></a>
+	          <br/><br/>
+	          <a href="http://www.bidbuy.co.kr/"><img src="<%=request.getContextPath() %>/resources/images/blogo.png"></a>  
+	          <br/><br/>
+	          <a href="https://auctions.yahoo.co.jp/"><img src="<%=request.getContextPath() %>/resources/images/logo_yahuoku_01.png"></a>
+	          <!-- <i class="fa fa-angle-right"></i> -->
           
         </div>
         
@@ -335,7 +330,7 @@
               <ul id="myTab" class="nav nav-tabs">
                 <li><a href="#Description" data-toggle="tab">Description</a></li>
                 <!-- <li><a href="#Information" data-toggle="tab">Information</a></li> -->
-                <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li>
+                <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (${hugisize})</a></li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade" id="Description">

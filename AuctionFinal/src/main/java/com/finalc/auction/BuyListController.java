@@ -213,6 +213,7 @@ public class BuyListController {
 		
 		int pr1 = Integer.parseInt(nowprice);
 		int pr2 = Integer.parseInt(acvo.getActd_price());
+		int hugisize = hugiBoardList.size();
 		
 		req.setAttribute("hugiBoardList", hugiBoardList);
 		req.setAttribute("acvo", acvo);
@@ -223,6 +224,7 @@ public class BuyListController {
 		req.setAttribute("pr1", pr1);
 		req.setAttribute("pr2", pr2);
 		req.setAttribute("actdnum", actdnum);
+		req.setAttribute("hugisize", hugisize);
 		
 		return "auction/auctionDetail.tiles";
 	}
