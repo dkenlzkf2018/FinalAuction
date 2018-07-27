@@ -5,7 +5,7 @@
 
 	jQuery(document).ready(function(){
 	 
-		 location.href="member/myPage.action";
+		 location.href="myPage.action";
 	     alert('${msg}'); 
 	      
 	});

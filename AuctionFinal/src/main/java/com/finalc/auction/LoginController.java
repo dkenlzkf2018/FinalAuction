@@ -432,9 +432,6 @@ public class LoginController {
 	
 	}
 	
-	
-
-	
 	@RequestMapping(value="/plusCoin.action", method= {RequestMethod.POST})
 	public String myCoinPlus(HttpServletRequest req) {
 		
