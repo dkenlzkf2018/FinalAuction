@@ -226,13 +226,65 @@
 
 	<!-- 베스트 경매 리스트 -->
 	<select id="bestAuctionList" resultType="com.finalc.auction.model.AuctionVO">
-	
+		select actnum, fk_cdnum, actname, actimage, orgfilename, filesize,
+				filename, actdnum, fk_actnum, fk_usernum, actd_price,
+				actd_qty, actd_status, actd_content, actd_lowertenderprice,
+			 	to_char(actd_startday, 'yyyy-mm-dd') as actd_startday,
+			 	to_char(actd_endday, 'yyyy-mm-dd hh24:mi:ss') as actd_endday, startprice
+	    from ( select rownum, X.actnum, X.fk_cdnum, X.actname, X.actimage, X.orgfilename, X.filesize,
+                        X.filename, X.actdnum, X.fk_actnum, X.fk_usernum, X.actd_price,
+                        X.actd_qty, X.actd_status, X.actd_content, X.actd_lowertenderprice,
+                        X.actd_startday, X.actd_endday, X.startprice, Y.counts
+            from (select actnum, fk_cdnum, actname, actimage, orgfilename, filesize,
+                        filename, actdnum, fk_actnum, fk_usernum, actd_price,
+                        actd_qty, actd_status, actd_content, actd_lowertenderprice,
+                        actd_startday, actd_endday, startprice
+                  from tbl_auction A join tbl_auction_detail B
+                  on A.actnum = B.fk_actnum
+                  where actd_status = 1
+                  ) X join    
+                  (select A.fk_actnum, count(*) as counts
+                  from tbl_joinaclist A join tbl_auction_detail B
+                  on A.fk_actnum = B.fk_actnum
+                  where B.ACTD_STATUS = 1
+                  group by A.fk_actnum
+                  ) Y
+            on X.FK_ACTNUM = Y.FK_ACTNUM
+            where 1 <![CDATA[<=]]> rownum and rownum <![CDATA[<=]]> 5
+            order by Y.counts desc, actnum asc
+            ) V
 	</select>
 	<!-- 베스트 경매 리스트 -->
 	
 	<!-- 안팔리는 경매리스트 -->
 	<select id="worstAuctionList" resultType="com.finalc.auction.model.AuctionVO">
-	
+		select actnum, fk_cdnum, actname, actimage, orgfilename, filesize,
+				filename, actdnum, fk_actnum, fk_usernum, actd_price,
+				actd_qty, actd_status, actd_content, actd_lowertenderprice,
+			 	to_char(actd_startday, 'yyyy-mm-dd') as actd_startday,
+			 	to_char(actd_endday, 'yyyy-mm-dd hh24:mi:ss') as actd_endday, startprice
+	    from ( select rownum, X.actnum, X.fk_cdnum, X.actname, X.actimage, X.orgfilename, X.filesize,
+                        X.filename, X.actdnum, X.fk_actnum, X.fk_usernum, X.actd_price,
+                        X.actd_qty, X.actd_status, X.actd_content, X.actd_lowertenderprice,
+                        X.actd_startday, X.actd_endday, X.startprice, Y.counts
+            from (select actnum, fk_cdnum, actname, actimage, orgfilename, filesize,
+                        filename, actdnum, fk_actnum, fk_usernum, actd_price,
+                        actd_qty, actd_status, actd_content, actd_lowertenderprice,
+                        actd_startday, actd_endday, startprice
+                  from tbl_auction A join tbl_auction_detail B
+                  on A.actnum = B.fk_actnum
+                  where actd_status = 1
+                  ) X join    
+                  (select A.fk_actnum, count(*) as counts
+                  from tbl_joinaclist A join tbl_auction_detail B
+                  on A.fk_actnum = B.fk_actnum
+                  where B.ACTD_STATUS = 1
+                  group by A.fk_actnum
+                  ) Y
+            on X.FK_ACTNUM = Y.FK_ACTNUM
+            where 1 <![CDATA[<=]]> rownum and rownum <![CDATA[<=]]> 5
+            order by Y.counts asc, actnum asc
+            ) V
 	</select>
 	<!-- 안팔리는 경매리스트 -->
 

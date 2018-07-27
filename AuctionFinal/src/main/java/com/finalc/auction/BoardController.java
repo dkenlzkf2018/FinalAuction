@@ -100,6 +100,46 @@ public class BoardController {
 			
 			auctionvo.setStartprice(thisprice);
       }
+      for (AuctionVO auctionvo:bestAuctionList) {
+    	  	
+			// 입찰내역 중 최고 입찰금
+			String tenderprice = service1.getTender(auctionvo.getActnum());
+			//System.out.println("시작가격 : " + acvo.getStartprice() + "원");
+			// 입찰 수
+			int count = service1.getTenderCount(auctionvo.getActnum());
+			
+			
+			if (tenderprice == null || count == 0) {
+				// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
+				thisprice = auctionvo.getStartprice();
+			}
+			else {
+				// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
+				thisprice = tenderprice;
+			}
+			
+			auctionvo.setStartprice(thisprice);
+      }
+      for (AuctionVO auctionvo:worstAuctionList) {
+    	  	
+			// 입찰내역 중 최고 입찰금
+			String tenderprice = service1.getTender(auctionvo.getActnum());
+			//System.out.println("시작가격 : " + acvo.getStartprice() + "원");
+			// 입찰 수
+			int count = service1.getTenderCount(auctionvo.getActnum());
+			
+			
+			if (tenderprice == null || count == 0) {
+				// 입찰금이 없거나 입찰 수가 없는 경우라면 현재가는 시작가(고정가)로 시작한다.
+				thisprice = auctionvo.getStartprice();
+			}
+			else {
+				// 입찰금이 있거나 입찰내역이 있는 경우 최고 입찰금을 현재가로 지정한다.  
+				thisprice = tenderprice;
+			}
+			
+			auctionvo.setStartprice(thisprice);
+      }
       
       session.setAttribute("categoryList", categoryList);
       session.setAttribute("categoryDetailList", categoryDetailList);
@@ -429,10 +469,7 @@ public class BoardController {
       
       
       int n = service.writedel(map);
-      // 넘겨받은 값이 1(원게시글 및 딸린 댓글까지 삭제 성공)이면 글삭제 성공,
-      // 넘겨받은 값이 2(딸린 댓글없는 경우 원게시글만 삭제 성공)이면 글삭제 성공,
-      // 넘겨받은 값이 0이면 글삭제 실패(암호가 틀리므로)
-      
+          
       req.setAttribute("n", n);
       
       return "board/writedelEnd.tiles";
