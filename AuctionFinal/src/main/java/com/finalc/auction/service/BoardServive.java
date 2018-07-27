@@ -168,9 +168,10 @@ public class BoardServive implements InterBoardService {
 
          // 원게시글에 딸린 댓글이 있는지 없는지를 확인하기 
          bool = dao.isExistsComment(map);
-         
+       
+
          result1 = dao.deleteContent(map); // 글 1개 삭제하기
-         
+
          if(bool) { // 원게시글에 딸린 댓글들 삭제하기
             result2 = dao.deleteComment(map);  
          }
@@ -218,6 +219,22 @@ public List<AuctionVO> getAuctionList() {
 	List<AuctionVO> auctionList = dao.getAuctionList();
 	
 	return auctionList;
+}
+
+@Override
+public List<AuctionVO> getBestAuctionList() {
+	
+	List<AuctionVO> bestAuctionList = dao.getBestAuctionList();
+	
+	return bestAuctionList;
+}
+
+@Override
+public List<AuctionVO> getWorstAuctionList() {
+	
+	List<AuctionVO> worstAuctionList = dao.getWorstAuctionList();
+	
+	return worstAuctionList;
 }
 
 

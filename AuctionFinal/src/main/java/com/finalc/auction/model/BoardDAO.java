@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.SystemPropertyUtils;
 
 @Repository
 public class BoardDAO implements InterBoardDAO {
@@ -131,12 +132,14 @@ public class BoardDAO implements InterBoardDAO {
    @Override
    public boolean isExistsComment(HashMap<String, String> map) {
       int count = sqlsession.selectOne("board.isExistsComment", map);
-      if(count > 0)
       
+      if(count > 0)
+ 
          return true;
       else
          
          return false;
+
    }// 게시글에 댓글이 있는지 없는지 확인(07.06 17:30 끝)
 
    // 게시글 삭제하기(07.06 17:31 시작)
@@ -186,6 +189,22 @@ public class BoardDAO implements InterBoardDAO {
 		List<AuctionVO> auctionList = sqlsession.selectList("board.auctionList");
 		
 		return auctionList;
+	}
+
+	@Override
+	public List<AuctionVO> getBestAuctionList() {
+		
+		List<AuctionVO> bestAuctionList = sqlsession.selectList("board.bestAuctionList");
+		
+		return bestAuctionList;
+	}
+
+	@Override
+	public List<AuctionVO> getWorstAuctionList() {
+		
+		List<AuctionVO> worstAuctionList = sqlsession.selectList("board.worstAuctionList");
+		
+		return worstAuctionList;
 	}
 
 

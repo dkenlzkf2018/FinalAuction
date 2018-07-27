@@ -38,6 +38,11 @@
 	
 	<form name="delFrm">
 		<table id="table">
+			<tr>
+				<td>
+					<input type="text" name="boardno" value="${boardno}"/>
+				</td>
+			</tr>
 			
 		</table>
 		<br/>

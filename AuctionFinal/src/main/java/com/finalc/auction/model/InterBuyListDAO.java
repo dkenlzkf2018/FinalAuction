@@ -26,8 +26,24 @@ public interface InterBuyListDAO {
 
 	int updateAD(HashMap<String, String> map);
 
-	/*int inputDeliver(HashMap<String, String> map);
+	int updateDeposit(HashMap<String, String> map);
 
-	HashMap<String, String> getDeliverData(HashMap<String, String> map);*/
+	int rollbackDeposit(HashMap<String, String> map);
+
+	JoinaclistVO getMemberDeposit(String actnum);
+
+	int awardCancel(HashMap<String, String> map);
+
+	int updateAwardCancel(HashMap<String, String> map);
+
+	int quickGumae(HashMap<String, String> map);
+
+	int paymember(HashMap<String, String> map);
+
+	int paystatus(HashMap<String, String> map);
+
+	int inputDeliver(HashMap<String, String> map);
+
+	HashMap<String, String> getDeliverData(HashMap<String, String> map);
 
 }
