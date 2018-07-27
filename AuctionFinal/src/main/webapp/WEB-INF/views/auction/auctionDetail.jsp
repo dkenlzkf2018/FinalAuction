@@ -232,9 +232,12 @@
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
               	  <br/>
+              	  <label class="control-label">입찰단위  : </label>
+              	  <span><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/>원</span>
+              	  <br/>
               	  
               	  <span style="color:red;"><label class="control-label">즉시구매가  : </label>
-              	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price * acvo.actd_qty}" type="number"/>원</strong></span>
+              	  <strong style="font-size: 20pt;"><fmt:formatNumber value="${acvo.actd_price}" type="number"/>원</strong></span>
               	  <br/>
               	  
               	  <%-- <label class="control-label">수       량  : </label>
@@ -263,6 +266,7 @@
                 	<input type="hidden" name="startprice" value="${acvo.startprice}"/>
                 	<input type="hidden" name="actd_price" value="${acvo.actd_price}"/>
                 	<input type="hidden" name="fk_usernum" value="${acvo.fk_usernum}"/>
+                	<input type="hidden" name="actd_lowertenderprice" value="${acvo.actd_lowertenderprice}"/>
                 	<input type="hidden" id="nowprice" name="nowprice" value="${nowprice}"/>
                 </form>
               	
@@ -416,101 +420,7 @@
     </div>
     <!-- END SIDEBAR & CONTENT -->
 
-    <!-- BEGIN SIMILAR PRODUCTS --><%-- 
-    <div class="row margin-bottom-40">
-      <div class="col-md-12 col-sm-12">
-        <h2>Most popular products</h2>
-        <div class="owl-carousel owl-carousel4">
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-new"></div>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-sale"></div>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="<%=request.getContextPath() %>/resources/assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END SIMILAR PRODUCTS --> --%>
+    
   </div>
 </div>
 

@@ -159,6 +159,7 @@
 			var startQty = Number("${map.actd_qty}");		// 초기 수량 입력값
 			var nowprice = Number("${nowprice}");			// 현재가
 			var coin = Number("${coin}");
+			var raw = Number("${map.actd_lowertenderprice}");
 			
 			// 숫자외에 다른 문자를 입력하였을 경우
 			var regExp = /^[0-9]+$/;
@@ -200,8 +201,8 @@
 				alert("입찰 금액은 시작가격 "+startprice+" + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
-			if (price <= nowprice+999) {
-				alert("입찰 금액은 현재가 + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
+			if (price <= nowprice+(raw-1)) {
+				alert("입찰 금액은 현재가 + "+raw+"원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
 			

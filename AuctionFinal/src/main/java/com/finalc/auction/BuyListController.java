@@ -280,6 +280,7 @@ public class BuyListController {
 		String startprice = req.getParameter("startprice");
 		String actd_price = req.getParameter("actd_price");
 		String nowprice = req.getParameter("nowprice");
+		String actd_lowertenderprice = req.getParameter("actd_lowertenderprice");
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("actnum", actnum);
@@ -289,6 +290,7 @@ public class BuyListController {
 		map.put("startprice", startprice);
 		map.put("actd_price", actd_price);
 		map.put("usernum", loginuser.getUsernum());
+		map.put("actd_lowertenderprice", actd_lowertenderprice);
 		
 		System.out.println("BuyListController.java 상품명 : " + actname);
 		
