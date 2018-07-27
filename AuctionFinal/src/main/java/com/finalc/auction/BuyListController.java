@@ -213,6 +213,7 @@ public class BuyListController {
 		
 		int pr1 = Integer.parseInt(nowprice);
 		int pr2 = Integer.parseInt(acvo.getActd_price());
+		
 		req.setAttribute("hugiBoardList", hugiBoardList);
 		req.setAttribute("acvo", acvo);
 		req.setAttribute("cvo", cvo);
