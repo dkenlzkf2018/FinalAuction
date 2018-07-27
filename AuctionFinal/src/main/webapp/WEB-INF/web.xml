@@ -21,8 +21,8 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/appServlet/servlet-context.xml<!-- , -->
-				<!-- /WEB-INF/spring/config/websocketContext.xml -->  <!-- #174. 웹채팅관련6 -->
+				/WEB-INF/spring/appServlet/servlet-context.xml,
+				/WEB-INF/spring/config/websocketContext.xml  <!-- #174. 웹채팅관련6 -->
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

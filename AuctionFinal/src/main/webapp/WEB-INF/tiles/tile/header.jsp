@@ -3,10 +3,25 @@
 <%@ page import="java.net.InetAddress"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%  
+	// ===== #177. (웹채팅관련9) =====
+    // === 서버 IP 주소 알아오기 === //
+	InetAddress inet = InetAddress.getLocalHost();
+	String serverIP = inet.getHostAddress(); 
+	int portnumber = request.getServerPort();
+	
+	String serverName = "http://"+serverIP+":"+portnumber;
+
+%>
+
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		
 	});
+	
+	function goChatting() {
+		window.open("<%=serverName%><%=request.getContextPath()%>/chatting/multichat.action", "고객센터", "width=500,height=700");
+	}
 </script>
 
 <!-- BEGIN TOP BAR -->
@@ -29,6 +44,7 @@
                         	<li><a href="login.action">Log In</a></li>
                         </c:if>
                         <c:if test="${sessionScope.loginuser != null}">
+                        	<li><a href="javascript:goChatting();">고객센터(채팅)</a></li>
                         	<li><a href="AuctionUpload.action">경매 등록</a></li>
                         	<c:if test="${sessionScope.loginuser.userid eq 'admin'}">
                         		<li><a href="adminMain.action">Admin Page</a></li>
