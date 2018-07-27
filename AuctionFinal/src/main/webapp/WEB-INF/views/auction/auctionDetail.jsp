@@ -241,7 +241,7 @@
               	  
               	  </c:if>
               	  
-              	  <c:if test="${acvo.actd_status == '1' && pr2 < pr1}">
+              	  <c:if test="${acvo.actd_status == '1' && pr2 < pr1 && not empty sessionScope.loginuser}">
 	              
 	              <span style="color:red;"><label class="control-label">현  재  가  : </label>
 	              <strong style="font-size: 20pt;"><fmt:formatNumber value="${nowprice}" type="number"/>원</strong></span>
@@ -314,8 +314,9 @@
 		              	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
 		              	
 		               <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-		               
+		               <c:if test="${not empty sessionScope.loginuser}">
 			            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
+			            </c:if>
 	                </c:if>
 	                <c:if test="${pr1 > pr2}">
 		               <!-- <div class="pull-left">
