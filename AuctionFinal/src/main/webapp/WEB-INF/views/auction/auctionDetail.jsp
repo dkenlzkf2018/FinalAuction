@@ -20,9 +20,9 @@
 	var nowprice = Number("${nowprice}");
 	// tbl_auction_detail에서 상품의 상태를 가져온다.(0이면 상품경매종료, 1이면 상품경매중)
 	var actd_status = Number("${acvo.actd_status}");
+	var coin = Number("${sessionScope.loginuser.coin}");
 	
 	jQuery(document).ready(function () {
-		
 		loopshowNowTime();
 	});
 	
@@ -43,31 +43,9 @@
 		secondsRound = Math.round(seconds);
 
 		if (nowTime < endTime) {
-			if (actd_status == 1) {
-				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
-			}
-			/* 
-			if (nowprice != actd_price && actd_status == 1) {
-				strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
-			}
-			else if (nowprice == actd_price && actd_status == 1) {
-				strNow = "경매종료";
-				var frm = document.tenderFrm;
-				frm.method = "POST";
-				frm.action = "inputAward.action";
-				frm.submit();
-			} else {
-				strNow = "경매종료";
-			}*/
+			strNow = "" + daysRound + " 일 " + hoursRound + " 시 " + minutesRound + " 분 " + secondsRound + " 초 남음";
 		}
-		else if (nowTime == endTime && actd_status == 1){
-			strNow = "경매종료";
-			var frm = document.tenderFrm;
-			frm.method = "POST";
-			frm.action = "inputAward.action";
-			frm.submit();
-		}
-		else if (nowTime > endTime){
+		else if (nowTime >= endTime){
 			strNow = "경매종료";
 		}
 		
@@ -105,7 +83,7 @@
 	// 입찰하기 버튼
 	function goTender() {
 				
-		if (strNow == "경매종료" || actd_price == nowprice) {
+		if (strNow == "경매종료" || actd_status == 0 || actd_price == nowprice) {
 			alert("경매종료된 상품입니다.");
 			return false;
 		}
@@ -124,26 +102,38 @@
 	
 	// 구매하기 버튼
 	function goPay() {
-		if (strNow == "경매종료") {
+		
+		if (strNow == "경매종료" || actd_status == 0) {
 			alert("경매종료된 상품입니다.");
 			return false;
 		}
 		
-		var fk_usernum = "${acvo.fk_usernum}";
-		var usernum = "${sessionScope.loginuser.usernum}";
-		console.log(fk_usernum+" "+usernum+" "+nowprice+" "+actd_price);
-		if (strNow != "경매종료" && fk_usernum != usernum) {
-			if(confirm("즉시구매 하시겠습니까?")) {
-				// endprice와 usernum을 넘긴다.
-				
-				var frm = document.tenderFrm;
-				frm.method = "POST";
-				frm.action = "quickgumae.action";
-				frm.submit();
-				
+		if (coin < actd_price) {
+			if(confirm("coin이 "+(actd_price - coin)+"원 부족합니다. 충전하시겠습니까?")) {
+				location.href="myPage.action";
 			}
 			else {
 				return false;
+			}
+		}
+		else {
+			var fk_usernum = "${acvo.fk_usernum}";
+			var usernum = "${sessionScope.loginuser.usernum}";
+			
+			//console.log(fk_usernum+" "+usernum+" "+nowprice+" "+actd_price);
+			if (strNow != "경매종료" && fk_usernum != usernum && actd_status == 1) {
+				if(confirm("즉시구매 하시겠습니까?")) {
+					// endprice와 usernum을 넘긴다.
+					
+					var frm = document.tenderFrm;
+					frm.method = "POST";
+					frm.action = "quickgumae.action";
+					frm.submit();
+					
+				}
+				else {
+					return false;
+				}
 			}
 		}
 	}
@@ -255,13 +245,11 @@
               	  <c:if test="${acvo.actd_status == '0'}">
 	              
 	              <span style="color:red;"><label class="control-label">낙  찰  가  : </label>
-	              <fmt:formatNumber value="${nowprice * acvo.actd_qty}" type="number"/>원</span>
+	              <fmt:formatNumber value="${nowprice}" type="number"/>원</span>
               	  &nbsp;/&nbsp;
               	  <label class="control-label">시  작  가  : </label>
               	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
-              	  <br/>
-              	  <%-- <label class="control-label">수       량  : </label>
-              	  <span><fmt:formatNumber value="${acvo.actd_qty}" type="number"/>개</span> --%>
+              	  
               	  <br/>
               	  
               	  </c:if>
@@ -296,35 +284,30 @@
               </div>
               
               <div class="product-page-cart">
-              <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
-              	<c:if test="${pr1 < pr2}">
-	               <!-- <div class="pull-left">
-	             	  <label class="control-label">수량 : </label>
-	             	  <input id="qty" name="qty" type="number" value="1" min="1" max="100"/>
-	               </div>
-	               <br/><br/><br/> -->
-	               	
-	              	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
-	              	
-	               <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
-	               
-		            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
+	              <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
+	              	<c:if test="${pr1 < pr2}">
+		               <!-- <div class="pull-left">
+		             	  <label class="control-label">수량 : </label>
+		             	  <input id="qty" name="qty" type="number" value="1" min="1" max="100"/>
+		               </div>
+		               <br/><br/><br/> -->
+		               	
+		              	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+		              	
+		               <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 활성화시킨다. -->
+		               
+			            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
+	                </c:if>
 		                
-		            <button class="btn btn-default" type="submit">관심상품등록</button>
-                </c:if>
-	                
-	            <c:if test="${pr1 >= pr2}">
-                	<div class="pull-left">
-	             	  
-	            	</div>
-	                <br/><br/><br/>
-	                <!-- 형님께서 상품등록 하실 때 최소입찰가와 즉시구매가격이 같다면 '즉시구매' 버튼을 비활성화시킨다. -->
-	                
-		            <button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
-		                
-		            <button class="btn btn-default" type="submit">관심상품등록</button>
-	            </c:if>
-                </c:if>
+		            <c:if test="${pr1 >= pr2}">
+	                	<div class="pull-left">
+		             		상품판매가 종료되었습니다.  
+		            	</div>
+		            </c:if>
+	              </c:if>
+	              <c:if test="${sessionScope.loginuser.usernum == acvo.fk_usernum}">
+	              	상품을 등록하신 회원께서는 입찰 및 즉시구매를 할 수 없습니다.
+	              </c:if>
               </div>
               <!-- <div class="review">
                 <input type="range" value="4" step="0.25" id="backing4">

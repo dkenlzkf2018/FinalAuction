@@ -15,12 +15,14 @@
 		<result property="CDNAME" column="cdname" javaType="String" />
 		<result property="ACTNAME" column="actname" javaType="String" />
 		<result property="PANMAEJA" column="panmaeja" javaType="String" />
-		<result property="DELIVERSTATUS" column="deliverstatus" javaType="String" />
 		<result property="CNUM" column="cnum" javaType="String" />
 		<result property="CDNUM" column="cdnum" javaType="String" />
 		<result property="ACTNUM" column="actnum" javaType="String" />
 		<result property="ACTDNUM" column="actdnum" javaType="String" />
 		<result property="ACTIMAGE" column="actimage" javaType="String" />
+		<result property="PANMAEUSERNUM" column="panmaeusernum" javaType="String" />
+		<result property="AWARD_STATUS" column="award_status" javaType="String" />
+		
 		
 	</resultMap>
 	
@@ -41,23 +43,28 @@
 		       , awardday
 		       , awardprice
 		       , cname, cdname, actname, panmaeja
-		       , deliverstatus, cnum, cdnum, actnum, actdnum
+		       , cnum, cdnum, actnum, actdnum
+		       , panmaeusernum
 		       , actimage
+		       , award_status
 		  from 
 		  (
 		  select rownum AS RNO, awardnum
 		     , to_char(awardday, 'yyyy-mm-dd') AS awardday
 		     , awardprice
 		       , cname, cdname, actname, panmaeja
-		       , deliverstatus, cnum, cdnum, actnum, actdnum
+		       , cnum, cdnum, actnum, actdnum
+		       , panmaeusernum
 		       , actimage
+		       , award_status
 		  from 
 		  (select cnum, cname, cdnum, cdname
 		       , actnum, actname, actimage
 		       , actdnum, fk_usernum, actd_price, actd_qty, actd_status, actd_content, actd_lowertenderprice
 		       , to_char(actd_startday, 'yyyy-mm-dd') AS actd_startday
 		       , to_char(actd_endday, 'yyyy-mm-dd') AS actd_endday
-		       , E.fk_userid AS panmaeja
+		       , D.fk_usernum AS panmaeusernum
+		       , E.fk_userid AS panmaeja     
 		  from tbl_category A join tbl_category_detail B
 		  on A.cnum = B.fk_cnum
 		  join tbl_auction C
@@ -69,8 +76,6 @@
 		  )V
 		  right join tbl_award F
 		  on V.actdnum = F.fk_actdnum
-		  join tbl_deliver G
-		  on F.awardnum = G.fk_awardnum
 		  where F.fk_usernum = #{usernum} and V.actd_status = 0
 		  order by awardnum desc
 		  )T
@@ -129,42 +134,101 @@
 		where B.cdnum = (select fk_cdnum from tbl_auction where actnum = #{actnum})
 	</select>
 	
+	<!-- 이 쿼리문은 트랜잭션에 의해 실행된다. 회원이 해당 상품에 입찰을 할 경우 입찰리스트에 저장된다. -->
 	<insert id="inputTender" parameterType="HashMap">
 		insert into tbl_joinaclist(joinactnum, fk_actnum, fk_usernum, tenderday, tenderprice)
 		values(seq_joinaclist.nextval, #{actnum}, #{usernum}, default, #{tenderprice})
 	</insert>
 	
+	<!-- 해당 상품의 입찰 내역 중 가장 높은 입찰금을 조회한다. -->
 	<select id="getTenderPrice" parameterType="String" resultType="String">
 		select max(tenderprice) AS tenderprice
 		from tbl_joinaclist
 		where fk_actnum = to_number(#{actnum})
 	</select>
 	
+	<!-- 해당 상품의 입찰 총 수를 조회한다. -->
 	<select id="getTenderCount" parameterType="String" resultType="Integer">
 		select count(*)
 		from tbl_joinaclist
 		where fk_actnum = to_number(#{actnum})
 	</select>
 	
+	<!-- 해당 상품의 현재가와 동일한 입찰 내역을 조회한다. -->
 	<select id="searchTender" parameterType="HashMap" resultType="com.finalc.auction.model.JoinaclistVO">
 		select joinactnum, fk_actnum, fk_usernum, tenderday, tenderprice
 		from tbl_joinaclist
 		where fk_actnum = to_number(#{actnum}) and tenderprice = to_number(#{nowprice})
 	</select>
 	
+	<!-- 이 쿼리문은 트랜잭션에 의해 실행된다. 회원이 해당 상품을 즉시구매하였을 경우 낙찰테이블에 즉시구매가와 회원정보가 저장된다. -->
 	<insert id="inputAward" parameterType="HashMap">
-		insert into tbl_award(AWARDNUM, FK_USERNUM, FK_ACTDNUM, AWARDDAY, AWARDPRICE)
-		values(seq_award.nextval, #{fk_usernum}, #{actdnum}, sysdate, #{nowprice})
+		insert into tbl_award(AWARDNUM, FK_USERNUM, FK_ACTDNUM, AWARDDAY, AWARDPRICE, award_status)
+		values(seq_award.nextval, #{usernum}, #{actdnum}, sysdate, #{actd_price}, default)
 	</insert>
 	
+	<!-- 이 쿼리문은 트랜잭션에 의해 실행된다. 회원이 해당 상품을 즉시구매할 때 상품의 상태는 경매종료로 변경된다. -->
 	<update id="updateAward" parameterType="HashMap">
 		update tbl_auction_detail set actd_status = 0
 		where fk_actnum = #{actnum}
 	</update>
 	
-	<!-- <insert id="inputDeliver" parameterType="HashMap">
+	<!-- 해당 상품을 입찰한 회원보다 더 높은 금액으로 다른 회원이 입찰을 하였을 경우 전에 입찰했던 회원에게 보증금을 돌려준다. -->
+	<update id="rollbackDeposit" parameterType="HashMap">
+		update tbl_member_detail set coin = coin + (to_number(#{tenderpriceold}) / 10)
+		where usernum = #{usernumfail}
+	</update>
+	
+	<!-- 해당 상품에 입찰할 때마다 그 회원의 보증금이 코인에서 감소된다.(입찰금의 10%) -->
+	<update id="updateDeposit" parameterType="HashMap">
+		update tbl_member_detail set coin = coin - to_number(#{deposit})
+		where usernum = #{usernum}
+	</update>
+	
+	<!-- 해당 상품에 입찰하였을 경우 입찰 전, 최고입찰가와 그 회원번호를 조회하여 보증금을 돌려줄 준비를 한다. --> 
+	<select id="getMemberDeposit" parameterType="String" resultType="com.finalc.auction.model.JoinaclistVO">
+		select max(tenderprice) as tenderprice, fk_usernum
+		from tbl_joinaclist
+		where fk_actnum = #{actnum}
+		  and tenderprice = (select max(tenderprice)
+                           from tbl_joinaclist 
+                           where fk_actnum = #{actnum})
+		group by fk_usernum
+	</select>
+	
+	<!-- 해당 상품을 낙찰받은 회원이 낙찰을 취소하였을 경우 낙찰의 상태를 2로 변경한다.(낙찰취소) -->
+	<update id="awardCancel">
+		update tbl_award set award_status = 2
+		where fk_usernum = #{usernum} and fk_actdnum = #{actdnum}
+	</update>
+	
+	<!-- 해당 상품을 낙찰받은 회원이 낙찰을 취소하였을 경우 판매자에게 보증금이 더해진다. -->
+	<update id="memberCancel">
+		update tbl_member_detail set coin = coin + (to_number(#{awardprice})/10)
+		where usernum = #{panmaeusernum}
+	</update>
+	
+	<!-- 즉시구매 시 회원의 코인이 차감 -->
+	<update id="paymember" parameterType="HashMap">
+		update tbl_member_detail set coin = coin - #{actd_price}
+		where usernum = #{usernum}
+	</update>
+	
+	<!-- 즉시구매 시 판매자의 코인 + 구매가 -->
+	<update id="quickGumae" parameterType="HashMap">
+		update tbl_member_detail set coin = coin + #{actd_price}
+		where usernum = #{fk_usernum}
+	</update>
+	
+	<update id="paystatus" parameterType="HashMap">
+		update tbl_award set award_status = 1
+		where fk_usernum = #{usernum} and fk_actdnum = #{actdnum}
+		  and award_status = 0
+	</update>
+	
+	<insert id="inputDeliver" parameterType="HashMap">
 		insert into tbl_deliver(deliverno, fk_usernum, fk_awardnum, deliverstatus, invoiceno, deliverlocation)
-		values(seq_deliver.nextval, #{fk_usernum}, #{AWARDNUM}, default, 's' || to_char(sysdate, 'yyyymmdd') || '-' || seq_deliver.nextval, #{ADDR})
+		values(seq_deliver.nextval, #{usernum}, #{AWARDNUM}, default, 's' || to_char(sysdate, 'yyyymmdd') || '-' || seq_deliver.nextval, #{ADDR})
 	</insert>
 	
 	<resultMap type="HashMap" id="deliverMap">
@@ -176,6 +240,6 @@
 		select awardnum, addr1 || ' ' || addr2 AS addr
 		from tbl_award A join tbl_member_detail B
 		on A.fk_usernum = B.usernum
-		where A.fk_usernum = #{fk_usernum} and A.fk_actdnum = #{actdnum}
-	</select> -->
+		where A.fk_usernum = #{usernum} and A.fk_actdnum = #{actdnum}
+	</select>
 </mapper>

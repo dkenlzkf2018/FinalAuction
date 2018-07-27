@@ -30,7 +30,51 @@
 </style>
 
 <script type="text/javascript">
+	function awardCancel(awardprice, panmaeusernum, actdnum) {
+		var coin = Number("${coin}");
+		var price = Number(awardprice);
+		if (coin >= (price/10)) {
+			if (confirm("보증금("+(price/10)+"원)이 판매자에게 납부됩니다. 낙찰받은 상품을 취소하시겠습니까?")) {
+				var frm = document.cancelFrm;
+				document.getElementById("awardprice").value = awardprice;
+				document.getElementById("panmaeusernum").value = panmaeusernum;
+				document.getElementById("actdnum").value = actdnum;
+				frm.method = "POST";
+				frm.action = "awardCancel.action";
+				frm.submit();
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			alert("보유하신 coin이 보증금보다 낮습니다. 충전하여 주십시오.");
+			location.href="myPage.action";
+		}
+		
+	}
 	
+	function pay(awardprice, panmaeusernum, actdnum, actnum) {
+		if (confirm("이 상품을 결제하시겠습니까?")) {
+			var frm = document.cancelFrm;
+			var url = "<%=request.getContextPath()%>/pay.action";
+	    	/* window.open("", "pay",
+	    			   "left=569px, top=885px, width=569px, height=885px status=1"); */
+			frm.method = "POST";
+			document.getElementById("awardprice").value = awardprice;
+			document.getElementById("panmaeusernum").value = panmaeusernum;
+			document.getElementById("actdnum").value = actdnum;
+			document.getElementById("actnum").value = actnum;
+			frm.action = url;
+			/* frm.target = "pay"; */
+			frm.submit();
+		}
+		else {
+			return false;
+		}
+		
+		
+	}
 </script>
 
 <div class="main">
@@ -51,7 +95,7 @@
           <th class="goods-page-awardday">구매일자</th>
           <th class="goods-page-panmaeja">판매자</th>
           <th class="goods-page-awardprice">낙찰가</th>
-          <th class="goods-page-deliverstatus">배송상태</th>
+          <th class="goods-page-pay">낙찰상태</th>
         </tr>
         
         <c:if test="${buyMapList != null}">
@@ -59,7 +103,7 @@
 	         <tr class="ssi" style="margin-left:5%;">                  
 	           <td class="goods-page-awardnum">
 	             <%-- ${map.AWARDNUM} --%>
-	             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/auctionDetail.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/images/${map.ACTIMAGE}" /></a>
+	             <a style="cursor: pointer;" href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${map.ACTDNUM}"><img style="width: 90px; height: 90px; overflow: hidden" src="<%=request.getContextPath() %>/resources/actimages/${map.ACTIMAGE}" /></a>
 	           </td>
 	           <td class="goods-page-actname">
 	             <h3>${map.CNAME} > ${map.CDNAME} > <a style="cursor: pointer;" href="<%=request.getContextPath() %>/viewAuction.action?actdnum=${map.ACTDNUM}">${map.ACTNAME}</a></h3>
@@ -75,26 +119,36 @@
 	           <td class="goods-page-awardprice">
 	             <strong><fmt:formatNumber value="${map.AWARDPRICE}" type="number"/></strong><span>원</span>
 	           </td>
-	           <c:if test="${map.DELIVERSTATUS == '0'}">
-	           <td class="goods-page-deliverstatus">
-	             <!-- <strong><a href="">주문완료</a></strong> -->
-	             <strong>주문완료</strong>
+	           <td class="goods-page-pay">
+	           	 <c:if test="${map.AWARD_STATUS == '0'}">
+	             	<strong><a href="javascript:pay('${map.AWARDPRICE}','${map.PANMAEUSERNUM}','${map.ACTDNUM}','${map.ACTNUM}');" style='cursor: pointer;'>결제</a> / <a href="javascript:awardCancel('${map.AWARDPRICE}','${map.PANMAEUSERNUM}','${map.ACTDNUM}');" style='cursor: pointer;'>낙찰취소</a></strong>
+	             </c:if>
+	             <c:if test="${map.AWARD_STATUS == '1'}">
+	             	결제완료
+	             	<%-- <c:if test="${map.DELIVERSTATUS == '0'}">			                    
+			             <strong>주문완료</strong>			           
+			        </c:if>
+					<c:if test="${map.DELIVERSTATUS == '1'}">
+			             <strong>배송중</strong>			          
+			        </c:if>
+			        <c:if test="${map.DELIVERSTATUS == '2'}">
+			             <strong>배송완료</strong>			          
+		            </c:if> --%>
+	             </c:if>
+	             <c:if test="${map.AWARD_STATUS == '2'}">
+	             	낙찰취소
+	             </c:if>
 	           </td>
-	           </c:if>
-			   <c:if test="${map.DELIVERSTATUS == '1'}">
-	           <td class="goods-page-deliverstatus">
-	             <strong>배송중</strong>
-	           </td>
-	           </c:if>
-	           <c:if test="${map.DELIVERSTATUS == '2'}">
-	           <td class="goods-page-deliverstatus">
-	             <strong>배송완료</strong>
-	           </td>
-	           </c:if>         
+	           <%--
+	             --%>        
 	         </tr>
 	         <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
-			 <input type="hidden" name="userid" value="${map.PANMAEJA}" />
-			 <input type="hidden" name="actdnum" value="${map.ACTDNUM}" />  
+			 <input type="hidden" name="panmaeuserid" value="${map.PANMAEJA}" />
+			 
+			 
+			 <input type="hidden" name="coin" value="${sessionScope.loginuser.coin}" />
+			 
+			 
 	        </c:forEach>
         </c:if>
                   
@@ -109,12 +163,15 @@
       </form>
       </div>
     
-   
-                        
+      <form name="cancelFrm">
+   	  	<input type="hidden" id="awardprice" name="awardprice"  />
+   	  	<input type="hidden" id="panmaeusernum" name="panmaeusernum" />
+   	  	<input type="hidden" id="actdnum" name="actdnum" />
+   	  	<input type="hidden" id="actnum" name="actnum" />
+      </form>
                         
       
 	<div style="margin-top: 3%;"  class="row">
-	
       <div class="col-md-12 col-sm-12 col-xs-12">
         <ul class="pagination pull-right">
           <li>${pagebar}</li>
