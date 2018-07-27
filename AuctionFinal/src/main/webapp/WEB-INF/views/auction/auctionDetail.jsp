@@ -83,7 +83,7 @@
 	// 입찰하기 버튼
 	function goTender() {
 				
-		if (strNow == "경매종료" || actd_status == 0 || actd_price == nowprice) {
+		if (strNow == "경매종료" || actd_status == 0) {
 			alert("경매종료된 상품입니다.");
 			return false;
 		}
@@ -219,7 +219,7 @@
               <h1>${acvo.actname}</h1>
               <div class="price-availability-block clearfix">
                 <div class="pull-left">                  
-	              <c:if test="${acvo.actd_status == '1'}">
+	              <c:if test="${acvo.actd_status == '1' && pr2 >= pr1}">
 	              
 	              <label class="control-label">현  재  가  : </label>
 	              <fmt:formatNumber value="${nowprice}" type="number"/>원
@@ -240,6 +240,26 @@
               	  <br/>
               	  
               	  </c:if>
+              	  
+              	  <c:if test="${acvo.actd_status == '1' && pr2 < pr1}">
+	              
+	              <span style="color:red;"><label class="control-label">현  재  가  : </label>
+	              <strong style="font-size: 20pt;"><fmt:formatNumber value="${nowprice}" type="number"/>원</strong></span>
+              	  &nbsp;/&nbsp;
+              	  <label class="control-label">시  작  가  : </label>
+              	  <span><fmt:formatNumber value="${acvo.startprice}" type="number"/>원</span>
+              	  <br/>
+              	  <label class="control-label">입찰 단위  : </label>
+              	  <span><fmt:formatNumber value="${acvo.actd_lowertenderprice}" type="number"/>원</span>
+              	  <br/>
+              	  
+              	  
+              	  
+              	  <br/>
+              	  
+              	  </c:if>
+              	  
+              	  
               	  <c:if test="${acvo.actd_status == '0'}">
 	              
 	              <span style="color:red;"><label class="control-label">낙  찰  가  : </label>
@@ -284,7 +304,7 @@
               
               <div class="product-page-cart">
 	              <c:if test="${sessionScope.loginuser.usernum != acvo.fk_usernum}">
-	              	<c:if test="${pr1 < pr2}">
+	              	<c:if test="${pr1 <= pr2}">
 		               <!-- <div class="pull-left">
 		             	  <label class="control-label">수량 : </label>
 		             	  <input id="qty" name="qty" type="number" value="1" min="1" max="100"/>
@@ -297,12 +317,18 @@
 		               
 			            <button class="btn btn-default" type="button" onclick="goPay()">즉시구매</button>&nbsp;
 	                </c:if>
-		                
-		            <c:if test="${pr1 >= pr2}">
-	                	<div class="pull-left">
-		             		상품판매가 종료되었습니다.  
-		            	</div>
-		            </c:if>
+	                <c:if test="${pr1 > pr2}">
+		               <!-- <div class="pull-left">
+		             	  <label class="control-label">수량 : </label>
+		             	  <input id="qty" name="qty" type="number" value="1" min="1" max="100"/>
+		               </div>
+		               <br/><br/><br/> -->
+		               	
+		              	<button class="btn btn-primary" type="button" onclick="goTender()">입찰하기</button>&nbsp;
+		              	
+		 
+	                </c:if>
+		            
 	              </c:if>
 	              <c:if test="${sessionScope.loginuser.usernum == acvo.fk_usernum}">
 	              	상품을 등록하신 회원께서는 입찰 및 즉시구매를 할 수 없습니다.

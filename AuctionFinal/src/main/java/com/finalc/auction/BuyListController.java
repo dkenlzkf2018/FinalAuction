@@ -422,9 +422,12 @@ public class BuyListController {
 				map.put("tenderpriceold", jvo.getTenderprice());
 				//System.out.println("tenderpriceold : " + jvo.getTenderprice());
 				map.put("usernumfail", jvo.getFk_usernum());
-				
+				if (loginuser.getUsernum().equals(jvo.getFk_usernum())) {
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) + Integer.parseInt(deposit)));
+				}
 				// 제일 마지막에 입찰 성공시킨회원(제일 입찰금이 높은회원)의 보증금을 돌려주고자 한다.
 				int result0 = service.rollbackDeposit(map);
+				
 				
 				
 				// 경매 입찰
@@ -525,6 +528,7 @@ public class BuyListController {
 		int result = service.productPay(map);
 		
 		if (result == 4) {
+			loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) - Integer.parseInt(awardprice)));
 			req.setAttribute("msg", ""+awardprice+"원 결제가 완료되었습니다.");
 			req.setAttribute("loc", "buyList.action");
 		}

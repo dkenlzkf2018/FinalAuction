@@ -101,7 +101,7 @@
                                           <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                       </div>
                                       <div class="form-group">
-                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice) + 1000}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
+                                          <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice) + (map.actd_lowertenderprice)}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
                                           <input id="tenderprice" name="tenderprice" type="text" class="form-control cc-name valid" data-val="true" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
                                           <!-- <input id="tenderprice" name="tenderprice" type="text" /> -->
                                                                                     원 (콤마','없이 1000원 단위로 입력하세요.)  첫 입찰 시의 보증금은 입찰금의 10% 원을 본인의 coin에서 차감됩니다.
@@ -198,7 +198,7 @@
 			
 			// 시작가격보다 입찰가격이 낮은 경우
 			if (price < startprice) {
-				alert("입찰 금액은 시작가격 "+startprice+" + 1000원 이상이어야 합니다. 다시 입력하여 주십시오.");
+				alert("입찰 금액은 시작가격 "+startprice+" + "+raw+"원 이상이어야 합니다. 다시 입력하여 주십시오.");
 				return false;
 			}
 			if (price <= nowprice+(raw-1)) {
@@ -218,10 +218,10 @@
 				return false;
 			}
 			
-			if (price > endprice) {
+			/* if (price > endprice) {
 				alert("즉시구매가보다 높게 입찰하실 수 없습니다.");
 				return false;
-			}
+			} */
 			if (coin < price) {
 				if(confirm("보유하신 코인 금액이 " + (price - coin) +"원 부족합니다. 마이페이지에서 코인을 충전하시겠습니까?")) {
 					location.href="myPage.action";
