@@ -96,6 +96,7 @@
           <th class="goods-page-panmaeja">판매자</th>
           <th class="goods-page-awardprice">낙찰가</th>
           <th class="goods-page-pay">낙찰상태</th>
+          <th class="goods-page-deliver">배송상태</th>
         </tr>
         
         <c:if test="${buyMapList != null}">
@@ -123,30 +124,29 @@
 	           	 <c:if test="${map.AWARD_STATUS == '0'}">
 	             	<strong><a href="javascript:pay('${map.AWARDPRICE}','${map.PANMAEUSERNUM}','${map.ACTDNUM}','${map.ACTNUM}');" style='cursor: pointer;'>결제</a> / <a href="javascript:awardCancel('${map.AWARDPRICE}','${map.PANMAEUSERNUM}','${map.ACTDNUM}');" style='cursor: pointer;'>낙찰취소</a></strong>
 	             </c:if>
-	             <c:if test="${map.AWARD_STATUS == '1'}">
-	             	결제완료
-	             	<%-- <c:if test="${map.DELIVERSTATUS == '0'}">			                    
-			             <strong>주문완료</strong>			           
-			        </c:if>
-					<c:if test="${map.DELIVERSTATUS == '1'}">
-			             <strong>배송중</strong>			          
-			        </c:if>
-			        <c:if test="${map.DELIVERSTATUS == '2'}">
-			             <strong>배송완료</strong>			          
-		            </c:if> --%>
+	             <c:if test="${map.AWARD_STATUS == '1'}">	
+	                <strong><span style='color:blue;'>결제완료</span></strong>
 	             </c:if>
 	             <c:if test="${map.AWARD_STATUS == '2'}">
-	             	낙찰취소
+	             	<strong><span style='color:red;'>낙찰취소</span></strong>
 	             </c:if>
-	           </td>
-	           <%--
-	             --%>        
+	           </td>	
+	           <td class="goods-page-deliver">
+	           	 <c:if test="${empty map.DELIVERSTATUS}">
+	           	    <strong><span style='color:red;'>배송없음</span></strong>
+	           	 </c:if>
+	           	 <c:if test="${map.DELIVERSTATUS == '0'}">
+	           	    <strong><span style='color:orange;'>주문완료</span></strong>
+	           	 </c:if>
+	           	 <c:if test="${map.DELIVERSTATUS == '1'}">
+	           	    <strong><span style='color:green;'>배송중</span></strong><br/><br/>
+	           	    <strong><span style='color:green;'>배송번호:${map.INVOICENO}</span></strong>
+	           	 </c:if>
+	           	 <c:if test="${map.DELIVERSTATUS == '2'}">
+	           	    <strong><span style='color:blue;'>배송완료</span></strong>
+	           	 </c:if>
+	           </td>                
 	         </tr>
-	         <input type="hidden" name="awardnum" value="${map.AWARDNUM}" />
-			 <input type="hidden" name="panmaeuserid" value="${map.PANMAEJA}" />
-			 
-			 
-			 <input type="hidden" name="coin" value="${sessionScope.loginuser.coin}" />
 			 
 			 
 	        </c:forEach>
@@ -154,7 +154,7 @@
                   
         <c:if test="${buyMapList == null}">
 		 <tr>
-		  	<td colspan="6">최근 낙찰받은 상품이 존재하지 않습니다.</td>
+		  	<td colspan="7">최근 낙찰받은 상품이 존재하지 않습니다.</td>
 		 </tr>
 		 </c:if> 
 		 

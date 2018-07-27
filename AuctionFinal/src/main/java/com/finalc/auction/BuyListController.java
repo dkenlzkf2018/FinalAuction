@@ -51,7 +51,7 @@ public class BuyListController {
 			String str_currentShowPageNo = req.getParameter("currentShowPageNo"); 
 			
 			int totalCount = 0;         // 총게시물건수
-			int sizePerPage = 10;       // 한 페이지당 보여줄 게시물 건수 
+			int sizePerPage = 5;       // 한 페이지당 보여줄 게시물 건수 
 			int currentShowPageNo = 0;  // 현재 보여주는 페이지 번호로서, 초기치로는 1페이지로 설정함.
 			int totalPage = 0;          // 총페이지수 (웹브라우저상에 보여줄 총 페이지 갯수)
 			
@@ -134,6 +134,7 @@ public class BuyListController {
 			
 			List<HashMap<String, String>> buyMapList = new ArrayList<HashMap<String, String>>();
 			buyMapList = service.getBuyList(map);
+			
 			
 			
 			
@@ -514,6 +515,7 @@ public class BuyListController {
 		map.put("fk_usernum", panmaeusernum);
 		map.put("usernum", loginuser.getUsernum());
 		map.put("actdnum", actdnum);
+		map.put("actnum", actnum);
 		
 		int result = service.productPay(map);
 		
