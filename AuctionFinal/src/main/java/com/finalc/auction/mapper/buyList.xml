@@ -22,7 +22,8 @@
 		<result property="ACTIMAGE" column="actimage" javaType="String" />
 		<result property="PANMAEUSERNUM" column="panmaeusernum" javaType="String" />
 		<result property="AWARD_STATUS" column="award_status" javaType="String" />
-		
+		<result property="DELIVERSTATUS" column="deliverstatus" javaType="String" />
+		<result property="INVOICENO" column="invoiceno" javaType="String" />
 		
 	</resultMap>
 	
@@ -47,6 +48,8 @@
 		       , panmaeusernum
 		       , actimage
 		       , award_status
+		       , (select deliverstatus from tbl_deliver where fk_awardnum = awardnum) as deliverstatus
+		       , (select invoiceno from tbl_deliver where fk_awardnum = awardnum) as invoiceno
 		  from 
 		  (
 		  select rownum AS RNO, awardnum
