@@ -249,7 +249,7 @@ svg, img, canvas {
 	      <!-- start of weather widget -->
  		      <div class="product-item col-md-6 col-sm-6 col-xs-12">
 		          <div class="card-header">
-		            <h2>Daily active Weather <small>Sessions</small></h2>
+		            <h2>오늘의 날씨</h2>
 		            <div class="clearfix"></div>
 		          </div>
 		          <div class="x_content">
@@ -274,7 +274,7 @@ svg, img, canvas {
 		              </div>
 		              <div class="col-sm-8">
 		                <div class="weather-text">
-		                  <h2 class="">Texas <br><i>Partly Cloudy Day</i></h2>
+		                  <h2 class="name">Texas <br><i>Partly Cloudy Day</i></h2>
 		                </div>
 		              </div>
 		            </div>

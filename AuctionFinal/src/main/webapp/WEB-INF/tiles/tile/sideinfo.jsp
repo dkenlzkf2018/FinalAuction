@@ -56,10 +56,6 @@
         	
     	}
         
-    	// usage:
-    	/* drawInlineSVG(svg, img, canvas {
-    	    console.log(svg.toDataURL());  // -> PNG data-uri
-    	}); */
         
     	/* function loopshowWeather() {
     		
