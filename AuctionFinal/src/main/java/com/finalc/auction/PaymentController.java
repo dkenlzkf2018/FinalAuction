@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.finalc.auction.model.MemberVO;
 import com.finalc.auction.service.InterPaymentService;
+import com.finalc.auction.service.InterLoginService;
 
 @Controller
 @Component
@@ -22,6 +23,9 @@ public class PaymentController {
 	// 경매 컨트롤러 (InterPaymentService)
 	@Autowired
 	private InterPaymentService service;
+	// 경매 컨트롤러 (InterPaymentService)
+	@Autowired
+	private InterLoginService serviceL;
 	
 	// 충전금액 선택 페이지 출력
 	@RequestMapping(value="/coinPurchaseTypeChoice.action", method={RequestMethod.GET})  
@@ -97,18 +101,12 @@ public class PaymentController {
 		MemberVO loginuser = (MemberVO)session.getAttribute("loginuser");
 		String usernum = req.getParameter("usernum");
 		
-		System.out.println(">> 확인용 auctionPay의 usernum : " + usernum);
-		
-		System.out.println(">> 확인용 auctionPay의 loginuser : " + loginuser);
 		String msg = null;
 		
 		@SuppressWarnings("unchecked")
 		HashMap<String,String> coinmap = (HashMap<String,String>)session.getAttribute("coinmap"); // 세션에서 불러옴
 		
-		System.out.println(">> 확인용 auctionPay의 loginuser : " + loginuser);
 		if(loginuser != null && loginuser.getUsernum().equals(usernum) && coinmap.get("usernum").equals(usernum)) {
-			
-			System.out.println(">> 확인용 auctionPay의 coinmoney : " + coinmap.get("coinmoney"));
 			
 			int n = service.auctionPay(usernum, coinmap.get("coinmoney"));
 			
@@ -120,10 +118,20 @@ public class PaymentController {
 				msg = loginuser.getUserid()+ "[" + loginuser.getUsername() + "]님의 코인액 결제에 실패했습니다.";  
 			}
 			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("userid", loginuser.getUserid());
+			map.put("passwd", loginuser.getPasswd());
+			
+			loginuser = serviceL.getLoginMember(map);
+			
 			req.setAttribute("msg", msg);
+			/*req.setAttribute("loginuser", loginuser);
+			req.setAttribute("coin", loginuser.getCoin());
+			System.out.println("loginuser의 coin : " + loginuser.getCoin());*/
+			session.setAttribute("loginuser", loginuser);
+			session.setAttribute("coin", loginuser.getCoin());
 			
 			return "member/coinAddUpdateLoginuser.tiles";
-			
 		}
 		else {
 			msg = "코인결제에 문제가 발생했습니다...";
