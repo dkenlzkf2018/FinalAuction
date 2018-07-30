@@ -104,7 +104,7 @@
                                           <label for="cc-number" class="control-label mb-1">입찰 금액(<span style="color:red;">현재 <fmt:formatNumber value="${(nowprice) + (map.actd_lowertenderprice)}" type="number"/>원</span> 부터 입찰하실 수 있습니다.)</label>
                                           <input id="tenderprice" name="tenderprice" type="text" class="form-control cc-name valid" data-val="true" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" />
                                           <!-- <input id="tenderprice" name="tenderprice" type="text" /> -->
-                                                                                    원 (콤마','없이 1000원 단위로 입력하세요.)  첫 입찰 시의 보증금은 입찰금의 10% 원을 본인의 coin에서 차감됩니다.
+                                          (콤마','없이 100원 단위 이상으로 입력하세요.)  첫 입찰 시의 보증금은 입찰금의 10% 원을 본인의 coin에서 차감됩니다.
                                                                                     
                                           <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                       </div>
