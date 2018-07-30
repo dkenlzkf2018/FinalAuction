@@ -248,8 +248,23 @@ svg, img, canvas {
       <!-- END TWO PRODUCTS -->
       <!-- BEGIN PROMO -->
 
+<!-- 	<div id="weather_info">
+		<h1 class="city"></h1>	도시, 국가명 표시 영역
+			<section>
+				<p class="w_id"></p>	날씨 상태 표시 영역
+				<figure class="icon">	아이콘 표시 영역
+				</figure>
+				<p class="temp"></p>	현재 온도 표시 영역
+				<aside>
+					<p class="temp_max">max</p> 최고 온도 표시 영역
+					<p class="temp_min">min</p> 최저 온도 표시 영역
+				</aside>
+			</section>
+	</div> -->		
+		
+
 	      <!-- start of weather widget -->
- 		      <div class="product-item col-md-6 col-sm-6 col-xs-12">
+ 		      <%-- <div class="product-item col-md-6 col-sm-6 col-xs-12">
 		          <div class="card-header">
 		            <h2>오늘의 날씨</h2>
 		            <div class="clearfix"></div>
@@ -271,7 +286,7 @@ svg, img, canvas {
 							  <image xlink:href="<%=request.getContextPath()%>/resources/assets/pages/img/svg?="+{city} height="20px" width="20px" x="10" y="10"></image>
 							</svg>
 							<hr/><br/>
-		                  <%-- <canvas height="84" width="84" id=""></canvas> --%>
+		                  <canvas height="84" width="84" id=""></canvas>
 		                </div>
 		              </div>
 		              <div class="col-sm-8">
@@ -288,7 +303,7 @@ svg, img, canvas {
 		
 		            <div class="clearfix"></div>
 		
-<%-- 		            <div class="row weather-days">
+		            <div class="row weather-days">
 		              <div class="col-sm-2">
 		                <div class="daily-weather">	
 		                  <h2 class="day">Mon</h2>
@@ -306,9 +321,9 @@ svg, img, canvas {
 		                </div>
 		              </div>
 		              <div class="clearfix"></div>
-		            </div> --%>
+		            </div>
 		          </div>
-			</div>
+			</div> --%>
       <!-- end of weather widget -->
       
       <!-- END PROMO -->

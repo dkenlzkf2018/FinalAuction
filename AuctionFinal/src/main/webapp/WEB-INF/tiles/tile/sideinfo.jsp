@@ -3,9 +3,70 @@
 
 <%-- ===== #38.  tiles 중 sideinfo 페이지 만들기 ===== --%>
 
-<script type="text/javascript">
+ <script type="text/javascript">
+ 
+ function parseWeather() 
 
-<i id="icon"></i>
+ { 
+
+       loadJSON(function(response) 
+
+       {
+
+           var jsonData = JSON.parse(response);
+
+            document.getElementById("todaysWeather").innerHTML = jsonData["list"][0]["weather"][0]["main"];
+
+       });
+
+ }
+
+
+
+function loadJSON(callback) //url의 json 데이터 불러오는 함수
+
+{   
+
+   var url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Busan,KR&cnt=7&APPID=c2086d467918ca3a0300f821d4e8f86f";
+
+   var request = new XMLHttpRequest();
+
+   request.overrideMimeType("application/json");
+
+   request.open('GET', url, true);
+
+
+
+   request.onreadystatechange = function () 
+
+   {
+
+     if (request.readyState == 4 && request.status == "200") 
+
+     {
+
+       callback(request.responseText);
+
+     }
+
+   };
+
+   request.send(null);  
+
+} 
+
+
+
+window.onload = function()
+
+{
+
+ parseWeather();
+
+}
+
+
+<!-- <i id="icon"></i>
 <span id="cloud" class="font-bold"></span>
 
 	function showWeather() {
@@ -54,7 +115,7 @@
         	// draw the image onto the canvas
         	canvas.getContext('2d').drawImage(img, 0, 0);
         	
-    	}
+    	} -->
         
         
     	/* function loopshowWeather() {
@@ -242,12 +303,12 @@
 </script>
 
 
-<div style="margin: 0 auto;" align="center">
+<!-- <div style="margin: 0 auto;" align="center">
 <p>var imgURL = "http://openweathermap.org/img/w/" + resp.weather[0].icon + ".png";
 							 $("html컴포넌트").attr("src", imgURL);
 							</p>
 
-<!-- 	현재시각 :&nbsp; 
+	현재시각 :&nbsp; 
 	<div id="clock" style="display:inline;"></div>
-	<div id="displayWeather" style="min-width: 90%; margin-top: 10px;"></div> -->
-</div>
+	<div id="displayWeather" style="min-width: 90%; margin-top: 10px;"></div>
+</div> -->
