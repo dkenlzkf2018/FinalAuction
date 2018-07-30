@@ -6,8 +6,8 @@
 	jQuery(document).ready(function(){
 	 
 		 location.href="myPage.action";
-	     alert('${msg}'); 
-	      
+	     alert('${msg}');
+	     
 	});
 
 </script>
