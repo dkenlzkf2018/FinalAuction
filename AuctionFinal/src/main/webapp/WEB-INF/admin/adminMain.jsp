@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <h4 class="mb-0">
-                            <span class="count">10468</span>
+                            <span class="count">${boardCount}</span>
                         </h4>
                         <p class="text-light">게시판 관리</p>
 
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <h4 class="mb-0">
-                            <span class="count">10468</span>
+                            <span class="count">${categoryDetailCount}</span>
                         </h4>
                         <p class="text-light">카테고리 관리</p>
 
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <h4 class="mb-0">
-                            <span class="count">10468</span>
+                            <span class="count">${memberCount}</span>
                         </h4>
                         <p class="text-light">회원 관리</p>
 
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                         <h4 class="mb-0">
-                            <span class="count">10468</span>
+                            <span class="count">${deliverCount}</span>
                         </h4>
                         <p class="text-light">주문/배송 관리</p>
 

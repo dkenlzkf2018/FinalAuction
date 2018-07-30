@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,18 @@ public class AdminController {
 	// 관리자 메인 Controller 단
 
 		@RequestMapping(value="/adminMain.action", method={RequestMethod.GET})
-		public String adminMain() {
+		public String adminMain(HttpServletRequest req, HttpServletResponse res) {
+			
+			int memberCount = service.getMemberCount();
+			int boardCount = service.getBoardCount();
+			int hugiboardCount = service.getHugiBoardCount();
+			int categoryDetailCount = service.getCategoryDetailCount();
+			int deliverCount = service.getDeliverCount();
+			
+			req.setAttribute("memberCount", memberCount-1);
+			req.setAttribute("boardCount", boardCount+hugiboardCount);
+			req.setAttribute("categoryDetailCount", categoryDetailCount);
+			req.setAttribute("deliverCount", deliverCount);
 			
 			return "adminMain.admin";
 		}

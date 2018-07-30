@@ -22,6 +22,16 @@ public interface InterAdminService {
 	// 게시판 페이지
 	List<BoardVO> getGenerBoard();
 
+	int getMemberCount();
+
+	int getBoardCount();
+
+	int getHugiBoardCount();
+
+	int getCategoryDetailCount();
+
+	int getDeliverCount();
+
 	
 
 	

@@ -18,6 +18,16 @@ public interface InterAdminDAO {
 	
 	// 카테고리 삭제 단
 	int delCategory(HashMap<String, String> map);
+
+	int getMemberCount();
+
+	int getBoardCount();
+
+	int getHugiBoardCount();
+
+	int getCategoryDetailCount();
+
+	int getDeliverCount();
 	
 	// 게시판 관리 단
 	

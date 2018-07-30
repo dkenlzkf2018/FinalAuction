@@ -46,6 +46,36 @@ public class AdminDAO implements InterAdminDAO {
 		int n = sqlsession.update("admin.delCategory", map);
 		return n;
 	}
+
+	@Override
+	public int getMemberCount() {
+		int memberCount = sqlsession.selectOne("admin.getMemberCount");
+		return memberCount;
+	}
+
+	@Override
+	public int getBoardCount() {
+		int boardCount = sqlsession.selectOne("admin.getBoardCount");
+		return boardCount;
+	}
+
+	@Override
+	public int getHugiBoardCount() {
+		int hugiboardCount = sqlsession.selectOne("admin.getHugiBoardCount");
+		return hugiboardCount;
+	}
+
+	@Override
+	public int getCategoryDetailCount() {
+		int categoryDetailCount = sqlsession.selectOne("admin.getCategoryDetailCount");
+		return categoryDetailCount;
+	}
+
+	@Override
+	public int getDeliverCount() {
+		int deliverCount = sqlsession.selectOne("admin.getDeliverCount");
+		return deliverCount;
+	}
 	
 	// 일반게시판 단
 	

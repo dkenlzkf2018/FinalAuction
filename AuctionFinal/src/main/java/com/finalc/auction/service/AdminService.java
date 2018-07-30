@@ -50,6 +50,36 @@ public class AdminService implements InterAdminService{
 		int n = dao.delCategory(map);
 		return n;
 	}
+
+	@Override
+	public int getMemberCount() {
+		int memberCount = dao.getMemberCount();
+		return memberCount;
+	}
+
+	@Override
+	public int getBoardCount() {
+		int boardCount = dao.getBoardCount();
+		return boardCount;
+	}
+
+	@Override
+	public int getHugiBoardCount() {
+		int hugiboardCount = dao.getHugiBoardCount();
+		return hugiboardCount;
+	}
+
+	@Override
+	public int getCategoryDetailCount() {
+		int categoryDetailCount = dao.getCategoryDetailCount();
+		return categoryDetailCount;
+	}
+
+	@Override
+	public int getDeliverCount() {
+		int deliverCount = dao.getDeliverCount();
+		return deliverCount;
+	}
 	
 	
 	

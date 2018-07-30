@@ -23,7 +23,7 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>게시판 관리</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="*.action">질문 게시판</a></li>
+                        <li><i class="fa fa-table"></i><a href="<%=request.getContextPath()%>/admin/generBoard.action">질문 게시판</a></li>
                         <li><i class="fa fa-table"></i><a href="<%=request.getContextPath()%>/admin/hugiList.action">후기 게시판</a></li>
                     </ul>
                 </li>
