@@ -423,7 +423,7 @@ public class BuyListController {
 				//System.out.println("tenderpriceold : " + jvo.getTenderprice());
 				map.put("usernumfail", jvo.getFk_usernum());
 				if (loginuser.getUsernum().equals(jvo.getFk_usernum())) {
-					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) + Integer.parseInt(deposit)));
+					loginuser.setCoin(String.valueOf(Integer.parseInt(loginuser.getCoin()) + Integer.parseInt(jvo.getTenderprice())/10));
 				}
 				// 제일 마지막에 입찰 성공시킨회원(제일 입찰금이 높은회원)의 보증금을 돌려주고자 한다.
 				int result0 = service.rollbackDeposit(map);
