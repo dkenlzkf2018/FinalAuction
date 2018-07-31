@@ -22,8 +22,6 @@ public interface InterAdminService {
 	// 게시판 페이지
 	List<BoardVO> getGenerBoard();
 
-<<<<<<< HEAD
-=======
 	int getMemberCount();
 
 	int getBoardCount();
@@ -33,19 +31,4 @@ public interface InterAdminService {
 	int getCategoryDetailCount();
 
 	int getDeliverCount();
-
-	
-
-	
-
-	
-
-
-
-	
-	
-
-	
-	
->>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
 }
