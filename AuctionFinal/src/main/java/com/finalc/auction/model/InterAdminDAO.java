@@ -28,13 +28,5 @@ public interface InterAdminDAO {
 	int getCategoryDetailCount();
 
 	int getDeliverCount();
-	
-	// 게시판 관리 단
-	
 
-	
-
-	
-
-	
 }

@@ -128,16 +128,6 @@ public class AdminController {
 			
 			return "msg.notiles";
 		}
-		
-/*		
-	// 카테고리 수정 Controller 단
-		@RequestMapping(value="/modiCategory.action", method={RequestMethod.GET})
-		public String modiCategory() {
-			
-			return "modiCategory.admin";
-		}
-*/
-	
-		
+
 }
 

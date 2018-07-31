@@ -5,19 +5,19 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>관리자</h1>
+                        <h1>Admin Main</h1>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <!-- <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li class="active">관리자</li>
+                            <li class="active">Admin Main</li>
                         </ol>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 			
@@ -230,19 +230,19 @@
                                 <div class="small text-muted">October 2017</div>
                             </div>
                             <!--/.col-->
-                            <div class="col-sm-8 hidden-sm-down">
-                                <button type="button" class="btn btn-primary float-right bg-flat-color-1"><i class="fa fa-cloud-download"></i></button>
-                                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="col-sm-6 hidden-sm-down">
+                                <!-- <button type="button" class="btn btn-primary float-right bg-flat-color-1"><i class="fa fa-cloud-download"></i></button> -->
+                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-                                        <label class="btn btn-outline-secondary">
+                                        <label class="btn btn-outline-secondary" style="margin-left: 80px">
                                             <input type="radio" name="options" id="option1"> Day
                                         </label>
-                                        <label class="btn btn-outline-secondary active">
-                                            <input type="radio" name="options" id="option2" checked=""> Month
+                                        <!-- <label class="btn btn-outline-secondary active">
+                                            <input type="radio" name="options" id="option2"> Month
                                         </label>
                                         <label class="btn btn-outline-secondary">
                                             <input type="radio" name="options" id="option3"> Year
-                                        </label>
+                                        </label> -->
                                     </div>
                                 </div>
                             </div><!--/.col-->
@@ -254,7 +254,8 @@
                         </div>
 
                     </div>
-                    <div class="card-footer">
+                    
+                    <!-- <div class="card-footer">
                         <ul>
                             <li>
                                 <div class="text-muted">Visits</div>
@@ -292,11 +293,11 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
-           <div class="col-xl-3 col-lg-6">
+<%--            <div class="col-xl-3 col-lg-6">
                 <section class="card">
                     <div class="twt-feed blue-bg">
                         <div class="corner-ribon black-ribon">
@@ -342,7 +343,7 @@
                         </span>
                     </footer>
                 </section>
-            </div>
+            </div> --%>
 
 
             <div class="col-xl-3 col-lg-6">

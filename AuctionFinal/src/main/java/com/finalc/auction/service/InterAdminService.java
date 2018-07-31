@@ -31,18 +31,4 @@ public interface InterAdminService {
 	int getCategoryDetailCount();
 
 	int getDeliverCount();
-
-	
-
-	
-
-	
-
-
-
-	
-	
-
-	
-	
 }

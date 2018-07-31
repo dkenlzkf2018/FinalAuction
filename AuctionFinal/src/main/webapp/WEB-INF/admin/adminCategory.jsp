@@ -10,7 +10,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>관리자</h1>
+                <h1>Admin Main</h1>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li><a href="<%=request.getContextPath()%>/adminMain.action">관리자</a></li>
+                    <li><a href="<%=request.getContextPath()%>/adminMain.action">Admin Main</a></li>
                     <li><a href="<%=request.getContextPath()%>/adminCategory.action">카테고리 관리</a></li>
                     <li class="active">카테고리 등록&삭제</li>
                 </ol>

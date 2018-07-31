@@ -21,6 +21,6 @@ public interface InterAuctionService {
 //	상품목록을 띄우는 메소드	
 	int ShowAuction(HashMap<String, String> map);
 //	해당 카테고리에 포함되는 상품을 가져오는 메소드	
-	List<AuctionVO> getAuctionList(String fk_cdnum);
+	List<AuctionVO> getAuctionList(String fk_cdnum);	
 
 }

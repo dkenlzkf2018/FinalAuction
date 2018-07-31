@@ -19,12 +19,15 @@
                     <a href="/auction/adminMain.action"> <i class="menu-icon fa fa-dashboard"></i>관리자 메인</a>
                 </li>
                 <h3 class="menu-title">Admin Menus</h3><!-- /.menu-title -->
-			<!-- 관리 sideinfo 미완  -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>게시판 관리</a>
                     <ul class="sub-menu children dropdown-menu">
+<<<<<<< HEAD
+                        <li><i class="fa fa-table"></i><a href="<%=request.getContextPath()%>/admin/hugiList.action">후기 리스트</a></li>
+=======
                         <%-- <li><i class="fa fa-table"></i><a href="<%=request.getContextPath()%>/admin/generBoard.action">질문 게시판</a></li> --%>
                         <li><i class="fa fa-table"></i><a href="<%=request.getContextPath()%>/admin/hugiList.action">후기 게시판</a></li>
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -37,13 +40,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>회원 관리</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-user"></i><a href="<%=request.getContextPath()%>/admin/memberList.action">회원 리스트</a></li>
+<<<<<<< HEAD
+=======
                         <!-- <li><i class="fa fa-table"></i><a href="*.action">Data Table</a></li> -->
+>>>>>>> branch 'master' of https://github.com/dkenlzkf2018/FinalAuction.git
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa ti-credit-card"></i>주문/배송 관리</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-shopping-cart"></i><a href="<%=request.getContextPath()%>/admin/awardList.action">주문/배송 관리</a></li>
+                        <li><i class="fa fa-shopping-cart"></i><a href="<%=request.getContextPath()%>/admin/awardList.action">낙찰 리스트</a></li>
                     </ul>
                 </li>
             </ul>

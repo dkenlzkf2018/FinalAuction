@@ -9,7 +9,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                <h1>Admin Main</h1>
             </div>
         </div>
     </div>
@@ -17,9 +17,9 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Table</a></li>
-                    <li class="active">Data table</li>
+                    <li><a href="<%=request.getContextPath()%>/adminMain.action">Admin Main</a></li>
+                    <li class="active">게시판 관리</li>
+                    <li><a href="<%=request.getContextPath()%>/admin/hugiList.action">후기 리스트</a></li>
                 </ol>
             </div>
         </div>

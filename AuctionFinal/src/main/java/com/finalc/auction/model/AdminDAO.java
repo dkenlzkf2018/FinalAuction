@@ -77,7 +77,4 @@ public class AdminDAO implements InterAdminDAO {
 		return deliverCount;
 	}
 	
-	// 일반게시판 단
-	
-	
 }

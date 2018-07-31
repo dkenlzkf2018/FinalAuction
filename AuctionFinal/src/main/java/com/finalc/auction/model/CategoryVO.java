@@ -56,5 +56,4 @@ public class CategoryVO {
 			this.cdname = cdname;
 		}
 		
-		
 }

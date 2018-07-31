@@ -5,9 +5,14 @@
 
 <!-- BEGIN SLIDER -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date" />
 
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+
+<style type="text/css" >
+svg, img, canvas {
+  display: block;
+}
+</style>
 
 <div class="page-slider margin-bottom-35">
     <div id="carousel-example-generic" class="carousel slide carousel-slider">
@@ -241,32 +246,15 @@
       	</div>
       </div>
       <!-- END TWO PRODUCTS -->
-      <!-- BEGIN PROMO -->
-      <div class="col-md-6 shop-index-carousel">
-        <div class="content-slider">
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="item active">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/index-sliders/slide1.jpg" class="img-responsive" alt="Berry Lace Dress">
-              </div>
-              <div class="item">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/index-sliders/slide2.jpg" class="img-responsive" alt="Berry Lace Dress">
-              </div>
-              <div class="item">
-                <img src="<%=request.getContextPath() %>/resources/assets/pages/img/index-sliders/slide3.jpg" class="img-responsive" alt="Berry Lace Dress">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END PROMO -->
-    </div>        
+ <!-- <iframe src=http://www.nalsee.com/nalsee/banner2.html?id=dudrud126 
+WIDTH=400 HEIGHT=65 frameborder=no scrolling=no></iframe>
+    </div> -->
+ 
+<!-- weather widget start --><div id="m-booked-weather-bl250-90195"> <div class="booked-wzs-250-175 weather-customize" style="background-color:#137AE9;width:380px;" id="width3"> <div class="booked-wzs-250-175_in"> <div class="booked-wzs-250-175-data"> <div class="booked-wzs-250-175-left-img wrz-01"> <a target="_blank" href="http://www.booked.net/"> <img src="//s.bookcdn.com/images/letter/logo.gif" alt="http://www.booked.net/" /> </a> </div> <div class="booked-wzs-250-175-right"> <div class="booked-wzs-day-deck"> <div class="booked-wzs-day-val"> <div class="booked-wzs-day-number"><span class="plus">+</span>33</div> <div class="booked-wzs-day-dergee"> <div class="booked-wzs-day-dergee-val">&deg;</div> <div class="booked-wzs-day-dergee-name">C</div> </div> </div> <div class="booked-wzs-day"> <div class="booked-wzs-day-d">H: <span class="plus">+</span>33&deg;</div> <div class="booked-wzs-day-n">L: <span class="plus">+</span>28&deg;</div> </div> </div> <div class="booked-wzs-250-175-info"> <div class="booked-wzs-250-175-city">서울특별시 </div> <div class="booked-wzs-250-175-date">월요일, 30 7월</div> <div class="booked-wzs-left"> <span class="booked-wzs-bottom-l">7일 예보 보기</span> </div> </div> </div> </div> <a target="_blank" href="http://booked.kr/weather/seoul-18406"> <table cellpadding="0" cellspacing="0" class="booked-wzs-table-250"> <tr> <td>화</td> <td>수</td> <td>목</td> <td>금</td> <td>토</td> <td>일</td> </tr> <tr> <td class="week-day-ico"><div class="wrz-sml wrzs-18"></div></td> <td class="week-day-ico"><div class="wrz-sml wrzs-18"></div></td> <td class="week-day-ico"><div class="wrz-sml wrzs-18"></div></td> <td class="week-day-ico"><div class="wrz-sml wrzs-18"></div></td> <td class="week-day-ico"><div class="wrz-sml wrzs-18"></div></td> <td class="week-day-ico"><div class="wrz-sml wrzs-01"></div></td> </tr> <tr> <td class="week-day-val"><span class="plus">+</span>29&deg;</td> <td class="week-day-val"><span class="plus">+</span>30&deg;</td> <td class="week-day-val"><span class="plus">+</span>32&deg;</td> <td class="week-day-val"><span class="plus">+</span>31&deg;</td> <td class="week-day-val"><span class="plus">+</span>31&deg;</td> <td class="week-day-val"><span class="plus">+</span>34&deg;</td> </tr> <tr> <td class="week-day-val"><span class="plus">+</span>24&deg;</td> <td class="week-day-val"><span class="plus">+</span>24&deg;</td> <td class="week-day-val"><span class="plus">+</span>23&deg;</td> <td class="week-day-val"><span class="plus">+</span>24&deg;</td> <td class="week-day-val"><span class="plus">+</span>23&deg;</td> <td class="week-day-val"><span class="plus">+</span>23&deg;</td> </tr> </table> </a> </div></div> </div><script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href",'https://s.bookcdn.com/css/w/booked-wzs-widget-275.css?v=0.0.1'); document.getElementsByTagName("head")[0].appendChild(css_file); function setWidgetData(data) { if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = document.getElementById('m-booked-weather-bl250-90195'); if(objMainBlock !== null) { var copyBlock = document.getElementById('m-bookew-weather-copy-'+data.results[i].widget_type); objMainBlock.innerHTML = data.results[i].html_code; if(copyBlock !== null) objMainBlock.appendChild(copyBlock); } } } else { alert('data=undefined||data.results is empty'); } } </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=6&cityID=18406&type=3&scode=124&ltid=3458&domid=593&anc_id=9134&cmetric=1&wlangID=24&color=137AE9&wwidth=380&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script><!-- weather widget end -->    
+<!-- clock widget start -->
+<!-- <script type="text/javascript" var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-150x100t.css"); document.getElementsByTagName("head")[0].appendChild(css_file); &lt;/script&gt; &lt;div id="tw_8_263014722"&gt;&lt;div style="width:150px; height:100px; margin: 0 auto;"&gt;&lt;a href="http://booked.kr/time/seoul-18406"&gt;서울특별시&lt;/a&gt;&lt;br/&gt;&lt;/div&gt;&lt;/div&gt; &lt;script type="text/javascript"&gt; function setWidgetData_263014722(data){ if(typeof(data) != 'undefined' &amp;&amp; data.results.length &gt; 0) { for(var i = 0; i &lt; data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_263014722 = -1; &lt;/script&gt; &lt;script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&amp;domid=593&amp;type=8&amp;id=263014722&amp;scode=124&amp;city_id=18406&amp;wlangid=24&amp;mode=1&amp;details=0&amp;background=rgba(0,0,0,0.6)&amp;color=ffffff&amp;add_background=ffffff&amp;add_color=ffffff&amp;head_color=ffffff&amp;border=0&amp;transparent=1"></script>
+ --><!-- clock widget end -->
+      
     <!-- END TWO PRODUCTS & PROMO -->
   </div>
 </div>
