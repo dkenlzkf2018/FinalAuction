@@ -1024,4 +1024,153 @@ select count(*)
 		where A.fk_usernum = 8
 		)V    
     
+-- final_sys 작업 시작
+-- 잡 스케줄러 권한을 finalc에게 준다.
+grant create any job to finalc;
+grant create table to finalc;
+
+-- 초기치는 1로 되어있을 거지만
+select value from v$parameter where name like '%job%';
+-- 잡 최대 수 지정(10개)
+alter system set job_queue_processes = 10;
+-- 잡을 사용할 수 있는 최대 개수는 10이 되었다.
+select value from v$parameter where name like '%job%';
+-- final_sys 작업 끝
+
+
+
+-- 기한이 지난 상품의 상태를 0(경매종료)로 만든다.
+create or replace procedure pcd_auction_detail
+is
+begin
+     update tbl_auction_detail set actd_status = 0
+     where actd_endday < sysdate and actd_status = 1;
+     commit;
+end pcd_auction_detail;
+----------------------------------------------
+
+-- 기한이 종료된 상품들 중에 입찰된 상품이 있다면
+-- 최고가로 입찰한 회원1명만 낙찰 테이블에 저장시킨다.
+create or replace procedure pcd_joinaclist_award
+is
+begin
+     insert into tbl_award(awardnum, fk_usernum, fk_actdnum, awardprice)
+     select seq_award.nextval, A.usernum, D.actdnum, B.tenderprice
+     from tbl_member_detail A join tbl_joinaclist B
+     on A.usernum = B.fk_usernum
+     join tbl_auction C
+     on B.fk_actnum = C.actnum
+     join tbl_auction_detail D
+     on C.actnum = D.fk_actnum
+     where actd_status = 1
+       and tenderprice = (select max(tenderprice)
+                          from tbl_joinaclist 
+                          where fk_actnum = C.actnum)
+       and actd_endday < sysdate;
+     commit;
+end pcd_joinaclist_award;
+
+-- 자동낙찰취소
+-- 낙찰받은 상품을 3일 안에 결제하지 않았을 경우
+-- 자동적으로 낙찰이 취소되는 프로시저이다.
+-- award_status가 0일 때는 낙찰완료인 상태고 1이면 결제, 2이면 낙찰취소이다.
+-- 회원이 낙찰받은 상품에 대해 아무런 행동을 취하지 않고 3일안에 status를 1로 바꿔주지 않았다면
+-- 잡스케줄러에 의해 해당 상품은 낙찰취소가 되고 보증금(낙찰가의 10%)을 판매자에게 돌려주는 
+-- 프로그램이다.
+create or replace procedure pcd_awardCancel
+is
+ panmae_usernum NUMBER;
+ gumae_usernum NUMBER;
+ gumae_actdnum NUMBER;
+begin
+    update tbl_award set award_status = 2
+    where sysdate > (awardday + 3) and award_status = 0;
+    commit;
+    
+    select A.fk_actdnum into gumae_actdnum
+    from tbl_award A join tbl_auction_detail B
+    on A.fk_actdnum = B.actdnum
+    where award_status = 2 and sysdate > (awardday + 3) and sysdate <= (awardday + 3 + 5/86400);
+    
+    select B.fk_usernum into panmae_usernum
+    from tbl_award A join tbl_auction_detail B
+    on A.fk_actdnum = B.actdnum
+    where award_status = 2 and sysdate > (awardday + 3) and sysdate <= (awardday + 3 + 5/86400);
+    
+    select A.fk_usernum into gumae_usernum
+    from tbl_award A join tbl_auction_detail B
+    on A.fk_actdnum = B.actdnum
+    where award_status = 2 and sysdate > (awardday + 3) and sysdate <= (awardday + 3 + 5/86400);
+      
+    update tbl_member_detail set coin = coin + (select awardprice / 10 
+                                                from tbl_award
+                                                where award_status = 2 and fk_usernum = gumae_usernum
+                                                  and fk_actdnum = gumae_actdnum)
+    where usernum = panmae_usernum;
+    commit;
+    
+    EXCEPTION WHEN OTHERS THEN
+      ROLLBACK;
+      DBMS_OUTPUT.PUT_LINE(SQLERRM);
+end pcd_awardCancel;
+
+
+-- 잡 스케줄러(31번) : 기한이 만료된 상품상태를 상품종료로 바꿔준다.
+-- 1초단위로 진행된다.
+DECLARE
+  jobno NUMBER;
+BEGIN
+  SYS.DBMS_JOB.SUBMIT
+    ( job       => jobno  
+     ,what      => 'FINALC.PCD_AUCTION_DETAIL;'
+     ,next_date => to_date(sysdate,'yyyy-mm-dd hh24:mi:ss')
+     ,interval  => 'SYSDATE+1/86400'
+     ,no_parse  => TRUE
+    );
+END;
+
+
+-- 잡 스케줄러(29번) : 기한이 만료된 상품들중에 입찰된 상품이 있다면
+--                  최고가로 입찰한 회원1명에게 낙찰시키는 프로그램이다.
+-- 1초단위로 진행된다.
+create or replace procedure pcd_joinaclist_award
+is
+begin
+     insert into tbl_award(awardnum, fk_usernum, fk_actdnum, awardprice)
+     select seq_award.nextval, A.usernum, D.actdnum, B.tenderprice
+     from tbl_member_detail A join tbl_joinaclist B
+     on A.usernum = B.fk_usernum
+     join tbl_auction C
+     on B.fk_actnum = C.actnum
+     join tbl_auction_detail D
+     on C.actnum = D.fk_actnum
+     where actd_status = 1
+       and tenderprice = (select max(tenderprice)
+                          from tbl_joinaclist 
+                          where fk_actnum = C.actnum)
+       and actd_endday < sysdate;
+     commit;
+end pcd_joinaclist_award;
+
+
+-- 잡 스케줄러(29번) : -- 자동낙찰취소
+-- 낙찰받은 상품을 3일 안에 결제하지 않았을 경우
+-- 자동적으로 낙찰이 취소되는 프로시저이다.
+-- award_status가 0일 때는 낙찰완료인 상태고 1이면 결제, 2이면 낙찰취소이다.
+-- 회원이 낙찰받은 상품에 대해 아무런 행동을 취하지 않고 3일안에 status를 1로 바꿔주지 않았다면
+-- 잡스케줄러에 의해 해당 상품은 낙찰취소가 되고 보증금(낙찰가의 10%)을 판매자에게 돌려주는 
+-- 프로그램이다.
+-- 1초단위로 진행된다.
+DECLARE
+  jobno NUMBER;
+BEGIN
+  SYS.DBMS_JOB.SUBMIT
+    ( job       => jobno  
+     ,what      => 'FINALC.PCD_AWARDCANCEL;'
+     ,next_date => to_date(sysdate,'yyyy-mm-dd hh24:mi:ss')
+     ,interval  => 'SYSDATE+1/86400'
+     ,no_parse  => TRUE
+    );
+END;    
+
     

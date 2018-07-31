@@ -29,5 +29,34 @@
 		where cdname = #{cdname}
 	</update>
 	
+	<select id="getMemberCount" resultType="Integer">
+		select count(*)
+		from tbl_member
+		where user_status = 1
+	</select>
+	
+	<select id="getBoardCount" resultType="Integer">
+		select count(*)
+		from tbl_board
+		where boardstatus = 1
+	</select>
+	
+	<select id="getHugiBoardCount" resultType="Integer">
+		select count(*)
+		from tbl_hugiboard
+		where ep_boardstatus = 1
+	</select>
+	
+	<select id="getCategoryDetailCount" resultType="Integer">
+		select count(*)
+		from tbl_category_detail
+		where categostau = 1
+	</select>
+	
+	<select id="getDeliverCount" resultType="Integer">
+		select count(*)
+		from tbl_deliver
+	</select>
+	
 	
 </mapper>
