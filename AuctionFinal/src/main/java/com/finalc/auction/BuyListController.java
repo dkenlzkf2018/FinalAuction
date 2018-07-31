@@ -70,7 +70,9 @@ public class BuyListController {
 			 */
 			// 먼저 총게시물 건수를 구한다.
 			
-			totalCount = service.getTotalCount(); // 검색어가 없는 총게시물 건수
+			
+			
+			totalCount = service.getTotalCount(map); // 검색어가 없는 총게시물 건수
 			
 			
 			totalPage = (int)Math.ceil((double)totalCount/sizePerPage);
@@ -128,7 +130,10 @@ public class BuyListController {
 			pagebar += "</li>";*/
 			
 			
-			
+			System.out.println(currentShowPageNo);
+			System.out.println(sizePerPage);
+			System.out.println(totalPage);
+			System.out.println(blockSize);
 			String pagebar = MyUtil.getAuctionPageBar("buyList.action", currentShowPageNo, sizePerPage, totalPage, blockSize);     
 			
 			

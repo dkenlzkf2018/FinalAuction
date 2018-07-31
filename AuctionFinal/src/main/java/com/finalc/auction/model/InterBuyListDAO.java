@@ -8,7 +8,7 @@ public interface InterBuyListDAO {
 	// #Buy 5. 구매 리스트 Interface DAO 단
 	List<HashMap<String, String>> getBuyList(HashMap<String, String> map);
 
-	int getTotalCount();
+	int getTotalCount(HashMap<String, String> map);
 
 	AuctionVO viewAuction(String actdnum);
 
@@ -45,5 +45,7 @@ public interface InterBuyListDAO {
 	int inputDeliver(HashMap<String, String> map);
 
 	HashMap<String, String> getDeliverData(HashMap<String, String> map);
+
+	
 
 }

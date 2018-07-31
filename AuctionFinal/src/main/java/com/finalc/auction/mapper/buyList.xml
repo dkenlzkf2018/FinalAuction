@@ -90,7 +90,9 @@
 	
 	<select id="getTotalCount" resultType="Integer">
 		select count(*)
-		from tbl_award
+		from tbl_award A join tbl_auction_detail B
+		on A.fk_actdnum = B.actdnum
+		where A.fk_usernum = #{usernum} and B.actd_status = 0
 	</select>
 	
 	<!-- <resultMap type="HashMap" id="getViewAuctionMap">
@@ -248,4 +250,5 @@
 		on A.fk_usernum = B.usernum
 		where A.fk_usernum = #{usernum} and A.fk_actdnum = #{actdnum}
 	</select>
+	
 </mapper>

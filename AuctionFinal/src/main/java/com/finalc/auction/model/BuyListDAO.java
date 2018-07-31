@@ -25,8 +25,8 @@ public class BuyListDAO implements InterBuyListDAO {
 
 	// 낙찰된 수
 	@Override
-	public int getTotalCount() {
-		int count = sqlsession.selectOne("buyList.getTotalCount");
+	public int getTotalCount(HashMap<String, String> map) {
+		int count = sqlsession.selectOne("buyList.getTotalCount", map);
 		return count;
 	}
 
@@ -149,5 +149,6 @@ public class BuyListDAO implements InterBuyListDAO {
 		HashMap<String, String> deliverMap = sqlsession.selectOne("buyList.getDeliverData", map);
 		return deliverMap;
 	}
+
 	
 }

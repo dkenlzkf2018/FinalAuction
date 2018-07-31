@@ -70,11 +70,20 @@
 	function reviewRegist() {
 		var content = document.getElementById("ep_content").value.trim();
 		var userid = "${sessionScope.loginuser.userid}";
+		var usernum = "${sessionScope.loginuser.usernum}";
 		
-		var frm = document.reviewFrm;
-		frm.method = "get";
-		frm.action = "reviewRegistLGH.action";
-		frm.submit();
+		if (usernum == "${acvo.fk_usernum}") {
+			alert("판매자는 후기 게시글을 이용할 수 없습니다.");
+			return false;
+		}
+		else {
+			var frm = document.reviewFrm;
+			frm.method = "get";
+			frm.action = "reviewRegistLGH.action";
+			frm.submit();
+		}
+		
+		
 		
 	}
 	
@@ -351,6 +360,7 @@
               
             </div>
 
+		<%-- <c:if test="${sessionScope.loginuser.usernum ne acvo.fk_usernum}"> --%>
 
 <%-- 규호 소개!!////////////////////////////////////////////////////////////////// --%>
             <div class="product-page-content">
@@ -393,6 +403,7 @@
                 </div> -->
                 
 <%-- 규호 리뷰!!////////////////////////////////////////////////////////////////// --%>
+				
                 <div class="tab-pane fade in active" id="Reviews">
                   <!--<p>There are no reviews for this product.</p>-->
                   <c:forEach var="hugiboardvo" items="${hugiBoardList}">
@@ -419,7 +430,9 @@
                       <label for="review">리뷰 <span class="require">*</span></label>
                       <textarea class="form-control" rows="8" id="ep_content" name="ep_content"></textarea>
                     </div>
+                    
                     <div class="form-group">
+                    
                       <label for="email">만족도</label>
                       <input type="range" value="4" step="0.25" id="backing5" name="ep_satisfaction"/>
                       <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
@@ -431,8 +444,15 @@
                   </form>
                   <!-- END FORM--> 
                 </div>
+                
+                
+                
               </div>
             </div>
+            
+             <%-- </c:if> --%>
+           
+            
 
             <div class="sticker sticker-sale"></div>
           </div>

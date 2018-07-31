@@ -31,8 +31,8 @@ public class BuyListService implements InterBuyListService {
 	}
 
 	
-	public int getTotalCount() {
-		int count = dao.getTotalCount();
+	public int getTotalCount(HashMap<String, String> map) {
+		int count = dao.getTotalCount(map);
 		return count;
 	}
 
@@ -181,5 +181,6 @@ public class BuyListService implements InterBuyListService {
 		}
 		return result0+pay+quick+pay_status;
 	}
+
 
 }
